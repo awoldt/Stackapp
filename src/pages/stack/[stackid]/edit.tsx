@@ -30,9 +30,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
         stackData!.github_api_token_used! === null
           ? null
           : await GetRepoSelect(
-              stackData?.github_api_token_used!,
-              stackData!.uid!
-            ),
+            stackData?.github_api_token_used!,
+            stackData!.uid!
+          ),
       current_repo_id_selected:
         stackData!.github_api_token_used === null
           ? null
@@ -99,8 +99,7 @@ export default function EditStackpage({
                 setLoading(true);
                 try {
                   const req = await fetch(
-                    `/api/edit-stack?stack_id=${
-                      window.location.pathname.split("/")[2]
+                    `/api/edit-stack?stack_id=${window.location.pathname.split("/")[2]
                     }`,
                     {
                       method: "POST",
@@ -569,6 +568,7 @@ export default function EditStackpage({
                   )}
                 </>
               )}
+
               {page_data.saved_stack_data!.frameworksSelectedData === null && (
                 <>
                   <img
@@ -600,47 +600,72 @@ export default function EditStackpage({
                   })}
                 </>
               )}
-              {!loading && (
-                <>
-                  {disabledSubmit && (
-                    <div className="modal-header">
-                      <button
-                        disabled={true}
-                        className="btn-edit"
-                        type="submit"
-                        style={{
-                          width: "100%",
-                          marginBottom: "0px",
-                          backgroundColor: "grey",
-                          cursor: "default",
-                        }}
-                      >
-                        Update Stack
-                      </button>
-                    </div>
-                  )}
-                  {!disabledSubmit && (
-                    <div className="card-container">
-                      <div
-                        className="card-empty"
-                        style={{ marginTop: "0px", paddingTop: "0px" }}
-                      >
-                        <button
-                          className="btn-edit"
-                          type="submit"
-                          style={{ width: "100%", marginBottom: "0px" }}
-                        >
-                          Update Stack
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                </>
-              )}
-              {loading && <Spinner />}
+
+              <button
+                className="btn-edit"
+                id="delete_stack_btn"
+                style={{ marginBottom: "0px" }}
+                onClick={async () => {
+                  try {
+                    const req = await fetch("/api/delete-stack");
+                    if (req.status === 200) {
+                      window.location.assign("/profile");
+                    }
+                  } catch (e) {
+                    console.log(e);
+                    alert("Error while deleting stack");
+                  }
+                }}
+              >
+                Delete Stack
+              </button>
             </form>
           </div>
         </div>
+
+        {!loading && (
+          <>
+            {disabledSubmit && (
+              <div className="card-container">
+                <div
+                  className="card-empty"
+                  style={{ marginTop: "0px", paddingTop: "0px" }}
+                >
+                  <button
+                    disabled={true}
+                    className="btn-edit"
+                    type="submit"
+                    style={{
+                      width: "100%",
+                      marginBottom: "0px",
+                      backgroundColor: "grey",
+                      cursor: "default",
+                    }}
+                  >
+                    Update Stack
+                  </button>
+                </div>
+              </div>
+            )}
+            {!disabledSubmit && (
+              <div className="card-container">
+                <div
+                  className="card-empty"
+                  style={{ marginTop: "0px", paddingTop: "0px" }}
+                >
+                  <button
+                    className="btn-create"
+                    type="submit"
+                    style={{ width: "100%", marginBottom: "0px" }}
+                  >
+                    Update Stack
+                  </button>
+                </div>
+              </div>
+            )}
+          </>
+        )}
+        {loading && <Spinner />}
       </section>
     </>
   );

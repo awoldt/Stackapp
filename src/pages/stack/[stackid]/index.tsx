@@ -62,9 +62,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
         stackData.github_repo_id === null
           ? null
           : await GetRepoCommitLogs(
-              stackData.github_repo_id,
-              stackData.github_api_token_used!
-            ),
+            stackData.github_repo_id,
+            stackData.github_api_token_used!
+          ),
       creator_data: await GetCreatorDetails(stackData.uid),
       created_on: stackData.created_on,
       stack_id: stackData.stack_id!,
@@ -154,24 +154,6 @@ export default function Stackpage({
                         <a href={`/stack/${page_data.stack_id}/edit`}>
                           <button className="btn-edit">Edit Stack</button>
                         </a>
-
-                        {/* <button
-                            className="btn-edit"
-                            id="delete_stack_btn"
-                            onClick={async () => {
-                              try {
-                                const req = await fetch("/api/delete-stack");
-                                if (req.status === 200) {
-                                  window.location.assign("/profile");
-                                }
-                              } catch (e) {
-                                console.log(e);
-                                alert("Error while deleting stack");
-                              }
-                            }}
-                          >
-                            Delete Stack
-                          </button> */}
                       </>
                     )}
                   </div>
