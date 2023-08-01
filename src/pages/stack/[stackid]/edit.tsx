@@ -31,9 +31,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
         stackData!.github_api_token_used! === null
           ? null
           : await GetRepoSelect(
-              stackData?.github_api_token_used!,
-              stackData!.uid!
-            ),
+            stackData?.github_api_token_used!,
+            stackData!.uid!
+          ),
       current_repo_id_selected:
         stackData!.github_api_token_used === null
           ? null
@@ -97,43 +97,43 @@ export default function EditStackpage({
             <h5>Edit or change your Stack&apos;s current details.</h5>
           </div>
         </div>
-        <div className="card-container">
-          <div className="create-content">
-            <form
-              onChange={(e) => {
-                if (disabledSubmit) {
-                  setDisabledSubmit(false);
+        <form
+          onChange={(e) => {
+            if (disabledSubmit) {
+              setDisabledSubmit(false);
+            }
+          }}
+          ref={formRef}
+          onSubmit={async (e) => {
+            e.preventDefault();
+            setLoading(true);
+            try {
+              const req = await fetch(
+                `/api/edit-stack?stack_id=${window.location.pathname.split("/")[2]
+                }`,
+                {
+                  method: "POST",
+                  body: new FormData(formRef.current!),
                 }
-              }}
-              ref={formRef}
-              onSubmit={async (e) => {
-                e.preventDefault();
-                setLoading(true);
-                try {
-                  const req = await fetch(
-                    `/api/edit-stack?stack_id=${
-                      window.location.pathname.split("/")[2]
-                    }`,
-                    {
-                      method: "POST",
-                      body: new FormData(formRef.current!),
-                    }
-                  );
-                  const res = await req.json();
-                  alert(res.msg);
-                  if (req.status === 200) {
-                    window.location.assign(
-                      `/stack/${window.location.pathname.split("/")[2]}`
-                    );
-                  }
-                  setLoading(false);
-                } catch (e) {
-                  console.log(e);
-                  alert("There was an error while editing stack ");
-                  setLoading(false);
-                }
-              }}
-            >
+              );
+              const res = await req.json();
+              alert(res.msg);
+              if (req.status === 200) {
+                window.location.assign(
+                  `/stack/${window.location.pathname.split("/")[2]}`
+                );
+              }
+              setLoading(false);
+            } catch (e) {
+              console.log(e);
+              alert("There was an error while editing stack ");
+              setLoading(false);
+            }
+          }}
+        >
+          <div className="card-container">
+            <div className="create-content">
+
               <label htmlFor="app_title">
                 <input
                   type="text"
@@ -666,52 +666,52 @@ export default function EditStackpage({
               >
                 Delete Stack
               </button>
-              {!loading && (
-                <>
-                  {disabledSubmit && (
-                    <div className="card-container">
-                      <div
-                        className="card-empty"
-                        style={{ marginTop: "0px", paddingTop: "0px" }}
-                      >
-                        <button
-                          disabled={true}
-                          className="btn-edit"
-                          type="submit"
-                          style={{
-                            width: "100%",
-                            marginBottom: "0px",
-                            backgroundColor: "grey",
-                            cursor: "default",
-                          }}
-                        >
-                          Update Stack
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                  {!disabledSubmit && (
-                    <div className="card-container">
-                      <div
-                        className="card-empty"
-                        style={{ marginTop: "0px", paddingTop: "0px" }}
-                      >
-                        <button
-                          className="btn-create"
-                          type="submit"
-                          style={{ width: "100%", marginBottom: "0px" }}
-                        >
-                          Update Stack
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                </>
-              )}
-              {loading && <Spinner />}
-            </form>
+            </div>
           </div>
-        </div>
+          {!loading && (
+            <>
+              {disabledSubmit && (
+                <div className="card-container">
+                  <div
+                    className="card-empty"
+                    style={{ marginTop: "0px", paddingTop: "0px" }}
+                  >
+                    <button
+                      disabled={true}
+                      className="btn-edit"
+                      type="submit"
+                      style={{
+                        width: "100%",
+                        marginBottom: "0px",
+                        backgroundColor: "grey",
+                        cursor: "default",
+                      }}
+                    >
+                      Update Stack
+                    </button>
+                  </div>
+                </div>
+              )}
+              {!disabledSubmit && (
+                <div className="card-container">
+                  <div
+                    className="card-empty"
+                    style={{ marginTop: "0px", paddingTop: "0px" }}
+                  >
+                    <button
+                      className="btn-create"
+                      type="submit"
+                      style={{ width: "100%", marginBottom: "0px" }}
+                    >
+                      Update Stack
+                    </button>
+                  </div>
+                </div>
+              )}
+            </>
+          )}
+          {loading && <Spinner />}
+        </form>
       </section>
     </>
   );

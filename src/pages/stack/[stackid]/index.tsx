@@ -62,9 +62,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
         stackData.github_repo_id === null
           ? null
           : await GetRepoCommitLogs(
-              stackData.github_repo_id,
-              stackData.github_api_token_used!
-            ),
+            stackData.github_repo_id,
+            stackData.github_api_token_used!
+          ),
       creator_data: await GetCreatorDetails(stackData.uid),
       created_on: stackData.created_on,
       stack_id: stackData.stack_id!,
@@ -129,17 +129,18 @@ export default function Stackpage({
                     <h1>{page_data.app_name}</h1>
 
                     {page_data.website_url !== null && (
-                      <a
-                        href={page_data.website_url}
-                        className="nav-element"
-                        style={{ paddingBottom: "10px" }}
-                      >
-                        <img src="/icons/link.svg" alt="link icon" />
-                        {new URL(page_data.website_url).hostname}
-                      </a>
+                      <h4 style={{ marginBottom: "20px" }}>
+                        <a
+                          href={page_data.website_url}
+                          className="nav-element"
+                          style={{ padding: "10px" }}
+                        >
+                          <img src="/icons/link.svg" alt="link icon" width={20} height={15} /> {new URL(page_data.website_url).hostname}
+                        </a>
+                      </h4>
                     )}
 
-                    <div style={{ marginTop: "10px", marginBottom: "10px" }}>
+                    <div style={{ marginTop: "10px", marginBottom: "10px", width: "fit-content" }}>
                       <a href={page_data.creator_data.href}>
                         <img
                           src={page_data.creator_data.profile_pic!}
@@ -151,6 +152,7 @@ export default function Stackpage({
                         {page_data.creator_data.first_name !== null && (
                           <span>
                             <b>
+                              <br />
                               {page_data.creator_data.first_name}{" "}
                               {page_data.creator_data.last_name !== null && (
                                 <>{page_data.creator_data.last_name}</>
@@ -159,14 +161,14 @@ export default function Stackpage({
                           </span>
                         )}
 
-                        <p style={{ fontSize: "16px", width: "fit-content" }}>
+                        <p style={{ fontSize: "16px" }}>
                           @{page_data.creator_data.username}
                         </p>
                       </a>
                     </div>
 
                     <p style={{ marginTop: "20px", marginBottom: "20px" }}>
-                      Stacked on {new Date(page_data.created_on).toDateString()}
+                      Stacked {new Date(page_data.created_on).toDateString()}
                     </p>
 
                     {page_data.is_signedin_users_stack && (

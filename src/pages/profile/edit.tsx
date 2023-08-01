@@ -13,7 +13,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 
     const pageData: _PAGEDATA_editprofile = {
       header_tags: {
-        title: "Stack | Edit Profile",
+        title: "Edit Profile | Stack",
         canonical_link: "https://stackapp.xyz/profile/edit",
         description: "Edit your stackapp profile",
         open_graph_tags: {
