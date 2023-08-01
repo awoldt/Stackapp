@@ -84,7 +84,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
       {!stackSuccessfullyCreated && (
         <section>
           <div className="background">
-            <img src={"/imgs/background.avif"} alt="background design"></img>
+            <img src={"/imgs/background.avif"} alt="background design" className="background-image"></img>
           </div>
           <div className="card-container" style={{ paddingTop: "40px" }}>
             <div className="card-empty">
@@ -177,7 +177,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                   <>
                     <p>Associated GitHub Repo</p>
 
-                    <select name="githubRepoId" className="btn-edit">
+                    <select name="githubRepoId" className="btn-edit" style={{ display: "block", width: "100%" }}>
                       <option value="null" selected>
                         None
                       </option>

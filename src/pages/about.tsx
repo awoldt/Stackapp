@@ -42,7 +42,7 @@ export default function About({ signedIn }: { signedIn: boolean }) {
         <Sidenav isSignedIn={signedIn} />
       </section>
       <div className="background">
-        <img src="/imgs/background.avif" />
+        <img src="/imgs/background.avif" alt="background design" className="background-image"/>
       </div>
 
       <div className="card-container" style={{ paddingTop: "40px" }}>

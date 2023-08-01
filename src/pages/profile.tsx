@@ -63,7 +63,7 @@ export default function Profile({
         {page_data.user_profile_data !== null && (
           <section>
             <div className="background">
-              <img src={"/imgs/background.avif"} alt="background design"></img>
+              <img src={"/imgs/background.avif"} alt="background design" className="background-image"></img>
             </div>
             <main>
               <div className="header-container">

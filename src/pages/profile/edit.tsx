@@ -68,7 +68,7 @@ export default function EditProfile({
       </section>
       <section>
         <div className="background">
-          <img src={"/imgs/background.avif"} alt="background design"></img>
+          <img src={"/imgs/background.avif"} alt="background design" className="background-image"></img>
         </div>
         <div className="card-container" style={{ paddingTop: "40px" }}>
           <div className="card-empty">
@@ -123,7 +123,7 @@ export default function EditProfile({
                 type="text"
                 placeholder={
                   page_data.user_data?.first_name === null ||
-                  page_data.user_data?.first_name === ""
+                    page_data.user_data?.first_name === ""
                     ? "First name"
                     : page_data.user_data?.first_name
                 }
@@ -134,7 +134,7 @@ export default function EditProfile({
                 type="text"
                 placeholder={
                   page_data.user_data?.last_name === null ||
-                  page_data.user_data?.last_name === ""
+                    page_data.user_data?.last_name === ""
                     ? "Last name"
                     : page_data.user_data?.last_name
                 }
@@ -155,7 +155,7 @@ export default function EditProfile({
                 style={{ resize: "none" }}
                 placeholder={
                   page_data.user_data?.bio === null ||
-                  page_data.user_data?.bio === ""
+                    page_data.user_data?.bio === ""
                     ? "Enter bio here"
                     : page_data.user_data?.bio
                 }
@@ -163,8 +163,9 @@ export default function EditProfile({
 
               {page_data.has_authenticated_github_account && (
                 <p style={{ marginBottom: "20px" }}>
-                  You have connected your GitHub account! Your github account id
-                  is {page_data.user_data?.github_account_id}
+                  Your GitHub account is connected.
+                  <br />
+                  Account ID #{page_data.user_data?.github_account_id}
                 </p>
               )}
               {!page_data.has_authenticated_github_account && (
@@ -174,7 +175,7 @@ export default function EditProfile({
                     href={`https://github.com/login/oauth/authorize?client_id=${page_data.github_client_id}`}
                     title="Authorize Stackapp to connect to your GitHub Account"
                   >
-                    <p>You have not connected your GitHub account.</p>
+                    <p>Your GitHub account is not connected.</p>
                     <button type="button" className="btn-edit">
                       Connect Github
                     </button>
@@ -182,7 +183,6 @@ export default function EditProfile({
                 </>
               )}
 
-              <p>Deleting your account is permanent.</p>
               <button
                 className="btn-edit"
                 type="button"

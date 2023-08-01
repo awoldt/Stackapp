@@ -110,7 +110,7 @@ export default function Stackpage({
           </section>
           <section>
             <div className="background">
-              <img src={"/imgs/background.avif"} alt="background design"></img>
+              <img src={"/imgs/background.avif"} alt="background design" className="background-image"></img>
             </div>
             <div className="header-container">
               <div className="title-container-header">
@@ -141,12 +141,13 @@ export default function Stackpage({
                             page_data.creator_data.username + " profile picture"
                           }
                         />
-                        <p>@{page_data.creator_data.username}</p>
+                        <h5><b>Firstname Lastname</b></h5>
+                        <p style={{ fontSize: "16px" }}>@{page_data.creator_data.username}</p>
                       </a>
                     </div>
 
                     <p style={{ marginTop: "20px", marginBottom: "20px" }}>
-                      Stacked {new Date(page_data.created_on).toDateString()}
+                      {new Date(page_data.created_on).toDateString()}
                     </p>
 
                     {page_data.is_signedin_users_stack && (
@@ -159,7 +160,7 @@ export default function Stackpage({
                   </div>
                 </div>
 
-                <div className="card-container">
+                <div className="card-container" style={{ paddingBottom: "0px", marginBottom: "0px" }}>
                   <div className="thumbnail">
                     <img
                       src={page_data.thumbnail!}

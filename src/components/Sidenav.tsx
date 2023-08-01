@@ -11,14 +11,15 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
             <>
               <li className="nav-element">
                 <h5>
-                  <a href={"/create"}>Create
+                  <a href={"/create"}>
+                    <img src="/icons/create.svg" alt="create logo" width={25} height={15} />Create
                   </a>
                 </h5>
               </li>
               <li className="nav-element">
                 <h5>
                   <a href={"/profile"}>
-                    Profile
+                    <img src="/icons/profile.svg" alt="profile logo" width={25} height={15} />Profile
                   </a>
                 </h5>
               </li>
@@ -30,7 +31,7 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
                     window.location.assign("/");
                   }}
                 >
-                  Sign Out
+                  <img src="/icons/signout.svg" alt="signout logo" width={25} height={15} />Sign Out
                 </h5>
               </li>
             </>
@@ -40,13 +41,15 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
             <>
               <li className="nav-element">
                 <h5>
-                  <a href={"/signin"}>Sign In
+                  <a href={"/signin"}>
+                    <img src="/icons/signin.svg" alt="signin logo" width={25} height={15} />Sign In
                   </a>
                 </h5>
               </li>
               <li className="nav-element">
                 <h5>
-                  <a href={"/signup"}>Sign Up
+                  <a href={"/signup"}>
+                    <img src="/icons/signup.svg" alt="signup logo" width={25} height={15} />Sign Up
                   </a>
                 </h5>
               </li>

@@ -63,7 +63,7 @@ export default function Home({
       <main>
         <section>
           <div className="background">
-            <img src={"/imgs/background.avif"} alt="background design"></img>
+            <img src={"/imgs/background.avif"} alt="background design" className="background-image"></img>
           </div>
           <div className="card-container">
             <div className="card-empty">
@@ -133,16 +133,16 @@ export default function Home({
               <h5>
                 See how you can visualize your tech Stacks.
                 <br />
-                <img src="/icons/expand.svg" alt="expand icon" />
+                <img src="/icons/expand.svg" alt="expand icon" width={15} />
               </h5>
             </div>
           </div>
 
           <div className="card-container">
-            <div className="card-empty">
+            <div className="card-empty" style={{ display: "flex", justifyContent: "center" }}>
               <img
                 src="/imgs/landing.png"
-                style={{ cursor: "pointer", width: "95%" }}
+                style={{ width: "105%", textAlign: "center" }}
                 alt="Stack Example"
               />
             </div>

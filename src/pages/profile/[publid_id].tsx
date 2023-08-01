@@ -89,7 +89,7 @@ export default function Profilepage({
           </section>
           <section>
             <div className="background">
-              <img src={"/imgs/background.avif"} alt="background design"></img>
+              <img src={"/imgs/background.avif"} alt="background design" className="background-image"></img>
             </div>
             <div className="header-container">
               <div className="profile-container-header">

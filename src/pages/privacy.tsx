@@ -43,7 +43,7 @@ export default function Privacy({ signedIn }: { signedIn: boolean }) {
         <Sidenav isSignedIn={signedIn} />
       </section>
       <div className="background">
-        <img src="/imgs/background.avif" />
+        <img src="/imgs/background.avif" alt="background design" className="background-image"/>
       </div>
       <section>
         <main>
