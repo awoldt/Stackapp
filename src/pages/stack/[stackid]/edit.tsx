@@ -21,7 +21,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 
     const pageData: _PAGEDATA_editstack = {
       header_tags: {
-        title: `Edit ${stackData?.name} Stack`,
+        title: `Edit ${stackData?.name} | Stack`,
         description: "Edit stack",
         open_graph_tags: null,
         canonical_link: `https://stackapp.xyz/stack/${stackData?.stack_id}/edit`,

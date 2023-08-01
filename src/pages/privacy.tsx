@@ -22,7 +22,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 
 const pageData: DEFAULT_PAGE_LAYOUT = {
   header_tags: {
-    title: "Stack | Privacy Policy",
+    title: "Privacy Policy | Stack",
     description:
       "Review the privacy policy for stackapp and know what we expect of you when using our services",
     canonical_link: "https://stackapp.xyz/privacy",

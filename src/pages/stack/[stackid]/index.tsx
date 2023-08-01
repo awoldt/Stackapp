@@ -174,7 +174,7 @@ export default function Stackpage({
                     {page_data.is_signedin_users_stack && (
                       <>
                         <a href={`/stack/${page_data.stack_id}/edit`}>
-                          <button className="btn-edit">Edit Stack</button>
+                          <button className="btn-create">Edit Stack</button>
                         </a>
                       </>
                     )}

@@ -109,7 +109,7 @@ export default function EditProfile({
                 }
               }}
             >
-              <label htmlFor="profile_email_picture">
+              <label htmlFor="profile_email_picture" style={{ width: "100%", display: "flex", justifyContent: "center" }}>
                 <img
                   src={page_data.user_data?.profile_pic!}
                   className="profile-img"

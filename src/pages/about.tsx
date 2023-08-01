@@ -22,7 +22,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 
 const pageData: DEFAULT_PAGE_LAYOUT = {
   header_tags: {
-    title: "Stack | About",
+    title: "About | Stack",
     description: "About Stack",
     canonical_link: "https://stackapp.xyz/about",
     open_graph_tags: null,

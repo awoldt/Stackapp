@@ -18,7 +18,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 
     const pageData: _PAGEDATA_create = {
       header_tags: {
-        title: "Create a New Stack | Visualize the Tech Behind Your App",
+        title: "Create a New Stack | Stack",
         description:
           "Create a stack that showcases the technology that went into making your application. This can include things like languages, databases, apis, and more.",
         canonical_link: "https://stackapp.xyz/create",

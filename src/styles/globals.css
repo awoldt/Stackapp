@@ -34,14 +34,15 @@
 
     .background-image {
         width: 50%;
+        display: none;
     }
 
     ::-webkit-scrollbar {
-        width: 16px;
+        width: 14px;
     }
 
     ::-webkit-scrollbar-thumb {
-        background: linear-gradient(180deg, rgba(243, 154, 89, .4) 0%, rgba(128, 132, 192, .4) 100%);
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.125) 0%, rgba(0, 0, 0, 0.125) 100%);
         overflow-y: auto;
         border: 4px solid transparent;
         border-radius: 100px;
@@ -125,7 +126,8 @@
     .footer-element:after {
         content: "";
         position: absolute;
-        background: linear-gradient(90deg, #8084C0 0%, #F39A59 100%);
+        /* background: linear-gradient(90deg, #70b0ff 50%, #94fbab 75%, #fcab10 100%); */
+        background: linear-gradient(90deg, #70b0ff 50%, #fcab10 100%);
         height: 2px;
         width: 0%;
         left: 0;
@@ -607,8 +609,7 @@
         padding-left: 24px;
         padding-right: 24px;
         border: 2px solid transparent;
-        background: rgb(128, 132, 192, 0.85);
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        background: #70b0ff;
         color: white;
         font-size: 18px;
         font-weight: 500;
@@ -618,7 +619,7 @@
 
     .btn-create:hover {
         border: 2px solid rgba(0, 0, 0, 0.2);
-        background: rgb(128, 132, 192);
+        background: #70b0ff;
     }
 
     .btn-edit {
@@ -629,8 +630,7 @@
         padding-left: 24px;
         padding-right: 24px;
         border: 2px solid transparent;
-        background: rgb(243, 154, 89, 0.85);
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        background: #fcab10;
         color: white;
         font-size: 18px;
         font-weight: 500;
@@ -646,8 +646,7 @@
         padding-right: 10px;
         margin-bottom: 20px;
         border: 2px solid transparent;
-        background: rgb(243, 154, 89, 0.85);
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        background: #fcab10;
         color: white;
         font-size: 18px;
         font-weight: 500;
@@ -658,7 +657,7 @@
     .btn-edit:hover,
     .btn-tag:hover {
         border: 2px solid rgba(0, 0, 0, 0.2);
-        background: rgb(243, 154, 89);
+        background: #fcab10;
     }
 
     .create-content {
@@ -695,8 +694,7 @@
         padding-left: 24px;
         padding-right: 24px;
         border: 2px solid transparent;
-        background: rgb(243, 154, 89, 0.85);
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        background: #fcab10;
         color: white;
         font-size: 18px;
         font-weight: 500;
@@ -706,13 +704,14 @@
 
     input[type="file"]::file-selector-button:hover {
         border: 2px solid rgba(0, 0, 0, 0.2);
-        background: rgb(243, 154, 89);
+        background: #fcab10;
     }
 
     input[type="email"],
     input[type="text"],
     input[type="url"],
     input[type="password"],
+    select,
     textarea {
         cursor: pointer;
         border: none;
@@ -739,6 +738,7 @@
     input[type="text"]:focus,
     input[type="url"]:focus,
     input[type="password"]:focus,
+    select:focus,
     textarea:focus {
         border: 2px solid rgba(0, 0, 0, 0.2);
         outline: none;
@@ -771,7 +771,7 @@
 
     input[type="checkbox"]:checked~.checkmark {
         border: 2px solid rgba(0, 0, 0, 0.2);
-        background: rgb(148, 251, 171);
+        background: #94fbab;
         transition: 250ms ease-in-out;
     }
 
