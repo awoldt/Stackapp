@@ -75,7 +75,7 @@ export default function Profilepage({
 }) {
   return (
     <>
-      {error && <p>Stack does not exist</p>}
+      {error && <p>Profile does not exist</p>}
       {error === undefined && (
         <>
           <UniqueHeader
@@ -89,7 +89,11 @@ export default function Profilepage({
           </section>
           <section>
             <div className="background">
-              <img src={"/imgs/background.avif"} alt="background design" className="background-image"></img>
+              <img
+                src={"/imgs/background.avif"}
+                alt="background design"
+                className="background-image"
+              ></img>
             </div>
             <div className="header-container">
               <div className="profile-container-header">
@@ -97,7 +101,7 @@ export default function Profilepage({
                   <div className="header">
                     {page_data.user_profile_data?.profile_pic === null && (
                       <img
-                        src="/imgs/icons/noprofile.png"
+                        src="/icons/noprofile.png"
                         className="profile-img"
                         alt="default profile pic"
                       />
@@ -129,6 +133,9 @@ export default function Profilepage({
                       <p style={{ marginBottom: "20px" }}>
                         {page_data.user_profile_data!.bio}
                       </p>
+                    )}
+                    {page_data.user_profile_data?.bio === null && (
+                      <p>User does not have bio yet</p>
                     )}
 
                     {/* {page_data.user_stacks !== 0 && (
@@ -174,6 +181,9 @@ export default function Profilepage({
                 </div>
               </div>
             </section>
+          )}
+          {page_data.user_stacks === 0 && (
+            <p>User does not have any stacks yet</p>
           )}
         </>
       )}

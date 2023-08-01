@@ -31,9 +31,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
         stackData!.github_api_token_used! === null
           ? null
           : await GetRepoSelect(
-            stackData?.github_api_token_used!,
-            stackData!.uid!
-          ),
+              stackData?.github_api_token_used!,
+              stackData!.uid!
+            ),
       current_repo_id_selected:
         stackData!.github_api_token_used === null
           ? null
@@ -60,7 +60,8 @@ export default function EditStackpage({
 }: {
   page_data: _PAGEDATA_editstack;
 }) {
-  const [loading, setLoading] = useState(false);
+  const [updateStackLoading, setUpdateStackLoading] = useState(false);
+  const [deleteStackLoading, setDeleteStackLoading] = useState(false);
   const [disabledSubmit, setDisabledSubmit] = useState(true);
 
   const [iconImgSrc, setIconImgSrc] = useState(
@@ -106,10 +107,11 @@ export default function EditStackpage({
           ref={formRef}
           onSubmit={async (e) => {
             e.preventDefault();
-            setLoading(true);
+            setUpdateStackLoading(true);
             try {
               const req = await fetch(
-                `/api/edit-stack?stack_id=${window.location.pathname.split("/")[2]
+                `/api/edit-stack?stack_id=${
+                  window.location.pathname.split("/")[2]
                 }`,
                 {
                   method: "POST",
@@ -123,17 +125,16 @@ export default function EditStackpage({
                   `/stack/${window.location.pathname.split("/")[2]}`
                 );
               }
-              setLoading(false);
+              setUpdateStackLoading(false);
             } catch (e) {
               console.log(e);
               alert("There was an error while editing stack ");
-              setLoading(false);
+              setUpdateStackLoading(false);
             }
           }}
         >
           <div className="card-container">
             <div className="create-content">
-
               <label htmlFor="app_title">
                 <input
                   type="text"
@@ -647,28 +648,35 @@ export default function EditStackpage({
                   })}
                 </>
               )}
-
-              <button
-                className="btn-edit"
-                id="delete_stack_btn"
-                style={{ marginBottom: "0px" }}
-                onClick={async () => {
-                  try {
-                    const req = await fetch("/api/delete-stack");
-                    if (req.status === 200) {
-                      window.location.assign("/profile");
+              {!deleteStackLoading && (
+                <button
+                  type="button"
+                  className="btn-edit"
+                  id="delete_stack_btn"
+                  style={{ marginBottom: "0px" }}
+                  onClick={async () => {
+                    try {
+                      setDeleteStackLoading(true);
+                      const req = await fetch("/api/delete-stack");
+                      if (req.status === 200) {
+                        alert("Stack successfully deleted");
+                        window.location.assign("/profile");
+                      }
+                      setDeleteStackLoading(false);
+                    } catch (e) {
+                      console.log(e);
+                      alert("Error while deleting stack");
+                      setDeleteStackLoading(false);
                     }
-                  } catch (e) {
-                    console.log(e);
-                    alert("Error while deleting stack");
-                  }
-                }}
-              >
-                Delete Stack
-              </button>
+                  }}
+                >
+                  Delete Stack
+                </button>
+              )}
+              {deleteStackLoading && <Spinner />}
             </div>
           </div>
-          {!loading && (
+          {!updateStackLoading && (
             <>
               {disabledSubmit && (
                 <div className="card-container">
@@ -710,7 +718,7 @@ export default function EditStackpage({
               )}
             </>
           )}
-          {loading && <Spinner />}
+          {updateStackLoading && <Spinner />}
         </form>
       </section>
     </>

@@ -68,12 +68,16 @@ export default function EditProfile({
       </section>
       <section>
         <div className="background">
-          <img src={"/imgs/background.avif"} alt="background design" className="background-image"></img>
+          <img
+            src={"/imgs/background.avif"}
+            alt="background design"
+            className="background-image"
+          ></img>
         </div>
         <div className="card-container" style={{ paddingTop: "40px" }}>
           <div className="card-empty">
             <h1>Edit Profile</h1>
-            <h5>Change the details of your profile.</h5>
+            <p>Change the details of your profile.</p>
           </div>
         </div>
         <div className="card-container" style={{ paddingBottom: "40px" }}>
@@ -111,7 +115,11 @@ export default function EditProfile({
             >
               <label htmlFor="profile_email_picture">
                 <img
-                  src={page_data.user_data?.profile_pic!}
+                  src={
+                    page_data.user_data?.profile_pic === null
+                      ? "/icons/noprofile.png"
+                      : page_data.user_data?.profile_pic
+                  }
                   className="profile-img"
                   alt="Proflie picture"
                 />
@@ -123,7 +131,7 @@ export default function EditProfile({
                 type="text"
                 placeholder={
                   page_data.user_data?.first_name === null ||
-                    page_data.user_data?.first_name === ""
+                  page_data.user_data?.first_name === ""
                     ? "First name"
                     : page_data.user_data?.first_name
                 }
@@ -134,7 +142,7 @@ export default function EditProfile({
                 type="text"
                 placeholder={
                   page_data.user_data?.last_name === null ||
-                    page_data.user_data?.last_name === ""
+                  page_data.user_data?.last_name === ""
                     ? "Last name"
                     : page_data.user_data?.last_name
                 }
@@ -155,7 +163,7 @@ export default function EditProfile({
                 style={{ resize: "none" }}
                 placeholder={
                   page_data.user_data?.bio === null ||
-                    page_data.user_data?.bio === ""
+                  page_data.user_data?.bio === ""
                     ? "Enter bio here"
                     : page_data.user_data?.bio
                 }

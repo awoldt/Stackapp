@@ -6,8 +6,7 @@ import { useRef, useState } from "react";
 const pageData: DEFAULT_PAGE_LAYOUT = {
   header_tags: {
     title: "Stack | Sign Up",
-    description:
-      "Sign Up to create a Stack Account",
+    description: "Sign Up to create a Stack Account",
     canonical_link: "https://stackapp.xyz/signup",
     open_graph_tags: null,
   },
@@ -17,6 +16,8 @@ export default function CreateAccount() {
 
   const [loading, setLoading] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+
+  const [hasProfilePicture, setHasProfilePicture] = useState(false);
 
   return (
     <>
@@ -28,7 +29,11 @@ export default function CreateAccount() {
       />
       <section>
         <div className="background">
-          <img src={"/imgs/background.avif"} alt="background design" className="background-image"></img>
+          <img
+            src={"/imgs/background.avif"}
+            alt="background design"
+            className="background-image"
+          ></img>
         </div>
 
         <div className="card-container">
@@ -52,9 +57,13 @@ export default function CreateAccount() {
                     e.preventDefault();
 
                     try {
+                      const formData = new FormData(formRef.current!);
+                      !hasProfilePicture
+                        ? formData.delete("profile_icon")
+                        : null;
                       const req = await fetch("/api/create-account", {
                         method: "POST",
-                        body: new FormData(formRef.current!),
+                        body: formData,
                       });
                       const data = await req.json();
 
@@ -73,7 +82,17 @@ export default function CreateAccount() {
                   }}
                 >
                   <label style={{ marginBottom: "0px" }}>Profile Picture</label>
-                  <input type="file" name="profile_icon" required />
+                  <input
+                    type="file"
+                    name="profile_icon"
+                    onChange={(e) => {
+                      if (e.target.files !== undefined) {
+                        setHasProfilePicture(true);
+                      } else {
+                        setHasProfilePicture(false);
+                      }
+                    }}
+                  />
                   <input
                     type="email"
                     name="app_signup_email"

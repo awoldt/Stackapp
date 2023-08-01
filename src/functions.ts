@@ -21,6 +21,7 @@ import {
   S3Client,
 } from "@aws-sdk/client-s3";
 import formidable from "formidable";
+
 import { stackData } from "./techstack";
 import { db } from "../firebase";
 import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses";
@@ -484,7 +485,7 @@ export async function GetCreatorDetails(userUid: string) {
     const x: _creator = {
       username: user!.username,
       profile_pic:
-        user!.profile_pic === null ? "/icons/noprofile.PNG" : user!.profile_pic,
+        user!.profile_pic === null ? "/icons/noprofile.png" : user!.profile_pic,
       href: `/profile/${user!.public_uid}`,
       first_name: user!.first_name,
       last_name: user!.last_name,
@@ -495,7 +496,7 @@ export async function GetCreatorDetails(userUid: string) {
 
     const x: _creator = {
       username: "error",
-      profile_pic: "/icons/noprofile.PNG",
+      profile_pic: "/icons/noprofile.png",
       href: "",
       first_name: null,
       last_name: null,
@@ -1271,56 +1272,59 @@ export async function CreateAccount(
     ) {
       return "email_already_in_use";
     }
-    //email not already in use
-    else {
-      //1. store account details in unverified account collection initially
-      //once user confirms email remove this docuemnt from collection and
-      //add user to firebase auth AND create profile document
 
+    // store account details in unverified account collection initially
+    //once user confirms email remove this docuemnt from collection and
+    //add user to firebase auth AND create profile document
+
+    //user does not have to inlcude profile on account creation
+    //if not, their profile will have default profile icon
+    let iconUpload: null | [string, string] = null;
+    if (files.profile_icon !== undefined) {
       const profileIcon = files.profile_icon;
 
       //upload profile icon
-      const iconUpload = await UploadImagesToS3(
+      iconUpload = await UploadImagesToS3(
         profileIcon[0].newFilename,
         profileIcon[0].filepath
       );
+    }
 
-      const unverifiedAccount = await db.collection("unverified-accounts").add({
-        email: fields.app_signup_email[0].trim(),
-        password: fields.app_signup_password[0].trim(),
-        username: fields.app_signup_username[0].trim(),
-        created_on: Date.now(),
-        profile_pic: iconUpload![0],
-        profile_pic_filename: iconUpload![1],
-      });
+    const unverifiedAccount = await db.collection("unverified-accounts").add({
+      email: fields.app_signup_email[0].trim(),
+      password: fields.app_signup_password[0].trim(),
+      username: fields.app_signup_username[0].trim(),
+      created_on: Date.now(),
+      profile_pic: iconUpload === null ? null : iconUpload![0],
+      profile_pic_filename: iconUpload === null ? null : iconUpload![1],
+    });
 
-      const emailInput = {
-        Source: "stackbot@stackapp.xyz",
-        Destination: {
-          ToAddresses: [fields.app_signup_email[0].trim()],
+    const emailInput = {
+      Source: "stackbot@stackapp.xyz",
+      Destination: {
+        ToAddresses: [fields.app_signup_email[0].trim()],
+      },
+      Message: {
+        Subject: {
+          Data: "Verify your Stackapp account",
+          Charset: "utf-8",
         },
-        Message: {
-          Subject: {
-            Data: "Verify your Stackapp account",
+        Body: {
+          Html: {
+            Data:
+              "Click the following link to verify your account - " +
+              `${process.env.EMAIL_VERIFICATION_HOST}/api/email-handler?mode=verifyEmail&id=${unverifiedAccount.id}`,
             Charset: "utf-8",
           },
-          Body: {
-            Html: {
-              Data:
-                "Click the following link to verify your account - " +
-                `${process.env.EMAIL_VERIFICATION_HOST}/api/email-handler?mode=verifyEmail&id=${unverifiedAccount.id}`,
-              Charset: "utf-8",
-            },
-          },
         },
-        source: "Stackapp",
-        SourceArn: process.env.AWS_SES_SOURCE_ARN,
-      };
+      },
+      source: "Stackapp",
+      SourceArn: process.env.AWS_SES_SOURCE_ARN,
+    };
 
-      //2. send verification email through aws ses
-      await emailClient.send(new SendEmailCommand(emailInput));
-      return true;
-    }
+    //2. send verification email through aws ses
+    await emailClient.send(new SendEmailCommand(emailInput));
+    return true;
   } catch (e) {
     console.log(e);
     return null;

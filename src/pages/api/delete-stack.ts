@@ -7,14 +7,12 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<{ msg: string }>
 ) {
-  const d = await DeleteStack(
-    req.headers.referer?.substring(req.headers.referer?.lastIndexOf("/") + 1)!
-  );
+  const d = await DeleteStack(req.headers.referer!.split("/")[4]);
   if (d === null) {
     return res
       .status(500)
       .json({ msg: "There was an error while deleting stack" });
   }
-  
+
   return res.json({ msg: "Successfully deleted stack" });
 }

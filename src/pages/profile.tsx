@@ -79,7 +79,7 @@ export default function Profile({
                       )}
                       {page_data.user_profile_data.profile_pic === null && (
                         <img
-                          src="/icons/noprofile.PNG"
+                          src="/icons/noprofile.png"
                           className="profile-img"
                           alt="basic profile pic"
                         />

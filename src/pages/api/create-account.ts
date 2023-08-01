@@ -7,6 +7,8 @@ import { CreateAccount } from "@/functions";
 
 const form = formidable({
   keepExtensions: true,
+  allowEmptyFiles: true,
+  minFileSize: 0,
 });
 
 export default async function handler(
