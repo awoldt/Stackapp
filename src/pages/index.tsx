@@ -15,7 +15,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   } else {
     const pageData: DEFAULT_PAGE_LAYOUT = {
       header_tags: {
-        title: "Stack | A Platform for Modern Tech Stack Visualization",
+        title: "Modern Tech Stack Visualization | Stack",
         description:
           "Stackapp is a platform that empowers developers and designers to create beautifully designed web pages showcasing the most important details of their tech stacks.",
         canonical_link: "https://stackapp.xyz",
@@ -77,7 +77,7 @@ export default function Home({
               <a
                 href={"/signin"}
                 className="btn-create"
-                style={{ minWidth: "25%" }}
+                style={{ minWidth: "15%" }}
               >
                 Sign In
               </a>
@@ -86,7 +86,7 @@ export default function Home({
               <a
                 href={"/signup"}
                 className="btn-create"
-                style={{ minWidth: "25%" }}
+                style={{ minWidth: "15%" }}
               >
                 Sign Up
               </a>

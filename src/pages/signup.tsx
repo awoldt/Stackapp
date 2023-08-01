@@ -5,8 +5,9 @@ import { useRef, useState } from "react";
 
 const pageData: DEFAULT_PAGE_LAYOUT = {
   header_tags: {
-    title: "Stack | Sign Up",
-    description: "Sign Up to create a Stack Account",
+    title: "Sign Up | Stack",
+    description:
+      "Sign Up to create a Stack Account",
     canonical_link: "https://stackapp.xyz/signup",
     open_graph_tags: null,
   },

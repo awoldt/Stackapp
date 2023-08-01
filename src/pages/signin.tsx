@@ -15,7 +15,7 @@ initializeApp({
 
 const pageData: DEFAULT_PAGE_LAYOUT = {
   header_tags: {
-    title: "Stack | Sign In",
+    title: "Sign In | Stack",
     description: "Sign In to your Stack Account",
     canonical_link: "https://stackapp.xyz/signin",
     open_graph_tags: null,
