@@ -1,18 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import Head from "next/head";
-import { initializeApp } from "firebase/app";
 import { GetServerSideProps } from "next";
 import { IsUserSignedIn } from "@/functions";
 import { DEFAULT_PAGE_LAYOUT } from "@/types";
 import UniqueHeader from "@/components/UniqueHeaderTags";
-
-initializeApp({
-  apiKey: "AIzaSyDa1581Nb4kCqdN-hRPv0ZGB1qP3xdmmGw",
-  authDomain: "stackapp-389516.firebaseapp.com",
-  projectId: "stackapp-389516",
-  messagingSenderId: "187783562040",
-  appId: "1:187783562040:web:dd93eaba4bfbbf397877cd",
-});
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   if (await IsUserSignedIn(req.cookies.uid)) {
@@ -25,14 +15,12 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   } else {
     const pageData: DEFAULT_PAGE_LAYOUT = {
       header_tags: {
-        title:
-          "Stack | A Platform for Modern Tech Stack Visualization",
+        title: "Stack | A Platform for Modern Tech Stack Visualization",
         description:
           "Stackapp is a platform that empowers developers and designers to create beautifully designed web pages showcasing the most important details of their tech stacks.",
         canonical_link: "https://stackapp.xyz",
         open_graph_tags: {
-          title:
-            "Stack | A Platform for Modern Tech Stack Visualization",
+          title: "Stack | A Platform for Modern Tech Stack Visualization",
           url: "https://stackapp.xyz",
           image: "https://stackapp.xyz/favicon.ico",
         },
@@ -63,13 +51,15 @@ export default function Home({
       <main>
         <section>
           <div className="background">
-            <img src={"/imgs/background.avif"} alt="background design" className="background-image"></img>
+            <img
+              src={"/imgs/background.avif"}
+              alt="background design"
+              className="background-image"
+            ></img>
           </div>
           <div className="card-container">
             <div className="card-empty">
-              <h1 className="splash">
-                Stack
-              </h1>
+              <h1 className="splash">Stack</h1>
               <h5 style={{ paddingBottom: "20px" }}>
                 A platform designed for modern tech stack visualization.
               </h5>
@@ -139,7 +129,10 @@ export default function Home({
           </div>
 
           <div className="card-container">
-            <div className="card-empty" style={{ display: "flex", justifyContent: "center" }}>
+            <div
+              className="card-empty"
+              style={{ display: "flex", justifyContent: "center" }}
+            >
               <img
                 src="/imgs/landing.png"
                 style={{ width: "105%", textAlign: "center" }}

@@ -62,9 +62,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
         stackData.github_repo_id === null
           ? null
           : await GetRepoCommitLogs(
-            stackData.github_repo_id,
-            stackData.github_api_token_used!
-          ),
+              stackData.github_repo_id,
+              stackData.github_api_token_used!
+            ),
       creator_data: await GetCreatorDetails(stackData.uid),
       created_on: stackData.created_on,
       stack_id: stackData.stack_id!,
@@ -110,7 +110,11 @@ export default function Stackpage({
           </section>
           <section>
             <div className="background">
-              <img src={"/imgs/background.avif"} alt="background design" className="background-image"></img>
+              <img
+                src={"/imgs/background.avif"}
+                alt="background design"
+                className="background-image"
+              ></img>
             </div>
             <div className="header-container">
               <div className="title-container-header">
@@ -125,10 +129,13 @@ export default function Stackpage({
                     <h1>{page_data.app_name}</h1>
 
                     {page_data.website_url !== null && (
-                      <a href={page_data.website_url} className="nav-element">
-                        <h5 style={{ paddingBottom: "10px" }}>
-                          {page_data.website_url}
-                        </h5>
+                      <a
+                        href={page_data.website_url}
+                        className="nav-element"
+                        style={{ paddingBottom: "10px" }}
+                      >
+                        <img src="/icons/link.svg" alt="link icon" />
+                        {new URL(page_data.website_url).hostname}
                       </a>
                     )}
 
@@ -141,13 +148,25 @@ export default function Stackpage({
                             page_data.creator_data.username + " profile picture"
                           }
                         />
-                        <h5><b>Firstname Lastname</b></h5>
-                        <p style={{ fontSize: "16px" }}>@{page_data.creator_data.username}</p>
+                        {page_data.creator_data.first_name !== null && (
+                          <span>
+                            <b>
+                              {page_data.creator_data.first_name}{" "}
+                              {page_data.creator_data.last_name !== null && (
+                                <>{page_data.creator_data.last_name}</>
+                              )}
+                            </b>
+                          </span>
+                        )}
+
+                        <p style={{ fontSize: "16px", width: "fit-content" }}>
+                          @{page_data.creator_data.username}
+                        </p>
                       </a>
                     </div>
 
                     <p style={{ marginTop: "20px", marginBottom: "20px" }}>
-                      {new Date(page_data.created_on).toDateString()}
+                      Stacked on {new Date(page_data.created_on).toDateString()}
                     </p>
 
                     {page_data.is_signedin_users_stack && (
@@ -160,7 +179,10 @@ export default function Stackpage({
                   </div>
                 </div>
 
-                <div className="card-container" style={{ paddingBottom: "0px", marginBottom: "0px" }}>
+                <div
+                  className="card-container"
+                  style={{ paddingBottom: "0px", marginBottom: "0px" }}
+                >
                   <div className="thumbnail">
                     <img
                       src={page_data.thumbnail!}
@@ -185,9 +207,9 @@ export default function Stackpage({
               <div className="card">
                 <div className="container">
                   <h2 style={{ textAlign: "center" }}>Languages</h2>
-                  <h5 style={{ textAlign: "center" }}>
+                  <p style={{ textAlign: "center" }}>
                     Languages used in the development of this tech Stack.
-                  </h5>
+                  </p>
                   <div
                     className="grid-container"
                     style={{ paddingBottom: "40px" }}
@@ -222,9 +244,9 @@ export default function Stackpage({
                   {page_data.databases_used !== null && (
                     <>
                       <h2 style={{ textAlign: "center" }}>Databases</h2>
-                      <h5 style={{ textAlign: "center" }}>
+                      <p style={{ textAlign: "center" }}>
                         Databases used in the development of this tech Stack.
-                      </h5>
+                      </p>
                       <div
                         className="grid-container"
                         style={{ paddingBottom: "40px" }}
@@ -264,9 +286,9 @@ export default function Stackpage({
                   {page_data.apis_used !== null && (
                     <>
                       <h2 style={{ textAlign: "center" }}>APIs</h2>
-                      <h5 style={{ textAlign: "center" }}>
+                      <p style={{ textAlign: "center" }}>
                         APIs used in the development of this tech Stack.
-                      </h5>
+                      </p>
                       <div
                         className="grid-container"
                         style={{ paddingBottom: "40px" }}
@@ -306,10 +328,10 @@ export default function Stackpage({
                   {page_data.clouds_used !== null && (
                     <>
                       <h2 style={{ textAlign: "center" }}>Cloud Services</h2>
-                      <h5 style={{ textAlign: "center" }}>
+                      <p style={{ textAlign: "center" }}>
                         Cloud Services used in the development of this tech
                         Stack.
-                      </h5>
+                      </p>
                       <div
                         className="grid-container"
                         style={{ paddingBottom: "40px" }}
@@ -349,9 +371,9 @@ export default function Stackpage({
                   {page_data.frameworks_used !== null && (
                     <>
                       <h2 style={{ textAlign: "center" }}>Frameworks</h2>
-                      <h5 style={{ textAlign: "center" }}>
+                      <p style={{ textAlign: "center" }}>
                         Frameworks used in the development of this tech Stack.
-                      </h5>
+                      </p>
                       <div
                         className="grid-container"
                         style={{ paddingBottom: "40px" }}

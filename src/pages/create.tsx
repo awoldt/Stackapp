@@ -28,16 +28,16 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
         user === null
           ? false
           : user.github_access_token === null
-            ? false
-            : true,
+          ? false
+          : true,
       github_client_id:
         user === null ? undefined : process.env.GITHUB_CLIENT_ID,
       repo_select_list:
         user === null
           ? null
           : user.github_access_token === null
-            ? null
-            : await GetRepoSelect(
+          ? null
+          : await GetRepoSelect(
               user!.github_access_token,
               String(req.cookies.uid)
             ),
@@ -67,6 +67,12 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
     useState(false);
   const [newStackID, setNewStackID] = useState<null | string>(null);
 
+  const [showcaseIconSrc, setShowcaseIconSrc] = useState("");
+  const [showcaseIcon, setShowcaseIcon] = useState(false);
+
+  const [showcaseThumbnailSrc, setShowcaseThumbnailSrc] = useState("");
+  const [showcaseThumbnail, setShowcaseThumbnail] = useState(false);
+
   const formRef = useRef<HTMLFormElement>(null);
 
   return (
@@ -84,14 +90,16 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
       {!stackSuccessfullyCreated && (
         <section>
           <div className="background">
-            <img src={"/imgs/background.avif"} alt="background design" className="background-image"></img>
+            <img
+              src={"/imgs/background.avif"}
+              alt="background design"
+              className="background-image"
+            ></img>
           </div>
           <div className="card-container" style={{ paddingTop: "40px" }}>
             <div className="card-empty">
               <h1>Create Stack</h1>
-              <h5>
-                Enter the details of your tech stack&apos;s development.
-              </h5>
+              <h5>Enter the details of your tech stack&apos;s development.</h5>
             </div>
           </div>
           <form
@@ -119,7 +127,6 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                 } else {
                   alert(data.msg);
                 }
-
               } catch (e) {
                 console.log(e);
                 setLoading(false);
@@ -149,21 +156,57 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                 <label htmlFor="app_icon_input" style={{ marginBottom: "0px" }}>
                   *Stack Icon
                 </label>
+                {showcaseIcon && <img src={showcaseIconSrc} width={500} />}
                 <input
                   type="file"
                   name="stack_icon"
                   accept="image/*"
                   required
+                  onChange={async (e) => {
+                    const fileInput = e.target;
+                    if (fileInput.files && fileInput.files[0]) {
+                      const reader = new FileReader();
+
+                      reader.onload = (r) => {
+                        console.log(r.target?.result);
+                        setShowcaseIconSrc(r.target?.result?.toString()!);
+                        setShowcaseIcon(true);
+                      };
+
+                      reader.readAsDataURL(fileInput.files[0]);
+                    }
+                  }}
                 />
 
-                <label htmlFor="app_thumbnail_input" style={{ marginBottom: "0px" }}>
-                  *Stack Thumbnail</label>
+                <label
+                  htmlFor="app_thumbnail_input"
+                  style={{ marginBottom: "0px" }}
+                >
+                  *Stack Thumbnail
+                </label>
+                {showcaseThumbnail && (
+                  <img src={showcaseThumbnailSrc} width={500} />
+                )}
                 <input
                   type="file"
                   name="stack_thumbnail"
                   accept="image/*"
                   id="app_thumbnail_input"
                   required
+                  onChange={async (e) => {
+                    const fileInput = e.target;
+                    if (fileInput.files && fileInput.files[0]) {
+                      const reader = new FileReader();
+
+                      reader.onload = (r) => {
+                        console.log(r.target?.result);
+                        setShowcaseThumbnailSrc(r.target?.result?.toString()!);
+                        setShowcaseThumbnail(true);
+                      };
+
+                      reader.readAsDataURL(fileInput.files[0]);
+                    }
+                  }}
                 />
 
                 <input
@@ -177,7 +220,11 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                   <>
                     <p>Associated GitHub Repo</p>
 
-                    <select name="githubRepoId" className="btn-edit" style={{ display: "block", width: "100%" }}>
+                    <select
+                      name="githubRepoId"
+                      className="btn-edit"
+                      style={{ display: "block", width: "100%" }}
+                    >
                       <option value="null" selected>
                         None
                       </option>
@@ -195,7 +242,13 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                   </>
                 )}
 
-                <img src="/icons/code.svg" alt="language" width={20} height={15} style={{ display: "inline" }} />
+                <img
+                  src="/icons/code.svg"
+                  alt="language"
+                  width={20}
+                  height={15}
+                  style={{ display: "inline" }}
+                />
                 <h5 style={{ display: "inline" }}>
                   Select all Languages used in your tech stack.
                   <br />
@@ -211,7 +264,13 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                   );
                 })}
 
-                <img src="/icons/database-fill.svg" alt="database" width={20} height={15} style={{ display: "inline" }} />
+                <img
+                  src="/icons/database-fill.svg"
+                  alt="database"
+                  width={20}
+                  height={15}
+                  style={{ display: "inline" }}
+                />
                 <h5 style={{ display: "inline" }}>
                   Select all Databases used in your tech stack.
                   <br />
@@ -227,7 +286,13 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                   );
                 })}
 
-                <img src="/icons/api.svg" alt="api" width={20} height={15} style={{ display: "inline" }} />
+                <img
+                  src="/icons/api.svg"
+                  alt="api"
+                  width={20}
+                  height={15}
+                  style={{ display: "inline" }}
+                />
                 <h5 style={{ display: "inline" }}>
                   Select all APIs used in your tech stack.
                   <br />
@@ -243,7 +308,13 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                   );
                 })}
 
-                <img src="/icons/cloud-fill.svg" alt="cloud" width={20} height={15} style={{ display: "inline" }} />
+                <img
+                  src="/icons/cloud-fill.svg"
+                  alt="cloud"
+                  width={20}
+                  height={15}
+                  style={{ display: "inline" }}
+                />
                 <h5 style={{ display: "inline" }}>
                   Select all Cloud Deployment Services used in your tech stack.
                   <br />
@@ -259,7 +330,13 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                   );
                 })}
 
-                <img src="/icons/framework.svg" alt="api" width={20} height={15} style={{ display: "inline" }} />
+                <img
+                  src="/icons/framework.svg"
+                  alt="api"
+                  width={20}
+                  height={15}
+                  style={{ display: "inline" }}
+                />
                 <h5 style={{ display: "inline" }}>
                   Select all Frameworks used in your tech stack.
                   <br />
@@ -340,9 +417,14 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                 {" "}
                 <h5>
                   Finished Stacking.
-                  <br />
-                  {" "}
-                  <a href={`/stack/${newStackID}`} className="nav-element" style={{ padding: "10px" }}>View Stack.</a>
+                  <br />{" "}
+                  <a
+                    href={`/stack/${newStackID}`}
+                    className="nav-element"
+                    style={{ padding: "10px" }}
+                  >
+                    View Stack.
+                  </a>
                 </h5>
               </div>
             </div>

@@ -486,6 +486,8 @@ export async function GetCreatorDetails(userUid: string) {
       profile_pic:
         user!.profile_pic === null ? "/icons/noprofile.PNG" : user!.profile_pic,
       href: `/profile/${user!.public_uid}`,
+      first_name: user!.first_name,
+      last_name: user!.last_name,
     };
     return x;
   } catch (e) {
@@ -495,6 +497,8 @@ export async function GetCreatorDetails(userUid: string) {
       username: "error",
       profile_pic: "/icons/noprofile.PNG",
       href: "",
+      first_name: null,
+      last_name: null,
     };
 
     return x;

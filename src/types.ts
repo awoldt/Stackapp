@@ -72,8 +72,10 @@ export interface _creator {
   //used for displaying users info on stackpage
 
   username: string;
-  profile_pic: string | null;
+  profile_pic: string;
   href: string;
+  first_name: string | null;
+  last_name: string | null;
 }
 
 export interface _nameWithLogo {

@@ -1,0 +1,4 @@
+!.env
+!.firebase-admin-key.json
+!Dockerfile
+node_modules

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { GetServerSideProps } from "next";
 import { _PAGEDATA_editstack, _repoSelectList } from "@/types";
 import {
@@ -30,9 +31,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
         stackData!.github_api_token_used! === null
           ? null
           : await GetRepoSelect(
-            stackData?.github_api_token_used!,
-            stackData!.uid!
-          ),
+              stackData?.github_api_token_used!,
+              stackData!.uid!
+            ),
       current_repo_id_selected:
         stackData!.github_api_token_used === null
           ? null
@@ -62,6 +63,13 @@ export default function EditStackpage({
   const [loading, setLoading] = useState(false);
   const [disabledSubmit, setDisabledSubmit] = useState(true);
 
+  const [iconImgSrc, setIconImgSrc] = useState(
+    page_data.saved_stack_data?.icon_url
+  );
+  const [thumbnailImgSrc, setThumbnailImgSrc] = useState(
+    page_data.saved_stack_data?.thumbnail_url
+  );
+
   const formRef = useRef<HTMLFormElement>(null);
 
   return (
@@ -77,7 +85,11 @@ export default function EditStackpage({
       </section>
       <section>
         <div className="background">
-          <img src={"/imgs/background.avif"} alt="background design" className="background-image"></img>
+          <img
+            src={"/imgs/background.avif"}
+            alt="background design"
+            className="background-image"
+          ></img>
         </div>
         <div className="card-container" style={{ paddingTop: "40px" }}>
           <div className="card-empty">
@@ -99,7 +111,8 @@ export default function EditStackpage({
                 setLoading(true);
                 try {
                   const req = await fetch(
-                    `/api/edit-stack?stack_id=${window.location.pathname.split("/")[2]
+                    `/api/edit-stack?stack_id=${
+                      window.location.pathname.split("/")[2]
                     }`,
                     {
                       method: "POST",
@@ -148,7 +161,7 @@ export default function EditStackpage({
 
               <p>*Stack Icon</p>
               <img
-                src={page_data.saved_stack_data!.icon_url}
+                src={iconImgSrc}
                 style={{
                   display: "block",
                   marginBottom: "20px",
@@ -156,11 +169,28 @@ export default function EditStackpage({
                 }}
                 className="profile-img"
               />
-              <input type="file" name="stack_icon" accept="image/*" />
+              <input
+                type="file"
+                name="stack_icon"
+                accept="image/*"
+                onChange={async (e) => {
+                  const fileInput = e.target;
+                  if (fileInput.files && fileInput.files[0]) {
+                    const reader = new FileReader();
+
+                    reader.onload = (r) => {
+                      console.log(r.target?.result);
+                      setIconImgSrc(r.target?.result?.toString()!);
+                    };
+
+                    reader.readAsDataURL(fileInput.files[0]);
+                  }
+                }}
+              />
 
               <p>*Stack Thumbnail</p>
               <img
-                src={page_data.saved_stack_data?.thumbnail_url}
+                src={thumbnailImgSrc}
                 style={{
                   width: "100%",
                   display: "block",
@@ -168,7 +198,24 @@ export default function EditStackpage({
                   borderRadius: "20px",
                 }}
               />
-              <input type="file" name="stack_thumbnail" accept="image/*" />
+              <input
+                type="file"
+                name="stack_thumbnail"
+                accept="image/*"
+                onChange={async (e) => {
+                  const fileInput = e.target;
+                  if (fileInput.files && fileInput.files[0]) {
+                    const reader = new FileReader();
+
+                    reader.onload = (r) => {
+                      console.log(r.target?.result);
+                      setThumbnailImgSrc(r.target?.result?.toString()!);
+                    };
+
+                    reader.readAsDataURL(fileInput.files[0]);
+                  }
+                }}
+              />
 
               <input
                 type="url"
@@ -619,53 +666,52 @@ export default function EditStackpage({
               >
                 Delete Stack
               </button>
+              {!loading && (
+                <>
+                  {disabledSubmit && (
+                    <div className="card-container">
+                      <div
+                        className="card-empty"
+                        style={{ marginTop: "0px", paddingTop: "0px" }}
+                      >
+                        <button
+                          disabled={true}
+                          className="btn-edit"
+                          type="submit"
+                          style={{
+                            width: "100%",
+                            marginBottom: "0px",
+                            backgroundColor: "grey",
+                            cursor: "default",
+                          }}
+                        >
+                          Update Stack
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                  {!disabledSubmit && (
+                    <div className="card-container">
+                      <div
+                        className="card-empty"
+                        style={{ marginTop: "0px", paddingTop: "0px" }}
+                      >
+                        <button
+                          className="btn-create"
+                          type="submit"
+                          style={{ width: "100%", marginBottom: "0px" }}
+                        >
+                          Update Stack
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </>
+              )}
+              {loading && <Spinner />}
             </form>
           </div>
         </div>
-
-        {!loading && (
-          <>
-            {disabledSubmit && (
-              <div className="card-container">
-                <div
-                  className="card-empty"
-                  style={{ marginTop: "0px", paddingTop: "0px" }}
-                >
-                  <button
-                    disabled={true}
-                    className="btn-edit"
-                    type="submit"
-                    style={{
-                      width: "100%",
-                      marginBottom: "0px",
-                      backgroundColor: "grey",
-                      cursor: "default",
-                    }}
-                  >
-                    Update Stack
-                  </button>
-                </div>
-              </div>
-            )}
-            {!disabledSubmit && (
-              <div className="card-container">
-                <div
-                  className="card-empty"
-                  style={{ marginTop: "0px", paddingTop: "0px" }}
-                >
-                  <button
-                    className="btn-create"
-                    type="submit"
-                    style={{ width: "100%", marginBottom: "0px" }}
-                  >
-                    Update Stack
-                  </button>
-                </div>
-              </div>
-            )}
-          </>
-        )}
-        {loading && <Spinner />}
       </section>
     </>
   );
