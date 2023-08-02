@@ -1,17 +1,7 @@
 import { useRef, useState } from "react";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import Spinner from "@/components/Spinner";
-import { initializeApp } from "firebase/app";
 import { DEFAULT_PAGE_LAYOUT } from "@/types";
 import UniqueHeader from "@/components/UniqueHeaderTags";
-
-initializeApp({
-  apiKey: "AIzaSyDa1581Nb4kCqdN-hRPv0ZGB1qP3xdmmGw",
-  authDomain: "stackapp-389516.firebaseapp.com",
-  projectId: "stackapp-389516",
-  messagingSenderId: "187783562040",
-  appId: "1:187783562040:web:dd93eaba4bfbbf397877cd",
-});
 
 const pageData: DEFAULT_PAGE_LAYOUT = {
   header_tags: {
@@ -36,7 +26,11 @@ export default function Signin() {
         openGraph={pageData.header_tags.open_graph_tags}
       />
       <div className="background">
-        <img src={"/imgs/background.avif"} alt="background design" className="background-image"></img>
+        <img
+          src={"/imgs/background.avif"}
+          alt="background design"
+          className="background-image"
+        ></img>
       </div>
 
       <div className="card-container">
@@ -64,12 +58,21 @@ export default function Signin() {
               setLoading(true);
 
               try {
-                const x = await signInWithEmailAndPassword(
-                  getAuth(),
-                  emailRef.current!.value,
-                  passwordRef.current!.value
-                );
-                document.cookie = `uid=${x.user.uid}; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/`;
+                const x = await fetch("api/signin", {
+                  method: "POST",
+                  body: JSON.stringify({
+                    e: emailRef.current!.value,
+                    p: passwordRef.current!.value,
+                  }),
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                });
+                const data = await x.json();
+                console.log(data);
+
+                document.cookie = `uid=${data.uidCookie}; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/`;
+
                 setLoading(false);
                 window.location.assign("/profile");
               } catch (e: any) {

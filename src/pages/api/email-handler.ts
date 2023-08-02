@@ -7,21 +7,19 @@ import {
 } from "@/types";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import { getAuth } from "firebase-admin/auth";
+import { uid } from "uid";
+
 import { GenerateUniquePublicUid } from "@/functions";
 import { db } from "../../../firebase";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<any>
+  res: NextApiResponse<{ msg: string } | string>
 ) {
   console.log("HANDLING EMAIL VERIFY API ROUTE");
 
-  const apiResponse = <DEFAULT_APIRESPONSE>{};
-
   if (req.query.mode === undefined) {
-    apiResponse.msg = "Bad request";
-    res.status(400).json(apiResponse);
+    res.status(400).json({ msg: "Bad request" });
   } else {
     try {
       switch (req.query.mode) {
@@ -38,16 +36,11 @@ export default async function handler(
                 .get()
             ).exists
           ) {
-            console.log("unverifiead account does not exist");
+            console.log("unverified account does not exist");
 
-            apiResponse.msg = "Error while processing request";
-            res.status(400).json(apiResponse);
+            res.status(400).json({ msg: "Error while processing request" });
             break;
           }
-
-          //unverified account exists
-
-          console.log("unverified account exists!");
 
           const unverifiedDetails = (
             await db
@@ -55,15 +48,6 @@ export default async function handler(
               .doc(String(req.query.id))
               .get()
           ).data();
-
-          //create new user to store in firebase auth
-          const authAccount = await getAuth().createUser({
-            email: unverifiedDetails!.email,
-            password: unverifiedDetails!.password,
-            displayName: unverifiedDetails!.username,
-          });
-          console.log("new account successfully stored in firebase auth");
-          console.log(authAccount);
 
           //remove all unverified account with same email
           //also delete profile picture for this unauthenticated account
@@ -82,25 +66,38 @@ export default async function handler(
             });
           }
 
-          //save this new account in custom profiles collection
-          const profileAccount: _userProfile = {
-            uid: authAccount.uid,
-            bio: null,
-            first_name: null,
-            last_name: null,
-            public_uid: await GenerateUniquePublicUid(),
-            email: authAccount.email!,
-            username: authAccount.displayName!,
-            github_access_token: null,
-            github_account_id: null,
-            created_on: Date.now(),
-            profile_pic: unverifiedDetails!.profile_pic,
-            profile_pic_filename: unverifiedDetails!.profile_pic_filename,
-          };
-          await db
-            .collection("profiles")
-            .doc(authAccount.uid)
-            .set(profileAccount);
+          //generate new account uid
+          //must be unique
+          let UNIQUE_ID;
+          while (true) {
+            UNIQUE_ID = uid(32);
+            if (
+              !(await db.collection("profiles").doc(UNIQUE_ID).get()).exists
+            ) {
+              //save this new account in profiles collection
+              const profileAccount: _userProfile = {
+                uid: UNIQUE_ID,
+                bio: null,
+                first_name: null,
+                last_name: null,
+                public_uid: await GenerateUniquePublicUid(),
+                email: unverifiedDetails!.email,
+                password: unverifiedDetails!.password,
+                username: unverifiedDetails!.username,
+                github_access_token: null,
+                github_account_id: null,
+                created_on: Date.now(),
+                profile_pic: unverifiedDetails!.profile_pic,
+                profile_pic_filename: unverifiedDetails!.profile_pic_filename,
+              };
+              await db
+                .collection("profiles")
+                .doc(UNIQUE_ID)
+                .set(profileAccount);
+
+              break;
+            }
+          }
 
           console.log(
             "SUCCESSFULLY STORED PROFILE ACCOUNT\nBOTH AUTH AND PROFILE ACCOUTN ARE STOED IN FIREBASE!"
@@ -117,7 +114,7 @@ export default async function handler(
                   <body>
                      <p>Account successfully verified! Redirecting.....</p>
                      <script>
-                     document.cookie = "uid=${authAccount.uid}; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
+                     document.cookie = "uid=${UNIQUE_ID}; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
                      setTimeout(function() {
                       window.location.href = "/";
                     }, 2500);
@@ -129,21 +126,17 @@ export default async function handler(
           break;
 
         default:
-          apiResponse.msg = "Bad request. Invalid mode in url query.";
-          res.status(400).json(apiResponse);
+          res
+            .status(400)
+            .json({ msg: "Bad request. Invalid mode in url query." });
           break;
       }
     } catch (e) {
-      apiResponse.msg =
-        "There was an error while processing your request. Please try again later.";
-
-      res.status(500).json(apiResponse);
+      res
+        .status(500)
+        .json({
+          msg: "There was an error while processing your request. Please try again later.",
+        });
     }
   }
 }
-
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};

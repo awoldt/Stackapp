@@ -60,6 +60,7 @@ export async function GetUserProfile(
       bio: user!.bio,
       first_name: user!.first_name,
       last_name: user!.last_name,
+      password: user!.password,
       email: user!.email!,
       username: user!.username!,
       github_access_token: user!.github_access_token,
@@ -100,6 +101,7 @@ export async function GetPublicProfile(publicUID: string) {
       last_name: user.docs[0].data().last_name,
       public_uid: user.docs[0].data().public_uid,
       email: user.docs[0].data().email,
+      password: user.docs[0].data().password,
       username: user.docs[0].data().username,
       github_access_token: user.docs[0].data().github_access_token,
       /* 
@@ -240,9 +242,9 @@ export async function IsUserSignedIn(
       return null;
     }
 
-    //check is uid exists in firebase auth
+    //check is uid exists in database
     //if there is an error with this, will throw new error
-    await getAuth().getUser(uidCookie);
+    await db.collection("profiles").doc(uidCookie).get();
 
     return true;
   } catch (e) {
@@ -1275,7 +1277,7 @@ export async function CreateAccount(
 
     // store account details in unverified account collection initially
     //once user confirms email remove this docuemnt from collection and
-    //add user to firebase auth AND create profile document
+    //add user to database
 
     //user does not have to inlcude profile on account creation
     //if not, their profile will have default profile icon
@@ -1325,6 +1327,28 @@ export async function CreateAccount(
     //2. send verification email through aws ses
     await emailClient.send(new SendEmailCommand(emailInput));
     return true;
+  } catch (e) {
+    console.log(e);
+    return null;
+  }
+}
+
+export async function SignUserIn(
+  e: string,
+  p: string
+): Promise<"account_doesnt_exist" | null | any> {
+  try {
+    const a = await db
+      .collection("profiles")
+      .where("email", "==", e)
+      .where("password", "==", p)
+      .get();
+    if (a.empty) {
+      return "account_doesnt_exist";
+    } else {
+      console.log(a.docs[0].data().uid);
+      return a.docs[0].data().uid;
+    }
   } catch (e) {
     console.log(e);
     return null;
