@@ -129,52 +129,54 @@ export default function Stackpage({
                     <h1>{page_data.app_name}</h1>
 
                     {page_data.website_url !== null && (
-                      <h4 style={{ marginBottom: "20px" }}>
+                      <h4>
                         <a
                           href={page_data.website_url}
-                          className="nav-element"
-                          style={{ padding: "10px" }}
                         >
                           <img src="/icons/link.svg" alt="link icon" width={20} height={15} /> {new URL(page_data.website_url).hostname}
                         </a>
                       </h4>
                     )}
 
-                    <div style={{ marginTop: "10px", marginBottom: "10px", width: "fit-content" }}>
-                      <a href={page_data.creator_data.href}>
-                        <img
-                          src={page_data.creator_data.profile_pic!}
-                          className="user-profile-img"
-                          alt={
-                            page_data.creator_data.username + " profile picture"
-                          }
-                        />
-                        {page_data.creator_data.first_name !== null && (
-                          <span>
-                            <b>
-                              <br />
-                              {page_data.creator_data.first_name}{" "}
-                              {page_data.creator_data.last_name !== null && (
-                                <>{page_data.creator_data.last_name}</>
-                              )}
-                            </b>
-                          </span>
-                        )}
 
-                        <p style={{ fontSize: "16px" }}>
-                          @{page_data.creator_data.username}
-                        </p>
+
+                    <div className="user-profile-containerParent">
+                      <a href={page_data.creator_data.href}>
+                        <div className="user-profile-container">
+                          <img
+                            src={page_data.creator_data.profile_pic!}
+                            className="user-profile-img"
+                            alt={
+                              page_data.creator_data.username + " profile picture"
+                            }
+                          />
+
+                          {page_data.creator_data.first_name !== null && (
+                            <span style={{ paddingLeft: "8px", paddingTop: "6px" }}>
+                              <b>
+                                {page_data.creator_data.first_name}{" "}
+                                {page_data.creator_data.last_name !== null && (
+                                  <>{page_data.creator_data.last_name}</>
+                                )}
+                              </b>
+                              <p style={{ fontSize: "16px", opacity: "0.85" }}>
+                                @{page_data.creator_data.username}
+                              </p>
+                            </span>
+                          )}
+                        </div>
                       </a>
                     </div>
 
-                    <p style={{ marginTop: "20px", marginBottom: "20px" }}>
+
+                    {/* <h5 style={{ marginTop: "20px", marginBottom: "20px" }}>
                       Stacked {new Date(page_data.created_on).toDateString()}
-                    </p>
+                    </h5> */}
 
                     {page_data.is_signedin_users_stack && (
                       <>
                         <a href={`/stack/${page_data.stack_id}/edit`}>
-                          <button className="btn-create">Edit Stack</button>
+                          <button className="btn-create"><img src="/icons/edit.svg" alt="edit logo" width={25} height={15} />Edit Stack</button>
                         </a>
                       </>
                     )}
@@ -209,9 +211,9 @@ export default function Stackpage({
               <div className="card">
                 <div className="container">
                   <h2 style={{ textAlign: "center" }}>Languages</h2>
-                  <p style={{ textAlign: "center" }}>
+                  <h5 style={{ textAlign: "center" }}>
                     Languages used in the development of this tech Stack.
-                  </p>
+                  </h5>
                   <div
                     className="grid-container"
                     style={{ paddingBottom: "40px" }}
@@ -246,9 +248,9 @@ export default function Stackpage({
                   {page_data.databases_used !== null && (
                     <>
                       <h2 style={{ textAlign: "center" }}>Databases</h2>
-                      <p style={{ textAlign: "center" }}>
+                      <h5 style={{ textAlign: "center" }}>
                         Databases used in the development of this tech Stack.
-                      </p>
+                      </h5>
                       <div
                         className="grid-container"
                         style={{ paddingBottom: "40px" }}
@@ -288,9 +290,9 @@ export default function Stackpage({
                   {page_data.apis_used !== null && (
                     <>
                       <h2 style={{ textAlign: "center" }}>APIs</h2>
-                      <p style={{ textAlign: "center" }}>
+                      <h5 style={{ textAlign: "center" }}>
                         APIs used in the development of this tech Stack.
-                      </p>
+                      </h5>
                       <div
                         className="grid-container"
                         style={{ paddingBottom: "40px" }}
@@ -330,10 +332,10 @@ export default function Stackpage({
                   {page_data.clouds_used !== null && (
                     <>
                       <h2 style={{ textAlign: "center" }}>Cloud Services</h2>
-                      <p style={{ textAlign: "center" }}>
+                      <h5 style={{ textAlign: "center" }}>
                         Cloud Services used in the development of this tech
                         Stack.
-                      </p>
+                      </h5>
                       <div
                         className="grid-container"
                         style={{ paddingBottom: "40px" }}
@@ -373,9 +375,9 @@ export default function Stackpage({
                   {page_data.frameworks_used !== null && (
                     <>
                       <h2 style={{ textAlign: "center" }}>Frameworks</h2>
-                      <p style={{ textAlign: "center" }}>
+                      <h5 style={{ textAlign: "center" }}>
                         Frameworks used in the development of this tech Stack.
-                      </p>
+                      </h5>
                       <div
                         className="grid-container"
                         style={{ paddingBottom: "40px" }}

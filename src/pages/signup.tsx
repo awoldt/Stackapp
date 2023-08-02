@@ -82,7 +82,7 @@ export default function CreateAccount() {
                     }
                   }}
                 >
-                  <label style={{ marginBottom: "0px" }}>Profile Picture</label>
+                  {/* <label style={{ marginBottom: "0px" }}>Profile Picture</label>
                   <input
                     type="file"
                     name="profile_icon"
@@ -93,7 +93,7 @@ export default function CreateAccount() {
                         setHasProfilePicture(false);
                       }
                     }}
-                  />
+                  /> */}
                   <input
                     type="email"
                     name="app_signup_email"
@@ -114,7 +114,7 @@ export default function CreateAccount() {
                   />
                   {!loading && (
                     <button className="btn-create" style={{ width: "100%" }}>
-                      Create Profile
+                      <img src="/icons/signup.svg" alt="signup logo" width={25} height={15} />Sign Up
                     </button>
                   )}
                   {loading && <Spinner />}

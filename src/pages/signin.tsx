@@ -98,7 +98,7 @@ export default function Signin() {
             />
             {!loading && (
               <button className="btn-create" style={{ width: "100%" }}>
-                Sign In
+                <img src="/icons/signin.svg" alt="signin logo" width={25} height={15} />Sign In
               </button>
             )}
             {loading && <Spinner />}

@@ -77,7 +77,7 @@ export default function EditProfile({
         <div className="card-container" style={{ paddingTop: "40px" }}>
           <div className="card-empty">
             <h1>Edit Profile</h1>
-            <p>Change the details of your profile.</p>
+            <h5>Change the details of your profile.</h5>
           </div>
         </div>
         <div className="card-container" style={{ paddingBottom: "40px" }}>
@@ -185,7 +185,7 @@ export default function EditProfile({
                   >
                     <p>Your GitHub account is not connected.</p>
                     <button type="button" className="btn-edit">
-                      Connect Github
+                      <img src="/icons/github.svg" alt="github logo" width={25} height={15} />Connect Github
                     </button>
                   </a>
                 </>
@@ -231,7 +231,7 @@ export default function EditProfile({
                     }
                   }}
                 >
-                  Delete Account
+                  <img src="/icons/delete.svg" alt="delete logo" width={25} height={15} />Delete Account
                 </button>
               </div>
 
@@ -246,7 +246,7 @@ export default function EditProfile({
                         style={{ width: "100%", marginBottom: "0px" }}
                         id="edit_profile_btn"
                       >
-                        Update Profile
+                        <img src="/icons/update.svg" alt="update logo" width={25} height={15} />Update Profile
                       </button>
                     </div>
                   )}
@@ -264,7 +264,7 @@ export default function EditProfile({
                         }}
                         id="edit_profile_btn"
                       >
-                        Update Profile
+                        <img src="/icons/update.svg" alt="update logo" width={25} height={15} />Update Profile
                       </button>
                     </div>
                   )}

@@ -140,7 +140,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                   type="text"
                   id="app_title"
                   name="app_name"
-                  placeholder="*Stack Title"
+                  placeholder="Stack Title"
                   required
                 />
 
@@ -150,11 +150,11 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                   cols={40}
                   rows={10}
                   required
-                  placeholder="*Stack Description"
+                  placeholder="Stack Description"
                 ></textarea>
 
                 <label htmlFor="app_icon_input" style={{ marginBottom: "0px" }}>
-                  *Stack Icon
+                  <img src="/icons/fileimage.svg" alt="fileimage logo" width={25} height={15} />Stack Icon
                 </label>
                 {showcaseIcon && <img src={showcaseIconSrc} width={500}
                   className="profile-img"
@@ -188,7 +188,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                   htmlFor="app_thumbnail_input"
                   style={{ marginBottom: "0px" }}
                 >
-                  *Stack Thumbnail
+                  <img src="/icons/fileimage.svg" alt="fileimage logo" width={25} height={15} />Stack Thumbnail
                 </label>
                 {showcaseThumbnail && (
                   <img src={showcaseThumbnailSrc} width={500}
@@ -386,7 +386,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                           cursor: "default",
                         }}
                       >
-                        Create Stack
+                        <img src="/icons/create.svg" alt="create logo" width={25} height={15} />Create Stack
                       </button>
                     </div>
                   </div>
@@ -403,7 +403,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                         className="btn-create"
                         style={{ width: "100%", marginBottom: "0px" }}
                       >
-                        Create Stack
+                        <img src="/icons/create.svg" alt="create logo" width={25} height={15} />Create Stack
                       </button>
                     </div>
                   </div>
@@ -419,7 +419,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
         <>
           <section>
             <div className="background">
-              <img src="/imgs/background.avif" />
+              <img src="/imgs/background.avif" className="background-image" />
             </div>
 
             <div
@@ -427,17 +427,16 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
             >
               <div style={{ width: "100%", textAlign: "center" }}>
                 {" "}
-                <h5>
-                  Finished Stacking.
+                <h3>
+                  Stack Created
                   <br />{" "}
                   <a
                     href={`/stack/${newStackID}`}
-                    className="nav-element"
-                    style={{ padding: "10px" }}
+                    className="btn-create"
                   >
-                    View Stack.
+                    View Stack
                   </a>
-                </h5>
+                </h3>
               </div>
             </div>
           </section>

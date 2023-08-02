@@ -79,7 +79,7 @@ export default function Home({
                 className="btn-create"
                 style={{ minWidth: "15%" }}
               >
-                Sign In
+                <img src="/icons/signin.svg" alt="signin logo" width={25} height={15} />Sign In
               </a>
             </div>
             <div style={{ display: "flex", justifyContent: "center" }}>
@@ -88,7 +88,7 @@ export default function Home({
                 className="btn-create"
                 style={{ minWidth: "15%" }}
               >
-                Sign Up
+                <img src="/icons/signup.svg" alt="signup logo" width={25} height={15} />Sign Up
               </a>
             </div>
           </div>

@@ -141,7 +141,7 @@ export default function EditStackpage({
                   name="app_name"
                   style={{ marginBottom: "0px" }}
                   defaultValue={page_data.saved_stack_data?.name}
-                  placeholder="*Stack Title"
+                  placeholder="Stack Title"
                   required
                 />
               </label>
@@ -153,13 +153,15 @@ export default function EditStackpage({
                   cols={40}
                   rows={10}
                   style={{ marginBottom: "0px" }}
-                  placeholder="*Stack Description"
+                  placeholder="Stack Description"
                   required
                   defaultValue={page_data.saved_stack_data?.description}
                 ></textarea>
               </label>
 
-              <p>*Stack Icon</p>
+              <p>
+                <img src="/icons/fileimage.svg" alt="fileimage logo" width={25} height={15} />Stack Icon
+              </p>
               <img
                 src={iconImgSrc}
                 style={{
@@ -188,7 +190,9 @@ export default function EditStackpage({
                 }}
               />
 
-              <p>*Stack Thumbnail</p>
+              <p>
+                <img src="/icons/fileimage.svg" alt="fileimage logo" width={25} height={15} />Stack Thumbnail
+              </p>
               <img
                 src={thumbnailImgSrc}
                 style={{
@@ -669,7 +673,7 @@ export default function EditStackpage({
                     }
                   }}
                 >
-                  Delete Stack
+                  <img src="/icons/delete.svg" alt="delete logo" width={25} height={15} />Delete Stack
                 </button>
               )}
               {deleteStackLoading && <Spinner />}
@@ -694,7 +698,7 @@ export default function EditStackpage({
                         cursor: "default",
                       }}
                     >
-                      Update Stack
+                      <img src="/icons/update.svg" alt="update logo" width={25} height={15} />Update Stack
                     </button>
                   </div>
                 </div>
@@ -710,7 +714,7 @@ export default function EditStackpage({
                       type="submit"
                       style={{ width: "100%", marginBottom: "0px" }}
                     >
-                      Update Stack
+                      <img src="/icons/update.svg" alt="update logo" width={25} height={15} />Update Stack
                     </button>
                   </div>
                 </div>
