@@ -673,7 +673,7 @@ export default function EditStackpage({
                     }
                   }}
                 >
-                  <img src="/icons/delete.svg" alt="delete logo" width={25} height={15} />Delete Stack
+                  <img src="/icons/delete.svg" className="white-svg" alt="delete logo" width={25} height={15} />Delete Stack
                 </button>
               )}
               {deleteStackLoading && <Spinner />}
@@ -698,7 +698,7 @@ export default function EditStackpage({
                         cursor: "default",
                       }}
                     >
-                      <img src="/icons/update.svg" alt="update logo" width={25} height={15} />Update Stack
+                      <img src="/icons/update.svg" className="white-svg" alt="update logo" width={25} height={15} />Update Stack
                     </button>
                   </div>
                 </div>
@@ -714,7 +714,7 @@ export default function EditStackpage({
                       type="submit"
                       style={{ width: "100%", marginBottom: "0px" }}
                     >
-                      <img src="/icons/update.svg" alt="update logo" width={25} height={15} />Update Stack
+                      <img src="/icons/update.svg" className="white-svg" alt="update logo" width={25} height={15} />Update Stack
                     </button>
                   </div>
                 </div>
