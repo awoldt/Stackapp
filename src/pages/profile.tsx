@@ -122,13 +122,14 @@ export default function Profile({
                 <section>
                   {page_data.user_stacks === 0 && (
                     <p style={{ textAlign: "center", marginTop: "5%" }}>
-                      You do not currently have any Stacks. <br />
+                      You do not currently have any Stacks.
+                      <br />
+                      <br />
                       <a
                         href={"/create"}
-                        className="nav-element"
-                        style={{ padding: "10px" }}
+                        className="btn-create"
                       >
-                        Start Stacking.
+                        Create Stack
                       </a>
                     </p>
                   )}

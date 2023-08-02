@@ -34,7 +34,7 @@
 
     .background-image {
         width: 50%;
-        display: none;
+        /* display: none; */
     }
 
     ::-webkit-scrollbar {

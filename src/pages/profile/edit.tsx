@@ -131,7 +131,7 @@ export default function EditProfile({
                 type="text"
                 placeholder={
                   page_data.user_data?.first_name === null ||
-                  page_data.user_data?.first_name === ""
+                    page_data.user_data?.first_name === ""
                     ? "First name"
                     : page_data.user_data?.first_name
                 }
@@ -142,7 +142,7 @@ export default function EditProfile({
                 type="text"
                 placeholder={
                   page_data.user_data?.last_name === null ||
-                  page_data.user_data?.last_name === ""
+                    page_data.user_data?.last_name === ""
                     ? "Last name"
                     : page_data.user_data?.last_name
                 }
@@ -163,7 +163,7 @@ export default function EditProfile({
                 style={{ resize: "none" }}
                 placeholder={
                   page_data.user_data?.bio === null ||
-                  page_data.user_data?.bio === ""
+                    page_data.user_data?.bio === ""
                     ? "Enter bio here"
                     : page_data.user_data?.bio
                 }
@@ -191,46 +191,51 @@ export default function EditProfile({
                 </>
               )}
 
-              <button
-                className="btn-edit"
-                type="button"
-                onClick={async () => {
-                  const c1 = confirm(
-                    "Are you sure you want to delete your Stack account?"
-                  );
-                  if (c1) {
-                    const c2 = confirm(
-                      "This action is irreversible. Would you like to continue?"
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <button
+                  className="btn-edit"
+                  type="button"
+                  style={{ display: "block", background: "#F8333C" }}
+                  onClick={async () => {
+                    const c1 = confirm(
+                      "Are you sure you want to delete your Stack account?"
                     );
-                    if (c2) {
-                      const c3 = confirm(
-                        "Account deletion is permanant. In order to use Stack again you will need to create a new account. I understand, delete my account."
+                    if (c1) {
+                      const c2 = confirm(
+                        "This action is irreversible. Would you like to continue?"
                       );
+                      if (c2) {
+                        const c3 = confirm(
+                          "Account deletion is permanant. In order to use Stack again you will need to create a new account. I understand, delete my account."
+                        );
 
-                      if (c3) {
-                        try {
-                          const req = await fetch("/api/delete-account");
-                          if (req.status === 200) {
-                            alert("Account has been successfully deleted.");
+                        if (c3) {
+                          try {
+                            const req = await fetch("/api/delete-account");
+                            if (req.status === 200) {
+                              alert("Account has been successfully deleted.");
 
-                            //this expression will remove cookie from browser
-                            document.cookie =
-                              "uid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                            window.location.assign("/");
+                              //this expression will remove cookie from browser
+                              document.cookie =
+                                "uid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                              window.location.assign("/");
+                            }
+                          } catch (e) {
+                            console.log(e);
+                            alert(
+                              "An error occurred while attempting to delete your account."
+                            );
                           }
-                        } catch (e) {
-                          console.log(e);
-                          alert(
-                            "An error occurred while attempting to delete your account."
-                          );
                         }
                       }
                     }
-                  }
-                }}
-              >
-                Delete Account
-              </button>
+                  }}
+                >
+                  Delete Account
+                </button>
+              </div>
+
+
               {!loading && (
                 <>
                   {!disabledSubmit && (

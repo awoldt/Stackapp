@@ -124,8 +124,9 @@ export default function CreateAccount() {
             {showSuccessMessage && (
               <>
                 <p style={{ textAlign: "center" }}>
-                  An email has been sent to your inbox. Click the link in the
-                  email to verify your account.
+                  An email has been sent to your inbox.
+                  <br />
+                  Click the link in your email to verify your account.
                 </p>
               </>
             )}

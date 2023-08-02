@@ -28,16 +28,16 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
         user === null
           ? false
           : user.github_access_token === null
-          ? false
-          : true,
+            ? false
+            : true,
       github_client_id:
         user === null ? undefined : process.env.GITHUB_CLIENT_ID,
       repo_select_list:
         user === null
           ? null
           : user.github_access_token === null
-          ? null
-          : await GetRepoSelect(
+            ? null
+            : await GetRepoSelect(
               user!.github_access_token,
               String(req.cookies.uid)
             ),
@@ -156,7 +156,13 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                 <label htmlFor="app_icon_input" style={{ marginBottom: "0px" }}>
                   *Stack Icon
                 </label>
-                {showcaseIcon && <img src={showcaseIconSrc} width={500} />}
+                {showcaseIcon && <img src={showcaseIconSrc} width={500}
+                  className="profile-img"
+                  style={{
+                    display: "block",
+                    marginBottom: "20px",
+                    marginTop: "0px",
+                  }} />}
                 <input
                   type="file"
                   name="stack_icon"
@@ -185,7 +191,13 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                   *Stack Thumbnail
                 </label>
                 {showcaseThumbnail && (
-                  <img src={showcaseThumbnailSrc} width={500} />
+                  <img src={showcaseThumbnailSrc} width={500}
+                    style={{
+                      width: "100%",
+                      display: "block",
+                      marginBottom: "20px",
+                      borderRadius: "20px",
+                    }} />
                 )}
                 <input
                   type="file"
