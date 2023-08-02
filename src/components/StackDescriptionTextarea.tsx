@@ -20,6 +20,7 @@ export default function StackDesctiptionTextarea({
           cols={40}
           rows={10}
           required
+          style={{ marginBottom: "0px"}}
           placeholder="Stack Description"
           maxLength={2500}
           onChange={(e) => {
@@ -35,6 +36,7 @@ export default function StackDesctiptionTextarea({
           cols={40}
           rows={10}
           required
+          style={{ marginBottom: "0px"}}
           defaultValue={defaultText}
           maxLength={2500}
           onChange={(e) => {
@@ -42,7 +44,7 @@ export default function StackDesctiptionTextarea({
           }}
         ></textarea>
       )}
-      <span>{wordCount}/2500</span>
+      <span style={{ fontSize: "16px", opacity: "0.85" }}>{wordCount} / 2500</span>
     </>
   );
 }

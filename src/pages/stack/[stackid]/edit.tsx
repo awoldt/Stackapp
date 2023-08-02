@@ -149,9 +149,10 @@ export default function EditStackpage({
               </label>
 
               <label htmlFor="app_description" style={{ width: "100%" }}>
+              <div style={{ textAlign: "right" }}>
                 <StackDesctiptionTextarea
                   defaultText={page_data.saved_stack_data?.description}
-                />
+                /></div>
               </label>
 
               <p>

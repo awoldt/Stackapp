@@ -29,16 +29,16 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
         user === null
           ? false
           : user.github_access_token === null
-          ? false
-          : true,
+            ? false
+            : true,
       github_client_id:
         user === null ? undefined : process.env.GITHUB_CLIENT_ID,
       repo_select_list:
         user === null
           ? null
           : user.github_access_token === null
-          ? null
-          : await GetRepoSelect(
+            ? null
+            : await GetRepoSelect(
               user!.github_access_token,
               String(req.cookies.uid)
             ),
@@ -146,7 +146,9 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                   maxLength={100}
                 />
 
-                <StackDesctiptionTextarea />
+                <div style={{ textAlign: "right" }}>
+                  <StackDesctiptionTextarea />
+                </div>
 
                 <label htmlFor="app_icon_input" style={{ marginBottom: "0px" }}>
                   <img
