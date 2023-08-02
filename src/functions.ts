@@ -1071,6 +1071,7 @@ export async function EditStack(
     let newStackUrl: string | null = null;
     let newStackGithubRepoId: string | null = null;
 
+    //TECH
     let newStackLanguagesSelected: string[] | null = null;
     let newStackDatabasesSelected: string[] | null = null;
     let newStackApisSelected: string[] | null = null;
@@ -1087,29 +1088,19 @@ export async function EditStack(
         ? (newStackGithubRepoId = null)
         : (newStackGithubRepoId = fields.githubRepoId[0])
       : null;
-    (newStackLanguagesSelected = Array.isArray(fields.languages_used)
-      ? (newStackLanguagesSelected = fields.languages_used)
-      : (newStackLanguagesSelected = [fields.languages_used])),
-      fields.databases_used === undefined
-        ? null
-        : Array.isArray(fields.databases_used)
-        ? (newStackDatabasesSelected = fields.databases_used)
-        : (newStackDatabasesSelected = [fields.databases_used]),
-      fields.apis_used === undefined
-        ? null
-        : Array.isArray(fields.apis_used)
-        ? (newStackApisSelected = fields.apis_used)
-        : (newStackApisSelected = [fields.apis_used]),
-      fields.clouds_used === undefined
-        ? null
-        : Array.isArray(fields.clouds_used)
-        ? (newStackCloudsSelected = fields.clouds_used)
-        : (newStackCloudsSelected = [fields.clouds_used]),
+    newStackLanguagesSelected = Array.from(new Set(fields.languages_used));
+    fields.databases_used === undefined
+      ? null
+      : Array.from(new Set(fields.databases_used));
+    fields.apis_used === undefined
+      ? null
+      : Array.from(new Set(fields.apis_used));
+    fields.clouds_used === undefined
+      ? null
+      : Array.from(new Set(fields.clouds_used)),
       fields.frameworks_used === undefined
         ? null
-        : Array.isArray(fields.frameworks_used)
-        ? (newStackFrameworksSelected = fields.frameworks_used)
-        : (newStackFrameworksSelected = [fields.frameworks_used]);
+        : Array.from(new Set(fields.frameworks_used));
 
     let updateObj: Partial<_stack> = {};
     newStackName !== null ? (updateObj.name = newStackName) : null;
@@ -1187,19 +1178,23 @@ export async function CreateStack(
       thumbnail_url: thumbnailUpload[0],
       thumbnail_filename: thumbnailUpload[1],
       description: fields.app_description[0].trim(),
-      languages_used: Array.isArray(fields.languages_used)
-        ? fields.languages_used
-        : [],
-      databases_used: Array.isArray(fields.databases_used)
-        ? fields.databases_used
-        : null,
-      clouds_used: Array.isArray(fields.clouds_used)
-        ? fields.clouds_used
-        : null,
-      frameworks_used: Array.isArray(fields.frameworks_used)
-        ? fields.frameworks_used
-        : null,
-      apis_used: Array.isArray(fields.apis_used) ? fields.apis_used : null,
+      languages_used: Array.from(new Set(fields.languages_used)),
+      databases_used:
+        fields.databases_used === undefined
+          ? null
+          : Array.from(new Set(fields.databases_used)),
+      clouds_used:
+        fields.clouds_used === undefined
+          ? null
+          : Array.from(new Set(fields.clouds_used)),
+      frameworks_used:
+        fields.frameworks_used === undefined
+          ? null
+          : Array.from(new Set(fields.frameworks_used)),
+      apis_used:
+        fields.apis_used === undefined
+          ? null
+          : Array.from(new Set(fields.apis_used)),
       github_repo_id:
         fields.githubRepoId === undefined
           ? null
@@ -1215,6 +1210,10 @@ export async function CreateStack(
       website_url: fields.website_url[0].trim(),
       created_on: Date.now(),
     };
+
+    console.log("\nNEW STACK BEING ADDED!");
+
+    console.log(newStack);
 
     const s = await db.collection(process.env.STACKS_DB!).add(newStack);
     console.log(s);

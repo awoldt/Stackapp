@@ -62,9 +62,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
         stackData.github_repo_id === null
           ? null
           : await GetRepoCommitLogs(
-            stackData.github_repo_id,
-            stackData.github_api_token_used!
-          ),
+              stackData.github_repo_id,
+              stackData.github_api_token_used!
+            ),
       creator_data: await GetCreatorDetails(stackData.uid),
       created_on: stackData.created_on,
       stack_id: stackData.stack_id!,
@@ -130,15 +130,17 @@ export default function Stackpage({
 
                     {page_data.website_url !== null && (
                       <h4>
-                        <a
-                          href={page_data.website_url}
-                        >
-                          <img src="/icons/link.svg" alt="link icon" width={20} height={15} /> {new URL(page_data.website_url).hostname}
+                        <a href={page_data.website_url}>
+                          <img
+                            src="/icons/link.svg"
+                            alt="link icon"
+                            width={20}
+                            height={15}
+                          />{" "}
+                          {new URL(page_data.website_url).hostname}
                         </a>
                       </h4>
                     )}
-
-
 
                     <div className="user-profile-containerParent">
                       <a href={page_data.creator_data.href}>
@@ -147,12 +149,15 @@ export default function Stackpage({
                             src={page_data.creator_data.profile_pic!}
                             className="user-profile-img"
                             alt={
-                              page_data.creator_data.username + " profile picture"
+                              page_data.creator_data.username +
+                              " profile picture"
                             }
                           />
 
                           {page_data.creator_data.first_name !== null && (
-                            <span style={{ paddingLeft: "8px", paddingTop: "6px" }}>
+                            <span
+                              style={{ paddingLeft: "8px", paddingTop: "6px" }}
+                            >
                               <b>
                                 {page_data.creator_data.first_name}{" "}
                                 {page_data.creator_data.last_name !== null && (
@@ -168,7 +173,6 @@ export default function Stackpage({
                       </a>
                     </div>
 
-
                     {/* <h5 style={{ marginTop: "20px", marginBottom: "20px" }}>
                       Stacked {new Date(page_data.created_on).toDateString()}
                     </h5> */}
@@ -176,7 +180,15 @@ export default function Stackpage({
                     {page_data.is_signedin_users_stack && (
                       <>
                         <a href={`/stack/${page_data.stack_id}/edit`}>
-                          <button className="btn-create"><img src="/icons/edit.svg" alt="edit logo" width={25} height={15} />Edit Stack</button>
+                          <button className="btn-create">
+                            <img
+                              src="/icons/edit.svg"
+                              alt="edit logo"
+                              width={25}
+                              height={15}
+                            />
+                            Edit Stack
+                          </button>
                         </a>
                       </>
                     )}
@@ -185,7 +197,13 @@ export default function Stackpage({
 
                 <div
                   className="card-container"
-                  style={{ paddingBottom: "0px", marginBottom: "0px", width: "100%", display: "flex", justifyContent: "right" }}
+                  style={{
+                    paddingBottom: "0px",
+                    marginBottom: "0px",
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "right",
+                  }}
                 >
                   <div className="thumbnail">
                     <img

@@ -104,6 +104,7 @@ export default function CreateAccount() {
                     type="text"
                     name="app_signup_username"
                     placeholder="Username"
+                    maxLength={100}
                     required
                   />
                   <input

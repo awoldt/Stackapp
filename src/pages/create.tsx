@@ -1,5 +1,6 @@
 import Sidenav from "@/components/Sidenav";
 import Spinner from "@/components/Spinner";
+import StackDesctiptionTextarea from "@/components/StackDescriptionTextarea";
 import UniqueHeader from "@/components/UniqueHeaderTags";
 import { GetRepoSelect, GetUserProfile, IsUserSignedIn } from "@/functions";
 import { stackData } from "@/techstack";
@@ -28,16 +29,16 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
         user === null
           ? false
           : user.github_access_token === null
-            ? false
-            : true,
+          ? false
+          : true,
       github_client_id:
         user === null ? undefined : process.env.GITHUB_CLIENT_ID,
       repo_select_list:
         user === null
           ? null
           : user.github_access_token === null
-            ? null
-            : await GetRepoSelect(
+          ? null
+          : await GetRepoSelect(
               user!.github_access_token,
               String(req.cookies.uid)
             ),
@@ -142,27 +143,32 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                   name="app_name"
                   placeholder="Stack Title"
                   required
+                  maxLength={100}
                 />
 
-                <textarea
-                  name="app_description"
-                  id="app_description"
-                  cols={40}
-                  rows={10}
-                  required
-                  placeholder="Stack Description"
-                ></textarea>
+                <StackDesctiptionTextarea />
 
                 <label htmlFor="app_icon_input" style={{ marginBottom: "0px" }}>
-                  <img src="/icons/fileimage.svg" alt="fileimage logo" width={25} height={15} />Stack Icon
+                  <img
+                    src="/icons/fileimage.svg"
+                    alt="fileimage logo"
+                    width={25}
+                    height={15}
+                  />
+                  Stack Icon
                 </label>
-                {showcaseIcon && <img src={showcaseIconSrc} width={500}
-                  className="profile-img"
-                  style={{
-                    display: "block",
-                    marginBottom: "20px",
-                    marginTop: "0px",
-                  }} />}
+                {showcaseIcon && (
+                  <img
+                    src={showcaseIconSrc}
+                    width={500}
+                    className="profile-img"
+                    style={{
+                      display: "block",
+                      marginBottom: "20px",
+                      marginTop: "0px",
+                    }}
+                  />
+                )}
                 <input
                   type="file"
                   name="stack_icon"
@@ -188,16 +194,25 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                   htmlFor="app_thumbnail_input"
                   style={{ marginBottom: "0px" }}
                 >
-                  <img src="/icons/fileimage.svg" alt="fileimage logo" width={25} height={15} />Stack Thumbnail
+                  <img
+                    src="/icons/fileimage.svg"
+                    alt="fileimage logo"
+                    width={25}
+                    height={15}
+                  />
+                  Stack Thumbnail
                 </label>
                 {showcaseThumbnail && (
-                  <img src={showcaseThumbnailSrc} width={500}
+                  <img
+                    src={showcaseThumbnailSrc}
+                    width={500}
                     style={{
                       width: "100%",
                       display: "block",
                       marginBottom: "20px",
                       borderRadius: "20px",
-                    }} />
+                    }}
+                  />
                 )}
                 <input
                   type="file"
@@ -386,7 +401,13 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                           cursor: "default",
                         }}
                       >
-                        <img src="/icons/create.svg" alt="create logo" width={25} height={15} />Create Stack
+                        <img
+                          src="/icons/create.svg"
+                          alt="create logo"
+                          width={25}
+                          height={15}
+                        />
+                        Create Stack
                       </button>
                     </div>
                   </div>
@@ -403,7 +424,13 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                         className="btn-create"
                         style={{ width: "100%", marginBottom: "0px" }}
                       >
-                        <img src="/icons/create.svg" alt="create logo" width={25} height={15} />Create Stack
+                        <img
+                          src="/icons/create.svg"
+                          alt="create logo"
+                          width={25}
+                          height={15}
+                        />
+                        Create Stack
                       </button>
                     </div>
                   </div>
@@ -430,10 +457,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                 <h3>
                   Stack Created
                   <br />{" "}
-                  <a
-                    href={`/stack/${newStackID}`}
-                    className="btn-create"
-                  >
+                  <a href={`/stack/${newStackID}`} className="btn-create">
                     View Stack
                   </a>
                 </h3>

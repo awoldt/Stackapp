@@ -113,7 +113,14 @@ export default function EditProfile({
                 }
               }}
             >
-              <label htmlFor="profile_email_picture" style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+              <label
+                htmlFor="profile_email_picture"
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
                 <img
                   src={
                     page_data.user_data?.profile_pic === null
@@ -129,10 +136,9 @@ export default function EditProfile({
 
               <input
                 type="text"
-                placeholder={
-                  page_data.user_data?.first_name === null ||
-                    page_data.user_data?.first_name === ""
-                    ? "First name"
+                defaultValue={
+                  page_data.user_data?.first_name === null
+                    ? ""
                     : page_data.user_data?.first_name
                 }
                 name="fname"
@@ -140,10 +146,9 @@ export default function EditProfile({
 
               <input
                 type="text"
-                placeholder={
-                  page_data.user_data?.last_name === null ||
-                    page_data.user_data?.last_name === ""
-                    ? "Last name"
+                defaultValue={
+                  page_data.user_data?.last_name === null
+                    ? ""
                     : page_data.user_data?.last_name
                 }
                 name="lname"
@@ -152,7 +157,8 @@ export default function EditProfile({
               <input
                 type="text"
                 name="profile_username"
-                placeholder={"@" + page_data.user_data?.username}
+                defaultValue={page_data.user_data?.username}
+                maxLength={100}
               />
 
               <textarea
@@ -161,12 +167,12 @@ export default function EditProfile({
                 cols={40}
                 rows={10}
                 style={{ resize: "none" }}
-                placeholder={
-                  page_data.user_data?.bio === null ||
-                    page_data.user_data?.bio === ""
-                    ? "Enter bio here"
+                defaultValue={
+                  page_data.user_data?.bio === null
+                    ? ""
                     : page_data.user_data?.bio
                 }
+                maxLength={2500}
               ></textarea>
 
               {page_data.has_authenticated_github_account && (
@@ -185,7 +191,13 @@ export default function EditProfile({
                   >
                     <p>Your GitHub account is not connected.</p>
                     <button type="button" className="btn-edit">
-                      <img src="/icons/github.svg" alt="github logo" width={25} height={15} />Connect Github
+                      <img
+                        src="/icons/github.svg"
+                        alt="github logo"
+                        width={25}
+                        height={15}
+                      />
+                      Connect Github
                     </button>
                   </a>
                 </>
@@ -231,10 +243,15 @@ export default function EditProfile({
                     }
                   }}
                 >
-                  <img src="/icons/delete.svg" alt="delete logo" width={25} height={15} />Delete Account
+                  <img
+                    src="/icons/delete.svg"
+                    alt="delete logo"
+                    width={25}
+                    height={15}
+                  />
+                  Delete Account
                 </button>
               </div>
-
 
               {!loading && (
                 <>
@@ -246,7 +263,13 @@ export default function EditProfile({
                         style={{ width: "100%", marginBottom: "0px" }}
                         id="edit_profile_btn"
                       >
-                        <img src="/icons/update.svg" alt="update logo" width={25} height={15} />Update Profile
+                        <img
+                          src="/icons/update.svg"
+                          alt="update logo"
+                          width={25}
+                          height={15}
+                        />
+                        Update Profile
                       </button>
                     </div>
                   )}
@@ -264,7 +287,13 @@ export default function EditProfile({
                         }}
                         id="edit_profile_btn"
                       >
-                        <img src="/icons/update.svg" alt="update logo" width={25} height={15} />Update Profile
+                        <img
+                          src="/icons/update.svg"
+                          alt="update logo"
+                          width={25}
+                          height={15}
+                        />
+                        Update Profile
                       </button>
                     </div>
                   )}

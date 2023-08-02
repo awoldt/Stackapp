@@ -11,6 +11,7 @@ import UniqueHeader from "@/components/UniqueHeaderTags";
 import { useRef, useState } from "react";
 import { stackData } from "@/techstack";
 import Spinner from "@/components/Spinner";
+import StackDesctiptionTextarea from "@/components/StackDescriptionTextarea";
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   if (await IsUserSignedIn(req.cookies.uid)) {
@@ -31,9 +32,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
         stackData!.github_api_token_used! === null
           ? null
           : await GetRepoSelect(
-            stackData?.github_api_token_used!,
-            stackData!.uid!
-          ),
+              stackData?.github_api_token_used!,
+              stackData!.uid!
+            ),
       current_repo_id_selected:
         stackData!.github_api_token_used === null
           ? null
@@ -110,7 +111,8 @@ export default function EditStackpage({
             setUpdateStackLoading(true);
             try {
               const req = await fetch(
-                `/api/edit-stack?stack_id=${window.location.pathname.split("/")[2]
+                `/api/edit-stack?stack_id=${
+                  window.location.pathname.split("/")[2]
                 }`,
                 {
                   method: "POST",
@@ -147,20 +149,19 @@ export default function EditStackpage({
               </label>
 
               <label htmlFor="app_description" style={{ width: "100%" }}>
-                <textarea
-                  name="app_description"
-                  id="app_description"
-                  cols={40}
-                  rows={10}
-                  style={{ marginBottom: "0px" }}
-                  placeholder="Stack Description"
-                  required
-                  defaultValue={page_data.saved_stack_data?.description}
-                ></textarea>
+                <StackDesctiptionTextarea
+                  defaultText={page_data.saved_stack_data?.description}
+                />
               </label>
 
               <p>
-                <img src="/icons/fileimage.svg" alt="fileimage logo" width={25} height={15} />Stack Icon
+                <img
+                  src="/icons/fileimage.svg"
+                  alt="fileimage logo"
+                  width={25}
+                  height={15}
+                />
+                Stack Icon
               </p>
               <img
                 src={iconImgSrc}
@@ -191,7 +192,13 @@ export default function EditStackpage({
               />
 
               <p>
-                <img src="/icons/fileimage.svg" alt="fileimage logo" width={25} height={15} />Stack Thumbnail
+                <img
+                  src="/icons/fileimage.svg"
+                  alt="fileimage logo"
+                  width={25}
+                  height={15}
+                />
+                Stack Thumbnail
               </p>
               <img
                 src={thumbnailImgSrc}
@@ -673,7 +680,13 @@ export default function EditStackpage({
                     }
                   }}
                 >
-                  <img src="/icons/delete.svg" alt="delete logo" width={25} height={15} />Delete Stack
+                  <img
+                    src="/icons/delete.svg"
+                    alt="delete logo"
+                    width={25}
+                    height={15}
+                  />
+                  Delete Stack
                 </button>
               )}
               {deleteStackLoading && <Spinner />}
@@ -698,7 +711,13 @@ export default function EditStackpage({
                         cursor: "default",
                       }}
                     >
-                      <img src="/icons/update.svg" alt="update logo" width={25} height={15} />Update Stack
+                      <img
+                        src="/icons/update.svg"
+                        alt="update logo"
+                        width={25}
+                        height={15}
+                      />
+                      Update Stack
                     </button>
                   </div>
                 </div>
@@ -714,7 +733,13 @@ export default function EditStackpage({
                       type="submit"
                       style={{ width: "100%", marginBottom: "0px" }}
                     >
-                      <img src="/icons/update.svg" alt="update logo" width={25} height={15} />Update Stack
+                      <img
+                        src="/icons/update.svg"
+                        alt="update logo"
+                        width={25}
+                        height={15}
+                      />
+                      Update Stack
                     </button>
                   </div>
                 </div>

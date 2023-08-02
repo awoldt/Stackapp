@@ -28,6 +28,19 @@ export default async function handler(
         .json({ msg: "You must include at least one language for each stack" });
     }
 
+    //make sure app name and description text do not exceed their max lengths
+    if (fields.app_name[0].trim().length > 100) {
+      return res
+        .status(400)
+        .json({ msg: "Stack name cannot be more than 100 characters" });
+    }
+    //make sure app name and description text do not exceed their max lengths
+    if (fields.app_description[0].trim().length > 2500) {
+      return res
+        .status(400)
+        .json({ msg: "Stack description cannot be more than 2500 characters" });
+    }
+
     const s = await CreateStack(files, fields, req.cookies.uid!);
 
     return res.json({ msg: "Successfully created stack", stackId: s!.id });
