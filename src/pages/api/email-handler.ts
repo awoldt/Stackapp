@@ -9,7 +9,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 import { uid } from "uid";
 
-import { GenerateUniquePublicUid } from "@/functions";
+import { GenerateUniqueUid } from "@/functions";
 import { db } from "../../../firebase";
 
 export default async function handler(
@@ -24,8 +24,7 @@ export default async function handler(
     try {
       switch (req.query.mode) {
         //VERIFY EMAIL
-        //save a user in firebase auth
-        //then store details in custom profiles collection
+        //store details in custom profiles collection
         case "verifyEmail":
           //make sure unverified document id actually exists
           if (
@@ -68,36 +67,26 @@ export default async function handler(
 
           //generate new account uid
           //must be unique
-          let UNIQUE_ID;
-          while (true) {
-            UNIQUE_ID = uid(32);
-            if (
-              !(await db.collection("profiles").doc(UNIQUE_ID).get()).exists
-            ) {
-              //save this new account in profiles collection
-              const profileAccount: _userProfile = {
-                uid: UNIQUE_ID,
-                bio: null,
-                first_name: null,
-                last_name: null,
-                public_uid: await GenerateUniquePublicUid(),
-                email: unverifiedDetails!.email,
-                password: unverifiedDetails!.password,
-                username: unverifiedDetails!.username,
-                github_access_token: null,
-                github_account_id: null,
-                created_on: Date.now(),
-                profile_pic: unverifiedDetails!.profile_pic,
-                profile_pic_filename: unverifiedDetails!.profile_pic_filename,
-              };
-              await db
-                .collection("profiles")
-                .doc(UNIQUE_ID)
-                .set(profileAccount);
 
-              break;
-            }
-          }
+          const NEW_UID = await GenerateUniqueUid("uid");
+
+          //save this new account in profiles collection
+          const profileAccount: _userProfile = {
+            uid: NEW_UID,
+            bio: null,
+            first_name: null,
+            last_name: null,
+            public_uid: await GenerateUniqueUid("public_uid"),
+            email: unverifiedDetails!.email,
+            password: unverifiedDetails!.password,
+            username: unverifiedDetails!.username,
+            github_access_token: null,
+            github_account_id: null,
+            created_on: Date.now(),
+            profile_pic: unverifiedDetails!.profile_pic,
+            profile_pic_filename: unverifiedDetails!.profile_pic_filename,
+          };
+          await db.collection("profiles").doc(NEW_UID).set(profileAccount);
 
           console.log(
             "SUCCESSFULLY STORED PROFILE ACCOUNT\nBOTH AUTH AND PROFILE ACCOUTN ARE STOED IN FIREBASE!"
@@ -114,7 +103,7 @@ export default async function handler(
                   <body>
                      <p>Account successfully verified! Redirecting.....</p>
                      <script>
-                     document.cookie = "uid=${UNIQUE_ID}; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
+                     document.cookie = "uid=${NEW_UID}; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
                      setTimeout(function() {
                       window.location.href = "/";
                     }, 2500);
@@ -132,11 +121,9 @@ export default async function handler(
           break;
       }
     } catch (e) {
-      res
-        .status(500)
-        .json({
-          msg: "There was an error while processing your request. Please try again later.",
-        });
+      res.status(500).json({
+        msg: "There was an error while processing your request. Please try again later.",
+      });
     }
   }
 }

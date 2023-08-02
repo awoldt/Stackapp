@@ -12,7 +12,6 @@ import {
   _editStackData,
 } from "./types";
 import { uid } from "uid";
-import { getAuth } from "firebase-admin/auth";
 
 import {
   DeleteObjectCommand,
@@ -439,15 +438,14 @@ export async function FilterProfanity(appName: string, appDescription: string) {
   }
 }
 
-export async function GenerateUniquePublicUid(): Promise<string> {
+export async function GenerateUniqueUid(
+  field: "public_uid" | "uid"
+): Promise<string> {
   //will return a unique public_uid for users
   //this will be used in urls and visable to the public/internet
 
-  const u = uid(28);
-  const doc = await db
-    .collection("profiles")
-    .where("public_uid", "==", u)
-    .get();
+  const u = uid(32);
+  const doc = await db.collection("profiles").where(field, "==", u).get();
 
   //see if there is a profile with this public uid already saved
   if (!doc.empty) {
@@ -455,19 +453,14 @@ export async function GenerateUniquePublicUid(): Promise<string> {
       "there is already a profile created with the public_uid of " + u
     );
 
-    let loop = true;
     let unqiueUid = "";
-    while (loop) {
-      const u2 = uid(28);
-
-      const doc2 = await db
-        .collection("profiles")
-        .where("public_uid", "==", u2)
-        .get();
+    while (true) {
+      const u2 = uid(32);
+      const doc2 = await db.collection("profiles").where(field, "==", u2).get();
 
       if (doc2.empty) {
         unqiueUid = u2;
-        loop = false;
+        break;
       }
     }
 
@@ -837,9 +830,6 @@ export async function DeleteAccount(accountUid: string) {
         Key: `imgs/${user!.profile_pic_filename}`,
       })
     );
-
-    //delete user from firebase auth
-    await getAuth().deleteUser(user!.uid);
 
     //delete user from profiles collection
     await db.collection("profiles").doc(user!.uid).delete();

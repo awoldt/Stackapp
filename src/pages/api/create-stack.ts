@@ -25,7 +25,7 @@ export default async function handler(
     if (fields.languages_used === undefined) {
       return res
         .status(400)
-        .json({ msg: "You must include at least 1 language for each stack" });
+        .json({ msg: "You must include at least one language for each stack" });
     }
 
     const s = await CreateStack(files, fields, req.cookies.uid!);
