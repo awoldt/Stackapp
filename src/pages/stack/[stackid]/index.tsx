@@ -62,9 +62,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
         stackData.github_repo_id === null
           ? null
           : await GetRepoCommitLogs(
-              stackData.github_repo_id,
-              stackData.github_api_token_used!
-            ),
+            stackData.github_repo_id,
+            stackData.github_api_token_used!
+          ),
       creator_data: await GetCreatorDetails(stackData.uid),
       created_on: stackData.created_on,
       stack_id: stackData.stack_id!,
@@ -428,27 +428,35 @@ export default function Stackpage({
             </div>
           </section>
 
-          {Array.isArray(page_data.commit_logs) && (
-            <section>
-              {page_data.commit_logs.map(
-                (x: _repoCommitLogs, index: number) => {
-                  return (
-                    <div className="card-container" key={index}>
-                      <div className="card">
-                        <p>MSG: {x.message}</p>
-                        <p>
-                          Commit sha <a href={x.url}>{x.sha}</a>
-                        </p>
-                        <p style={{ marginTop: "15px" }}>
-                          This commit was pushed on <i>{x.date_commited}</i>
-                        </p>
-                      </div>
-                    </div>
-                  );
-                }
+          <div className="card-container">
+            <div className="card">
+              <h2 style={{ textAlign: "center" }}>Github</h2>
+              <h5 style={{ textAlign: "center", marginBottom: "20px" }}>
+                Commit history towards the development of this tech Stack.
+              </h5>
+              {Array.isArray(page_data.commit_logs) && (
+                <section>
+                  {page_data.commit_logs.map(
+                    (x: _repoCommitLogs, index: number) => {
+                      return (
+                        <>
+                          <p style={{ marginTop: "20px", fontSize: "16px", opacity: "0.85" }}>
+                            {x.date_commited}
+                          </p>
+                          <p>
+                            <b>MSG: {x.message} </b>
+                          </p>
+                          <p>
+                            Github Commit SHA: <em><a href={x.url}>{x.sha}</a></em>
+                          </p>
+                        </>
+                      );
+                    }
+                  )}
+                </section>
               )}
-            </section>
-          )}
+            </div>
+          </div>
         </>
       )}
     </>
