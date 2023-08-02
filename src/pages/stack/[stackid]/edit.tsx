@@ -32,9 +32,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
         stackData!.github_api_token_used! === null
           ? null
           : await GetRepoSelect(
-              stackData?.github_api_token_used!,
-              stackData!.uid!
-            ),
+            stackData?.github_api_token_used!,
+            stackData!.uid!
+          ),
       current_repo_id_selected:
         stackData!.github_api_token_used === null
           ? null
@@ -112,8 +112,7 @@ export default function EditStackpage({
             setUpdateStackLoading(true);
             try {
               const req = await fetch(
-                `/api/edit-stack?stack_id=${
-                  window.location.pathname.split("/")[2]
+                `/api/edit-stack?stack_id=${window.location.pathname.split("/")[2]
                 }`,
                 {
                   method: "POST",
@@ -150,10 +149,10 @@ export default function EditStackpage({
               </label>
 
               <label htmlFor="app_description" style={{ width: "100%" }}>
-              <div style={{ textAlign: "right" }}>
-                <StackDesctiptionTextarea
-                  defaultText={page_data.saved_stack_data?.description}
-                /></div>
+                <div style={{ textAlign: "right" }}>
+                  <StackDesctiptionTextarea
+                    defaultText={page_data.saved_stack_data?.description}
+                  /></div>
               </label>
 
               <p>

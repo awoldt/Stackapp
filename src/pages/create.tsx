@@ -149,6 +149,8 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
 
                 <div style={{ textAlign: "right" }}>
                   <StackDesctiptionTextarea />
+                  <br />
+                  <br />
                 </div>
 
                 <label htmlFor="app_icon_input" style={{ marginBottom: "0px" }}>
