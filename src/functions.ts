@@ -21,7 +21,7 @@ import {
 } from "@aws-sdk/client-s3";
 import formidable from "formidable";
 
-import { stackData } from "./techstack";
+import { techOffered } from "./techstack";
 import { db } from "../firebase";
 import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses";
 
@@ -638,7 +638,7 @@ function GenerateSelectedAndNotSelectedTech(
         return null;
       }
 
-      const allLanguages = stackData.languages;
+      const allLanguages = techOffered.languages;
       for (let index = 0; index < techValues.length; index++) {
         if (allLanguages.indexOf(techValues[index]) !== -1) {
           allLanguages.splice(allLanguages.indexOf(techValues[index]), 1);
@@ -650,7 +650,7 @@ function GenerateSelectedAndNotSelectedTech(
       if (techValues === null) {
         return null;
       }
-      const allDatabases = stackData.databases;
+      const allDatabases = techOffered.databases;
       for (let index = 0; index < techValues.length; index++) {
         if (allDatabases.indexOf(techValues[index]) !== -1) {
           allDatabases.splice(allDatabases.indexOf(techValues[index]), 1);
@@ -662,7 +662,7 @@ function GenerateSelectedAndNotSelectedTech(
       if (techValues === null) {
         return null;
       }
-      const allApis = stackData.apis;
+      const allApis = techOffered.apis;
       for (let index = 0; index < techValues.length; index++) {
         if (allApis.indexOf(techValues[index]) !== -1) {
           allApis.splice(allApis.indexOf(techValues[index]), 1);
@@ -674,7 +674,7 @@ function GenerateSelectedAndNotSelectedTech(
       if (techValues === null) {
         return null;
       }
-      const allClouds = stackData.clouds;
+      const allClouds = techOffered.clouds;
       for (let index = 0; index < techValues.length; index++) {
         if (allClouds.indexOf(techValues[index]) !== -1) {
           allClouds.splice(allClouds.indexOf(techValues[index]), 1);
@@ -686,7 +686,7 @@ function GenerateSelectedAndNotSelectedTech(
       if (techValues === null) {
         return null;
       }
-      const allFrameworks = stackData.frameworks;
+      const allFrameworks = techOffered.frameworks;
       for (let index = 0; index < techValues.length; index++) {
         if (allFrameworks.indexOf(techValues[index]) !== -1) {
           allFrameworks.splice(allFrameworks.indexOf(techValues[index]), 1);

@@ -1,6 +1,6 @@
 import { _techStackValues } from "./types";
 
-export const stackData: _techStackValues = {
+export const techOffered: _techStackValues = {
   languages: [
     "JavaScript",
     "Python",
@@ -12,7 +12,7 @@ export const stackData: _techStackValues = {
     "PHP",
     "Swift",
     "TypeScript",
-  ],
+  ].sort(),
   databases: [
     "Postgres",
     "Firestore",
@@ -22,7 +22,7 @@ export const stackData: _techStackValues = {
     "Redis",
     "Elasticsearch",
     "Sqllite",
-  ],
+  ].sort(),
   clouds: [
     "AWS",
     "Google Cloud",
@@ -30,7 +30,7 @@ export const stackData: _techStackValues = {
     "IBM Cloud",
     "Oracle",
     "Digital Ocean",
-  ],
+  ].sort(),
   apis: [
     "Stripe",
     "Spotify",
@@ -42,7 +42,7 @@ export const stackData: _techStackValues = {
     "Twilio",
     "DocuSign",
     "Facebook",
-  ],
+  ].sort(),
   frameworks: [
     "Nextjs",
     "Angular",
@@ -53,5 +53,5 @@ export const stackData: _techStackValues = {
     "Django",
     "Express",
     "Spring",
-  ],
+  ].sort(),
 };
