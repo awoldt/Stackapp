@@ -148,7 +148,7 @@
 
     .title-container-header {
         display: flex;
-        justify-content: center;
+        justify-content: left;
         align-items: center;
         width: 70%;
     }
@@ -552,8 +552,8 @@
 
     .thumbnail {
         border-radius: 20px;
-        width: auto;
         max-width: 900px;
+        width: fit-content;
         height: 600px;
         float: right;
         background: white;

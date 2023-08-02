@@ -185,7 +185,7 @@ export default function Stackpage({
 
                 <div
                   className="card-container"
-                  style={{ paddingBottom: "0px", marginBottom: "0px" }}
+                  style={{ paddingBottom: "0px", marginBottom: "0px", width: "100%", display: "flex", justifyContent: "right" }}
                 >
                   <div className="thumbnail">
                     <img

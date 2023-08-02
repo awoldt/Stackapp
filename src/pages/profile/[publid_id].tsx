@@ -125,9 +125,9 @@ export default function Profilepage({
                       </h1>
                     )}
 
-                    <span style={{ marginBottom: "20px" }}>
+                    <h5 style={{ marginBottom: "20px" }}>
                       @{page_data.user_profile_data!.username}
-                    </span>
+                    </h5>
 
                     {page_data.user_profile_data!.bio !== null && (
                       <p style={{ marginBottom: "20px" }}>
@@ -135,7 +135,7 @@ export default function Profilepage({
                       </p>
                     )}
                     {page_data.user_profile_data?.bio === null && (
-                      <p>User does not have bio yet</p>
+                      <p>This user has not yet set up their bio.</p>
                     )}
 
                     {/* {page_data.user_stacks !== 0 && (
@@ -155,12 +155,11 @@ export default function Profilepage({
               <div className="card-container">
                 <div className="card" style={{ textAlign: "center" }}>
                   <h3>Stacks</h3>
-                  <p style={{ marginBottom: "20px;" }}>
-                    <em>
-                      This user currently has {page_data.user_stacks!.length}{" "}
-                      Stacks.
-                    </em>
-                  </p>
+                  <h5>
+                    {page_data.user_stacks!.length}{" "}Stacks
+                    <br />
+                    <br />
+                  </h5>
                   {page_data.user_stacks!.map(
                     (x: Partial<_stack>, index: number) => {
                       return (
@@ -182,8 +181,18 @@ export default function Profilepage({
               </div>
             </section>
           )}
+
           {page_data.user_stacks === 0 && (
-            <p>User does not have any stacks yet</p>
+            <section>
+              <div className="card-container">
+                <div className="card" style={{ textAlign: "center" }}>
+                  <h3>Stacks</h3>
+                  <p>
+                    This user does not currently have any Stacks.
+                  </p>
+                </div>
+              </div>
+            </section>
           )}
         </>
       )}

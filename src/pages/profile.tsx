@@ -121,7 +121,7 @@ export default function Profile({
               {page_data.user_stacks !== null && (
                 <section>
                   {page_data.user_stacks === 0 && (
-                    <p style={{ textAlign: "center", marginTop: "5%" }}>
+                    <p style={{ textAlign: "center", marginTop: "2%" }}>
                       You do not currently have any Stacks.
                       <br />
                       <br />
@@ -129,7 +129,7 @@ export default function Profile({
                         href={"/create"}
                         className="btn-create"
                       >
-                        Create Stack
+                        <img src="/icons/create.svg" alt="create logo" width={25} height={15} />Create Stack
                       </a>
                     </p>
                   )}
@@ -141,12 +141,11 @@ export default function Profile({
                       >
                         <div className="card" style={{ textAlign: "center" }}>
                           <h3>Stacks</h3>
-                          <p style={{ marginBottom: "20px;" }}>
-                            <em>
-                              You currently have {page_data.user_stacks.length}{" "}
-                              Stacks.
-                            </em>
-                          </p>
+                          <h5>
+                            {page_data.user_stacks.length}{" "}Stacks
+                            <br />
+                            <br />
+                          </h5>
 
                           {page_data.user_stacks.map(
                             (x: Partial<_stack>, index: number) => {
