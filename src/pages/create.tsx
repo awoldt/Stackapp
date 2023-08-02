@@ -3,7 +3,7 @@ import Spinner from "@/components/Spinner";
 import StackDesctiptionTextarea from "@/components/StackDescriptionTextarea";
 import UniqueHeader from "@/components/UniqueHeaderTags";
 import { GetRepoSelect, GetUserProfile, IsUserSignedIn } from "@/functions";
-import { stackData } from "@/techstack";
+import { techOffered } from "@/techstack";
 import {
   _PAGEDATA_create,
   _PAGEDATA_profile,
@@ -43,6 +43,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
               String(req.cookies.uid)
             ),
       is_signed_in: true,
+      tech_values: techOffered,
     };
 
     return {
@@ -281,15 +282,21 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                   <br />
                   <br />
                 </h5>
-                {stackData.languages.map((x: string, index: number) => {
-                  return (
-                    <label key={index}>
-                      <input type="checkbox" name="languages_used" value={x} />
-                      <span className="checkmark"></span>
-                      {x}
-                    </label>
-                  );
-                })}
+                {page_data.tech_values.languages.map(
+                  (x: string, index: number) => {
+                    return (
+                      <label key={index}>
+                        <input
+                          type="checkbox"
+                          name="languages_used"
+                          value={x}
+                        />
+                        <span className="checkmark"></span>
+                        {x}
+                      </label>
+                    );
+                  }
+                )}
 
                 <img
                   src="/icons/database-fill.svg"
@@ -303,15 +310,21 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                   <br />
                   <br />
                 </h5>
-                {stackData.databases.map((x: string, index: number) => {
-                  return (
-                    <label key={index}>
-                      <input type="checkbox" name="databases_used" value={x} />
-                      <span className="checkmark"></span>
-                      {x}
-                    </label>
-                  );
-                })}
+                {page_data.tech_values.databases.map(
+                  (x: string, index: number) => {
+                    return (
+                      <label key={index}>
+                        <input
+                          type="checkbox"
+                          name="databases_used"
+                          value={x}
+                        />
+                        <span className="checkmark"></span>
+                        {x}
+                      </label>
+                    );
+                  }
+                )}
 
                 <img
                   src="/icons/api.svg"
@@ -325,7 +338,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                   <br />
                   <br />
                 </h5>
-                {stackData.apis.map((x: string, index: number) => {
+                {page_data.tech_values.apis.map((x: string, index: number) => {
                   return (
                     <label key={index}>
                       <input type="checkbox" name="apis_used" value={x} />
@@ -347,15 +360,17 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                   <br />
                   <br />
                 </h5>
-                {stackData.clouds.map((x: string, index: number) => {
-                  return (
-                    <label key={index}>
-                      <input type="checkbox" name="clouds_used" value={x} />
-                      <span className="checkmark"></span>
-                      {x}
-                    </label>
-                  );
-                })}
+                {page_data.tech_values.clouds.map(
+                  (x: string, index: number) => {
+                    return (
+                      <label key={index}>
+                        <input type="checkbox" name="clouds_used" value={x} />
+                        <span className="checkmark"></span>
+                        {x}
+                      </label>
+                    );
+                  }
+                )}
 
                 <img
                   src="/icons/framework.svg"
@@ -369,15 +384,21 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                   <br />
                   <br />
                 </h5>
-                {stackData.frameworks.map((x: string, index: number) => {
-                  return (
-                    <label key={index}>
-                      <input type="checkbox" name="frameworks_used" value={x} />
-                      <span className="checkmark"></span>
-                      {x}
-                    </label>
-                  );
-                })}
+                {page_data.tech_values.frameworks.map(
+                  (x: string, index: number) => {
+                    return (
+                      <label key={index}>
+                        <input
+                          type="checkbox"
+                          name="frameworks_used"
+                          value={x}
+                        />
+                        <span className="checkmark"></span>
+                        {x}
+                      </label>
+                    );
+                  }
+                )}
               </div>
             </div>
 
@@ -401,7 +422,14 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                           cursor: "default",
                         }}
                       >
-                        <img src="/icons/create.svg" className="white-svg" alt="create logo" width={25} height={15} />Create Stack
+                        <img
+                          src="/icons/create.svg"
+                          className="white-svg"
+                          alt="create logo"
+                          width={25}
+                          height={15}
+                        />
+                        Create Stack
                       </button>
                     </div>
                   </div>
@@ -418,7 +446,14 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                         className="btn-create"
                         style={{ width: "100%", marginBottom: "0px" }}
                       >
-                        <img src="/icons/create.svg" className="white-svg" alt="create logo" width={25} height={15} />Create Stack
+                        <img
+                          src="/icons/create.svg"
+                          className="white-svg"
+                          alt="create logo"
+                          width={25}
+                          height={15}
+                        />
+                        Create Stack
                       </button>
                     </div>
                   </div>

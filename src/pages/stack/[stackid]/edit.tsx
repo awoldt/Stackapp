@@ -9,9 +9,9 @@ import {
 import Sidenav from "@/components/Sidenav";
 import UniqueHeader from "@/components/UniqueHeaderTags";
 import { useRef, useState } from "react";
-import { stackData } from "@/techstack";
 import Spinner from "@/components/Spinner";
 import StackDesctiptionTextarea from "@/components/StackDescriptionTextarea";
+import { techOffered } from "@/techstack";
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   if (await IsUserSignedIn(req.cookies.uid)) {
@@ -39,6 +39,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
         stackData!.github_api_token_used === null
           ? null
           : stackData?.github_repo_id!,
+      tech_values: techOffered,
     };
 
     return {
@@ -391,21 +392,23 @@ export default function EditStackpage({
                     <br />
                     <br />
                   </h5>
-                  {stackData.databases.map((x: string, index: number) => {
-                    return (
-                      <label htmlFor={x} key={index}>
-                        <input
-                          type="checkbox"
-                          id={x}
-                          name="databases_used"
-                          value={x}
-                          className="database-checkboxs"
-                        />
-                        <span className="checkmark"></span>
-                        {x}
-                      </label>
-                    );
-                  })}
+                  {page_data.tech_values.databases.map(
+                    (x: string, index: number) => {
+                      return (
+                        <label htmlFor={x} key={index}>
+                          <input
+                            type="checkbox"
+                            id={x}
+                            name="databases_used"
+                            value={x}
+                            className="database-checkboxs"
+                          />
+                          <span className="checkmark"></span>
+                          {x}
+                        </label>
+                      );
+                    }
+                  )}
                 </>
               )}
 
@@ -474,21 +477,23 @@ export default function EditStackpage({
                     <br />
                     <br />
                   </h5>
-                  {stackData.apis.map((x: string, index: number) => {
-                    return (
-                      <label htmlFor={x} key={index}>
-                        <input
-                          type="checkbox"
-                          id={x}
-                          name="databases_used"
-                          value={x}
-                          className="database-checkboxs"
-                        />
-                        <span className="checkmark"></span>
-                        {x}
-                      </label>
-                    );
-                  })}
+                  {page_data.tech_values.apis.map(
+                    (x: string, index: number) => {
+                      return (
+                        <label htmlFor={x} key={index}>
+                          <input
+                            type="checkbox"
+                            id={x}
+                            name="databases_used"
+                            value={x}
+                            className="database-checkboxs"
+                          />
+                          <span className="checkmark"></span>
+                          {x}
+                        </label>
+                      );
+                    }
+                  )}
                 </>
               )}
 
@@ -557,21 +562,23 @@ export default function EditStackpage({
                     <br />
                     <br />
                   </h5>
-                  {stackData.clouds.map((x: string, index: number) => {
-                    return (
-                      <label htmlFor={x} key={index}>
-                        <input
-                          type="checkbox"
-                          id={x}
-                          name="databases_used"
-                          value={x}
-                          className="database-checkboxs"
-                        />
-                        <span className="checkmark"></span>
-                        {x}
-                      </label>
-                    );
-                  })}
+                  {page_data.tech_values.clouds.map(
+                    (x: string, index: number) => {
+                      return (
+                        <label htmlFor={x} key={index}>
+                          <input
+                            type="checkbox"
+                            id={x}
+                            name="databases_used"
+                            value={x}
+                            className="database-checkboxs"
+                          />
+                          <span className="checkmark"></span>
+                          {x}
+                        </label>
+                      );
+                    }
+                  )}
                 </>
               )}
 
@@ -641,21 +648,23 @@ export default function EditStackpage({
                     <br />
                     <br />
                   </h5>
-                  {stackData.frameworks.map((x: string, index: number) => {
-                    return (
-                      <label htmlFor={x} key={index}>
-                        <input
-                          type="checkbox"
-                          id={x}
-                          name="databases_used"
-                          value={x}
-                          className="database-checkboxs"
-                        />
-                        <span className="checkmark"></span>
-                        {x}
-                      </label>
-                    );
-                  })}
+                  {page_data.tech_values.frameworks.map(
+                    (x: string, index: number) => {
+                      return (
+                        <label htmlFor={x} key={index}>
+                          <input
+                            type="checkbox"
+                            id={x}
+                            name="databases_used"
+                            value={x}
+                            className="database-checkboxs"
+                          />
+                          <span className="checkmark"></span>
+                          {x}
+                        </label>
+                      );
+                    }
+                  )}
                 </>
               )}
               {!deleteStackLoading && (
@@ -680,7 +689,14 @@ export default function EditStackpage({
                     }
                   }}
                 >
-                  <img src="/icons/delete.svg" className="white-svg" alt="delete logo" width={25} height={15} />Delete Stack
+                  <img
+                    src="/icons/delete.svg"
+                    className="white-svg"
+                    alt="delete logo"
+                    width={25}
+                    height={15}
+                  />
+                  Delete Stack
                 </button>
               )}
               {deleteStackLoading && <Spinner />}
@@ -705,7 +721,14 @@ export default function EditStackpage({
                         cursor: "default",
                       }}
                     >
-                      <img src="/icons/update.svg" className="white-svg" alt="update logo" width={25} height={15} />Update Stack
+                      <img
+                        src="/icons/update.svg"
+                        className="white-svg"
+                        alt="update logo"
+                        width={25}
+                        height={15}
+                      />
+                      Update Stack
                     </button>
                   </div>
                 </div>
@@ -721,7 +744,14 @@ export default function EditStackpage({
                       type="submit"
                       style={{ width: "100%", marginBottom: "0px" }}
                     >
-                      <img src="/icons/update.svg" className="white-svg" alt="update logo" width={25} height={15} />Update Stack
+                      <img
+                        src="/icons/update.svg"
+                        className="white-svg"
+                        alt="update logo"
+                        width={25}
+                        height={15}
+                      />
+                      Update Stack
                     </button>
                   </div>
                 </div>

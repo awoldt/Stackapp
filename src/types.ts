@@ -121,6 +121,7 @@ export interface _PAGEDATA_create extends DEFAULT_PAGE_LAYOUT {
   has_authenticated_github_account: boolean;
   github_client_id: string | undefined;
   repo_select_list: _repoSelectList[] | null | "too_many_requests";
+  tech_values: _techStackValues;
 }
 
 export interface _PAGEDATA_stackpage extends DEFAULT_PAGE_LAYOUT {
@@ -151,6 +152,7 @@ export interface _PAGEDATA_editstack extends DEFAULT_PAGE_LAYOUT {
   saved_stack_data: _editStackData | null;
   repo_select_list: _repoSelectList[] | null | "too_many_requests";
   current_repo_id_selected: number | null;
+  tech_values: _techStackValues;
 }
 
 export interface _PAGEDATA_editprofile extends DEFAULT_PAGE_LAYOUT {
