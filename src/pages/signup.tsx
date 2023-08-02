@@ -115,7 +115,7 @@ export default function CreateAccount() {
                   />
                   {!loading && (
                     <button className="btn-create" style={{ width: "100%" }}>
-                      <img src="/icons/signup.svg" alt="signup logo" width={25} height={15} />Sign Up
+                      <img src="/icons/signup.svg" className="white-svg" alt="signup logo" width={25} height={15} />Sign Up
                     </button>
                   )}
                   {loading && <Spinner />}

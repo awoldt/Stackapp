@@ -180,15 +180,7 @@ export default function Stackpage({
                     {page_data.is_signedin_users_stack && (
                       <>
                         <a href={`/stack/${page_data.stack_id}/edit`}>
-                          <button className="btn-create">
-                            <img
-                              src="/icons/edit.svg"
-                              alt="edit logo"
-                              width={25}
-                              height={15}
-                            />
-                            Edit Stack
-                          </button>
+                          <button className="btn-create"><img src="/icons/edit.svg" className="white-svg" alt="edit logo" width={25} height={15} />Edit Stack</button>
                         </a>
                       </>
                     )}

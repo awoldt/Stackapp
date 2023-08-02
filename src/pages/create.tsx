@@ -401,13 +401,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                           cursor: "default",
                         }}
                       >
-                        <img
-                          src="/icons/create.svg"
-                          alt="create logo"
-                          width={25}
-                          height={15}
-                        />
-                        Create Stack
+                        <img src="/icons/create.svg" className="white-svg" alt="create logo" width={25} height={15} />Create Stack
                       </button>
                     </div>
                   </div>
@@ -424,13 +418,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                         className="btn-create"
                         style={{ width: "100%", marginBottom: "0px" }}
                       >
-                        <img
-                          src="/icons/create.svg"
-                          alt="create logo"
-                          width={25}
-                          height={15}
-                        />
-                        Create Stack
+                        <img src="/icons/create.svg" className="white-svg" alt="create logo" width={25} height={15} />Create Stack
                       </button>
                     </div>
                   </div>

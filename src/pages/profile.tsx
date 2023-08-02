@@ -110,7 +110,7 @@ export default function Profile({
                           title="Edit your profile"
                           className="btn-create"
                         >
-                          <img src="/icons/edit.svg" alt="profile logo" width={25} height={15} />Edit Profile
+                          <img src="/icons/edit.svg" className="white-svg" alt="profile logo" width={25} height={15} />Edit Profile
                         </a>
                       </div>
                     </div>
