@@ -16,72 +16,80 @@ import {
 } from "@/types";
 import { GetServerSideProps } from "next";
 
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const stackData: _stack | null | 404 = await GetStackData(
     req.url?.split("/")[2]!,
     req.cookies.uid!
   );
-
-  if (stackData !== null && stackData !== 404) {
-    const pageData: _PAGEDATA_stackpage = {
-      header_tags: {
-        title: `${stackData.name} | Stack`,
-        canonical_link: `https://stackapp.xyz/stack/${stackData.stack_id}`,
-        description: `Visualize the tech stack behind ${stackData.name}, including languages, databases, apis, clouds, and frameworks used to build the app
-        `,
-        open_graph_tags: {
-          title: `${stackData.name} Tech Stack`,
-          url: `https://stackapp.xyz/stack/${stackData.stack_id}`,
-          image: stackData.icon_url,
-        },
-      },
-      app_name: stackData!.name,
-      icon: stackData!.icon_url,
-      thumbnail: stackData.thumbnail_url,
-      description: stackData.description,
-      is_signedin_users_stack: req.cookies.uid !== stackData.uid ? false : true,
-      website_url: stackData.website_url,
-      languages_used: GenerateNamesWithLogos(stackData.languages_used)!,
-      databases_used:
-        stackData.databases_used === null
-          ? null
-          : GenerateNamesWithLogos(stackData.databases_used),
-      apis_used:
-        stackData.apis_used === null
-          ? null
-          : GenerateNamesWithLogos(stackData.apis_used),
-      clouds_used:
-        stackData.clouds_used === null
-          ? null
-          : GenerateNamesWithLogos(stackData.clouds_used),
-      frameworks_used:
-        stackData.frameworks_used === null
-          ? null
-          : GenerateNamesWithLogos(stackData.frameworks_used),
-      commit_logs:
-        stackData.github_repo_id === null
-          ? null
-          : await GetRepoCommitLogs(
-            stackData.github_repo_id,
-            stackData.github_api_token_used!
-          ),
-      creator_data: await GetCreatorDetails(stackData.uid),
-      created_on: stackData.created_on,
-      stack_id: stackData.stack_id!,
-      is_signed_in:
-        (await IsUserSignedIn(req.cookies.uid)) === null ? false : true,
-    };
-
+  if (stackData === 404) {
+    res.statusCode = 404;
     return {
       props: {
-        page_data: pageData,
+        page_data: 404,
+      },
+    };
+  }
+  if (stackData === null) {
+    res.statusCode = 500;
+    return {
+      props: {
+        page_data: null,
       },
     };
   }
 
+  const pageData: _PAGEDATA_stackpage = {
+    header_tags: {
+      title: `${stackData.name} | Stack`,
+      canonical_link: `https://stackapp.xyz/stack/${stackData.stack_id}`,
+      description: `Visualize the tech stack behind ${stackData.name}, including languages, databases, apis, clouds, and frameworks used to build the app
+        `,
+      open_graph_tags: {
+        title: `${stackData.name} Tech Stack`,
+        url: `https://stackapp.xyz/stack/${stackData.stack_id}`,
+        image: stackData.icon_url,
+      },
+    },
+    app_name: stackData!.name,
+    icon: stackData!.icon_url,
+    thumbnail: stackData.thumbnail_url,
+    description: stackData.description,
+    is_signedin_users_stack: req.cookies.uid !== stackData.uid ? false : true,
+    website_url: stackData.website_url,
+    languages_used: GenerateNamesWithLogos(stackData.languages_used)!,
+    databases_used:
+      stackData.databases_used === null
+        ? null
+        : GenerateNamesWithLogos(stackData.databases_used),
+    apis_used:
+      stackData.apis_used === null
+        ? null
+        : GenerateNamesWithLogos(stackData.apis_used),
+    clouds_used:
+      stackData.clouds_used === null
+        ? null
+        : GenerateNamesWithLogos(stackData.clouds_used),
+    frameworks_used:
+      stackData.frameworks_used === null
+        ? null
+        : GenerateNamesWithLogos(stackData.frameworks_used),
+    commit_logs:
+      stackData.github_repo_id === null
+        ? null
+        : await GetRepoCommitLogs(
+            stackData.github_repo_id,
+            stackData.github_api_token_used!
+          ),
+    creator_data: await GetCreatorDetails(stackData.uid),
+    created_on: stackData.created_on,
+    stack_id: stackData.stack_id!,
+    is_signed_in:
+      (await IsUserSignedIn(req.cookies.uid)) === null ? false : true,
+  };
+
   return {
     props: {
-      page_data: stackData,
+      page_data: pageData,
     },
   };
 };
@@ -130,11 +138,13 @@ export default function Stackpage({
 
                     {page_data.website_url !== null && (
                       <h4>
-                        <a target="_blank"
+                        <a
+                          target="_blank"
                           rel="noopener noreferrer"
                           href={page_data.website_url}
                           className="nav-element"
-                          style={{ paddingLeft: "0px", padding: "10px" }}>
+                          style={{ paddingLeft: "0px", padding: "10px" }}
+                        >
                           {/* <img
                             src="/icons/link.svg"
                             alt="link icon"

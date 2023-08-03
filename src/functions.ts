@@ -923,17 +923,12 @@ export async function EditProfile(
     if (fields.profile_username !== "") {
       const doesUsernameExist = await db
         .collection("profiles")
-        .where("username", "==", fields.profile_username[0].trim())
+        .where("username", "==", fields.profile_username[0].replace(/\s/g, ""))
         .get();
 
       if (!doesUsernameExist.empty) {
         return "username_already_in_use";
       }
-    }
-
-    //username cannot have spaces
-    if (fields.profile_username[0].trim().split(" ").length > 1) {
-      return "invalid_username";
     }
 
     const oldUserDetails = await GetUserProfile(uidCookie);
@@ -959,42 +954,33 @@ export async function EditProfile(
       }
     }
 
-    //only update document properties that are not null on form data
-    //if empty form value, do not change in firebase
-    let newFname: string | null = null;
-    let newLname: string | null = null;
-    let newUsername: string | null = null;
-    let newBio: string | null = null;
-    fields.fname[0] !== "" ? (newFname = fields.fname[0]) : null;
-    fields.lname[0] !== "" ? (newLname = fields.lname[0]) : null;
-    fields.lname[0] !== "" ? (newLname = fields.lname[0]) : null;
-    fields.profile_username[0] !== ""
-      ? (newUsername = fields.profile_username[0])
-      : null;
-    fields.profile_bio[0] !== ""
-      ? (newBio = fields.profile_bio[0])
-      : (newBio = null);
-
     let updateObj: Partial<_userProfile> = {};
-    newFname !== null
-      ? (updateObj.first_name = newFname)
-      : (updateObj.first_name = null);
-    newLname !== null
-      ? (updateObj.last_name = newLname)
-      : (updateObj.last_name = null);
-    newUsername !== null ? (updateObj.username = newUsername) : null;
-    newBio !== null ? (updateObj.bio = newBio) : (updateObj.bio = null);
-    newIcon !== null ? (updateObj.profile_pic = newIcon) : null;
-    newIcon !== null
-      ? (updateObj.profile_pic_filename = newIconFilename)
-      : null;
+    updateObj.profile_pic = newIcon === null ? undefined : newIcon;
+    updateObj.profile_pic_filename =
+      newIconFilename === null ? undefined : newIconFilename;
+    updateObj.first_name =
+      fields.fname[0] === "" ? undefined : fields.fname[0].trim();
+    updateObj.last_name =
+      fields.lname[0] === "" ? undefined : fields.lname[0].trim();
+    updateObj.username =
+      fields.profile_username[0] === ""
+        ? undefined
+        : fields.profile_username[0].replace(/\s/g, ""); //removes spaces
+    updateObj.bio =
+      fields.profile_bio[0] === "" ? undefined : fields.profile_bio[0].trim();
 
-    console.log(fields);
+    //filter out all undefined values (values not being updated)
+    const filteredUpdateObj: any = updateObj;
+    for (const k in filteredUpdateObj) {
+      if (filteredUpdateObj[k] === undefined) {
+        delete filteredUpdateObj[k];
+      }
+    }
 
     console.log("update object");
-    console.log(updateObj);
+    console.log(filteredUpdateObj);
 
-    await db.collection("profiles").doc(uidCookie).update(updateObj);
+    await db.collection("profiles").doc(uidCookie).update(filteredUpdateObj);
     return true;
   } catch (e) {
     console.log(e);
@@ -1065,84 +1051,56 @@ export async function EditStack(
       }
     }
 
-    //only update document properties that are not null on form data
-    //if empty form value, do not change in firebase
-    let newStackName: string | null = null;
-    let newStackDescription: string | null = null;
-    let newStackUrl: string | null = null;
-    let newStackGithubRepoId: string | null = null;
-
-    //TECH
-    let newStackLanguagesSelected: string[] | null = null;
-    let newStackDatabasesSelected: string[] | null = null;
-    let newStackApisSelected: string[] | null = null;
-    let newStackCloudsSelected: string[] | null = null;
-    let newStackFrameworksSelected: string[] | null = null;
-
-    fields.app_name[0] !== "" ? (newStackName = fields.app_name[0]) : null;
-    fields.app_description[0] !== ""
-      ? (newStackDescription = fields.app_description[0])
-      : null;
-    fields.website_url[0] !== "" ? (newStackUrl = fields.website_url[0]) : null;
-    fields.githubRepoId !== undefined
-      ? fields.githubRepoId[0] === "null"
-        ? (newStackGithubRepoId = null)
-        : (newStackGithubRepoId = fields.githubRepoId[0])
-      : null;
-    newStackLanguagesSelected = Array.from(new Set(fields.languages_used));
-    fields.databases_used === undefined
-      ? (newStackDatabasesSelected = null)
-      : (newStackDatabasesSelected = Array.from(
-          new Set(fields.databases_used)
-        ));
-    fields.apis_used === undefined
-      ? (newStackApisSelected = null)
-      : (newStackApisSelected = Array.from(new Set(fields.apis_used)));
-    fields.clouds_used === undefined
-      ? (newStackCloudsSelected = null)
-      : (newStackCloudsSelected = Array.from(new Set(fields.clouds_used)));
-    fields.frameworks_used === undefined
-      ? (newStackFrameworksSelected = null)
-      : (newStackFrameworksSelected = Array.from(
-          new Set(fields.frameworks_used)
-        ));
-
     let updateObj: Partial<_stack> = {};
-    newStackName !== null ? (updateObj.name = newStackName) : null;
-    newStackDescription !== null
-      ? (updateObj.description = newStackDescription)
-      : null;
-    newStackGithubRepoId !== null
-      ? (updateObj.github_repo_id = newStackGithubRepoId)
-      : null;
-    updateObj.languages_used = newStackLanguagesSelected;
-    newStackDatabasesSelected !== null
-      ? (updateObj.databases_used = newStackDatabasesSelected)
-      : (updateObj.databases_used = null);
-    newStackApisSelected !== null
-      ? (updateObj.apis_used = newStackApisSelected)
-      : (updateObj.apis_used = null);
-    newStackCloudsSelected !== null
-      ? (updateObj.clouds_used = newStackCloudsSelected)
-      : (updateObj.clouds_used = null);
-    newStackFrameworksSelected !== null
-      ? (updateObj.frameworks_used = newStackFrameworksSelected)
-      : (updateObj.frameworks_used = null);
-    newIcon === null ? null : (updateObj.icon_url = newIcon);
-    newIconFilename === null
-      ? null
-      : (updateObj.icon_filename = newIconFilename);
-    newThumbnail === null ? null : (updateObj.thumbnail_url = newThumbnail);
-    newThumbnailFilename === null
-      ? null
-      : (updateObj.thumbnail_filename = newThumbnailFilename);
+    updateObj.name =
+      fields.app_name[0] === "" ? undefined : fields.app_name[0].trim();
+    updateObj.description =
+      fields.app_description[0] === ""
+        ? undefined
+        : fields.app_description[0].trim();
+    updateObj.icon_url = newIcon === null ? oldStackDetails.icon_url : newIcon;
+    updateObj.icon_filename =
+      newIconFilename === null
+        ? oldStackDetails.icon_filename
+        : newIconFilename;
+    updateObj.thumbnail_url =
+      newThumbnail === null ? oldStackDetails.thumbnail_url : newThumbnail;
+    updateObj.thumbnail_filename =
+      newThumbnailFilename === null
+        ? oldStackDetails.thumbnail_filename
+        : newThumbnailFilename;
+    updateObj.website_url =
+      fields.website_url[0] === "" ? undefined : fields.website_url[0].trim();
+    updateObj.languages_used = Array.from(new Set(fields.languages_used)); //must always have language selected
+    updateObj.databases_used =
+      fields.databases_used === undefined
+        ? null
+        : Array.from(new Set(fields.databases_used));
+    updateObj.apis_used =
+      fields.apis_used === undefined
+        ? null
+        : Array.from(new Set(fields.apis_used));
+    updateObj.clouds_used =
+      fields.clouds_used === undefined
+        ? null
+        : Array.from(new Set(fields.clouds_used));
+    updateObj.frameworks_used =
+      fields.frameworks_used === undefined
+        ? null
+        : Array.from(new Set(fields.frameworks_used));
 
-    console.log(fields);
+    //filter out all undefined values (values not being updated)
+    const filteredUpdateObj: any = updateObj;
+    for (const k in filteredUpdateObj) {
+      if (filteredUpdateObj[k] === undefined) {
+        delete filteredUpdateObj[k];
+      }
+    }
 
-    console.log("updated edit profile");
-    console.log(updateObj);
-
-    await db.collection(process.env.STACKS_DB!).doc(stackId).update(updateObj);
+    await db
+      .collection(process.env.STACKS_DB!)
+      .doc(stackId)
+      .update(filteredUpdateObj);
 
     return true;
   } catch (e) {
