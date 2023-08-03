@@ -35,7 +35,6 @@ export const techOffered: _techStackValues = {
     "Stripe",
     "Spotify",
     "Twitter",
-    "OpenWeatherMap",
     "Google Maps",
     "Slack",
     "PayPal",

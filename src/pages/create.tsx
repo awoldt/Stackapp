@@ -14,51 +14,46 @@ import { GetServerSideProps } from "next";
 import { useRef, useState } from "react";
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const user = await GetUserProfile(req.cookies.uid);
+
+  const pageData: _PAGEDATA_create = {
+    header_tags: {
+      title: "Create a New Stack | Stack",
+      description:
+        "Create a stack that showcases the technology that went into making your application. This can include things like languages, databases, apis, and more.",
+      canonical_link: "https://stackapp.xyz/create",
+      open_graph_tags: null,
+    },
+    has_authenticated_github_account:
+      user === null ? false : user.github_access_token === null ? false : true,
+    github_client_id: user === null ? null : process.env.GITHUB_CLIENT_ID!,
+    repo_select_list:
+      user === null
+        ? null
+        : user.github_access_token === null
+        ? null
+        : await GetRepoSelect(
+            user!.github_access_token,
+            String(req.cookies.uid)
+          ),
+    tech_values: techOffered,
+  };
+
   if (await IsUserSignedIn(req.cookies.uid)) {
-    const user = await GetUserProfile(req.cookies.uid);
-
-    const pageData: _PAGEDATA_create = {
-      header_tags: {
-        title: "Create a New Stack | Stack",
-        description:
-          "Create a stack that showcases the technology that went into making your application. This can include things like languages, databases, apis, and more.",
-        canonical_link: "https://stackapp.xyz/create",
-        open_graph_tags: null,
-      },
-      has_authenticated_github_account:
-        user === null
-          ? false
-          : user.github_access_token === null
-          ? false
-          : true,
-      github_client_id:
-        user === null ? undefined : process.env.GITHUB_CLIENT_ID,
-      repo_select_list:
-        user === null
-          ? null
-          : user.github_access_token === null
-          ? null
-          : await GetRepoSelect(
-              user!.github_access_token,
-              String(req.cookies.uid)
-            ),
-      is_signed_in: true,
-      tech_values: techOffered,
-    };
-
+    pageData.is_signed_in = true;
     return {
       props: {
         page_data: pageData,
       },
     };
-  } else {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
   }
+
+  pageData.is_signed_in = false;
+  return {
+    props: {
+      page_data: pageData,
+    },
+  };
 };
 
 export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
@@ -104,6 +99,15 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
               <h5>Enter the details of your tech stack&apos;s development.</h5>
             </div>
           </div>
+          {!page_data.is_signed_in && (
+            <p>
+              You must{" "}
+              <a href={"/signup"} title="Create a stack account">
+                create an account
+              </a>{" "}
+              to start posting stacks
+            </p>
+          )}
           <form
             onChange={(e) => {
               if (disabledSubmit) {
@@ -404,65 +408,69 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
               </div>
             </div>
 
-            {!loading && (
+            {page_data.is_signed_in && (
               <>
-                {disabledSubmit && (
-                  <div className="card-container">
-                    <div
-                      className="card-empty"
-                      style={{ marginTop: "0px", paddingTop: "0px" }}
-                    >
-                      <button
-                        disabled={true}
-                        id="create_stack_btn"
-                        type="submit"
-                        className="btn-create"
-                        style={{
-                          width: "100%",
-                          marginBottom: "0px",
-                          backgroundColor: "grey",
-                          cursor: "default",
-                        }}
-                      >
-                        <img
-                          src="/icons/create.svg"
-                          className="white-svg"
-                          alt="create logo"
-                          width={25}
-                          height={15}
-                        />
-                        Create Stack
-                      </button>
-                    </div>
-                  </div>
+                {!loading && (
+                  <>
+                    {disabledSubmit && (
+                      <div className="card-container">
+                        <div
+                          className="card-empty"
+                          style={{ marginTop: "0px", paddingTop: "0px" }}
+                        >
+                          <button
+                            disabled={true}
+                            id="create_stack_btn"
+                            type="submit"
+                            className="btn-create"
+                            style={{
+                              width: "100%",
+                              marginBottom: "0px",
+                              backgroundColor: "grey",
+                              cursor: "default",
+                            }}
+                          >
+                            <img
+                              src="/icons/create.svg"
+                              className="white-svg"
+                              alt="create logo"
+                              width={25}
+                              height={15}
+                            />
+                            Create Stack
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                    {!disabledSubmit && (
+                      <div className="card-container">
+                        <div
+                          className="card-empty"
+                          style={{ marginTop: "0px", paddingTop: "0px" }}
+                        >
+                          <button
+                            id="create_stack_btn"
+                            type="submit"
+                            className="btn-create"
+                            style={{ width: "100%", marginBottom: "0px" }}
+                          >
+                            <img
+                              src="/icons/create.svg"
+                              className="white-svg"
+                              alt="create logo"
+                              width={25}
+                              height={15}
+                            />
+                            Create Stack
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </>
                 )}
-                {!disabledSubmit && (
-                  <div className="card-container">
-                    <div
-                      className="card-empty"
-                      style={{ marginTop: "0px", paddingTop: "0px" }}
-                    >
-                      <button
-                        id="create_stack_btn"
-                        type="submit"
-                        className="btn-create"
-                        style={{ width: "100%", marginBottom: "0px" }}
-                      >
-                        <img
-                          src="/icons/create.svg"
-                          className="white-svg"
-                          alt="create logo"
-                          width={25}
-                          height={15}
-                        />
-                        Create Stack
-                      </button>
-                    </div>
-                  </div>
-                )}
+                {loading && <Spinner />}
               </>
             )}
-            {loading && <Spinner />}
           </form>
         </section>
       )}

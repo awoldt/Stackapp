@@ -118,7 +118,7 @@ export interface __PAGEDATA_account extends DEFAULT_PAGE_LAYOUT {
 
 export interface _PAGEDATA_create extends DEFAULT_PAGE_LAYOUT {
   has_authenticated_github_account: boolean;
-  github_client_id: string | undefined;
+  github_client_id: string | null;
   repo_select_list: _repoSelectList[] | null | "too_many_requests";
   tech_values: _techStackValues;
 }
