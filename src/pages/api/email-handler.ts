@@ -68,7 +68,7 @@ export default async function handler(
           //generate new account uid
           //must be unique
 
-          const NEW_UID = await GenerateUniqueUid("uid");
+          const NEW_UID = await GenerateUniqueUid();
 
           //save this new account in profiles collection
           const profileAccount: _userProfile = {
@@ -76,7 +76,6 @@ export default async function handler(
             bio: null,
             first_name: null,
             last_name: null,
-            public_uid: await GenerateUniqueUid("public_uid"),
             email: unverifiedDetails!.email,
             password: unverifiedDetails!.password,
             username: unverifiedDetails!.username,

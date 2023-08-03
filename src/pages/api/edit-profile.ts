@@ -23,18 +23,13 @@ export default async function handler(
         .json({ msg: "There was an error while processing upload" });
     }
 
-    //username cannot be blank
-    if (fields.profile_username[0].trim().length === 0) {
-      return res.status(400).json({ msg: "Username must contain a value" });
-    }
-
     //make sure username and bio do not exceed their max length
     if (fields.profile_username[0].trim().length > 100) {
       return res
         .status(400)
         .json({ msg: "Username cannot be more than 100 characters" });
     }
-    if (fields.profile_bio[0].trim().length > 2500) {
+    if (fields.profile_bio[0].trim().length > 1000) {
       return res
         .status(400)
         .json({ msg: "Profile bio cannot be more than 2500 characters" });
@@ -46,6 +41,10 @@ export default async function handler(
       return res
         .status(500)
         .json({ msg: "There was an error while updating proile" });
+    }
+
+    if (u === "invalid_username") {
+      return res.status(400).json({ msg: "Invalid username" });
     }
 
     if (u === "username_already_in_use") {

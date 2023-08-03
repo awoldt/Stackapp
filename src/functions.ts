@@ -55,7 +55,6 @@ export async function GetUserProfile(
 
     const x: _userProfile = {
       uid: user!.uid,
-      public_uid: user!.public_uid,
       bio: user!.bio,
       first_name: user!.first_name,
       last_name: user!.last_name,
@@ -77,17 +76,15 @@ export async function GetUserProfile(
   }
 }
 
-//returns profile info from public uid
 //meant for profiles route, not account route
-export async function GetPublicProfile(publicUID: string) {
+export async function GetPublicProfile(username: string) {
   try {
     const user = await await db
       .collection("profiles")
-      .where("public_uid", "==", publicUID)
+      .where("username", "==", username)
       .get();
 
     if (user.empty) {
-      console.log("user with public uid of " + publicUID + " does not exist");
       return null;
     }
 
@@ -98,7 +95,6 @@ export async function GetPublicProfile(publicUID: string) {
       bio: user.docs[0].data().bio,
       first_name: user.docs[0].data().first_name,
       last_name: user.docs[0].data().last_name,
-      public_uid: user.docs[0].data().public_uid,
       email: user.docs[0].data().email,
       password: user.docs[0].data().password,
       username: user.docs[0].data().username,
@@ -438,25 +434,17 @@ export async function FilterProfanity(appName: string, appDescription: string) {
   }
 }
 
-export async function GenerateUniqueUid(
-  field: "public_uid" | "uid"
-): Promise<string> {
-  //will return a unique public_uid for users
-  //this will be used in urls and visable to the public/internet
+export async function GenerateUniqueUid(): Promise<string> {
+  //will return a unique uid for users
 
   const u = uid(32);
-  const doc = await db.collection("profiles").where(field, "==", u).get();
+  const doc = await db.collection("profiles").where("uid", "==", u).get();
 
-  //see if there is a profile with this public uid already saved
   if (!doc.empty) {
-    console.log(
-      "there is already a profile created with the public_uid of " + u
-    );
-
     let unqiueUid = "";
     while (true) {
       const u2 = uid(32);
-      const doc2 = await db.collection("profiles").where(field, "==", u2).get();
+      const doc2 = await db.collection("profiles").where("uid", "==", u2).get();
 
       if (doc2.empty) {
         unqiueUid = u2;
@@ -466,7 +454,6 @@ export async function GenerateUniqueUid(
 
     return unqiueUid;
   } else {
-    //public_id is unique
     return u;
   }
 }
@@ -481,7 +468,7 @@ export async function GetCreatorDetails(userUid: string) {
       username: user!.username,
       profile_pic:
         user!.profile_pic === null ? "/icons/noprofile.png" : user!.profile_pic,
-      href: `/profile/${user!.public_uid}`,
+      href: `/profile/${user!.username}`,
       first_name: user!.first_name,
       last_name: user!.last_name,
     };
@@ -927,12 +914,12 @@ export async function EditProfile(
   uidCookie: string,
   fields: formidable.Fields,
   profileIcon: any
-): Promise<"username_already_in_use" | null | true> {
+): Promise<"username_already_in_use" | "invalid_username" | null | true> {
   //will update profile details submitted by user
   try {
     console.log(fields);
 
-    //make sure if user is changing user, it is not already taken
+    //make sure if user is changing username, it is not already taken
     if (fields.profile_username !== "") {
       const doesUsernameExist = await db
         .collection("profiles")
@@ -942,6 +929,11 @@ export async function EditProfile(
       if (!doesUsernameExist.empty) {
         return "username_already_in_use";
       }
+    }
+
+    //username cannot have spaces
+    if (fields.profile_username[0].trim().split(" ").length > 1) {
+      return "invalid_username";
     }
 
     const oldUserDetails = await GetUserProfile(uidCookie);
@@ -992,6 +984,9 @@ export async function EditProfile(
       : null;
 
     console.log(fields);
+
+    console.log("update object");
+    console.log(updateObj);
 
     await db.collection("profiles").doc(uidCookie).update(updateObj);
     return true;
@@ -1090,17 +1085,21 @@ export async function EditStack(
       : null;
     newStackLanguagesSelected = Array.from(new Set(fields.languages_used));
     fields.databases_used === undefined
-      ? null
-      : Array.from(new Set(fields.databases_used));
+      ? (newStackDatabasesSelected = null)
+      : (newStackDatabasesSelected = Array.from(
+          new Set(fields.databases_used)
+        ));
     fields.apis_used === undefined
-      ? null
-      : Array.from(new Set(fields.apis_used));
+      ? (newStackApisSelected = null)
+      : (newStackApisSelected = Array.from(new Set(fields.apis_used)));
     fields.clouds_used === undefined
-      ? null
-      : Array.from(new Set(fields.clouds_used)),
-      fields.frameworks_used === undefined
-        ? null
-        : Array.from(new Set(fields.frameworks_used));
+      ? (newStackCloudsSelected = null)
+      : (newStackCloudsSelected = Array.from(new Set(fields.clouds_used)));
+    fields.frameworks_used === undefined
+      ? (newStackFrameworksSelected = null)
+      : (newStackFrameworksSelected = Array.from(
+          new Set(fields.frameworks_used)
+        ));
 
     let updateObj: Partial<_stack> = {};
     newStackName !== null ? (updateObj.name = newStackName) : null;
@@ -1113,16 +1112,16 @@ export async function EditStack(
     updateObj.languages_used = newStackLanguagesSelected;
     newStackDatabasesSelected !== null
       ? (updateObj.databases_used = newStackDatabasesSelected)
-      : null;
+      : updateObj.databases_used = null;
     newStackApisSelected !== null
       ? (updateObj.apis_used = newStackApisSelected)
-      : null;
+      : updateObj.apis_used = null;
     newStackCloudsSelected !== null
       ? (updateObj.clouds_used = newStackCloudsSelected)
-      : null;
+      : updateObj.clouds_used =null;
     newStackFrameworksSelected !== null
       ? (updateObj.frameworks_used = newStackFrameworksSelected)
-      : null;
+      : updateObj.frameworks_used = null;
     newIcon === null ? null : (updateObj.icon_url = newIcon);
     newIconFilename === null
       ? null
@@ -1133,6 +1132,9 @@ export async function EditStack(
       : (updateObj.thumbnail_filename = newThumbnailFilename);
 
     console.log(fields);
+
+    console.log("updated edit profile");
+    console.log(updateObj);
 
     await db.collection(process.env.STACKS_DB!).doc(stackId).update(updateObj);
 

@@ -49,7 +49,6 @@ export interface _editStackData {
 
 export interface _userProfile {
   uid: string; //(IMPORTANT, PRIMARY KEY) uniquely identifies a user stored in database
-  public_uid: string; //the uid to be used in urls to access profile page, regular uid needs to be kept private (only stored as cookie on user browser)
   email: string;
   password: string;
   bio: string | null;

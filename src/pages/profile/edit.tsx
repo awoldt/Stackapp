@@ -157,7 +157,7 @@ export default function EditProfile({
               <input
                 type="text"
                 name="profile_username"
-                defaultValue={page_data.user_data?.username}
+                placeholder={"@" + page_data.user_data?.username}
                 maxLength={100}
               />
 
@@ -169,10 +169,10 @@ export default function EditProfile({
                 style={{ resize: "none" }}
                 defaultValue={
                   page_data.user_data?.bio === null
-                    ? ""
+                    ? "Bio"
                     : page_data.user_data?.bio
                 }
-                maxLength={2500}
+                maxLength={1000}
               ></textarea>
 
               {page_data.has_authenticated_github_account && (
@@ -191,7 +191,14 @@ export default function EditProfile({
                   >
                     <p>Your GitHub account is not connected.</p>
                     <button type="button" className="btn-edit">
-                      <img src="/icons/github.svg" className="white-svg" alt="github logo" width={25} height={15} />Connect Github
+                      <img
+                        src="/icons/github.svg"
+                        className="white-svg"
+                        alt="github logo"
+                        width={25}
+                        height={15}
+                      />
+                      Connect Github
                     </button>
                   </a>
                 </>
@@ -237,7 +244,14 @@ export default function EditProfile({
                     }
                   }}
                 >
-                  <img src="/icons/delete.svg" className="white-svg" alt="delete logo" width={25} height={15} />Delete Account
+                  <img
+                    src="/icons/delete.svg"
+                    className="white-svg"
+                    alt="delete logo"
+                    width={25}
+                    height={15}
+                  />
+                  Delete Account
                 </button>
               </div>
 
@@ -251,7 +265,14 @@ export default function EditProfile({
                         style={{ width: "100%", marginBottom: "0px" }}
                         id="edit_profile_btn"
                       >
-                        <img src="/icons/update.svg" className="white-svg" alt="update logo" width={25} height={15} />Update Profile
+                        <img
+                          src="/icons/update.svg"
+                          className="white-svg"
+                          alt="update logo"
+                          width={25}
+                          height={15}
+                        />
+                        Update Profile
                       </button>
                     </div>
                   )}
@@ -269,7 +290,14 @@ export default function EditProfile({
                         }}
                         id="edit_profile_btn"
                       >
-                        <img src="/icons/update.svg" className="white-svg" alt="update logo" width={25} height={15} />Update Profile
+                        <img
+                          src="/icons/update.svg"
+                          className="white-svg"
+                          alt="update logo"
+                          width={25}
+                          height={15}
+                        />
+                        Update Profile
                       </button>
                     </div>
                   )}

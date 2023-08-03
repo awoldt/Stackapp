@@ -30,7 +30,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   if (req.cookies.uid !== undefined) {
     const signedInUsersProfile = await GetUserProfile(req.cookies.uid);
 
-    if (req.url?.split("/")[2]! === signedInUsersProfile!.public_uid) {
+    if (profileData.uid === signedInUsersProfile!.uid) {
       res.statusCode = 302;
       return {
         redirect: {
@@ -44,10 +44,10 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const pageData: _PAGEDATA_profile = {
     header_tags: {
       title: `@${profileData?.username} | Stack`,
-      canonical_link: `https://stackapp.xyz/profile/${profileData?.public_uid}`,
+      canonical_link: `https://stackapp.xyz/profile/${profileData?.username}`,
       open_graph_tags: {
         title: `${profileData?.username} Profile`,
-        url: `https://stackapp.xyz/profile/${profileData?.public_uid}`,
+        url: `https://stackapp.xyz/profile/${profileData!.username}`,
         image: profileData?.profile_pic!,
       },
       description: `View ${profileData?.username} stackapp account along with all their created stacks`,
@@ -156,7 +156,7 @@ export default function Profilepage({
                 <div className="card" style={{ textAlign: "center" }}>
                   <h3>Stacks</h3>
                   <h5>
-                    {page_data.user_stacks!.length}{" "}Stacks
+                    {page_data.user_stacks!.length} Stacks
                     <br />
                     <br />
                   </h5>
@@ -187,9 +187,7 @@ export default function Profilepage({
               <div className="card-container">
                 <div className="card" style={{ textAlign: "center" }}>
                   <h3>Stacks</h3>
-                  <p>
-                    This user does not currently have any Stacks.
-                  </p>
+                  <p>This user does not currently have any Stacks.</p>
                 </div>
               </div>
             </section>

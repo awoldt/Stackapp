@@ -62,9 +62,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
         stackData.github_repo_id === null
           ? null
           : await GetRepoCommitLogs(
-            stackData.github_repo_id,
-            stackData.github_api_token_used!
-          ),
+              stackData.github_repo_id,
+              stackData.github_api_token_used!
+            ),
       creator_data: await GetCreatorDetails(stackData.uid),
       created_on: stackData.created_on,
       stack_id: stackData.stack_id!,
@@ -164,11 +164,11 @@ export default function Stackpage({
                                   <>{page_data.creator_data.last_name}</>
                                 )}
                               </b>
-                              <p style={{ fontSize: "16px", opacity: "0.85" }}>
-                                @{page_data.creator_data.username}
-                              </p>
                             </span>
                           )}
+                          <p style={{ fontSize: "16px", opacity: "0.85" }}>
+                            @{page_data.creator_data.username}
+                          </p>
                         </div>
                       </a>
                     </div>
@@ -180,7 +180,16 @@ export default function Stackpage({
                     {page_data.is_signedin_users_stack && (
                       <>
                         <a href={`/stack/${page_data.stack_id}/edit`}>
-                          <button className="btn-create"><img src="/icons/edit.svg" className="white-svg" alt="edit logo" width={25} height={15} />Edit Stack</button>
+                          <button className="btn-create">
+                            <img
+                              src="/icons/edit.svg"
+                              className="white-svg"
+                              alt="edit logo"
+                              width={25}
+                              height={15}
+                            />
+                            Edit Stack
+                          </button>
                         </a>
                       </>
                     )}
@@ -428,35 +437,44 @@ export default function Stackpage({
             </div>
           </section>
 
-          <div className="card-container">
-            <div className="card">
-              <h2 style={{ textAlign: "center" }}>Github</h2>
-              <h5 style={{ textAlign: "center", marginBottom: "20px" }}>
-                Commit history towards the development of this tech Stack.
-              </h5>
-              {Array.isArray(page_data.commit_logs) && (
-                <section>
-                  {page_data.commit_logs.map(
-                    (x: _repoCommitLogs, index: number) => {
-                      return (
-                        <>
-                          <p style={{ marginTop: "20px", fontSize: "16px", opacity: "0.85" }}>
-                            {x.date_commited}
-                          </p>
-                          <p>
-                            <b>MSG: {x.message} </b>
-                          </p>
-                          <p>
-                            Github Commit SHA: <em><a href={x.url}>{x.sha}</a></em>
-                          </p>
-                        </>
-                      );
-                    }
-                  )}
-                </section>
+          {Array.isArray(page_data.commit_logs) && (
+            <section>
+              <div className="card-container">
+                <div className="card">
+                  <h2 style={{ textAlign: "center" }}>Github</h2>
+                  <h5 style={{ textAlign: "center", marginBottom: "20px" }}>
+                    Commit history towards the development of this tech Stack.
+                  </h5>
+                </div>
+              </div>
+              {page_data.commit_logs.map(
+                (x: _repoCommitLogs, index: number) => {
+                  return (
+                    <>
+                      <p
+                        style={{
+                          marginTop: "20px",
+                          fontSize: "16px",
+                          opacity: "0.85",
+                        }}
+                      >
+                        {x.date_commited}
+                      </p>
+                      <p>
+                        <b>MSG: {x.message} </b>
+                      </p>
+                      <p>
+                        Github Commit SHA:{" "}
+                        <em>
+                          <a href={x.url}>{x.sha}</a>
+                        </em>
+                      </p>
+                    </>
+                  );
+                }
               )}
-            </div>
-          </div>
+            </section>
+          )}
         </>
       )}
     </>
