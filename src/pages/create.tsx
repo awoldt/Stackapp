@@ -472,7 +472,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                     Start Stacking
                   </h2>
                   <h4 style={{ display: "inline" }}>
-                    <a href={"/signup"} className="nav-element" style={{ paddingRight: "0px", padding: "10px" }} title="Create a stack account">
+                    <a href={"/signin"} className="nav-element" style={{ paddingRight: "0px", padding: "10px" }} title="Sign into stack account">
                       <img
                         src="/icons/signin.svg"
                         alt="signin logo"

@@ -110,6 +110,7 @@
         margin-bottom: 20px;
         cursor: pointer;
         width: fit-content;
+        min-width: 40%;
     }
 
     a,

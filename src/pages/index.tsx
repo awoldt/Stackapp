@@ -119,7 +119,7 @@ export default function Home({
             </div>
           </div>
 
-          <div className="card-container" style={{ paddingTop: "0px" }}>
+          {/* <div className="card-container" style={{ paddingTop: "0px" }}>
             <div className="card-empty" style={{ paddingTop: "0px" }}>
               <h2>
                 Visualize your Tech Stacks
@@ -140,7 +140,7 @@ export default function Home({
                 alt="Stack Example"
               />
             </div>
-          </div>
+          </div> */}
         </section>
       </main>
     </>

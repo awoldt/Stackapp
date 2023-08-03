@@ -121,17 +121,27 @@ export default function Profile({
               {page_data.user_stacks !== null && (
                 <section>
                   {page_data.user_stacks === 0 && (
-                    <h4 style={{ textAlign: "center", marginTop: "5%" }}>
-                      You do not currently have any Stacks.
-                      <br />
-                      <br />
-                      <a
-                        href={"/create"}
-                        className="btn-create"
-                      >
-                        <img src="/icons/create.svg" className="white-svg" alt="create logo" width={25} height={15} />Create Stack
-                      </a>
-                    </h4>
+
+                    <><div
+                      className="card-container"
+                      style={{ paddingTop: "0px", paddingBottom: "40px" }}
+                    >
+                      <div className="card" style={{ textAlign: "center", paddingBottom: "80px" }}>
+                        <h3>Stacks</h3>
+                        <h5>
+                          0 Stacks
+                          <br />
+                          <br />
+                        </h5>
+                        <a
+                          href={"/create"}
+                          className="btn-create"
+                        >
+                          <img src="/icons/create.svg" className="white-svg" alt="create logo" width={25} height={15} />Create Stack
+                        </a>
+                      </div>
+                    </div>
+                    </>
                   )}
                   {page_data.user_stacks !== 0 &&
                     page_data.user_stacks.length > 0 && (
