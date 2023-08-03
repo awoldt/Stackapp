@@ -1,42 +1,38 @@
 import { useRef, useState } from "react";
 
-export default function StackDesctiptionTextarea({
+export default function ProfileBio({
   defaultText, //if not defined, prefill textarea with stack description (edit stack page only)
 }: {
-  defaultText?: string;
+  defaultText?: string | null;
 }) {
   const [wordCount, setWordCount] = useState(
-    defaultText === undefined ? 0 : defaultText.length
+    defaultText === null ? 0 : defaultText!.length
   );
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   return (
     <>
-      {defaultText === undefined && (
+      {defaultText === null && (
         <textarea
           ref={textareaRef}
-          name="app_description"
-          id="app_description"
+          name="profile_bio"
           cols={40}
           rows={10}
-          required
-          style={{ marginBottom: "0px"}}
-          placeholder="Stack Description"
+          style={{ marginBottom: "0px" }}
+          placeholder="Profile Bio"
           maxLength={500}
           onChange={(e) => {
             setWordCount(textareaRef.current!.value.length!);
           }}
         ></textarea>
       )}
-      {defaultText !== undefined && (
+      {defaultText !== null && (
         <textarea
           ref={textareaRef}
-          name="app_description"
-          id="app_description"
+          name="profile_bio"
           cols={40}
           rows={10}
-          required
-          style={{ marginBottom: "0px"}}
+          style={{ marginBottom: "0px" }}
           defaultValue={defaultText}
           maxLength={500}
           onChange={(e) => {
@@ -44,7 +40,9 @@ export default function StackDesctiptionTextarea({
           }}
         ></textarea>
       )}
-      <span style={{ fontSize: "16px", opacity: "0.85" }}>{wordCount} / 500</span>
+      <span style={{ fontSize: "16px", opacity: "0.85" }}>
+        {wordCount} / 500
+      </span>
     </>
   );
 }

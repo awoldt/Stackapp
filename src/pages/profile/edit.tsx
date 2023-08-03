@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import ProfileBio from "@/components/ProfileBioTextarea";
 import Sidenav from "@/components/Sidenav";
 import Spinner from "@/components/Spinner";
 import UniqueHeader from "@/components/UniqueHeaderTags";
@@ -161,19 +162,7 @@ export default function EditProfile({
                 maxLength={100}
               />
 
-              <textarea
-                name="profile_bio"
-                id="profile_description"
-                cols={40}
-                rows={10}
-                style={{ resize: "none" }}
-                defaultValue={
-                  page_data.user_data?.bio === null
-                    ? "Bio"
-                    : page_data.user_data?.bio
-                }
-                maxLength={1000}
-              ></textarea>
+              <ProfileBio defaultText={page_data.user_data!.bio} />
 
               {page_data.has_authenticated_github_account && (
                 <p style={{ marginBottom: "20px" }}>

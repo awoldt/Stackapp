@@ -971,13 +971,19 @@ export async function EditProfile(
     fields.profile_username[0] !== ""
       ? (newUsername = fields.profile_username[0])
       : null;
-    fields.profile_bio[0] !== "" ? (newBio = fields.profile_bio[0]) : null;
+    fields.profile_bio[0] !== ""
+      ? (newBio = fields.profile_bio[0])
+      : (newBio = null);
 
     let updateObj: Partial<_userProfile> = {};
-    newFname !== null ? (updateObj.first_name = newFname) : null;
-    newLname !== null ? (updateObj.last_name = newLname) : null;
+    newFname !== null
+      ? (updateObj.first_name = newFname)
+      : (updateObj.first_name = null);
+    newLname !== null
+      ? (updateObj.last_name = newLname)
+      : (updateObj.last_name = null);
     newUsername !== null ? (updateObj.username = newUsername) : null;
-    newBio !== null ? (updateObj.bio = newBio) : null;
+    newBio !== null ? (updateObj.bio = newBio) : (updateObj.bio = null);
     newIcon !== null ? (updateObj.profile_pic = newIcon) : null;
     newIcon !== null
       ? (updateObj.profile_pic_filename = newIconFilename)
@@ -1112,16 +1118,16 @@ export async function EditStack(
     updateObj.languages_used = newStackLanguagesSelected;
     newStackDatabasesSelected !== null
       ? (updateObj.databases_used = newStackDatabasesSelected)
-      : updateObj.databases_used = null;
+      : (updateObj.databases_used = null);
     newStackApisSelected !== null
       ? (updateObj.apis_used = newStackApisSelected)
-      : updateObj.apis_used = null;
+      : (updateObj.apis_used = null);
     newStackCloudsSelected !== null
       ? (updateObj.clouds_used = newStackCloudsSelected)
-      : updateObj.clouds_used =null;
+      : (updateObj.clouds_used = null);
     newStackFrameworksSelected !== null
       ? (updateObj.frameworks_used = newStackFrameworksSelected)
-      : updateObj.frameworks_used = null;
+      : (updateObj.frameworks_used = null);
     newIcon === null ? null : (updateObj.icon_url = newIcon);
     newIconFilename === null
       ? null
