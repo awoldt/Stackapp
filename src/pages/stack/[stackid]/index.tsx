@@ -62,9 +62,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
         stackData.github_repo_id === null
           ? null
           : await GetRepoCommitLogs(
-              stackData.github_repo_id,
-              stackData.github_api_token_used!
-            ),
+            stackData.github_repo_id,
+            stackData.github_api_token_used!
+          ),
       creator_data: await GetCreatorDetails(stackData.uid),
       created_on: stackData.created_on,
       stack_id: stackData.stack_id!,
@@ -164,11 +164,11 @@ export default function Stackpage({
                                   <>{page_data.creator_data.last_name}</>
                                 )}
                               </b>
+                              <p style={{ fontSize: "16px", opacity: "0.85" }}>
+                                @{page_data.creator_data.username}
+                              </p>
                             </span>
                           )}
-                          <p style={{ fontSize: "16px", opacity: "0.85" }}>
-                            @{page_data.creator_data.username}
-                          </p>
                         </div>
                       </a>
                     </div>
