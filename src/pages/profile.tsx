@@ -121,7 +121,7 @@ export default function Profile({
               {page_data.user_stacks !== null && (
                 <section>
                   {page_data.user_stacks === 0 && (
-                    <p style={{ textAlign: "center", marginTop: "2%" }}>
+                    <h4 style={{ textAlign: "center", marginTop: "5%" }}>
                       You do not currently have any Stacks.
                       <br />
                       <br />
@@ -129,9 +129,9 @@ export default function Profile({
                         href={"/create"}
                         className="btn-create"
                       >
-                        <img src="/icons/create.svg" alt="create logo" width={25} height={15} />Create Stack
+                        <img src="/icons/create.svg" className="white-svg" alt="create logo" width={25} height={15} />Create Stack
                       </a>
-                    </p>
+                    </h4>
                   )}
                   {page_data.user_stacks !== 0 &&
                     page_data.user_stacks.length > 0 && (

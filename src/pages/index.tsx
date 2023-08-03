@@ -60,9 +60,9 @@ export default function Home({
           <div className="card-container">
             <div className="card-empty">
               <h1 className="splash">Stack</h1>
-              <h5 style={{ paddingBottom: "20px" }}>
+              <h4 style={{ paddingBottom: "20px" }}>
                 A platform designed for modern tech stack visualization.
-              </h5>
+              </h4>
             </div>
           </div>
 
@@ -77,7 +77,7 @@ export default function Home({
               <a
                 href={"/signin"}
                 className="btn-create"
-                style={{ minWidth: "15%" }}
+                style={{ minWidth: "20%" }}
               >
                 <img src="/icons/signin.svg" className="white-svg" alt="signin logo" width={25} height={15} />Sign In
               </a>
@@ -86,7 +86,7 @@ export default function Home({
               <a
                 href={"/signup"}
                 className="btn-create"
-                style={{ minWidth: "15%" }}
+                style={{ minWidth: "20%" }}
               >
                 <img src="/icons/signup.svg" className="white-svg" alt="signup logo" width={25} height={15} />Sign Up
               </a>
@@ -118,13 +118,13 @@ export default function Home({
             </div>
           </div>
 
-          <div className="card-container">
-            <div className="card-empty">
-              <h5>
-                See how you can visualize your tech Stacks.
+          <div className="card-container" style={{ paddingTop: "0px" }}>
+            <div className="card-empty" style={{ paddingTop: "0px" }}>
+              <h4>
+                Visualize your tech Stacks.
                 <br />
                 <img src="/icons/expand.svg" alt="expand icon" width={15} />
-              </h5>
+              </h4>
             </div>
           </div>
 

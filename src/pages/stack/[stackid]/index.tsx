@@ -130,13 +130,17 @@ export default function Stackpage({
 
                     {page_data.website_url !== null && (
                       <h4>
-                        <a href={page_data.website_url}>
-                          <img
+                        <a target="_blank"
+                          rel="noopener noreferrer"
+                          href={page_data.website_url}
+                          className="nav-element"
+                          style={{ paddingLeft: "0px", padding: "10px" }}>
+                          {/* <img
                             src="/icons/link.svg"
                             alt="link icon"
                             width={20}
                             height={15}
-                          />{" "}
+                          />{" "} */}
                           {new URL(page_data.website_url).hostname}
                         </a>
                       </h4>
@@ -200,6 +204,7 @@ export default function Stackpage({
                   className="card-container"
                   style={{
                     paddingBottom: "0px",
+                    marginTop: "20px",
                     marginBottom: "0px",
                     width: "100%",
                     display: "flex",

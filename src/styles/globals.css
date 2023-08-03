@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 @media (min-width: 1px) {
     * {
         padding: 0px;
@@ -55,7 +57,7 @@
 
     h1 {
         color: black;
-        font-family: 'Inter';
+        font-family: 'Inter', sans-serif;
         font-size: 52px;
         font-weight: 900;
         line-height: 1.4;
@@ -63,7 +65,7 @@
 
     h2 {
         color: black;
-        font-family: 'Inter';
+        font-family: 'Inter', sans-serif;
         font-size: 32px;
         font-weight: 900;
         line-height: 1.4;
@@ -71,7 +73,7 @@
 
     h3 {
         color: black;
-        font-family: 'Inter';
+        font-family: 'Inter', sans-serif;
         font-size: 46px;
         font-weight: 900;
         line-height: 1.4;
@@ -79,15 +81,15 @@
 
     h4 {
         color: black;
-        font-family: 'Inter';
+        font-family: 'Inter', sans-serif;
         font-size: 24px;
-        font-weight: 600;
+        font-weight: 500;
         line-height: 1.4;
     }
 
     h5 {
         color: black;
-        font-family: 'Inter';
+        font-family: 'Inter', sans-serif;
         font-size: 20px;
         font-weight: 500;
         line-height: 1.4;
@@ -97,7 +99,7 @@
     label,
     span {
         color: black;
-        font-family: 'Inter';
+        font-family: 'Inter', sans-serif;
         font-size: 18px;
         font-weight: 500;
         line-height: 1.4;
@@ -227,7 +229,7 @@
     }
 
     .user-profile-container {
-        margin-top: 40px;
+        margin-top: 25px;
         margin-bottom: 40px;
         display: flex;
         justify-content: center;
@@ -256,8 +258,8 @@
 
     .splash {
         color: black;
-        font-family: 'Inter';
-        font-size: 165px;
+        font-family: 'Inter', sans-serif;
+        font-size: 180px;
         font-weight: 900;
         line-height: 1;
         margin-top: 5%;
@@ -624,7 +626,7 @@
         color: white;
         font-size: 20px;
         font-weight: 500;
-        font-family: 'Inter';
+        font-family: 'Inter', sans-serif;
         transition: 250ms ease-in-out;
     }
 
@@ -645,7 +647,7 @@
         color: white;
         font-size: 20px;
         font-weight: 500;
-        font-family: 'Inter';
+        font-family: 'Inter', sans-serif;
         transition: 250ms ease-in-out;
     }
 
@@ -692,7 +694,7 @@
         color: white;
         font-size: 20px;
         font-weight: 500;
-        font-family: 'Inter';
+        font-family: 'Inter', sans-serif;
         transition: 250ms ease-in-out;
     }
 
@@ -719,7 +721,7 @@
         color: black;
         font-size: 18px;
         font-weight: 500;
-        font-family: 'Inter';
+        font-family: 'Inter', sans-serif;
         width: 100%;
         resize: none;
     }
