@@ -58,7 +58,7 @@ export default function Home({
             ></img>
           </div>
           <div className="card-container">
-            <div className="card-empty">
+            <div className="card-empty" style={{ paddingTop: "0px" }}>
               <h1 className="splash">Stack</h1>
               <h4 style={{ paddingBottom: "20px" }}>
                 A platform designed for modern tech stack visualization.
@@ -70,14 +70,13 @@ export default function Home({
             style={{
               width: "100%",
               textAlign: "center",
-              paddingBottom: "20px",
+              paddingBottom: "10px",
             }}
           >
             <div style={{ display: "flex", justifyContent: "center" }}>
               <a
                 href={"/signin"}
-                className="btn-create"
-                style={{ minWidth: "20%" }}
+                className="btn-landing"
               >
                 <img src="/icons/signin.svg" className="white-svg" alt="signin logo" width={25} height={15} />Sign In
               </a>
@@ -85,8 +84,7 @@ export default function Home({
             <div style={{ display: "flex", justifyContent: "center" }}>
               <a
                 href={"/signup"}
-                className="btn-create"
-                style={{ minWidth: "20%" }}
+                className="btn-landing"
               >
                 <img src="/icons/signup.svg" className="white-svg" alt="signup logo" width={25} height={15} />Sign Up
               </a>
@@ -105,7 +103,10 @@ export default function Home({
                 development process. Easily display the Languages, Databases,
                 Cloud Services, APIs, and Frameworks your tech stack is built
                 upon. Every Stack includes an application description, URL, and
-                images. Whether you&apos;re an individual developer looking to
+                images.
+                <br />
+                <br />
+                Whether you&apos;re an individual developer looking to
                 showcase your latest project or a team wanting to maintain a
                 centralized repository of your technology choices, Stack
                 provides an effective solution. By combining aesthetics with
@@ -120,11 +121,11 @@ export default function Home({
 
           <div className="card-container" style={{ paddingTop: "0px" }}>
             <div className="card-empty" style={{ paddingTop: "0px" }}>
-              <h4>
-                Visualize your tech Stacks.
+              <h2>
+                Visualize your Tech Stacks
                 <br />
                 <img src="/icons/expand.svg" alt="expand icon" width={15} />
-              </h4>
+              </h2>
             </div>
           </div>
 

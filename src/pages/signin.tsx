@@ -35,7 +35,11 @@ export default function Signin() {
 
       <div className="card-container">
         <div className="card-empty">
-          <h1 className="splash">Stack</h1>
+          <h1 className="splash">
+            <a href={"/"}>
+              Stack
+            </a>
+          </h1>
           <h5 style={{ paddingBottom: "10px" }}>
             Looking to Stack it?
             <a

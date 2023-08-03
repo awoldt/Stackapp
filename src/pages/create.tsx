@@ -31,8 +31,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
       user === null
         ? null
         : user.github_access_token === null
-        ? null
-        : await GetRepoSelect(
+          ? null
+          : await GetRepoSelect(
             user!.github_access_token,
             String(req.cookies.uid)
           ),
@@ -99,15 +99,6 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
               <h5>Enter the details of your tech stack&apos;s development.</h5>
             </div>
           </div>
-          {!page_data.is_signed_in && (
-            <p>
-              You must{" "}
-              <a href={"/signup"} title="Create a stack account">
-                create an account
-              </a>{" "}
-              to start posting stacks
-            </p>
-          )}
           <form
             onChange={(e) => {
               if (disabledSubmit) {
@@ -472,6 +463,37 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
               </>
             )}
           </form>
+
+          <div className="card-container">
+            <div className="card-empty" style={{ paddingTop: "20px" }}>
+              {!page_data.is_signed_in && (
+                <>
+                  <h2>
+                    Start Stacking
+                  </h2>
+                  <h4 style={{ display: "inline" }}>
+                    <a href={"/signup"} className="nav-element" style={{ paddingRight: "0px", padding: "10px" }} title="Create a stack account">
+                      <img
+                        src="/icons/signin.svg"
+                        alt="signin logo"
+                        width={25}
+                        height={15} />Sign In</a>
+                  </h4>
+                  <p style={{ display: "inline" }}>
+                    or
+                  </p>
+                  <h4 style={{ display: "inline" }}>
+                    <a href={"/signup"} className="nav-element" style={{ paddingRight: "0px", paddingLeft: "0px", padding: "10px" }} title="Create a stack account">
+                      <img
+                        src="/icons/signup.svg"
+                        alt="signup logo"
+                        width={25}
+                        height={15} />Sign Up</a>
+                  </h4>
+                </>
+              )}
+            </div>
+          </div>
         </section>
       )}
 
