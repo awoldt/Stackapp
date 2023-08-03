@@ -162,7 +162,11 @@ export default function EditProfile({
                 maxLength={100}
               />
 
-              <ProfileBio defaultText={page_data.user_data!.bio} />
+              <div style={{ textAlign: "right" }}>
+                <ProfileBio defaultText={page_data.user_data!.bio} />
+                <br />
+                <br />
+              </div>
 
               {page_data.has_authenticated_github_account && (
                 <p style={{ marginBottom: "20px" }}>
