@@ -29,16 +29,16 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
         user === null
           ? false
           : user.github_access_token === null
-            ? false
-            : true,
+          ? false
+          : true,
       github_client_id:
         user === null ? undefined : process.env.GITHUB_CLIENT_ID,
       repo_select_list:
         user === null
           ? null
           : user.github_access_token === null
-            ? null
-            : await GetRepoSelect(
+          ? null
+          : await GetRepoSelect(
               user!.github_access_token,
               String(req.cookies.uid)
             ),
@@ -185,7 +185,6 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                       const reader = new FileReader();
 
                       reader.onload = (r) => {
-                        console.log(r.target?.result);
                         setShowcaseIconSrc(r.target?.result?.toString()!);
                         setShowcaseIcon(true);
                       };
@@ -231,7 +230,6 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                       const reader = new FileReader();
 
                       reader.onload = (r) => {
-                        console.log(r.target?.result);
                         setShowcaseThumbnailSrc(r.target?.result?.toString()!);
                         setShowcaseThumbnail(true);
                       };

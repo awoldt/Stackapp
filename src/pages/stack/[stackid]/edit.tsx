@@ -185,7 +185,6 @@ export default function EditStackpage({
                     const reader = new FileReader();
 
                     reader.onload = (r) => {
-                      console.log(r.target?.result);
                       setIconImgSrc(r.target?.result?.toString()!);
                     };
 
@@ -222,7 +221,6 @@ export default function EditStackpage({
                     const reader = new FileReader();
 
                     reader.onload = (r) => {
-                      console.log(r.target?.result);
                       setThumbnailImgSrc(r.target?.result?.toString()!);
                     };
 
