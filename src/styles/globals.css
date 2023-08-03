@@ -110,7 +110,13 @@
         margin-bottom: 20px;
         cursor: pointer;
         width: fit-content;
-        min-width: 40%;
+        min-width: 25%;
+    }
+
+    @media (max-width: 800px) {
+        label {
+            width: 100%;
+        }
     }
 
     a,
