@@ -1343,7 +1343,6 @@ export async function SignUserIn(
     if (a.empty) {
       return "account_doesnt_exist";
     } else {
-      console.log(a.docs[0].data().uid);
       return a.docs[0].data().uid;
     }
   } catch (e) {

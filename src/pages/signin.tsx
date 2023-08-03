@@ -69,11 +69,14 @@ export default function Signin() {
                   },
                 });
                 const data = await x.json();
+                if (x.status === 200) {
+                  document.cookie = `uid=${data.uidCookie}; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/`;
 
-                document.cookie = `uid=${data.uidCookie}; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/`;
-
-                setLoading(false);
-                window.location.assign("/profile");
+                  window.location.assign("/profile");
+                } else {
+                  setLoading(false);
+                  alert(data.msg);
+                }
               } catch (e: any) {
                 setLoading(false);
                 switch (e.code) {
