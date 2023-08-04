@@ -1,13 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import {
-  DEFAULT_APIRESPONSE,
-  _API_NEWSTACK_RESPONSE,
-  _stack,
-  _userProfile,
-} from "@/types";
+import { _stack, _userProfile } from "@/types";
 import type { NextApiRequest, NextApiResponse } from "next";
-
-import { uid } from "uid";
 
 import { GenerateUniqueUid } from "@/functions";
 import { db } from "../../../firebase";
@@ -76,6 +69,7 @@ export default async function handler(
             bio: null,
             first_name: null,
             last_name: null,
+            liked_stacks: null,
             email: unverifiedDetails!.email,
             password: unverifiedDetails!.password,
             username: unverifiedDetails!.username,

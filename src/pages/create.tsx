@@ -2,8 +2,13 @@ import Sidenav from "@/components/Sidenav";
 import Spinner from "@/components/Spinner";
 import StackDesctiptionTextarea from "@/components/StackDescriptionTextarea";
 import UniqueHeader from "@/components/UniqueHeaderTags";
-import { GetRepoSelect, GetUserProfile, IsUserSignedIn } from "@/functions";
-import { techOffered } from "@/techstack";
+import {
+  GetRepoSelect,
+  GetUserProfile,
+  IsUserSignedIn,
+  ReadTechValuesFromS3,
+} from "@/functions";
+
 import {
   _PAGEDATA_create,
   _PAGEDATA_profile,
@@ -15,6 +20,7 @@ import { useRef, useState } from "react";
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const user = await GetUserProfile(req.cookies.uid);
+  const techOffered = await ReadTechValuesFromS3();
 
   const pageData: _PAGEDATA_create = {
     header_tags: {
@@ -31,8 +37,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
       user === null
         ? null
         : user.github_access_token === null
-          ? null
-          : await GetRepoSelect(
+        ? null
+        : await GetRepoSelect(
             user!.github_access_token,
             String(req.cookies.uid)
           ),
@@ -468,27 +474,43 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
             <div className="card-empty" style={{ paddingTop: "20px" }}>
               {!page_data.is_signed_in && (
                 <>
-                  <h2>
-                    Start Stacking
-                  </h2>
+                  <h2>Start Stacking</h2>
                   <h4 style={{ display: "inline" }}>
-                    <a href={"/signin"} className="nav-element" style={{ paddingRight: "0px", padding: "10px" }} title="Sign into stack account">
+                    <a
+                      href={"/signin"}
+                      className="nav-element"
+                      style={{ paddingRight: "0px", padding: "10px" }}
+                      title="Sign into stack account"
+                    >
                       <img
                         src="/icons/signin.svg"
                         alt="signin logo"
                         width={25}
-                        height={15} />Sign In</a>
+                        height={15}
+                      />
+                      Sign In
+                    </a>
                   </h4>
-                  <p style={{ display: "inline" }}>
-                    or
-                  </p>
+                  <p style={{ display: "inline" }}>or</p>
                   <h4 style={{ display: "inline" }}>
-                    <a href={"/signup"} className="nav-element" style={{ paddingRight: "0px", paddingLeft: "0px", padding: "10px" }} title="Create a stack account">
+                    <a
+                      href={"/signup"}
+                      className="nav-element"
+                      style={{
+                        paddingRight: "0px",
+                        paddingLeft: "0px",
+                        padding: "10px",
+                      }}
+                      title="Create a stack account"
+                    >
                       <img
                         src="/icons/signup.svg"
                         alt="signup logo"
                         width={25}
-                        height={15} />Sign Up</a>
+                        height={15}
+                      />
+                      Sign Up
+                    </a>
                   </h4>
                 </>
               )}

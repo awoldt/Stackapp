@@ -23,6 +23,7 @@ export interface _stack {
   github_api_token_used: string | null;
   website_url: string | null;
   created_on: number;
+  likes: number;
   stack_id?: string; //only needed for rendering account page
 }
 
@@ -65,6 +66,7 @@ export interface _userProfile {
   created_on: number;
   profile_pic: string | null;
   profile_pic_filename: string | null;
+  liked_stacks: string[] | null;
 }
 
 export interface _creator {
@@ -139,9 +141,20 @@ export interface _PAGEDATA_stackpage extends DEFAULT_PAGE_LAYOUT {
   creator_data: _creator; //null means error while geting creator details
   created_on: number;
   stack_id: string;
+  stack_num_of_likes: number;
+  has_signed_in_user_already_liked_stack:
+    | boolean
+    | "current_signed_in_users_stack"; //has the person viewing stack already liked it (user CANNOT be the one who created the stack)
 }
 
 export interface _PAGEDATA_profile extends DEFAULT_PAGE_LAYOUT {
+  user_profile_data: _userProfile | null;
+  user_stacks: Partial<_stack>[] | null | 0; //0 means user does not have any stacks
+  is_signed_in_users_profile: boolean;
+  users_liked_stacks: _stack[] | null | "no_liked_stacks";
+}
+
+export interface _PAGEDATA_publicprofile extends DEFAULT_PAGE_LAYOUT {
   user_profile_data: _userProfile | null;
   user_stacks: Partial<_stack>[] | null | 0; //0 means user does not have any stacks
   is_signed_in_users_profile: boolean;

@@ -15,13 +15,13 @@ import { uid } from "uid";
 
 import {
   DeleteObjectCommand,
+  GetObjectCommand,
   HeadObjectCommand,
   PutObjectCommand,
   S3Client,
 } from "@aws-sdk/client-s3";
 import formidable from "formidable";
 
-import { techOffered } from "./techstack";
 import { db } from "../firebase";
 import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses";
 
@@ -56,6 +56,7 @@ export async function GetUserProfile(
     const x: _userProfile = {
       uid: user!.uid,
       bio: user!.bio,
+      liked_stacks: user!.liked_stacks,
       first_name: user!.first_name,
       last_name: user!.last_name,
       password: user!.password,
@@ -108,6 +109,7 @@ export async function GetPublicProfile(username: string) {
       created_on: user.docs[0].data().created_on,
       profile_pic: user.docs[0].data().profile_pic,
       profile_pic_filename: user.docs[0].data().profile_pic_filename,
+      liked_stacks: user.docs[0].data().liked_stacks,
     };
 
     return profileData;
@@ -563,6 +565,7 @@ export async function GetStackData(
     const x: _stack = {
       uid: stackData.data()!.uid,
       name: stackData.data()!.name,
+      likes: stackData.data()!.likes,
       icon_url: stackData.data()!.icon_url,
       icon_filename: stackData.data()!.icon_filename,
       thumbnail_url: stackData.data()!.thumbnail_url,
@@ -611,13 +614,15 @@ export async function GetStackData(
   }
 }
 
-function GenerateSelectedAndNotSelectedTech(
+async function GenerateSelectedAndNotSelectedTech(
   techType: "language" | "database" | "api" | "cloud" | "framework",
   techValues: string[] | null
-): [string[], string[]] | null {
+): Promise<[string[], string[]] | null> {
   //returns an array of all tech selected for stack
   //as well as the tech no selected
   //returns [techSelected, techNotSelected]
+
+  const techOffered = await ReadTechValuesFromS3();
 
   switch (techType) {
     case "language":
@@ -711,23 +716,23 @@ export async function GetStackDataEditPage(
       description: stackData.data()!.description,
       icon_url: stackData.data()!.icon_url,
       thumbnail_url: stackData.data()!.thumbnail_url,
-      languagesSelectedData: GenerateSelectedAndNotSelectedTech(
+      languagesSelectedData: (await GenerateSelectedAndNotSelectedTech(
         "language",
         stackData.data()!.languages_used
-      )!,
-      databasesSelectedData: GenerateSelectedAndNotSelectedTech(
+      ))!,
+      databasesSelectedData: await GenerateSelectedAndNotSelectedTech(
         "database",
         stackData.data()!.databases_used
       )!,
-      cloudsSelectedData: GenerateSelectedAndNotSelectedTech(
+      cloudsSelectedData: await GenerateSelectedAndNotSelectedTech(
         "cloud",
         stackData.data()!.clouds_used
       )!,
-      apisSelectedData: GenerateSelectedAndNotSelectedTech(
+      apisSelectedData: await GenerateSelectedAndNotSelectedTech(
         "api",
         stackData.data()!.apis_used
       )!,
-      frameworksSelectedData: GenerateSelectedAndNotSelectedTech(
+      frameworksSelectedData: await GenerateSelectedAndNotSelectedTech(
         "framework",
         stackData.data()!.frameworks_used
       )!,
@@ -1140,6 +1145,7 @@ export async function CreateStack(
       uid: cookieUid,
       name: fields.app_name[0].trim(),
       icon_url: iconUpload[0],
+      likes: 0,
       icon_filename: iconUpload[1],
       thumbnail_url: thumbnailUpload[0],
       thumbnail_filename: thumbnailUpload[1],
@@ -1303,6 +1309,70 @@ export async function SignUserIn(
     } else {
       return a.docs[0].data().uid;
     }
+  } catch (e) {
+    console.log(e);
+    return null;
+  }
+}
+
+export async function ReadTechValuesFromS3() {
+  //reads all the tech values offered for users to use
+  //on their stacks, json file stored in s3
+
+  try {
+    const data = await s3.send(
+      new GetObjectCommand({
+        Bucket: process.env.AWS_S3_BUCKET!,
+        Key: "tech.json",
+      })
+    );
+    return JSON.parse(await data.Body?.transformToString()!);
+  } catch (e) {
+    console.log(e);
+    return null;
+  }
+}
+
+export async function HasUserAlreadyLikedThisStack(
+  userUid: string,
+  stackId: string
+) {
+  try {
+    const userData = (
+      await db.collection("profiles").doc(userUid).get()
+    ).data();
+    if (userData!.liked_stacks === null) {
+      return false;
+    }
+    if (!userData!.liked_stacks.includes(stackId)) {
+      return false;
+    }
+
+    return true;
+  } catch (e) {
+    console.log(e);
+    return null;
+  }
+}
+
+export async function GetUsersLikedStacks(
+  userUid: string
+): Promise<"no_liked_stacks" | null | _stack[]> {
+  try {
+    const user = (await db.collection("profiles").doc(userUid).get()).data();
+    if (user!.liked_stacks === null) {
+      return "no_liked_stacks";
+    }
+
+    let LIKE_STACKS_DATA: _stack[] = [];
+    //get stack data on EACH stack id stored in users liked stacks array
+    for (let index = 0; index < user!.liked_stacks.length; index++) {
+      const s = await GetStackData(user!.liked_stacks[index], userUid);
+      if (s !== null && s !== 404) {
+        LIKE_STACKS_DATA.push(s);
+      }
+    }
+    return LIKE_STACKS_DATA;
   } catch (e) {
     console.log(e);
     return null;

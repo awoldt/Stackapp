@@ -5,13 +5,13 @@ import {
   GetRepoSelect,
   GetStackDataEditPage,
   IsUserSignedIn,
+  ReadTechValuesFromS3,
 } from "@/functions";
 import Sidenav from "@/components/Sidenav";
 import UniqueHeader from "@/components/UniqueHeaderTags";
 import { useRef, useState } from "react";
 import Spinner from "@/components/Spinner";
 import StackDesctiptionTextarea from "@/components/StackDescriptionTextarea";
-import { techOffered } from "@/techstack";
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   if (await IsUserSignedIn(req.cookies.uid)) {
@@ -19,6 +19,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
       req.url?.split("/")[2]!,
       req.cookies.uid!
     );
+
+    const techOffered = await ReadTechValuesFromS3();
 
     const pageData: _PAGEDATA_editstack = {
       header_tags: {
@@ -32,9 +34,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
         stackData!.github_api_token_used! === null
           ? null
           : await GetRepoSelect(
-            stackData?.github_api_token_used!,
-            stackData!.uid!
-          ),
+              stackData?.github_api_token_used!,
+              stackData!.uid!
+            ),
       current_repo_id_selected:
         stackData!.github_api_token_used === null
           ? null
@@ -112,7 +114,8 @@ export default function EditStackpage({
             setUpdateStackLoading(true);
             try {
               const req = await fetch(
-                `/api/edit-stack?stack_id=${window.location.pathname.split("/")[2]
+                `/api/edit-stack?stack_id=${
+                  window.location.pathname.split("/")[2]
                 }`,
                 {
                   method: "POST",
@@ -680,7 +683,12 @@ export default function EditStackpage({
                   type="button"
                   className="btn-edit"
                   id="delete_stack_btn"
-                  style={{ marginTop: "10px", marginBottom: "0px", background: "#F8333C", width: "100%" }}
+                  style={{
+                    marginTop: "10px",
+                    marginBottom: "0px",
+                    background: "#F8333C",
+                    width: "100%",
+                  }}
                   onClick={async () => {
                     try {
                       setDeleteStackLoading(true);

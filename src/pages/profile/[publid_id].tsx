@@ -9,6 +9,7 @@ import {
 } from "@/functions";
 import {
   _PAGEDATA_profile,
+  _PAGEDATA_publicprofile,
   _PAGEDATA_stackpage,
   _stack,
   _userProfile,
@@ -41,7 +42,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     }
   }
 
-  const pageData: _PAGEDATA_profile = {
+  const pageData: _PAGEDATA_publicprofile = {
     header_tags: {
       title: `@${profileData?.username} | Stack`,
       canonical_link: `https://stackapp.xyz/profile/${profileData?.username}`,

@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import LikeBtn from "@/components/LikeBtn";
 import Sidenav from "@/components/Sidenav";
 import UniqueHeader from "@/components/UniqueHeaderTags";
 import {
@@ -6,6 +7,7 @@ import {
   GetCreatorDetails,
   GetRepoCommitLogs,
   GetStackData,
+  HasUserAlreadyLikedThisStack,
   IsUserSignedIn,
 } from "@/functions";
 import {
@@ -50,6 +52,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
         image: stackData.icon_url,
       },
     },
+    stack_num_of_likes: stackData!.likes,
     app_name: stackData!.name,
     icon: stackData!.icon_url,
     thumbnail: stackData.thumbnail_url,
@@ -77,14 +80,21 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
       stackData.github_repo_id === null
         ? null
         : await GetRepoCommitLogs(
-          stackData.github_repo_id,
-          stackData.github_api_token_used!
-        ),
+            stackData.github_repo_id,
+            stackData.github_api_token_used!
+          ),
     creator_data: await GetCreatorDetails(stackData.uid),
     created_on: stackData.created_on,
     stack_id: stackData.stack_id!,
     is_signed_in:
       (await IsUserSignedIn(req.cookies.uid)) === null ? false : true,
+    has_signed_in_user_already_liked_stack:
+      req.cookies.uid !== stackData.uid
+        ? (await HasUserAlreadyLikedThisStack(
+            req.cookies.uid!,
+            stackData.stack_id!
+          ))!
+        : "current_signed_in_users_stack",
   };
 
   return {
@@ -188,11 +198,16 @@ export default function Stackpage({
                     </div>
 
                     <div className="btn-container">
-                      <div>
-                        <button className="btn-like" style={{ marginRight: "10px" }}>
-                          <img src="/icons/like.svg" className="white-svg" alt="globe icon" width={25} height={15} />20.4k
-                        </button>
-                      </div>
+                      <LikeBtn
+                        stackNumOfLikes={page_data.stack_num_of_likes}
+                        isSignedIn={page_data.is_signed_in!}
+                        isSignedInUsersStack={page_data.is_signedin_users_stack}
+                        stackID={page_data.stack_id}
+                        currentNumOfLikes={page_data.stack_num_of_likes}
+                        hasSignedInUserAlreadyLikedStack={
+                          page_data.has_signed_in_user_already_liked_stack
+                        }
+                      />
 
                       <div>
                         {page_data.is_signedin_users_stack && (
