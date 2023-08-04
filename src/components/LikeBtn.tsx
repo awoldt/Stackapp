@@ -24,7 +24,19 @@ export default function LikeBtn({
       {!isSignedIn && <p>This stack has {stackNumOfLikes} likes</p>}
       {/* signed in.... but its signed in user's stack (cannot like) */}
       {isSignedIn && isSignedInUsersStack && (
-        <p>Your stack has {stackNumOfLikes} likes!</p>
+        <>
+          <button
+            className="btn-like"
+          >
+            <img
+              src="/icons/like.svg"
+              className="white-svg"
+              alt="likes icon"
+              width={25}
+              height={15} />
+            {stackNumOfLikes}
+          </button>
+        </>
       )}
       {/* ALLOW USER SIGNED IN TO LIKE STACK */}
       {isSignedIn && !isSignedInUsersStack && (
@@ -36,8 +48,7 @@ export default function LikeBtn({
                 {/* default view, before submitting like */}
                 {!submittingLike && newLikeAmount === null && (
                   <button
-                    className="btn-like"
-                    style={{ marginRight: "10px" }}
+                    className="btn-prelike"
                     onClick={async () => {
                       setSubmittingLike(true);
                       try {
@@ -65,7 +76,6 @@ export default function LikeBtn({
                   >
                     <img
                       src="/icons/like.svg"
-                      className="white-svg"
                       alt="likes icon"
                       width={25}
                       height={15}
@@ -77,7 +87,6 @@ export default function LikeBtn({
                 {submittingLike && newLikeAmount === null && (
                   <button
                     className="btn-like"
-                    style={{ marginRight: "10px", backgroundColor: "grey" }}
                     disabled
                   >
                     <img
@@ -94,7 +103,6 @@ export default function LikeBtn({
                 {newLikeAmount !== null && (
                   <button
                     className="btn-like"
-                    style={{ marginRight: "10px" }}
                     disabled
                   >
                     <img
@@ -113,7 +121,6 @@ export default function LikeBtn({
           {hasSignedInUserAlreadyLikedStack && (
             <button
               className="btn-like"
-              style={{ marginRight: "10px" }}
               disabled
             >
               <img
@@ -123,7 +130,7 @@ export default function LikeBtn({
                 width={25}
                 height={15}
               />
-              {stackNumOfLikes} (you have already liked this stack...)
+              {stackNumOfLikes}
             </button>
           )}
         </>

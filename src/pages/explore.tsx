@@ -1,5 +1,10 @@
+import Sidenav from "@/components/Sidenav";
+
 export default function explorePage() {
     return <>
+    <section>
+        <Sidenav isSignedIn={false} />
+    </section>
         <div className="card-container" style={{ paddingTop: "40px" }}>
             <div className="card-empty">
                 <h1>Explore Stacks</h1>

@@ -80,9 +80,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
       stackData.github_repo_id === null
         ? null
         : await GetRepoCommitLogs(
-            stackData.github_repo_id,
-            stackData.github_api_token_used!
-          ),
+          stackData.github_repo_id,
+          stackData.github_api_token_used!
+        ),
     creator_data: await GetCreatorDetails(stackData.uid),
     created_on: stackData.created_on,
     stack_id: stackData.stack_id!,
@@ -91,9 +91,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     has_signed_in_user_already_liked_stack:
       req.cookies.uid !== stackData.uid
         ? (await HasUserAlreadyLikedThisStack(
-            req.cookies.uid!,
-            stackData.stack_id!
-          ))!
+          req.cookies.uid!,
+          stackData.stack_id!
+        ))!
         : "current_signed_in_users_stack",
   };
 
@@ -114,7 +114,32 @@ export default function Stackpage({
       {page_data === null && (
         <p>There was an error while fetching Stack data.</p>
       )}
-      {page_data === 404 && <p>This Stack does not exist.</p>}
+      {page_data === 404 &&
+        <>
+          <div className="background">
+            <img src="/imgs/background.avif" className="background-image" />
+          </div><div
+            style={{ display: "flex", alignItems: "center", height: "85vh" }}
+          >
+            <div style={{ width: "100%", textAlign: "center" }}>
+              {" "}
+              <h2>
+                This Stack does not exist.
+                <br />{" "}
+                <a href={`/explore`} className="btn-create">
+                  <img
+                    src="/icons/explore.svg"
+                    className="white-svg"
+                    alt="explore logo"
+                    width={25}
+                    height={15}
+                  />
+                  Explore Stacks
+                </a>
+              </h2>
+            </div>
+          </div>
+        </>}
       {page_data !== null && page_data !== 404 && (
         <>
           <UniqueHeader
@@ -197,37 +222,33 @@ export default function Stackpage({
                       </a>
                     </div>
 
-                    <div className="btn-container">
-                      <LikeBtn
-                        stackNumOfLikes={page_data.stack_num_of_likes}
-                        isSignedIn={page_data.is_signed_in!}
-                        isSignedInUsersStack={page_data.is_signedin_users_stack}
-                        stackID={page_data.stack_id}
-                        currentNumOfLikes={page_data.stack_num_of_likes}
-                        hasSignedInUserAlreadyLikedStack={
-                          page_data.has_signed_in_user_already_liked_stack
-                        }
-                      />
+                    <LikeBtn
+                      stackNumOfLikes={page_data.stack_num_of_likes}
+                      isSignedIn={page_data.is_signed_in!}
+                      isSignedInUsersStack={page_data.is_signedin_users_stack}
+                      stackID={page_data.stack_id}
+                      currentNumOfLikes={page_data.stack_num_of_likes}
+                      hasSignedInUserAlreadyLikedStack={
+                        page_data.has_signed_in_user_already_liked_stack
+                      }
+                    />
 
-                      <div>
-                        {page_data.is_signedin_users_stack && (
-                          <>
-                            <a href={`/stack/${page_data.stack_id}/edit`}>
-                              <button className="btn-create">
-                                <img
-                                  src="/icons/edit.svg"
-                                  className="white-svg"
-                                  alt="edit logo"
-                                  width={25}
-                                  height={15}
-                                />
-                                Edit Stack
-                              </button>
-                            </a>
-                          </>
-                        )}
-                      </div>
-                    </div>
+                    {page_data.is_signedin_users_stack && (
+                      <>
+                        <a href={`/stack/${page_data.stack_id}/edit`}>
+                          <button className="btn-create">
+                            <img
+                              src="/icons/edit.svg"
+                              className="white-svg"
+                              alt="edit logo"
+                              width={25}
+                              height={15}
+                            />
+                            Edit Stack
+                          </button>
+                        </a>
+                      </>
+                    )}
 
                     {/* <h5>
                       Stacked {new Date(page_data.created_on).toDateString()}

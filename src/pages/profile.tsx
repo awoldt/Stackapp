@@ -212,7 +212,15 @@ export default function Profile({
                                 paddingBottom: "80px",
                               }}
                             >
-                              <h3>Stacks</h3>
+                              <h3>
+                                <img
+                                  src="/icons/stack.svg"
+                                  alt="globe icon"
+                                  width={40}
+                                  height={35}
+                                />
+                                Stacks
+                              </h3>
                               <h5>
                                 0 Stacks
                                 <br />
@@ -319,7 +327,7 @@ export default function Profile({
                                   <a href={`/stack/${x.stack_id}`} key={index}>
                                     <div className="stack-item">
                                       <img src={x.thumbnail_url} />
-                                      <p>{x.name}</p>
+                                      <h2>{x.name}</h2>
                                     </div>
                                   </a>
                                 );

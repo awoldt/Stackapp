@@ -26,6 +26,19 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
               </li>
               <li className="nav-element">
                 <h5>
+                  <a href={"/explore"}>
+                    <img
+                      src="/icons/explore.svg"
+                      alt="explore logo"
+                      width={25}
+                      height={15}
+                    />
+                    Explore
+                  </a>
+                </h5>
+              </li>
+              <li className="nav-element">
+                <h5>
                   <a href={"/profile"}>
                     <img
                       src="/icons/profile.svg"
@@ -59,6 +72,19 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
 
           {!isSignedIn && (
             <>
+              <li className="nav-element">
+                <h5>
+                  <a href={"/explore"}>
+                    <img
+                      src="/icons/explore.svg"
+                      alt="explore logo"
+                      width={25}
+                      height={15}
+                    />
+                    Explore
+                  </a>
+                </h5>
+              </li>
               <li className="nav-element">
                 <h5>
                   <a href={"/signin"}>
