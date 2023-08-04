@@ -119,7 +119,7 @@ export default function Home({
             </div>
           </div>
 
-          {/* <div className="card-container" style={{ paddingTop: "0px" }}>
+          <div className="card-container" style={{ paddingTop: "0px" }}>
             <div className="card-empty" style={{ paddingTop: "0px" }}>
               <h2>
                 Visualize your Tech Stacks
@@ -129,7 +129,7 @@ export default function Home({
             </div>
           </div>
 
-          <div className="card-container">
+          <div className="card-container" id="landing">
             <div
               className="card-empty"
               style={{ display: "flex", justifyContent: "center" }}
@@ -140,7 +140,20 @@ export default function Home({
                 alt="Stack Example"
               />
             </div>
-          </div> */}
+          </div>
+
+          <div className="card-container" id="landing-mobile">
+            <div
+              className="card-empty"
+              style={{ display: "flex", justifyContent: "center" }}
+            >
+              <img
+                src="/imgs/landing-mobile.png"
+                style={{ width: "105%", textAlign: "center" }}
+                alt="Stack Example"
+              />
+            </div>
+          </div>
         </section>
       </main>
     </>

@@ -117,6 +117,27 @@ export default function Profile({
                   </div>
                 </div>
               </div>
+
+              <div className="card-container">
+                <button
+                  id="btn-yourStacks"
+                  className="nav-element"
+                  style={{ padding: "10px", marginRight: "10px", marginBottom: "0px", background: "none", border: "none", cursor: "pointer" }}>
+                  <h4>
+                    <img src="/icons/stack.svg" alt="globe icon" width={25} height={20} />Stacks
+                  </h4>
+                </button>
+                <button
+                  id="btn-savedStacks"
+                  className="nav-element"
+                  style={{ padding: "10px", marginRight: "10px", marginBottom: "0px", background: "none", border: "none", cursor: "pointer" }}>
+                  <h4>
+                    <img src="/icons/like.svg" alt="globe icon" width={25} height={20} />Liked
+                  </h4>
+                </button>
+              </div>
+
+
               {/* USER STACKS */}
               {page_data.user_stacks !== null && (
                 <section>
@@ -150,7 +171,9 @@ export default function Profile({
                         style={{ paddingTop: "0px", paddingBottom: "40px" }}
                       >
                         <div className="card" style={{ textAlign: "center" }}>
-                          <h3>Stacks</h3>
+                          <h3>
+                            <img src="/icons/stack.svg" alt="globe icon" width={40} height={35} />Stacks
+                          </h3>
                           <h5>
                             {page_data.user_stacks.length}{" "}Stacks
                             <br />
@@ -180,6 +203,51 @@ export default function Profile({
                         </div>
                       </div>
                     )}
+
+                  <div className="card-container" id="savedStacks">
+                    <div className="card" style={{ textAlign: "center" }}>
+                      <h3>
+                        <img src="/icons/like.svg" alt="globe icon" width={40} height={35} />Liked
+                      </h3>
+                      <h5>
+                        Only you can see what you've Liked.
+                      </h5>
+
+                      <div className="stack-container">
+                        <div className="stack-item">
+                          <img src="" />
+                        </div>
+
+                        <div className="stack-item">
+                          <img src="" />
+                        </div>
+
+                        <div className="stack-item">
+                          <img src="" />
+                        </div>
+
+                        <div className="stack-item">
+                          <img src="" />
+                        </div>
+
+                        <div className="stack-item">
+                          <img src="" />
+                        </div>
+
+                        <div className="stack-item">
+                          <img src="" />
+                        </div>
+
+                        <div className="stack-item">
+                          <img src="" />
+                        </div>
+
+                        <div className="stack-item">
+                          <img src="" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </section>
               )}
               {page_data.user_stacks === null && (
