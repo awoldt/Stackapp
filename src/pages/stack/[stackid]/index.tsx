@@ -187,26 +187,36 @@ export default function Stackpage({
                       </a>
                     </div>
 
-                    {/* <h5 style={{ marginTop: "20px", marginBottom: "20px" }}>
+                    <div className="btn-container">
+                      <div>
+                        <button className="btn-like" style={{ marginRight: "10px" }}>
+                          <img src="/icons/like.svg" className="white-svg" alt="globe icon" width={25} height={15} />20.4k
+                        </button>
+                      </div>
+
+                      <div>
+                        {page_data.is_signedin_users_stack && (
+                          <>
+                            <a href={`/stack/${page_data.stack_id}/edit`}>
+                              <button className="btn-create">
+                                <img
+                                  src="/icons/edit.svg"
+                                  className="white-svg"
+                                  alt="edit logo"
+                                  width={25}
+                                  height={15}
+                                />
+                                Edit Stack
+                              </button>
+                            </a>
+                          </>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* <h5>
                       Stacked {new Date(page_data.created_on).toDateString()}
                     </h5> */}
-
-                    {page_data.is_signedin_users_stack && (
-                      <>
-                        <a href={`/stack/${page_data.stack_id}/edit`}>
-                          <button className="btn-create">
-                            <img
-                              src="/icons/edit.svg"
-                              className="white-svg"
-                              alt="edit logo"
-                              width={25}
-                              height={15}
-                            />
-                            Edit Stack
-                          </button>
-                        </a>
-                      </>
-                    )}
                   </div>
                 </div>
 
