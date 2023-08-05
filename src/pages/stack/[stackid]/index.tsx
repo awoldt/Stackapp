@@ -131,10 +131,9 @@ export default function Stackpage({
                     src="/icons/explore.svg"
                     className="white-svg"
                     alt="explore logo"
-                    width={25}
+                    width={15}
                     height={15}
-                  />
-                  Explore Stacks
+                  /> Explore Stacks
                 </a>
               </h2>
             </div>
@@ -235,17 +234,15 @@ export default function Stackpage({
 
                     {page_data.is_signedin_users_stack && (
                       <>
-                        <a href={`/stack/${page_data.stack_id}/edit`}>
-                          <button className="btn-create">
-                            <img
-                              src="/icons/edit.svg"
-                              className="white-svg"
-                              alt="edit logo"
-                              width={25}
-                              height={15}
-                            />
-                            Edit Stack
-                          </button>
+                        <a href={`/stack/${page_data.stack_id}/edit`} className="btn-create">
+                          <img
+                            src="/icons/edit.svg"
+                            className="white-svg"
+                            alt="edit logo"
+                            width={15}
+                            height={15}
+                            style={{ marginTop: "10px" }}
+                          /> Edit Stack
                         </a>
                       </>
                     )}
@@ -290,7 +287,16 @@ export default function Stackpage({
             <div className="card-container" style={{ paddingBottom: "40px" }}>
               <div className="card">
                 <div className="container">
-                  <h2 style={{ textAlign: "center" }}>Languages</h2>
+                  <h2 style={{ textAlign: "center" }}>
+                    <img
+                      src="/icons/code.svg"
+                      alt="api"
+                      width={25}
+                      height={25}
+                      style={{ display: "inline" }}
+                    /> Languages
+                  </h2>
+
                   <h5 style={{ textAlign: "center" }}>
                     Languages used in the development of this tech Stack.
                   </h5>
@@ -327,7 +333,16 @@ export default function Stackpage({
 
                   {page_data.databases_used !== null && (
                     <>
-                      <h2 style={{ textAlign: "center" }}>Databases</h2>
+                      <h2 style={{ textAlign: "center" }}>
+                        <img
+                          src="/icons/database-fill.svg"
+                          alt="api"
+                          width={25}
+                          height={25}
+                          style={{ display: "inline" }}
+                        /> Databases
+                      </h2>
+
                       <h5 style={{ textAlign: "center" }}>
                         Databases used in the development of this tech Stack.
                       </h5>
@@ -369,7 +384,16 @@ export default function Stackpage({
 
                   {page_data.apis_used !== null && (
                     <>
-                      <h2 style={{ textAlign: "center" }}>APIs</h2>
+                      <h2 style={{ textAlign: "center" }}>
+                        <img
+                          src="/icons/api.svg"
+                          alt="api"
+                          width={25}
+                          height={25}
+                          style={{ display: "inline" }}
+                        /> APIs
+                      </h2>
+
                       <h5 style={{ textAlign: "center" }}>
                         APIs used in the development of this tech Stack.
                       </h5>
@@ -411,7 +435,16 @@ export default function Stackpage({
 
                   {page_data.clouds_used !== null && (
                     <>
-                      <h2 style={{ textAlign: "center" }}>Cloud Services</h2>
+                      <h2 style={{ textAlign: "center" }}>
+                        <img
+                          src="/icons/cloud-fill.svg"
+                          alt="api"
+                          width={25}
+                          height={25}
+                          style={{ display: "inline" }}
+                        /> Cloud Services
+                      </h2>
+
                       <h5 style={{ textAlign: "center" }}>
                         Cloud Services used in the development of this tech
                         Stack.
@@ -454,7 +487,16 @@ export default function Stackpage({
 
                   {page_data.frameworks_used !== null && (
                     <>
-                      <h2 style={{ textAlign: "center" }}>Frameworks</h2>
+                      <h2 style={{ textAlign: "center" }}>
+                        <img
+                          src="/icons/framework.svg"
+                          alt="api"
+                          width={25}
+                          height={25}
+                          style={{ display: "inline" }}
+                        /> Frameworks
+                      </h2>
+
                       <h5 style={{ textAlign: "center" }}>
                         Frameworks used in the development of this tech Stack.
                       </h5>

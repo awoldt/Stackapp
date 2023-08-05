@@ -672,7 +672,7 @@ export default function EditStackpage({
                 <img
                   src="/icons/delete.svg"
                   alt="delete logo"
-                  width={25}
+                  width={20}
                   height={15}
                 />
                 This action is irreversible, deleted Stacks are not recoverable.
@@ -707,10 +707,9 @@ export default function EditStackpage({
                     src="/icons/delete.svg"
                     className="white-svg"
                     alt="delete logo"
-                    width={25}
+                    width={15}
                     height={15}
-                  />
-                  Delete Stack
+                  /> Delete Stack
                 </button>
               )}
               {deleteStackLoading && <Spinner />}
@@ -739,10 +738,9 @@ export default function EditStackpage({
                         src="/icons/update.svg"
                         className="white-svg"
                         alt="update logo"
-                        width={25}
+                        width={15}
                         height={15}
-                      />
-                      Update Stack
+                      /> Update Stack
                     </button>
                   </div>
                 </div>
@@ -762,10 +760,9 @@ export default function EditStackpage({
                         src="/icons/update.svg"
                         className="white-svg"
                         alt="update logo"
-                        width={25}
+                        width={15}
                         height={15}
-                      />
-                      Update Stack
+                      /> Update Stack
                     </button>
                   </div>
                 </div>

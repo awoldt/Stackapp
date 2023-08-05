@@ -188,10 +188,9 @@ export default function EditProfile({
                         src="/icons/github.svg"
                         className="white-svg"
                         alt="github logo"
-                        width={25}
+                        width={15}
                         height={15}
-                      />
-                      Connect Github
+                      /> Connect Github
                     </button>
                   </a>
                 </>
@@ -241,10 +240,9 @@ export default function EditProfile({
                     src="/icons/delete.svg"
                     className="white-svg"
                     alt="delete logo"
-                    width={25}
+                    width={15}
                     height={15}
-                  />
-                  Delete Account
+                  /> Delete Account
                 </button>
               </div>
 
@@ -262,10 +260,9 @@ export default function EditProfile({
                           src="/icons/update.svg"
                           className="white-svg"
                           alt="update logo"
-                          width={25}
+                          width={15}
                           height={15}
-                        />
-                        Update Profile
+                        /> Update Profile
                       </button>
                     </div>
                   )}
@@ -287,10 +284,9 @@ export default function EditProfile({
                           src="/icons/update.svg"
                           className="white-svg"
                           alt="update logo"
-                          width={25}
+                          width={15}
                           height={15}
-                        />
-                        Update Profile
+                        /> Update Profile
                       </button>
                     </div>
                   )}

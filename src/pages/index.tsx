@@ -72,14 +72,14 @@ export default function Home({
               className="btn-landing"
               style={{ marginRight: "10px" }}
             >
-              <img src="/icons/signin.svg" className="white-svg" alt="signin logo" width={25} height={15} />Sign In
+              <img src="/icons/signin.svg" className="white-svg" alt="signin logo" width={15} height={15} /> Sign In
             </a>
             <a
               href={"/signup"}
               className="btn-landing"
               style={{ marginLeft: "10px" }}
             >
-              <img src="/icons/signup.svg" className="white-svg" alt="signup logo" width={25} height={15} />Sign Up
+              <img src="/icons/signup.svg" className="white-svg" alt="signup logo" width={15} height={15} /> Sign Up
             </a>
           </div>
 
@@ -111,7 +111,7 @@ export default function Home({
             </div>
           </div>
 
-          <div className="card-container" style={{ paddingTop: "0px" }}>
+          {/* <div className="card-container" style={{ paddingTop: "0px" }}>
             <div className="card-empty" style={{ paddingTop: "0px" }}>
               <h2>
                 Visualize your Tech Stacks
@@ -154,12 +154,12 @@ export default function Home({
             >
               <a
                 href={"/explore"}>
-                <button className="btn-like">
-                  <img src="/icons/explore.svg" className="white-svg" alt="explore logo" width={25} height={15} />Explore Stacks
+                <button className="btn-like" style={{ fontSize: "42px" }}>
+                  <img src="/icons/explore.svg" className="white-svg" alt="explore logo" width={30} height={30} /> Explore Stacks
                 </button>
               </a>
             </div>
-          </div>
+          </div> */}
         </section>
       </main>
     </>

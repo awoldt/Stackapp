@@ -127,10 +127,9 @@ export default function Profile({
                             src="/icons/edit.svg"
                             className="white-svg"
                             alt="profile logo"
-                            width={25}
+                            width={15}
                             height={15}
-                          />
-                          Edit Profile
+                          /> Edit Profile
                         </a>
                       </div>
                     </div>
@@ -159,10 +158,9 @@ export default function Profile({
                     <img
                       src="/icons/stack.svg"
                       alt="globe icon"
-                      width={25}
+                      width={20}
                       height={20}
-                    />
-                    Stacks
+                    /> Stacks
                   </h4>
                 </button>
                 <button
@@ -185,10 +183,9 @@ export default function Profile({
                     <img
                       src="/icons/like.svg"
                       alt="globe icon"
-                      width={25}
+                      width={20}
                       height={20}
-                    />
-                    Liked
+                    /> Liked
                   </h4>
                 </button>
               </div>
@@ -214,10 +211,9 @@ export default function Profile({
                                 <img
                                   src="/icons/stack.svg"
                                   alt="globe icon"
-                                  width={40}
+                                  width={35}
                                   height={35}
-                                />
-                                Stacks
+                                /> Stacks
                               </h3>
                               <h5>
                                 0 Stacks
@@ -229,10 +225,9 @@ export default function Profile({
                                   src="/icons/create.svg"
                                   className="white-svg"
                                   alt="create logo"
-                                  width={25}
+                                  width={15}
                                   height={15}
-                                />
-                                Create Stack
+                                /> Create Stack
                               </a>
                             </div>
                           </div>
@@ -252,10 +247,9 @@ export default function Profile({
                                 <img
                                   src="/icons/stack.svg"
                                   alt="globe icon"
-                                  width={40}
+                                  width={35}
                                   height={35}
-                                />
-                                Stacks
+                                /> Stacks
                               </h3>
                               <h5>
                                 {page_data.user_stacks.length} Stacks
@@ -309,10 +303,9 @@ export default function Profile({
                       <img
                         src="/icons/like.svg"
                         alt="globe icon"
-                        width={40}
+                        width={35}
                         height={35}
-                      />
-                      Liked
+                      /> Liked
                     </h3>
                     <h5>Only you can see what you&apos;ve Liked.</h5>
                     {page_data.users_liked_stacks !== "no_liked_stacks" &&

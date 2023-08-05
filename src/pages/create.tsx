@@ -431,10 +431,9 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                               src="/icons/create.svg"
                               className="white-svg"
                               alt="create logo"
-                              width={25}
+                              width={15}
                               height={15}
-                            />
-                            Create Stack
+                            /> Create Stack
                           </button>
                         </div>
                       </div>
@@ -455,10 +454,9 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                               src="/icons/create.svg"
                               className="white-svg"
                               alt="create logo"
-                              width={25}
+                              width={15}
                               height={15}
-                            />
-                            Create Stack
+                            /> Create Stack
                           </button>
                         </div>
                       </div>
@@ -484,10 +482,9 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                       <img
                         src="/icons/signin.svg"
                         alt="signin logo"
-                        width={25}
+                        width={15}
                         height={15}
-                      />
-                      Sign In
+                      /> Sign In
                     </a>
                   </h4>
                   <h4 style={{ display: "inline" }}>
@@ -499,10 +496,9 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                       <img
                         src="/icons/signup.svg"
                         alt="signup logo"
-                        width={25}
+                        width={15}
                         height={15}
-                      />
-                      Sign Up
+                      /> Sign Up
                     </a>
                   </h4>
                 </>

@@ -105,10 +105,9 @@ export default function Signin() {
                   src="/icons/signin.svg"
                   className="white-svg"
                   alt="signin logo"
-                  width={25}
+                  width={15}
                   height={15}
-                />
-                Sign In
+                /> Sign In
               </button>
             )}
             {loading && <Spinner />}
