@@ -34,9 +34,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
         stackData!.github_api_token_used! === null
           ? null
           : await GetRepoSelect(
-              stackData?.github_api_token_used!,
-              stackData!.uid!
-            ),
+            stackData?.github_api_token_used!,
+            stackData!.uid!
+          ),
       current_repo_id_selected:
         stackData!.github_api_token_used === null
           ? null
@@ -114,8 +114,7 @@ export default function EditStackpage({
             setUpdateStackLoading(true);
             try {
               const req = await fetch(
-                `/api/edit-stack?stack_id=${
-                  window.location.pathname.split("/")[2]
+                `/api/edit-stack?stack_id=${window.location.pathname.split("/")[2]
                 }`,
                 {
                   method: "POST",
@@ -681,12 +680,11 @@ export default function EditStackpage({
               {!deleteStackLoading && (
                 <button
                   type="button"
-                  className="btn-edit"
+                  className="btn-delete"
                   id="delete_stack_btn"
                   style={{
                     marginTop: "10px",
                     marginBottom: "0px",
-                    background: "#F8333C",
                     width: "100%",
                   }}
                   onClick={async () => {

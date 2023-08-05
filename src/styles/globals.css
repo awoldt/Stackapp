@@ -142,6 +142,8 @@
         text-decoration: none;
         position: relative;
         color: black;
+        padding: 10px;
+        padding-top: 0px;
     }
 
     .nav-element:hover,
@@ -597,19 +599,6 @@
         height: 100%;
     }
 
-    ul>li {
-        display: block;
-        padding-top: 20px;
-        padding-bottom: 10px;
-    }
-
-    @media (max-width: 1550px) {
-        ul>li {
-            display: inline-block;
-            padding: 10px;
-        }
-    }
-
     i {
         padding-left: 4px;
         padding-right: 4px;
@@ -646,6 +635,20 @@
         }
     }
 
+    .btn-container-landing {
+        width: 100%;
+        text-align: center;
+        padding-bottom: 10px;
+        display: flex;
+        justify-content: center;
+    }
+
+    @media (max-width: 800px) {
+        .btn-container-landing {
+            display: block;
+        }
+    }
+
     .btn-landing {
         cursor: pointer;
         margin-bottom: 20px;
@@ -660,24 +663,12 @@
         font-weight: 500;
         font-family: 'Inter', sans-serif;
         transition: 250ms ease-in-out;
-        min-width: 25%;
-    }
-
-    @media (max-width: 1550px) {
-        .btn-landing {
-            min-width: 40%;
-        }
-    }
-
-    @media (max-width: 800px) {
-        .btn-landing {
-            min-width: 75%;
-        }
+        min-width: 15%;
     }
 
     .btn-landing:hover {
         border: 2px solid rgba(0, 0, 0, 0.2);
-        background: #70b0ff;
+        background: #479aff;
     }
 
     .btn-create {
@@ -698,7 +689,7 @@
 
     .btn-create:hover {
         border: 2px solid rgba(0, 0, 0, 0.2);
-        background: #70b0ff;
+        background: #479aff;
     }
 
     .btn-prelike {
@@ -739,7 +730,7 @@
 
     .btn-like:hover {
         border: 2px solid rgba(0, 0, 0, 0.2);
-        background: #e6aace;
+        background: #de91c1;
     }
 
     .btn-edit {
@@ -760,7 +751,28 @@
 
     .btn-edit:hover {
         border: 2px solid rgba(0, 0, 0, 0.2);
-        background: #fcab10;
+        background: #f29e02;
+    }
+
+    .btn-delete {
+        cursor: pointer;
+        margin-bottom: 20px;
+        border-radius: 50px;
+        padding: 12px;
+        padding-left: 24px;
+        padding-right: 24px;
+        border: 2px solid transparent;
+        background: #F8333C;
+        color: white;
+        font-size: 20px;
+        font-weight: 500;
+        font-family: 'Inter', sans-serif;
+        transition: 250ms ease-in-out;
+    }
+
+    .btn-delete:hover {
+        border: 2px solid rgba(0, 0, 0, 0.2);
+        background: #F6131E;
     }
 
     .create-content {
@@ -808,7 +820,7 @@
 
     input[type="file"]::file-selector-button:hover {
         border: 2px solid rgba(0, 0, 0, 0.2);
-        background: #fcab10;
+        background: #f29e02;
     }
 
     input[type="email"],
@@ -866,6 +878,7 @@
         padding-left: 14px;
         padding-right: 14px;
         margin-right: 4px;
+        transition: 250ms ease-in-out;
     }
 
     input[type="checkbox"]:hover~.checkmark {
@@ -876,6 +889,12 @@
     input[type="checkbox"]:checked~.checkmark {
         border: 2px solid rgba(0, 0, 0, 0.2);
         background: #94fbab;
+        transition: 250ms ease-in-out;
+    }
+
+    input[type="checkbox"]:checked:hover~.checkmark {
+        border: 2px solid rgba(0, 0, 0, 0.2);
+        background: #4EF973;
         transition: 250ms ease-in-out;
     }
 
@@ -925,12 +944,6 @@
         }
     }
 
-    .footer-element {
-        padding-left: 20px;
-        padding-right: 20px;
-        padding-bottom: 10px;
-    }
-
     .loading {
         display: flex;
         justify-content: center;
@@ -970,5 +983,18 @@
         margin-bottom: 20px;
         border-color: rgba(0, 0, 0, 0.05);
         border-radius: 50px;
+    }
+
+    ul>li {
+        display: block;
+        margin-top: 20px;
+        padding: 0px;
+    }
+
+    @media (max-width: 1550px) {
+        ul>li {
+            display: inline-block;
+            padding: 10px;
+        }
     }
 }

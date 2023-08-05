@@ -199,9 +199,9 @@ export default function EditProfile({
 
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <button
-                  className="btn-edit"
+                  className="btn-delete"
                   type="button"
-                  style={{ display: "block", background: "#F8333C" }}
+                  style={{ display: "block" }}
                   onClick={async () => {
                     const c1 = confirm(
                       "Are you sure you want to delete your Stack account?"

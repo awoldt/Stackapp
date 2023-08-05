@@ -44,11 +44,8 @@ export default function Signin() {
             Looking to Stack it?
             <a
               href={"/signup"}
-              style={{ padding: "8px", paddingLeft: "0px" }}
               className="nav-element"
-            >
-              {" "}
-              Sign Up.
+            >Sign Up.
             </a>
           </h5>
         </div>

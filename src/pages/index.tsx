@@ -58,7 +58,7 @@ export default function Home({
             ></img>
           </div>
           <div className="card-container">
-            <div className="card-empty" style={{ paddingTop: "0px" }}>
+            <div className="card-empty">
               <h1 className="splash">Stack</h1>
               <h4 style={{ paddingBottom: "20px" }}>
                 A platform designed for modern tech stack visualization.
@@ -66,29 +66,21 @@ export default function Home({
             </div>
           </div>
 
-          <div
-            style={{
-              width: "100%",
-              textAlign: "center",
-              paddingBottom: "10px",
-            }}
-          >
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <a
-                href={"/signin"}
-                className="btn-landing"
-              >
-                <img src="/icons/signin.svg" className="white-svg" alt="signin logo" width={25} height={15} />Sign In
-              </a>
-            </div>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <a
-                href={"/signup"}
-                className="btn-landing"
-              >
-                <img src="/icons/signup.svg" className="white-svg" alt="signup logo" width={25} height={15} />Sign Up
-              </a>
-            </div>
+          <div className="btn-container-landing">
+            <a
+              href={"/signin"}
+              className="btn-landing"
+              style={{ marginRight: "10px" }}
+            >
+              <img src="/icons/signin.svg" className="white-svg" alt="signin logo" width={25} height={15} />Sign In
+            </a>
+            <a
+              href={"/signup"}
+              className="btn-landing"
+              style={{ marginLeft: "10px" }}
+            >
+              <img src="/icons/signup.svg" className="white-svg" alt="signup logo" width={25} height={15} />Sign Up
+            </a>
           </div>
 
           <div className="card-container" style={{ paddingTop: "20px" }}>
@@ -152,6 +144,20 @@ export default function Home({
                 style={{ width: "105%", textAlign: "center" }}
                 alt="Stack Example"
               />
+            </div>
+          </div>
+
+          <div className="card-container">
+            <div
+              className="card-empty"
+              style={{ paddingTop: "0px" }}
+            >
+              <a
+                href={"/explore"}>
+                <button className="btn-like">
+                  <img src="/icons/explore.svg" className="white-svg" alt="explore logo" width={25} height={15} />Explore Stacks
+                </button>
+              </a>
             </div>
           </div>
         </section>

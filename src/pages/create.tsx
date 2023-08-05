@@ -37,8 +37,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
       user === null
         ? null
         : user.github_access_token === null
-        ? null
-        : await GetRepoSelect(
+          ? null
+          : await GetRepoSelect(
             user!.github_access_token,
             String(req.cookies.uid)
           ),
@@ -474,12 +474,11 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
             <div className="card-empty" style={{ paddingTop: "20px" }}>
               {!page_data.is_signed_in && (
                 <>
-                  <h2>Start Stacking</h2>
+                  <h3>Start Stacking</h3>
                   <h4 style={{ display: "inline" }}>
                     <a
                       href={"/signin"}
                       className="nav-element"
-                      style={{ paddingRight: "0px", padding: "10px" }}
                       title="Sign into stack account"
                     >
                       <img
@@ -491,16 +490,10 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                       Sign In
                     </a>
                   </h4>
-                  <p style={{ display: "inline" }}>or</p>
                   <h4 style={{ display: "inline" }}>
                     <a
                       href={"/signup"}
                       className="nav-element"
-                      style={{
-                        paddingRight: "0px",
-                        paddingLeft: "0px",
-                        padding: "10px",
-                      }}
                       title="Create a stack account"
                     >
                       <img

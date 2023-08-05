@@ -143,7 +143,6 @@ export default function Profile({
                   id="btn-yourStacks"
                   className="nav-element"
                   style={{
-                    padding: "10px",
                     marginRight: "10px",
                     marginBottom: "0px",
                     background: "none",
@@ -170,7 +169,6 @@ export default function Profile({
                   id="btn-savedStacks"
                   className="nav-element"
                   style={{
-                    padding: "10px",
                     marginRight: "10px",
                     marginBottom: "0px",
                     background: "none",

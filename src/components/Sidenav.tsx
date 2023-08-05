@@ -13,20 +13,9 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
             <>
               <li className="nav-element">
                 <h5>
-                  <a href={"/create"}>
-                    <img
-                      src="/icons/create.svg"
-                      alt="create logo"
-                      width={25}
-                      height={15}
-                    />
-                    Create
-                  </a>
-                </h5>
-              </li>
-              <li className="nav-element">
-                <h5>
-                  <a href={"/explore"}>
+                  <a href={"/explore"}
+                    style={{ padding: "0px" }}
+                  >
                     <img
                       src="/icons/explore.svg"
                       alt="explore logo"
@@ -39,7 +28,24 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
               </li>
               <li className="nav-element">
                 <h5>
-                  <a href={"/profile"}>
+                  <a href={"/create"}
+                    style={{ padding: "0px" }}
+                  >
+                    <img
+                      src="/icons/create.svg"
+                      alt="create logo"
+                      width={25}
+                      height={15}
+                    />
+                    Create
+                  </a>
+                </h5>
+              </li>
+              <li className="nav-element">
+                <h5>
+                  <a href={"/profile"}
+                    style={{ padding: "0px" }}
+                  >
                     <img
                       src="/icons/profile.svg"
                       alt="profile logo"
@@ -74,12 +80,15 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
             <>
               <li className="nav-element">
                 <h5>
-                  <a href={"/explore"}>
+                  <a href={"/explore"}
+                    style={{ padding: "0px" }}
+                  >
                     <img
                       src="/icons/explore.svg"
                       alt="explore logo"
                       width={25}
                       height={15}
+                      style={{ padding: "0px" }}
                     />
                     Explore
                   </a>
@@ -87,7 +96,24 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
               </li>
               <li className="nav-element">
                 <h5>
-                  <a href={"/signin"}>
+                  <a href={"/create"}
+                    style={{ padding: "0px" }}
+                  >
+                    <img
+                      src="/icons/create.svg"
+                      alt="create logo"
+                      width={25}
+                      height={15}
+                    />
+                    Create
+                  </a>
+                </h5>
+              </li>
+              <li className="nav-element">
+                <h5>
+                  <a href={"/signin"}
+                    style={{ padding: "0px" }}
+                  >
                     <img
                       src="/icons/signin.svg"
                       alt="signin logo"
@@ -100,7 +126,9 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
               </li>
               <li className="nav-element">
                 <h5>
-                  <a href={"/signup"}>
+                  <a href={"/signup"}
+                    style={{ padding: "0px" }}
+                  >
                     <img
                       src="/icons/signup.svg"
                       alt="signup logo"

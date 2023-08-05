@@ -72,7 +72,7 @@ export default function Privacy({ signedIn }: { signedIn: boolean }) {
                 carefullyand make informed decisions about your privacy while
                 using our web app.If you have any questions, concerns, or
                 requests regarding this Privacy Policy or the data we hold about
-                you, please contact us at [Contact Email].
+                you, please contact us at [stackapphelp@gmail.com].
                 <br />
                 <br />
               </p>
