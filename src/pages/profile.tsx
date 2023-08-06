@@ -12,6 +12,8 @@ import { _PAGEDATA_profile, _stack } from "@/types";
 import { GetServerSideProps } from "next";
 import { useState } from "react";
 
+//MUST BE SIGNED IN TO VIEW THIS PAGE
+
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const profileData = await GetUserProfile(req.cookies.uid);
   if (profileData === null) {
@@ -123,145 +125,159 @@ export default function Profile({
                             </p>
                           )}
 
-                      <div style={{ marginTop: "40px", marginBottom: "20px" }}>
-                        <a
-                          href={"/profile/edit"}
-                          title="Edit your profile"
-                          className="btn-create"
-                        >
-                          <img
-                            src="/icons/edit.svg"
-                            className="white-svg"
-                            alt="profile logo"
-                            width={15}
-                            height={15}
-                          /> Edit Profile
-                        </a>
+                          <div
+                            style={{ marginTop: "40px", marginBottom: "20px" }}
+                          >
+                            <a
+                              href={"/profile/edit"}
+                              title="Edit your profile"
+                              className="btn-create"
+                            >
+                              <img
+                                src="/icons/edit.svg"
+                                className="white-svg"
+                                alt="profile logo"
+                                width={15}
+                                height={15}
+                              />{" "}
+                              Edit Profile
+                            </a>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
 
-              <div className="card-container">
-                <button
-                  id="btn-yourStacks"
-                  className="nav-element"
-                  style={{
-                    marginRight: "10px",
-                    marginBottom: "0px",
-                    background: "none",
-                    border: "none",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => {
-                    if (view !== "stacks") {
-                      setView("stacks");
-                    }
-                  }}
-                >
-                  <h4>
-                    <img
-                      src="/icons/stack.svg"
-                      alt="globe icon"
-                      width={20}
-                      height={20}
-                    /> Stacks
-                  </h4>
-                </button>
-                <button
-                  id="btn-savedStacks"
-                  className="nav-element"
-                  style={{
-                    marginRight: "10px",
-                    marginBottom: "0px",
-                    background: "none",
-                    border: "none",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => {
-                    if (view !== "liked_stacks") {
-                      setView("liked_stacks");
-                    }
-                  }}
-                >
-                  <h4>
-                    <img
-                      src="/icons/like.svg"
-                      alt="globe icon"
-                      width={20}
-                      height={20}
-                    /> Liked
-                  </h4>
-                </button>
-              </div>
+                  <div className="card-container">
+                    <button
+                      id="btn-yourStacks"
+                      className="nav-element"
+                      style={{
+                        marginRight: "10px",
+                        marginBottom: "0px",
+                        background: "none",
+                        border: "none",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => {
+                        if (view !== "stacks") {
+                          setView("stacks");
+                        }
+                      }}
+                    >
+                      <h4>
+                        <img
+                          src="/icons/stack.svg"
+                          alt="globe icon"
+                          width={20}
+                          height={20}
+                        />{" "}
+                        Stacks
+                      </h4>
+                    </button>
+                    <button
+                      id="btn-savedStacks"
+                      className="nav-element"
+                      style={{
+                        marginRight: "10px",
+                        marginBottom: "0px",
+                        background: "none",
+                        border: "none",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => {
+                        if (view !== "liked_stacks") {
+                          setView("liked_stacks");
+                        }
+                      }}
+                    >
+                      <h4>
+                        <img
+                          src="/icons/like.svg"
+                          alt="globe icon"
+                          width={20}
+                          height={20}
+                        />{" "}
+                        Liked
+                      </h4>
+                    </button>
+                  </div>
 
-              {view === "stacks" && (
-                <>
-                  {page_data.user_stacks !== null && (
-                    <section>
-                      {page_data.user_stacks === 0 && (
-                        <>
-                          <div
-                            className="card-container"
-                            style={{ paddingTop: "0px", paddingBottom: "40px" }}
-                          >
-                            <div
-                              className="card"
-                              style={{
-                                textAlign: "center",
-                                paddingBottom: "80px",
-                              }}
-                            >
-                              <h3>
-                                <img
-                                  src="/icons/stack.svg"
-                                  alt="globe icon"
-                                  width={35}
-                                  height={35}
-                                /> Stacks
-                              </h3>
-                              <h5>
-                                0 Stacks
-                                <br />
-                                <br />
-                              </h5>
-                              <a href={"/create"} className="btn-create">
-                                <img
-                                  src="/icons/create.svg"
-                                  className="white-svg"
-                                  alt="create logo"
-                                  width={15}
-                                  height={15}
-                                /> Create Stack
-                              </a>
-                            </div>
-                          </div>
-                        </>
-                      )}
-                      {page_data.user_stacks !== 0 &&
-                        page_data.user_stacks.length > 0 && (
-                          <div
-                            className="card-container"
-                            style={{ paddingTop: "0px", paddingBottom: "40px" }}
-                          >
-                            <div
-                              className="card"
-                              style={{ textAlign: "center" }}
-                            >
-                              <h3>
-                                <img
-                                  src="/icons/stack.svg"
-                                  alt="globe icon"
-                                  width={35}
-                                  height={35}
-                                /> Stacks
-                              </h3>
-                              <h5>
-                                {page_data.user_stacks.length} Stacks
-                                <br />
-                                <br />
-                              </h5>
+                  {view === "stacks" && (
+                    <>
+                      {page_data.user_stacks !== null && (
+                        <section>
+                          {page_data.user_stacks === 0 && (
+                            <>
+                              <div
+                                className="card-container"
+                                style={{
+                                  paddingTop: "0px",
+                                  paddingBottom: "40px",
+                                }}
+                              >
+                                <div
+                                  className="card"
+                                  style={{
+                                    textAlign: "center",
+                                    paddingBottom: "80px",
+                                  }}
+                                >
+                                  <h3>
+                                    <img
+                                      src="/icons/stack.svg"
+                                      alt="globe icon"
+                                      width={35}
+                                      height={35}
+                                    />{" "}
+                                    Stacks
+                                  </h3>
+                                  <h5>
+                                    0 Stacks
+                                    <br />
+                                    <br />
+                                  </h5>
+                                  <a href={"/create"} className="btn-create">
+                                    <img
+                                      src="/icons/create.svg"
+                                      className="white-svg"
+                                      alt="create logo"
+                                      width={15}
+                                      height={15}
+                                    />{" "}
+                                    Create Stack
+                                  </a>
+                                </div>
+                              </div>
+                            </>
+                          )}
+                          {page_data.user_stacks !== 0 &&
+                            page_data.user_stacks.length > 0 && (
+                              <div
+                                className="card-container"
+                                style={{
+                                  paddingTop: "0px",
+                                  paddingBottom: "40px",
+                                }}
+                              >
+                                <div
+                                  className="card"
+                                  style={{ textAlign: "center" }}
+                                >
+                                  <h3>
+                                    <img
+                                      src="/icons/stack.svg"
+                                      alt="globe icon"
+                                      width={35}
+                                      height={35}
+                                    />{" "}
+                                    Stacks
+                                  </h3>
+                                  <h5>
+                                    {page_data.user_stacks.length} Stacks
+                                    <br />
+                                    <br />
+                                  </h5>
 
                                   {page_data.user_stacks.map(
                                     (x: Partial<_stack>, index: number) => {
@@ -302,44 +318,53 @@ export default function Profile({
                     </>
                   )}
 
-              {view === "liked_stacks" && (
-                <div className="card-container" id="savedStacks">
-                  <div className="card" style={{ textAlign: "center" }}>
-                    <h3>
-                      <img
-                        src="/icons/like.svg"
-                        alt="globe icon"
-                        width={35}
-                        height={35}
-                      /> Liked
-                    </h3>
-                    <h5>Only you can see what you&apos;ve Liked.</h5>
-                    {page_data.users_liked_stacks !== "no_liked_stacks" &&
-                      page_data.users_liked_stacks !== null && (
-                        <>
-                          <div className="stack-container">
-                            {page_data.users_liked_stacks.map(
-                              (x: _stack, index: number) => {
-                                return (
-                                  <a href={`/stack/${x.stack_id}`} key={index}>
-                                    <div className="stack-item">
-                                      <img src={x.thumbnail_url} />
-                                      <h2>{x.name}</h2>
-                                    </div>
-                                  </a>
-                                );
-                              }
-                            )}
-                          </div>
-                        </>
-                      )}
-                  </div>
-                </div>
-              )}
-            </main>
-          </section>
-        )}
-      </div>
+                  {view === "liked_stacks" && (
+                    <div className="card-container" id="savedStacks">
+                      <div className="card" style={{ textAlign: "center" }}>
+                        <h3>
+                          <img
+                            src="/icons/like.svg"
+                            alt="globe icon"
+                            width={35}
+                            height={35}
+                          />{" "}
+                          Liked
+                        </h3>
+                        <h5>Only you can see what you&apos;ve Liked.</h5>
+                        {page_data.users_liked_stacks !== "no_liked_stacks" &&
+                          page_data.users_liked_stacks !== null && (
+                            <>
+                              <div className="stack-container">
+                                {page_data.users_liked_stacks.map(
+                                  (x: _stack, index: number) => {
+                                    return (
+                                      <a
+                                        href={`/stack/${x.stack_id}`}
+                                        key={index}
+                                      >
+                                        <div className="stack-item">
+                                          <img src={x.thumbnail_url} />
+                                          <h2>{x.name}</h2>
+                                        </div>
+                                      </a>
+                                    );
+                                  }
+                                )}
+                              </div>
+                            </>
+                          )}
+                        {page_data.users_liked_stacks === "no_liked_stacks" && (
+                          <p><i>You have not liked any stacks yet</i></p>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </main>
+              </section>
+            )}
+          </div>
+        </>
+      )}
     </>
   );
 }

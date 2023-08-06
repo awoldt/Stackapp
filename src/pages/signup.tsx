@@ -58,23 +58,19 @@ export default function CreateAccount({
               ></img>
             </div>
 
-        <div className="card-container">
-          <div className="card-empty">
-            <h1 className="splash">
-              <a href={"/"}>
-                Stack
-              </a>
-            </h1>
-            <h5 style={{ paddingBottom: "10px" }}>
-              Create an account to sign up and start Stacking.
-              <a
-                href={"/signin"}
-                className="nav-element"
-              >Sign In.
-              </a>
-            </h5>
-          </div>
-        </div>
+            <div className="card-container">
+              <div className="card-empty">
+                <h1 className="splash">
+                  <a href={"/"}>Stack</a>
+                </h1>
+                <h5 style={{ paddingBottom: "10px" }}>
+                  Create an account to sign up and start Stacking.
+                  <a href={"/signin"} className="nav-element">
+                    Sign In.
+                  </a>
+                </h5>
+              </div>
+            </div>
 
             <div className="card-container">
               <div className="card-registration">
@@ -124,46 +120,58 @@ export default function CreateAccount({
                       }
                     }}
                   /> */}
-                  <input
-                    type="email"
-                    name="app_signup_email"
-                    placeholder="Email"
-                    required
-                  />
-                  <input
-                    type="text"
-                    name="app_signup_username"
-                    placeholder="Username"
-                    maxLength={100}
-                    required
-                  />
-                  <input
-                    type="password"
-                    name="app_signup_password"
-                    placeholder="Password"
-                    required
-                  />
-                  {!loading && (
-                    <button className="btn-create" style={{ width: "100%" }}>
-                      <img src="/icons/signup.svg" className="white-svg" alt="signup logo" width={15} height={15} /> Sign Up
-                    </button>
-                  )}
-                  {loading && <Spinner />}
-                </form>
-              </>
-            )}
-            {showSuccessMessage && (
-              <>
-                <p style={{ textAlign: "center" }}>
-                  An email has been sent to your inbox.
-                  <br />
-                  Click the link in your email to verify your account.
-                </p>
-              </>
-            )}
-          </div>
-        </div>
-      </section>
+                      <input
+                        type="email"
+                        name="app_signup_email"
+                        placeholder="Email"
+                        required
+                      />
+                      <input
+                        type="text"
+                        name="app_signup_username"
+                        placeholder="Username"
+                        maxLength={100}
+                        required
+                      />
+                      <input
+                        type="password"
+                        name="app_signup_password"
+                        placeholder="Password"
+                        required
+                      />
+                      {!loading && (
+                        <button
+                          className="btn-create"
+                          style={{ width: "100%" }}
+                        >
+                          <img
+                            src="/icons/signup.svg"
+                            className="white-svg"
+                            alt="signup logo"
+                            width={15}
+                            height={15}
+                          />{" "}
+                          Sign Up
+                        </button>
+                      )}
+                      {loading && <Spinner />}
+                    </form>
+                  </>
+                )}
+                {showSuccessMessage && (
+                  <>
+                    <p style={{ textAlign: "center" }}>
+                      An email has been sent to your inbox.
+                      <br />
+                      Click the link in your email to verify your account.
+                    </p>
+                  </>
+                )}
+              </div>
+            </div>
+          </section>
+        </>
+      )}
     </>
   );
 }

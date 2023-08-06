@@ -10,6 +10,7 @@ import {
   _creator,
   _PAGEDATA_stackpage,
   _editStackData,
+  _explorepageCategories,
 } from "./types";
 import { uid } from "uid";
 
@@ -521,7 +522,7 @@ export async function DoesFileExist(bucket: string, key: string) {
   }
 }
 
-export default async function UploadImagesToS3(
+export async function UploadImagesToS3(
   filename: string,
   filepath: string
 ): Promise<[string, string] | null> {
@@ -1387,6 +1388,60 @@ export async function GetUsersLikedStacks(
       }
     }
     return LIKE_STACKS_DATA;
+  } catch (e) {
+    console.log(e);
+    return null;
+  }
+}
+
+export async function GetExplorePageStacks(): Promise<_explorepageCategories | null> {
+  //this function will return all the data needed to render
+  //on explore page (recent stacks, popular stacks)
+
+  try {
+    let RECENT_STACKS: _stack[] = [];
+    const recentStacks = await db
+      .collection(process.env.STACKS_DB!)
+      .orderBy("created_on", "desc")
+      .get();
+
+    if (!recentStacks.empty) {
+      //need to use for loop instead of snapshot query forEach
+      //forEach doesnt wait
+      for (const docData of recentStacks.docs) {
+        const s: _stack = <_stack>docData.data();
+        s.stack_id = docData.id;
+        s.creator_details = await GetCreatorDetails(docData.data().uid);
+
+        RECENT_STACKS.push(s);
+      }
+    }
+
+    let POPULAR_STACKS: _stack[] = [];
+
+    const popularStacks = await db
+      .collection(process.env.STACKS_DB!)
+      .where("likes", ">", 0)
+      .orderBy("likes", "desc")
+      .get();
+    if (!popularStacks.empty) {
+      //need to use for loop instead of snapshot query forEach
+      //forEach doesnt wait
+      for (const docData of popularStacks.docs) {
+        const s: _stack = <_stack>docData.data();
+        s.stack_id = docData.id;
+        s.creator_details = await GetCreatorDetails(docData.data().uid);
+
+        POPULAR_STACKS.push(s);
+      }
+    }
+
+    const returnObj: _explorepageCategories = {
+      recent_stacks: RECENT_STACKS.length === 0 ? null : RECENT_STACKS,
+      popular_stacks: POPULAR_STACKS.length === 0 ? null : POPULAR_STACKS,
+    };
+
+    return returnObj;
   } catch (e) {
     console.log(e);
     return null;

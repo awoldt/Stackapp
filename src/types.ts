@@ -24,7 +24,8 @@ export interface _stack {
   website_url: string | null;
   created_on: number;
   likes: number;
-  stack_id?: string; //only needed for rendering account page
+  stack_id?: string; //only needed for certain pages
+  creator_details?: _creator; //only needed for certain pages
 }
 
 export interface _editStackData {
@@ -80,6 +81,11 @@ export interface _creator {
   last_name: string | null;
 }
 
+export interface _explorepageCategories {
+  recent_stacks: _stack[] | null;
+  popular_stacks: _stack[] | null;
+}
+
 export interface _nameWithLogo {
   //structure to showcase icons with tech name on frontend
   //https://drive.google.com/file/d/1QWXCdzYtE0tVyrjxMcOLUFB1NbKcQD4K/view?usp=sharing
@@ -109,6 +115,10 @@ export interface DEFAULT_PAGE_LAYOUT {
   //every page data must have these properties
   header_tags: _headerTags;
   is_signed_in: boolean | "remove_uid_cookie";
+}
+
+export interface _PAGEDATA_explore extends DEFAULT_PAGE_LAYOUT {
+  explore_stack_categories: _explorepageCategories | null;
 }
 
 export interface __PAGEDATA_account extends DEFAULT_PAGE_LAYOUT {
@@ -158,7 +168,7 @@ export interface _PAGEDATA_publicprofile extends DEFAULT_PAGE_LAYOUT {
   user_profile_data: _userProfile | null;
   user_stacks: Partial<_stack>[] | null | 0; //0 means user does not have any stacks
   is_signed_in_users_profile: boolean;
-  profile_username: string
+  profile_username: string;
 }
 
 export interface _PAGEDATA_editstack extends DEFAULT_PAGE_LAYOUT {
