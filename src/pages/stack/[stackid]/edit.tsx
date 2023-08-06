@@ -17,6 +17,15 @@ import InvalidCookie from "@/components/InvalidUidCookie";
 //MUST BE SIGNED IN TO VIEW THIS PAGE
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  if (!(await IsUserSignedIn(req.cookies.uid))) {
+    return {
+      redirect: {
+        destination: `/stack/${req.url?.split("/")[2]!}`,
+        permanent: false,
+      },
+    };
+  }
+
   const stackData = await GetStackDataEditPage(
     req.url?.split("/")[2]!,
     req.cookies.uid!

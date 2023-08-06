@@ -12,6 +12,15 @@ import { useRef, useState } from "react";
 //MUST BE SIGNED IN TO VIEW THIS PAGE
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  if (!(await IsUserSignedIn(req.cookies.uid))) {
+    return {
+      redirect: {
+        destination: `/signin`,
+        permanent: false,
+      },
+    };
+  }
+
   const userProfile = await GetUserProfile(req.cookies.uid);
   if (userProfile === null) {
     console.log("could not get user profile");
