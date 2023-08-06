@@ -41,6 +41,13 @@ export default function explorePage({
       {page_data.is_signed_in !== "remove_uid_cookie" && (
         <>
           <section>
+          <div className="background">
+                <img
+                  src={"/imgs/background.avif"}
+                  alt="background design"
+                  className="background-image"
+                ></img>
+              </div>
             {page_data.is_signed_in && <Sidenav isSignedIn={true} />}
             {!page_data.is_signed_in && <Sidenav isSignedIn={false} />}
           </section>
