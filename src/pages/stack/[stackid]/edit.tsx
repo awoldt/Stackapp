@@ -4,6 +4,7 @@ import { _PAGEDATA_editstack, _repoSelectList } from "@/types";
 import {
   GetRepoSelect,
   GetStackDataEditPage,
+  GetUserProfile,
   IsUserSignedIn,
   ReadTechValuesFromS3,
 } from "@/functions";
@@ -16,7 +17,7 @@ import InvalidCookie from "@/components/InvalidUidCookie";
 
 //MUST BE SIGNED IN TO VIEW THIS PAGE
 
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   if (!(await IsUserSignedIn(req.cookies.uid))) {
     return {
       redirect: {
@@ -33,6 +34,25 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   //error while getting stack data
   if (stackData === null) {
     console.log("error getting stack data for edit page");
+    return {
+      redirect: {
+        destination: `/stack/${req.url?.split("/")[2]!}`,
+        permanent: false,
+      },
+    };
+  }
+  console.log("\nSTACK DATA uid");
+  console.log(stackData.uid);
+
+  const userProfile = await GetUserProfile(req.cookies.uid);
+  console.log("\nUSER PROFILE uid");
+  console.log(userProfile?.uid);
+
+  //make sure signed in user accessing page
+  //actually owns the stack being edited
+  if (userProfile?.uid !== stackData?.uid) {
+    res.statusCode = 401;
+    console.log("this user does not own this stack");
     return {
       redirect: {
         destination: `/stack/${req.url?.split("/")[2]!}`,

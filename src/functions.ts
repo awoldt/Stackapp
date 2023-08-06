@@ -755,7 +755,7 @@ export async function GetStackDataEditPage(
       github_repo_id: stackData.data()!.github_repo_id,
       github_api_token_used: stackData.data()!.github_api_token_used,
       website_url: stackData.data()!.website_url,
-      uid: cookieUid,
+      uid: stackData.data()!.uid,
       stack_id: stackData.id,
     };
 
