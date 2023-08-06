@@ -3,68 +3,69 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
   return (
     <aside className="aside-nav">
       <nav>
-        <h3>
-          <a href={"/"} style={{ paddingTop: "20px" }}>
+        <h3 style={{ paddingTop: "20px" }}>
+          <a href={"/"}>
             Stack
           </a>
         </h3>
         <ul>
           {isSignedIn && (
             <>
-              <li className="nav-element">
+              {/* <li>
                 <h5>
-                  <a href={"/create"}>
-                    <img
-                      src="/icons/create.svg"
-                      alt="create logo"
-                      width={25}
-                      height={15}
-                    />
-                    Create
-                  </a>
-                </h5>
-              </li>
-              <li className="nav-element">
-                <h5>
-                  <a href={"/explore"}>
-                    <img
+                  <a href={"/explore"}
+                    className="nav-element"
+                  ><img
                       src="/icons/explore.svg"
                       alt="explore logo"
-                      width={25}
+                      width={15}
                       height={15}
-                    />
-                    Explore
+                    /> Explore
+                  </a>
+                </h5>
+              </li> */}
+              <li>
+                <h5>
+                  <a href={"/create"}
+                    className="nav-element"
+                  ><img
+                      src="/icons/create.svg"
+                      alt="create logo"
+                      width={15}
+                      height={15}
+                    /> Create
                   </a>
                 </h5>
               </li>
-              <li className="nav-element">
+              <li>
                 <h5>
-                  <a href={"/profile"}>
-                    <img
+                  <a href={"/profile"}
+                    className="nav-element"
+                  ><img
                       src="/icons/profile.svg"
                       alt="profile logo"
-                      width={25}
+                      width={15}
                       height={15}
-                    />
-                    Profile
+                    /> Profile
                   </a>
                 </h5>
               </li>
-              <li className="nav-element" style={{ cursor: "pointer" }}>
+              <li>
                 <h5
                   onClick={() => {
                     document.cookie =
                       "uid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
                     window.location.assign(window.location.href);
-                  }}
-                >
-                  <img
-                    src="/icons/signout.svg"
-                    alt="signout logo"
-                    width={25}
-                    height={15}
-                  />
-                  Sign Out
+                  }}>
+                  <a href={""}
+                    className="nav-element"
+                  ><img
+                      src="/icons/signout.svg"
+                      alt="signout logo"
+                      width={15}
+                      height={15}
+                    /> Sign Out
+                  </a>
                 </h5>
               </li>
             </>
@@ -72,42 +73,55 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
 
           {!isSignedIn && (
             <>
-              <li className="nav-element">
+              {/* <li>
                 <h5>
-                  <a href={"/explore"}>
-                    <img
+                  <a href={"/explore"}
+                    className="nav-element"
+                  ><img
                       src="/icons/explore.svg"
                       alt="explore logo"
-                      width={25}
+                      width={15}
                       height={15}
-                    />
-                    Explore
+                    /> Explore
+                  </a>
+                </h5>
+              </li> */}
+              <li>
+                <h5>
+                  <a href={"/create"}
+                    className="nav-element"
+                  ><img
+                      src="/icons/create.svg"
+                      alt="create logo"
+                      width={15}
+                      height={15}
+                    /> Create
                   </a>
                 </h5>
               </li>
-              <li className="nav-element">
+              <li>
                 <h5>
-                  <a href={"/signin"}>
-                    <img
+                  <a href={"/signin"}
+                    className="nav-element"
+                  ><img
                       src="/icons/signin.svg"
                       alt="signin logo"
-                      width={25}
+                      width={15}
                       height={15}
-                    />
-                    Sign In
+                    /> Sign In
                   </a>
                 </h5>
               </li>
-              <li className="nav-element">
+              <li>
                 <h5>
-                  <a href={"/signup"}>
-                    <img
+                  <a href={"/signup"}
+                    className="nav-element"
+                  ><img
                       src="/icons/signup.svg"
                       alt="signup logo"
-                      width={25}
+                      width={15}
                       height={15}
-                    />
-                    Sign Up
+                    /> Sign Up
                   </a>
                 </h5>
               </li>

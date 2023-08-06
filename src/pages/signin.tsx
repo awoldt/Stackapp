@@ -54,24 +54,23 @@ export default function Signin({
             ></img>
           </div>
 
-          <div className="card-container">
-            <div className="card-empty">
-              <h1 className="splash">
-                <a href={"/"}>Stack</a>
-              </h1>
-              <h5 style={{ paddingBottom: "10px" }}>
-                Looking to Stack it?
-                <a
-                  href={"/signup"}
-                  style={{ padding: "8px", paddingLeft: "0px" }}
-                  className="nav-element"
-                >
-                  {" "}
-                  Sign Up.
-                </a>
-              </h5>
-            </div>
-          </div>
+      <div className="card-container">
+        <div className="card-empty">
+          <h1 className="splash">
+            <a href={"/"}>
+              Stack
+            </a>
+          </h1>
+          <h5 style={{ paddingBottom: "10px" }}>
+            Looking to Stack it?
+            <a
+              href={"/signup"}
+              className="nav-element"
+            >Sign Up.
+            </a>
+          </h5>
+        </div>
+      </div>
 
           <div className="card-container">
             <div className="card-registration">
@@ -107,43 +106,35 @@ export default function Signin({
                         alert("Email or password is wrong");
                         break;
 
-                      case "auth/user-not-found":
-                        alert("Account does not exist");
-                        break;
-                    }
-                  }
-                }}
-              >
-                <input
-                  type="email"
-                  ref={emailRef}
-                  placeholder="Email"
-                  required
-                />
-                <input
-                  type="password"
-                  ref={passwordRef}
-                  placeholder="Password"
-                  required
-                />
-                {!loading && (
-                  <button className="btn-create" style={{ width: "100%" }}>
-                    <img
-                      src="/icons/signin.svg"
-                      className="white-svg"
-                      alt="signin logo"
-                      width={25}
-                      height={15}
-                    />
-                    Sign In
-                  </button>
-                )}
-                {loading && <Spinner />}
-              </form>
-            </div>
-          </div>
-        </>
-      )}
+                  case "auth/user-not-found":
+                    alert("Account does not exist");
+                    break;
+                }
+              }
+            }}
+          >
+            <input type="email" ref={emailRef} placeholder="Email" required />
+            <input
+              type="password"
+              ref={passwordRef}
+              placeholder="Password"
+              required
+            />
+            {!loading && (
+              <button className="btn-create" style={{ width: "100%" }}>
+                <img
+                  src="/icons/signin.svg"
+                  className="white-svg"
+                  alt="signin logo"
+                  width={15}
+                  height={15}
+                /> Sign In
+              </button>
+            )}
+            {loading && <Spinner />}
+          </form>
+        </div>
+      </div>
     </>
   );
 }

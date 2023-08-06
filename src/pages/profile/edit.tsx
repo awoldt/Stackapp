@@ -175,52 +175,51 @@ export default function EditProfile({
                     <br />
                   </div>
 
-                  {page_data.has_authenticated_github_account && (
-                    <p style={{ marginBottom: "20px" }}>
-                      Your GitHub account is connected.
-                      <br />
-                      Account ID #{page_data.user_data?.github_account_id}
-                    </p>
-                  )}
-                  {!page_data.has_authenticated_github_account && (
-                    <>
-                      {" "}
-                      <a
-                        href={`https://github.com/login/oauth/authorize?client_id=${page_data.github_client_id}`}
-                        title="Authorize Stackapp to connect to your GitHub Account"
-                      >
-                        <p>Your GitHub account is not connected.</p>
-                        <button type="button" className="btn-edit">
-                          <img
-                            src="/icons/github.svg"
-                            className="white-svg"
-                            alt="github logo"
-                            width={25}
-                            height={15}
-                          />
-                          Connect Github
-                        </button>
-                      </a>
-                    </>
-                  )}
+              {page_data.has_authenticated_github_account && (
+                <p style={{ marginBottom: "20px" }}>
+                  Your GitHub account is connected.
+                  <br />
+                  Account ID #{page_data.user_data?.github_account_id}
+                </p>
+              )}
+              {!page_data.has_authenticated_github_account && (
+                <>
+                  {" "}
+                  <a
+                    href={`https://github.com/login/oauth/authorize?client_id=${page_data.github_client_id}`}
+                    title="Authorize Stackapp to connect to your GitHub Account"
+                  >
+                    <p>Your GitHub account is not connected.</p>
+                    <button type="button" className="btn-edit">
+                      <img
+                        src="/icons/github.svg"
+                        className="white-svg"
+                        alt="github logo"
+                        width={15}
+                        height={15}
+                      /> Connect Github
+                    </button>
+                  </a>
+                </>
+              )}
 
-                  <div style={{ display: "flex", justifyContent: "center" }}>
-                    <button
-                      className="btn-edit"
-                      type="button"
-                      style={{ display: "block", background: "#F8333C" }}
-                      onClick={async () => {
-                        const c1 = confirm(
-                          "Are you sure you want to delete your Stack account?"
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <button
+                  className="btn-delete"
+                  type="button"
+                  style={{ display: "block" }}
+                  onClick={async () => {
+                    const c1 = confirm(
+                      "Are you sure you want to delete your Stack account?"
+                    );
+                    if (c1) {
+                      const c2 = confirm(
+                        "This action is irreversible. Would you like to continue?"
+                      );
+                      if (c2) {
+                        const c3 = confirm(
+                          "Account deletion is permanant. In order to use Stack again you will need to create a new account. I understand, delete my account."
                         );
-                        if (c1) {
-                          const c2 = confirm(
-                            "This action is irreversible. Would you like to continue?"
-                          );
-                          if (c2) {
-                            const c3 = confirm(
-                              "Account deletion is permanant. In order to use Stack again you will need to create a new account. I understand, delete my account."
-                            );
 
                             if (c3) {
                               try {
@@ -230,88 +229,83 @@ export default function EditProfile({
                                     "Account has been successfully deleted."
                                   );
 
-                                  //this expression will remove cookie from browser
-                                  document.cookie =
-                                    "uid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                                  window.location.assign("/");
-                                }
-                              } catch (e) {
-                                console.log(e);
-                                alert(
-                                  "An error occurred while attempting to delete your account."
-                                );
-                              }
+                              //this expression will remove cookie from browser
+                              document.cookie =
+                                "uid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                              window.location.assign("/");
                             }
+                          } catch (e) {
+                            console.log(e);
+                            alert(
+                              "An error occurred while attempting to delete your account."
+                            );
                           }
                         }
-                      }}
-                    >
-                      <img
-                        src="/icons/delete.svg"
-                        className="white-svg"
-                        alt="delete logo"
-                        width={25}
-                        height={15}
-                      />
-                      Delete Account
-                    </button>
-                  </div>
-
-                  {!loading && (
-                    <>
-                      {!disabledSubmit && (
-                        <div className="modal-header">
-                          <button
-                            className="btn-create"
-                            type="submit"
-                            style={{ width: "100%", marginBottom: "0px" }}
-                            id="edit_profile_btn"
-                          >
-                            <img
-                              src="/icons/update.svg"
-                              className="white-svg"
-                              alt="update logo"
-                              width={25}
-                              height={15}
-                            />
-                            Update Profile
-                          </button>
-                        </div>
-                      )}
-                      {disabledSubmit && (
-                        <div className="modal-header">
-                          <button
-                            className="btn-create"
-                            type="submit"
-                            disabled={true}
-                            style={{
-                              width: "100%",
-                              marginBottom: "0px",
-                              backgroundColor: "grey",
-                              cursor: "default",
-                            }}
-                            id="edit_profile_btn"
-                          >
-                            <img
-                              src="/icons/update.svg"
-                              className="white-svg"
-                              alt="update logo"
-                              width={25}
-                              height={15}
-                            />
-                            Update Profile
-                          </button>
-                        </div>
-                      )}
-                    </>
-                  )}
-                  {loading && <Spinner />}
-                </form>
+                      }
+                    }
+                  }}
+                >
+                  <img
+                    src="/icons/delete.svg"
+                    className="white-svg"
+                    alt="delete logo"
+                    width={15}
+                    height={15}
+                  /> Delete Account
+                </button>
               </div>
-            </div>
-          </section>
-        </>
-      )}
+
+              {!loading && (
+                <>
+                  {!disabledSubmit && (
+                    <div className="modal-header">
+                      <button
+                        className="btn-create"
+                        type="submit"
+                        style={{ width: "100%", marginBottom: "0px" }}
+                        id="edit_profile_btn"
+                      >
+                        <img
+                          src="/icons/update.svg"
+                          className="white-svg"
+                          alt="update logo"
+                          width={15}
+                          height={15}
+                        /> Update Profile
+                      </button>
+                    </div>
+                  )}
+                  {disabledSubmit && (
+                    <div className="modal-header">
+                      <button
+                        className="btn-create"
+                        type="submit"
+                        disabled={true}
+                        style={{
+                          width: "100%",
+                          marginBottom: "0px",
+                          backgroundColor: "grey",
+                          cursor: "default",
+                        }}
+                        id="edit_profile_btn"
+                      >
+                        <img
+                          src="/icons/update.svg"
+                          className="white-svg"
+                          alt="update logo"
+                          width={15}
+                          height={15}
+                        /> Update Profile
+                      </button>
+                    </div>
+                  )}
+                </>
+              )}
+              {loading && <Spinner />}
+            </form>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

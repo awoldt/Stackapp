@@ -30,28 +30,27 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     };
   }
 
-  const pageData: _PAGEDATA_editstack = {
-    header_tags: {
-      title: `Edit ${stackData?.name} | Stack`,
-      description: "Edit stack",
-      open_graph_tags: null,
-      canonical_link: `https://stackapp.xyz/stack/${stackData?.stack_id}/edit`,
-    },
-    saved_stack_data: stackData,
-    repo_select_list:
-      stackData!.github_api_token_used! === null
-        ? null
-        : await GetRepoSelect(
+    const pageData: _PAGEDATA_editstack = {
+      header_tags: {
+        title: `Edit ${stackData?.name} | Stack`,
+        description: "Edit stack",
+        open_graph_tags: null,
+        canonical_link: `https://stackapp.xyz/stack/${stackData?.stack_id}/edit`,
+      },
+      saved_stack_data: stackData,
+      repo_select_list:
+        stackData!.github_api_token_used! === null
+          ? null
+          : await GetRepoSelect(
             stackData?.github_api_token_used!,
             stackData!.uid!
           ),
-    current_repo_id_selected:
-      stackData!.github_api_token_used === null
-        ? null
-        : stackData?.github_repo_id!,
-    tech_values: await ReadTechValuesFromS3(),
-    is_signed_in: await IsUserSignedIn(req.cookies.uid),
-  };
+      current_repo_id_selected:
+        stackData!.github_api_token_used === null
+          ? null
+          : stackData?.github_repo_id!,
+      tech_values: techOffered,
+    };
 
   return {
     props: {
@@ -80,82 +79,76 @@ export default function EditStackpage({
 
   return (
     <>
-      {page_data.is_signed_in === "remove_uid_cookie" && (
-        <InvalidCookie redirectUrl="/signin" />
-      )}
-      {page_data.is_signed_in !== "remove_uid_cookie" && (
-        <>
-          <UniqueHeader
-            title={page_data.header_tags.title}
-            description={page_data.header_tags.description}
-            canonicalLink={page_data.header_tags.canonical_link!}
-            openGraph={page_data.header_tags.open_graph_tags}
-          />
-          <section>
-            {page_data.is_signed_in && <Sidenav isSignedIn={true} />}
-          </section>
-          <section>
-            <div className="background">
-              <img
-                src={"/imgs/background.avif"}
-                alt="background design"
-                className="background-image"
-              ></img>
-            </div>
-            <div className="card-container" style={{ paddingTop: "40px" }}>
-              <div className="card-empty">
-                <h1>Edit Stack</h1>
-                <h5>Edit or change your Stack&apos;s current details.</h5>
-              </div>
-            </div>
-            <form
-              onChange={(e) => {
-                if (disabledSubmit) {
-                  setDisabledSubmit(false);
+      <UniqueHeader
+        title={page_data.header_tags.title}
+        description={page_data.header_tags.description}
+        canonicalLink={page_data.header_tags.canonical_link!}
+        openGraph={page_data.header_tags.open_graph_tags}
+      />
+      <section>
+        <Sidenav isSignedIn={true} />
+      </section>
+      <section>
+        <div className="background">
+          <img
+            src={"/imgs/background.avif"}
+            alt="background design"
+            className="background-image"
+          ></img>
+        </div>
+        <div className="card-container" style={{ paddingTop: "40px" }}>
+          <div className="card-empty">
+            <h1>Edit Stack</h1>
+            <h5>Edit or change your Stack&apos;s current details.</h5>
+          </div>
+        </div>
+        <form
+          onChange={(e) => {
+            if (disabledSubmit) {
+              setDisabledSubmit(false);
+            }
+          }}
+          ref={formRef}
+          onSubmit={async (e) => {
+            e.preventDefault();
+            setUpdateStackLoading(true);
+            try {
+              const req = await fetch(
+                `/api/edit-stack?stack_id=${window.location.pathname.split("/")[2]
+                }`,
+                {
+                  method: "POST",
+                  body: new FormData(formRef.current!),
                 }
-              }}
-              ref={formRef}
-              onSubmit={async (e) => {
-                e.preventDefault();
-                setUpdateStackLoading(true);
-                try {
-                  const req = await fetch(
-                    `/api/edit-stack?stack_id=${
-                      window.location.pathname.split("/")[2]
-                    }`,
-                    {
-                      method: "POST",
-                      body: new FormData(formRef.current!),
-                    }
-                  );
-                  const res = await req.json();
-                  alert(res.msg);
-                  if (req.status === 200) {
-                    window.location.assign(
-                      `/stack/${window.location.pathname.split("/")[2]}`
-                    );
-                  }
-                  setUpdateStackLoading(false);
-                } catch (e) {
-                  console.log(e);
-                  alert("There was an error while editing stack ");
-                  setUpdateStackLoading(false);
-                }
-              }}
-            >
-              <div className="card-container">
-                <div className="create-content">
-                  <label htmlFor="app_title" style={{ width: "100%" }}>
-                    <input
-                      type="text"
-                      id="app_title"
-                      name="app_name"
-                      style={{ marginBottom: "0px" }}
-                      defaultValue={page_data.saved_stack_data?.name}
-                      placeholder="Stack Title"
-                      required
-                    />
-                  </label>
+              );
+              const res = await req.json();
+              alert(res.msg);
+              if (req.status === 200) {
+                window.location.assign(
+                  `/stack/${window.location.pathname.split("/")[2]}`
+                );
+              }
+              setUpdateStackLoading(false);
+            } catch (e) {
+              console.log(e);
+              alert("There was an error while editing stack ");
+              setUpdateStackLoading(false);
+            }
+          }}
+        >
+          <div className="card-container">
+            <div className="create-content">
+              <label htmlFor="app_title" style={{ width: "100%" }}>
+                <input
+                  type="text"
+                  id="app_title"
+                  name="app_name"
+                  style={{ marginBottom: "0px" }}
+                  defaultValue={page_data.saved_stack_data?.name}
+                  placeholder="Stack Title"
+                  required
+                />
+              </label>
 
                   <label htmlFor="app_description" style={{ width: "100%" }}>
                     <div style={{ textAlign: "right" }}>
@@ -648,151 +641,143 @@ export default function EditStackpage({
                     </>
                   )}
 
-                  {page_data.saved_stack_data!.frameworksSelectedData ===
-                    null && (
-                    <>
-                      <img
-                        src="/icons/framework.svg"
-                        alt="api"
-                        width={20}
-                        height={15}
-                        style={{ display: "inline" }}
-                      />
-                      <h5 style={{ display: "inline" }}>
-                        Frameworks used in your tech stack.
-                        <br />
-                        <br />
-                      </h5>
-                      {page_data.tech_values.frameworks.map(
-                        (x: string, index: number) => {
-                          return (
-                            <label htmlFor={x} key={index}>
-                              <input
-                                type="checkbox"
-                                id={x}
-                                name="frameworks_used"
-                                value={x}
-                              />
-                              <span className="checkmark"></span>
-                              {x}
-                            </label>
-                          );
-                        }
-                      )}
-                    </>
-                  )}
-                  <h5>
-                    <br />
-                    <img
-                      src="/icons/delete.svg"
-                      alt="delete logo"
-                      width={25}
-                      height={15}
-                    />
-                    This action is irreversible, deleted Stacks are not
-                    recoverable.
-                  </h5>
-                  {!deleteStackLoading && (
-                    <button
-                      type="button"
-                      className="btn-edit"
-                      id="delete_stack_btn"
-                      style={{
-                        marginTop: "10px",
-                        marginBottom: "0px",
-                        background: "#F8333C",
-                        width: "100%",
-                      }}
-                      onClick={async () => {
-                        try {
-                          setDeleteStackLoading(true);
-                          const req = await fetch("/api/delete-stack");
-                          if (req.status === 200) {
-                            alert("Stack successfully deleted");
-                            window.location.assign("/profile");
-                          }
-                          setDeleteStackLoading(false);
-                        } catch (e) {
-                          console.log(e);
-                          alert("Error while deleting stack");
-                          setDeleteStackLoading(false);
-                        }
-                      }}
-                    >
-                      <img
-                        src="/icons/delete.svg"
-                        className="white-svg"
-                        alt="delete logo"
-                        width={25}
-                        height={15}
-                      />
-                      Delete Stack
-                    </button>
-                  )}
-                  {deleteStackLoading && <Spinner />}
-                </div>
-              </div>
-              {!updateStackLoading && (
+              {page_data.saved_stack_data!.frameworksSelectedData === null && (
                 <>
-                  {disabledSubmit && (
-                    <div className="card-container">
-                      <div
-                        className="card-empty"
-                        style={{ marginTop: "0px", paddingTop: "0px" }}
-                      >
-                        <button
-                          disabled={true}
-                          className="btn-edit"
-                          type="submit"
-                          style={{
-                            width: "100%",
-                            marginBottom: "0px",
-                            backgroundColor: "grey",
-                            cursor: "default",
-                          }}
-                        >
-                          <img
-                            src="/icons/update.svg"
-                            className="white-svg"
-                            alt="update logo"
-                            width={25}
-                            height={15}
+                  <img
+                    src="/icons/framework.svg"
+                    alt="api"
+                    width={20}
+                    height={15}
+                    style={{ display: "inline" }}
+                  />
+                  <h5 style={{ display: "inline" }}>
+                    Frameworks used in your tech stack.
+                    <br />
+                    <br />
+                  </h5>
+                  {page_data.tech_values.frameworks.map(
+                    (x: string, index: number) => {
+                      return (
+                        <label htmlFor={x} key={index}>
+                          <input
+                            type="checkbox"
+                            id={x}
+                            name="frameworks_used"
+                            value={x}
                           />
-                          Update Stack
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                  {!disabledSubmit && (
-                    <div className="card-container">
-                      <div
-                        className="card-empty"
-                        style={{ marginTop: "0px", paddingTop: "0px" }}
-                      >
-                        <button
-                          className="btn-create"
-                          type="submit"
-                          style={{ width: "100%", marginBottom: "0px" }}
-                        >
-                          <img
-                            src="/icons/update.svg"
-                            className="white-svg"
-                            alt="update logo"
-                            width={25}
-                            height={15}
-                          />
-                          Update Stack
-                        </button>
-                      </div>
-                    </div>
+                          <span className="checkmark"></span>
+                          {x}
+                        </label>
+                      );
+                    }
                   )}
                 </>
               )}
-              {updateStackLoading && <Spinner />}
-            </form>
-          </section>
-        </>
-      )}
+              <h5>
+                <br />
+                <img
+                  src="/icons/delete.svg"
+                  alt="delete logo"
+                  width={20}
+                  height={15}
+                />
+                This action is irreversible, deleted Stacks are not recoverable.
+              </h5>
+              {!deleteStackLoading && (
+                <button
+                  type="button"
+                  className="btn-delete"
+                  id="delete_stack_btn"
+                  style={{
+                    marginTop: "10px",
+                    marginBottom: "0px",
+                    width: "100%",
+                  }}
+                  onClick={async () => {
+                    try {
+                      setDeleteStackLoading(true);
+                      const req = await fetch("/api/delete-stack");
+                      if (req.status === 200) {
+                        alert("Stack successfully deleted");
+                        window.location.assign("/profile");
+                      }
+                      setDeleteStackLoading(false);
+                    } catch (e) {
+                      console.log(e);
+                      alert("Error while deleting stack");
+                      setDeleteStackLoading(false);
+                    }
+                  }}
+                >
+                  <img
+                    src="/icons/delete.svg"
+                    className="white-svg"
+                    alt="delete logo"
+                    width={15}
+                    height={15}
+                  /> Delete Stack
+                </button>
+              )}
+              {deleteStackLoading && <Spinner />}
+            </div>
+          </div>
+          {!updateStackLoading && (
+            <>
+              {disabledSubmit && (
+                <div className="card-container">
+                  <div
+                    className="card-empty"
+                    style={{ marginTop: "0px", paddingTop: "0px" }}
+                  >
+                    <button
+                      disabled={true}
+                      className="btn-edit"
+                      type="submit"
+                      style={{
+                        width: "100%",
+                        marginBottom: "0px",
+                        backgroundColor: "grey",
+                        cursor: "default",
+                      }}
+                    >
+                      <img
+                        src="/icons/update.svg"
+                        className="white-svg"
+                        alt="update logo"
+                        width={15}
+                        height={15}
+                      /> Update Stack
+                    </button>
+                  </div>
+                </div>
+              )}
+              {!disabledSubmit && (
+                <div className="card-container">
+                  <div
+                    className="card-empty"
+                    style={{ marginTop: "0px", paddingTop: "0px" }}
+                  >
+                    <button
+                      className="btn-create"
+                      type="submit"
+                      style={{ width: "100%", marginBottom: "0px" }}
+                    >
+                      <img
+                        src="/icons/update.svg"
+                        className="white-svg"
+                        alt="update logo"
+                        width={15}
+                        height={15}
+                      /> Update Stack
+                    </button>
+                  </div>
+                </div>
+              )}
+            </>
+          )}
+          {updateStackLoading && <Spinner />}
+        </form>
+      </section>
     </>
   );
 }

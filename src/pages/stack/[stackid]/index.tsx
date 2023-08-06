@@ -132,10 +132,9 @@ export default function Stackpage({
                     src="/icons/explore.svg"
                     className="white-svg"
                     alt="explore logo"
-                    width={25}
+                    width={15}
                     height={15}
-                  />
-                  Explore Stacks
+                  /> Explore Stacks
                 </a>
               </h2>
             </div>
@@ -252,22 +251,20 @@ export default function Stackpage({
                           }
                         />
 
-                        {page_data.is_signedin_users_stack && (
-                          <>
-                            <a href={`/stack/${page_data.stack_id}/edit`}>
-                              <button className="btn-create">
-                                <img
-                                  src="/icons/edit.svg"
-                                  className="white-svg"
-                                  alt="edit logo"
-                                  width={25}
-                                  height={15}
-                                />
-                                Edit Stack
-                              </button>
-                            </a>
-                          </>
-                        )}
+                    {page_data.is_signedin_users_stack && (
+                      <>
+                        <a href={`/stack/${page_data.stack_id}/edit`} className="btn-create">
+                          <img
+                            src="/icons/edit.svg"
+                            className="white-svg"
+                            alt="edit logo"
+                            width={15}
+                            height={15}
+                            style={{ marginTop: "10px" }}
+                          /> Edit Stack
+                        </a>
+                      </>
+                    )}
 
                         {/* <h5>
                       Stacked {new Date(page_data.created_on).toDateString()}
@@ -305,22 +302,74 @@ export default function Stackpage({
                 </div>
               </section>
 
-              <section>
-                <div
-                  className="card-container"
-                  style={{ paddingBottom: "40px" }}
-                >
-                  <div className="card">
-                    <div className="container">
-                      <h2 style={{ textAlign: "center" }}>Languages</h2>
+          <section>
+            <div className="card-container" style={{ paddingBottom: "40px" }}>
+              <div className="card">
+                <div className="container">
+                  <h2 style={{ textAlign: "center" }}>
+                    <img
+                      src="/icons/code.svg"
+                      alt="api"
+                      width={25}
+                      height={25}
+                      style={{ display: "inline" }}
+                    /> Languages
+                  </h2>
+
+                  <h5 style={{ textAlign: "center" }}>
+                    Languages used in the development of this tech Stack.
+                  </h5>
+                  <div
+                    className="grid-container"
+                    style={{ paddingBottom: "40px" }}
+                  >
+                    {page_data.languages_used.map(
+                      (x: _nameWithLogo, index: number) => {
+                        return (
+                          <div
+                            className="grid-item"
+                            key={index}
+                            style={{
+                              marginBottom: "40px",
+                            }}
+                          >
+                            <img src={x.logo_img_src} alt={`${x.name} logo`} />
+                            <span>
+                              <p
+                                style={{
+                                  paddingTop: "14px",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {x.name}
+                              </p>
+                            </span>
+                          </div>
+                        );
+                      }
+                    )}
+                  </div>
+
+                  {page_data.databases_used !== null && (
+                    <>
+                      <h2 style={{ textAlign: "center" }}>
+                        <img
+                          src="/icons/database-fill.svg"
+                          alt="api"
+                          width={25}
+                          height={25}
+                          style={{ display: "inline" }}
+                        /> Databases
+                      </h2>
+
                       <h5 style={{ textAlign: "center" }}>
-                        Languages used in the development of this tech Stack.
+                        Databases used in the development of this tech Stack.
                       </h5>
                       <div
                         className="grid-container"
                         style={{ paddingBottom: "40px" }}
                       >
-                        {page_data.languages_used.map(
+                        {page_data.databases_used.map(
                           (x: _nameWithLogo, index: number) => {
                             return (
                               <div
@@ -349,183 +398,166 @@ export default function Stackpage({
                           }
                         )}
                       </div>
+                    </>
+                  )}
 
-                      {page_data.databases_used !== null && (
-                        <>
-                          <h2 style={{ textAlign: "center" }}>Databases</h2>
-                          <h5 style={{ textAlign: "center" }}>
-                            Databases used in the development of this tech
-                            Stack.
-                          </h5>
-                          <div
-                            className="grid-container"
-                            style={{ paddingBottom: "40px" }}
-                          >
-                            {page_data.databases_used.map(
-                              (x: _nameWithLogo, index: number) => {
-                                return (
-                                  <div
-                                    className="grid-item"
-                                    key={index}
+                  {page_data.apis_used !== null && (
+                    <>
+                      <h2 style={{ textAlign: "center" }}>
+                        <img
+                          src="/icons/api.svg"
+                          alt="api"
+                          width={25}
+                          height={25}
+                          style={{ display: "inline" }}
+                        /> APIs
+                      </h2>
+
+                      <h5 style={{ textAlign: "center" }}>
+                        APIs used in the development of this tech Stack.
+                      </h5>
+                      <div
+                        className="grid-container"
+                        style={{ paddingBottom: "40px" }}
+                      >
+                        {page_data.apis_used.map(
+                          (x: _nameWithLogo, index: number) => {
+                            return (
+                              <div
+                                className="grid-item"
+                                key={index}
+                                style={{
+                                  marginBottom: "40px",
+                                }}
+                              >
+                                <img
+                                  src={x.logo_img_src}
+                                  alt={`${x.name} logo`}
+                                />
+                                <span>
+                                  <p
                                     style={{
-                                      marginBottom: "40px",
+                                      paddingTop: "14px",
+                                      textAlign: "center",
                                     }}
                                   >
-                                    <img
-                                      src={x.logo_img_src}
-                                      alt={`${x.name} logo`}
-                                    />
-                                    <span>
-                                      <p
-                                        style={{
-                                          paddingTop: "14px",
-                                          textAlign: "center",
-                                        }}
-                                      >
-                                        {x.name}
-                                      </p>
-                                    </span>
-                                  </div>
-                                );
-                              }
-                            )}
-                          </div>
-                        </>
-                      )}
+                                    {x.name}
+                                  </p>
+                                </span>
+                              </div>
+                            );
+                          }
+                        )}
+                      </div>
+                    </>
+                  )}
 
-                      {page_data.apis_used !== null && (
-                        <>
-                          <h2 style={{ textAlign: "center" }}>APIs</h2>
-                          <h5 style={{ textAlign: "center" }}>
-                            APIs used in the development of this tech Stack.
-                          </h5>
-                          <div
-                            className="grid-container"
-                            style={{ paddingBottom: "40px" }}
-                          >
-                            {page_data.apis_used.map(
-                              (x: _nameWithLogo, index: number) => {
-                                return (
-                                  <div
-                                    className="grid-item"
-                                    key={index}
+                  {page_data.clouds_used !== null && (
+                    <>
+                      <h2 style={{ textAlign: "center" }}>
+                        <img
+                          src="/icons/cloud-fill.svg"
+                          alt="api"
+                          width={25}
+                          height={25}
+                          style={{ display: "inline" }}
+                        /> Cloud Services
+                      </h2>
+
+                      <h5 style={{ textAlign: "center" }}>
+                        Cloud Services used in the development of this tech
+                        Stack.
+                      </h5>
+                      <div
+                        className="grid-container"
+                        style={{ paddingBottom: "40px" }}
+                      >
+                        {page_data.clouds_used.map(
+                          (x: _nameWithLogo, index: number) => {
+                            return (
+                              <div
+                                className="grid-item"
+                                key={index}
+                                style={{
+                                  marginBottom: "40px",
+                                }}
+                              >
+                                <img
+                                  src={x.logo_img_src}
+                                  alt={`${x.name} logo`}
+                                />
+                                <span>
+                                  <p
                                     style={{
-                                      marginBottom: "40px",
+                                      paddingTop: "14px",
+                                      textAlign: "center",
                                     }}
                                   >
-                                    <img
-                                      src={x.logo_img_src}
-                                      alt={`${x.name} logo`}
-                                    />
-                                    <span>
-                                      <p
-                                        style={{
-                                          paddingTop: "14px",
-                                          textAlign: "center",
-                                        }}
-                                      >
-                                        {x.name}
-                                      </p>
-                                    </span>
-                                  </div>
-                                );
-                              }
-                            )}
-                          </div>
-                        </>
-                      )}
+                                    {x.name}
+                                  </p>
+                                </span>
+                              </div>
+                            );
+                          }
+                        )}
+                      </div>
+                    </>
+                  )}
 
-                      {page_data.clouds_used !== null && (
-                        <>
-                          <h2 style={{ textAlign: "center" }}>
-                            Cloud Services
-                          </h2>
-                          <h5 style={{ textAlign: "center" }}>
-                            Cloud Services used in the development of this tech
-                            Stack.
-                          </h5>
-                          <div
-                            className="grid-container"
-                            style={{ paddingBottom: "40px" }}
-                          >
-                            {page_data.clouds_used.map(
-                              (x: _nameWithLogo, index: number) => {
-                                return (
-                                  <div
-                                    className="grid-item"
-                                    key={index}
+                  {page_data.frameworks_used !== null && (
+                    <>
+                      <h2 style={{ textAlign: "center" }}>
+                        <img
+                          src="/icons/framework.svg"
+                          alt="api"
+                          width={25}
+                          height={25}
+                          style={{ display: "inline" }}
+                        /> Frameworks
+                      </h2>
+
+                      <h5 style={{ textAlign: "center" }}>
+                        Frameworks used in the development of this tech Stack.
+                      </h5>
+                      <div
+                        className="grid-container"
+                        style={{ paddingBottom: "40px" }}
+                      >
+                        {page_data.frameworks_used.map(
+                          (x: _nameWithLogo, index: number) => {
+                            return (
+                              <div
+                                className="grid-item"
+                                key={index}
+                                style={{
+                                  marginBottom: "40px",
+                                }}
+                              >
+                                <img
+                                  src={x.logo_img_src}
+                                  alt={`${x.name} logo`}
+                                />
+                                <span>
+                                  <p
                                     style={{
-                                      marginBottom: "40px",
+                                      paddingTop: "14px",
+                                      textAlign: "center",
                                     }}
                                   >
-                                    <img
-                                      src={x.logo_img_src}
-                                      alt={`${x.name} logo`}
-                                    />
-                                    <span>
-                                      <p
-                                        style={{
-                                          paddingTop: "14px",
-                                          textAlign: "center",
-                                        }}
-                                      >
-                                        {x.name}
-                                      </p>
-                                    </span>
-                                  </div>
-                                );
-                              }
-                            )}
-                          </div>
-                        </>
-                      )}
-
-                      {page_data.frameworks_used !== null && (
-                        <>
-                          <h2 style={{ textAlign: "center" }}>Frameworks</h2>
-                          <h5 style={{ textAlign: "center" }}>
-                            Frameworks used in the development of this tech
-                            Stack.
-                          </h5>
-                          <div
-                            className="grid-container"
-                            style={{ paddingBottom: "40px" }}
-                          >
-                            {page_data.frameworks_used.map(
-                              (x: _nameWithLogo, index: number) => {
-                                return (
-                                  <div
-                                    className="grid-item"
-                                    key={index}
-                                    style={{
-                                      marginBottom: "40px",
-                                    }}
-                                  >
-                                    <img
-                                      src={x.logo_img_src}
-                                      alt={`${x.name} logo`}
-                                    />
-                                    <span>
-                                      <p
-                                        style={{
-                                          paddingTop: "14px",
-                                          textAlign: "center",
-                                        }}
-                                      >
-                                        {x.name}
-                                      </p>
-                                    </span>
-                                  </div>
-                                );
-                              }
-                            )}
-                          </div>
-                        </>
-                      )}
-                    </div>
-                  </div>
+                                    {x.name}
+                                  </p>
+                                </span>
+                              </div>
+                            );
+                          }
+                        )}
+                      </div>
+                    </>
+                  )}
                 </div>
-              </section>
+              </div>
+            </div>
+          </section>
 
               {Array.isArray(page_data.commit_logs) && (
                 <section>

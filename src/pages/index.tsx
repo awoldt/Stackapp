@@ -46,67 +46,46 @@ export default function Home({
 }) {
   return (
     <>
-      {page_data.is_signed_in === "remove_uid_cookie" && (
-        <InvalidCookie redirectUrl="/" />
-      )}
-      {page_data.is_signed_in !== "remove_uid_cookie" && (
-        <>
-          <UniqueHeader
-            title={page_data.header_tags.title}
-            description={page_data.header_tags.description}
-            canonicalLink={page_data.header_tags.canonical_link!}
-            openGraph={page_data.header_tags.open_graph_tags}
-          />
-          <main>
-            <section>
-              <div className="background">
-                <img
-                  src={"/imgs/background.avif"}
-                  alt="background design"
-                  className="background-image"
-                ></img>
-              </div>
-              <div className="card-container">
-                <div className="card-empty" style={{ paddingTop: "0px" }}>
-                  <h1 className="splash">Stack</h1>
-                  <h4 style={{ paddingBottom: "20px" }}>
-                    A platform designed for modern tech stack visualization.
-                  </h4>
-                </div>
-              </div>
+      <UniqueHeader
+        title={page_data.header_tags.title}
+        description={page_data.header_tags.description}
+        canonicalLink={page_data.header_tags.canonical_link!}
+        openGraph={page_data.header_tags.open_graph_tags}
+      />
+      <main>
+        <section>
+          <div className="background">
+            <img
+              src={"/imgs/background.avif"}
+              alt="background design"
+              className="background-image"
+            ></img>
+          </div>
+          <div className="card-container">
+            <div className="card-empty">
+              <h1 className="splash">Stack</h1>
+              <h4 style={{ paddingBottom: "20px" }}>
+                A platform designed for modern tech stack visualization.
+              </h4>
+            </div>
+          </div>
 
-              <div
-                style={{
-                  width: "100%",
-                  textAlign: "center",
-                  paddingBottom: "10px",
-                }}
-              >
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                  <a href={"/signin"} className="btn-landing">
-                    <img
-                      src="/icons/signin.svg"
-                      className="white-svg"
-                      alt="signin logo"
-                      width={25}
-                      height={15}
-                    />
-                    Sign In
-                  </a>
-                </div>
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                  <a href={"/signup"} className="btn-landing">
-                    <img
-                      src="/icons/signup.svg"
-                      className="white-svg"
-                      alt="signup logo"
-                      width={25}
-                      height={15}
-                    />
-                    Sign Up
-                  </a>
-                </div>
-              </div>
+          <div className="btn-container-landing">
+            <a
+              href={"/signin"}
+              className="btn-landing"
+              style={{ marginRight: "10px" }}
+            >
+              <img src="/icons/signin.svg" className="white-svg" alt="signin logo" width={15} height={15} /> Sign In
+            </a>
+            <a
+              href={"/signup"}
+              className="btn-landing"
+              style={{ marginLeft: "10px" }}
+            >
+              <img src="/icons/signup.svg" className="white-svg" alt="signup logo" width={15} height={15} /> Sign Up
+            </a>
+          </div>
 
               <div className="card-container" style={{ paddingTop: "20px" }}>
                 <div className="card">
@@ -136,15 +115,15 @@ export default function Home({
                 </div>
               </div>
 
-              <div className="card-container" style={{ paddingTop: "0px" }}>
-                <div className="card-empty" style={{ paddingTop: "0px" }}>
-                  <h2>
-                    Visualize your Tech Stacks
-                    <br />
-                    <img src="/icons/expand.svg" alt="expand icon" width={15} />
-                  </h2>
-                </div>
-              </div>
+          {/* <div className="card-container" style={{ paddingTop: "0px" }}>
+            <div className="card-empty" style={{ paddingTop: "0px" }}>
+              <h2>
+                Visualize your Tech Stacks
+                <br />
+                <img src="/icons/expand.svg" alt="expand icon" width={15} />
+              </h2>
+            </div>
+          </div>
 
               <div className="card-container" id="landing">
                 <div
@@ -159,22 +138,34 @@ export default function Home({
                 </div>
               </div>
 
-              <div className="card-container" id="landing-mobile">
-                <div
-                  className="card-empty"
-                  style={{ display: "flex", justifyContent: "center" }}
-                >
-                  <img
-                    src="/imgs/landing-mobile.png"
-                    style={{ width: "105%", textAlign: "center" }}
-                    alt="Stack Example"
-                  />
-                </div>
-              </div>
-            </section>
-          </main>
-        </>
-      )}
+          <div className="card-container" id="landing-mobile">
+            <div
+              className="card-empty"
+              style={{ display: "flex", justifyContent: "center" }}
+            >
+              <img
+                src="/imgs/landing-mobile.png"
+                style={{ width: "105%", textAlign: "center" }}
+                alt="Stack Example"
+              />
+            </div>
+          </div>
+
+          <div className="card-container">
+            <div
+              className="card-empty"
+              style={{ paddingTop: "0px" }}
+            >
+              <a
+                href={"/explore"}>
+                <button className="btn-like" style={{ fontSize: "42px" }}>
+                  <img src="/icons/explore.svg" className="white-svg" alt="explore logo" width={30} height={30} /> Explore Stacks
+                </button>
+              </a>
+            </div>
+          </div> */}
+        </section>
+      </main>
     </>
   );
 }

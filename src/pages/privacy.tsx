@@ -65,26 +65,25 @@ export default function Privacy({
                 </div>
               </div>
 
-              <div className="card-container">
-                <div className="card">
-                  <p>
-                    This Privacy Policy explains how we collect, use, share, and
-                    protect your data when you use our web application to create
-                    and share tech stacks. By accessing or using Stack, you
-                    consent to the practices described in this Privacy Policy.
-                    Stack may update this Privacy Policy from time to time. We
-                    will notify you of any material changes through our platform
-                    or via email. It is your responsibility to review the
-                    Privacy Policy periodically for any updates. By using Stack,
-                    you agree to the terms of this Privacy Policy. We encourage
-                    you to read this policy carefullyand make informed decisions
-                    about your privacy while using our web app.If you have any
-                    questions, concerns, or requests regarding this Privacy
-                    Policy or the data we hold about you, please contact us at
-                    [Contact Email].
-                    <br />
-                    <br />
-                  </p>
+          <div className="card-container">
+            <div className="card">
+              <p>
+                This Privacy Policy explains how we collect, use, share, and
+                protect your data when you use our web application to create and
+                share tech stacks. By accessing or using Stack, you consent
+                to the practices described in this Privacy Policy. Stack may
+                update this Privacy Policy from time to time. We will notify you
+                of any material changes through our platform or via email. It is
+                your responsibility to review the Privacy Policy periodically
+                for any updates. By using Stack, you agree to the terms of
+                this Privacy Policy. We encourage you to read this policy
+                carefullyand make informed decisions about your privacy while
+                using our web app.If you have any questions, concerns, or
+                requests regarding this Privacy Policy or the data we hold about
+                you, please contact us at [stackapphelp@gmail.com].
+                <br />
+                <br />
+              </p>
 
                   <h2>Personal Information</h2>
                   <p>
