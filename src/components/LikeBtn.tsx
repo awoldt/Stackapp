@@ -32,9 +32,8 @@ export default function LikeBtn({
               src="/icons/like.svg"
               className="white-svg"
               alt="likes icon"
-              width={25}
-              height={15} />
-            {stackNumOfLikes}
+              width={15}
+              height={15} /> {stackNumOfLikes}
           </button>
         </>
       )}

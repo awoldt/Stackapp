@@ -438,8 +438,41 @@
         }
     }
 
+    .explore-container {
+        display: grid;
+        gap: 24px 48px;
+        padding: 20px;
+        padding-bottom: 20px;
+        justify-content: center;
+    }
+
+    @media (max-width: 950px) {
+        .explore-container {
+            padding: 0px;
+        }
+    }
+
+    .explore-item {
+        background: none;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border-radius: 20px;
+        width: 840px;
+        height: 420px;
+        margin-bottom: 100px;
+    }
+
+    @media (max-width: 950px) {
+        .explore-item {
+            width: 100%;
+            height: 420px;
+        }
+    }
+
     .grid-item>img,
-    .stack-item>img {
+    .stack-item>img,
+    .explore-item>img {
         cursor: pointer;
         overflow: hidden;
         object-fit: contain;
@@ -451,13 +484,15 @@
         transition: 250ms ease-in-out;
     }
 
+    .stack-item>img,
+    .explore-item>img {
+        padding: 0px;
+        object-fit: cover;
+    }
+
     .grid-item>img:hover {
         padding: 5px;
         transition: 250ms ease-in-out;
-    }
-
-    .stack-item>img {
-        border-radius: 20px;
     }
 
     .card-container {

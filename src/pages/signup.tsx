@@ -108,18 +108,6 @@ export default function CreateAccount({
                         }
                       }}
                     >
-                      {/* <label style={{ marginBottom: "0px" }}>Profile Picture</label>
-                  <input
-                    type="file"
-                    name="profile_icon"
-                    onChange={(e) => {
-                      if (e.target.files !== undefined) {
-                        setHasProfilePicture(true);
-                      } else {
-                        setHasProfilePicture(false);
-                      }
-                    }}
-                  /> */}
                       <input
                         type="email"
                         name="app_signup_email"
@@ -128,9 +116,23 @@ export default function CreateAccount({
                       />
                       <input
                         type="text"
+                        name="app_signup_firstname"
+                        placeholder="First Name"
+                        maxLength={25}
+                        required
+                      />
+                      <input
+                        type="text"
+                        name="app_signup_lastname"
+                        placeholder="Last Name"
+                        maxLength={25}
+                        required
+                      />
+                      <input
+                        type="text"
                         name="app_signup_username"
                         placeholder="Username"
-                        maxLength={100}
+                        maxLength={25}
                         required
                       />
                       <input
