@@ -46,7 +46,8 @@ export async function GetUserProfile(
   //returns the current signed in users info
   //profile data is pulled from custom profiles collection
 
-  if (uid === undefined) {
+  //no cookie or empty cookie
+  if (uid === undefined || uid === "") {
     return null;
   }
 
@@ -231,23 +232,36 @@ export function GenerateNamesWithLogos(
 
 export async function IsUserSignedIn(
   uidCookie: string | undefined
-): Promise<true | null> {
+): Promise<boolean | "remove_uid_cookie"> {
   //checks to see if user is currently signed in
+  //returning "account_does_not_exist" means delete uid cookie from browser
+
   try {
     //no cookie
     if (uidCookie === undefined) {
-      return null;
+      return false;
+    }
+    //cookie is empty
+    //remove cookie from browser
+    if (uidCookie === "") {
+      return "remove_uid_cookie";
     }
 
     //check is uid exists in database
     //if there is an error with this, will throw new error
-    await db.collection("profiles").doc(uidCookie).get();
+    if ((await db.collection("profiles").doc(uidCookie).get()).exists) {
+      return true;
+    }
 
-    return true;
+    //cookie stored does not exist in database
+    //remove cookie from browser
+    return "remove_uid_cookie";
   } catch (e) {
     console.log(e);
     console.log("There was an error while checking if user is signed in ");
-    return null;
+    //error
+    //remove cookie from browser
+    return "remove_uid_cookie";
   }
 }
 

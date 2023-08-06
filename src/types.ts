@@ -108,7 +108,7 @@ interface _headerTags {
 export interface DEFAULT_PAGE_LAYOUT {
   //every page data must have these properties
   header_tags: _headerTags;
-  is_signed_in?: boolean; //only needed on pages that will render different ui based on user being signed in
+  is_signed_in: boolean | "remove_uid_cookie";
 }
 
 export interface __PAGEDATA_account extends DEFAULT_PAGE_LAYOUT {
@@ -158,6 +158,7 @@ export interface _PAGEDATA_publicprofile extends DEFAULT_PAGE_LAYOUT {
   user_profile_data: _userProfile | null;
   user_stacks: Partial<_stack>[] | null | 0; //0 means user does not have any stacks
   is_signed_in_users_profile: boolean;
+  profile_username: string
 }
 
 export interface _PAGEDATA_editstack extends DEFAULT_PAGE_LAYOUT {
