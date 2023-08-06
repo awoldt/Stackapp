@@ -67,8 +67,8 @@ export default async function handler(
           const profileAccount: _userProfile = {
             uid: NEW_UID,
             bio: null,
-            first_name: null,
-            last_name: null,
+            first_name: unverifiedDetails!.first_name,
+            last_name: unverifiedDetails!.last_name,
             liked_stacks: null,
             email: unverifiedDetails!.email,
             password: unverifiedDetails!.password,

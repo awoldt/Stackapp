@@ -147,21 +147,13 @@ export default function EditProfile({
 
                   <input
                     type="text"
-                    defaultValue={
-                      page_data.user_data?.first_name === null
-                        ? ""
-                        : page_data.user_data?.first_name
-                    }
+                    defaultValue={page_data.user_data?.first_name}
                     name="fname"
                   />
 
                   <input
                     type="text"
-                    defaultValue={
-                      page_data.user_data?.last_name === null
-                        ? ""
-                        : page_data.user_data?.last_name
-                    }
+                    defaultValue={page_data.user_data?.last_name}
                     name="lname"
                   />
 

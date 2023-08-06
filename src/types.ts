@@ -55,8 +55,8 @@ export interface _userProfile {
   password: string;
   bio: string | null;
   username: string;
-  first_name: string | null;
-  last_name: string | null;
+  first_name: string;
+  last_name: string;
   github_access_token: string | null; //if not null, user has connected their github account to stackapp
   /* 
       github_account_id is used to keep track of all the github accounts 
@@ -77,8 +77,8 @@ export interface _creator {
   username: string;
   profile_pic: string;
   href: string;
-  first_name: string | null;
-  last_name: string | null;
+  first_name: string;
+  last_name: string;
 }
 
 export interface _explorepageCategories {

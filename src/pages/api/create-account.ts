@@ -22,11 +22,11 @@ export default async function handler(
         .json({ msg: "There was an error while processing upload" });
     }
 
-    //make sure username is not more than 100 characters
-    if (fields.app_signup_username[0].trim().length > 100) {
+    //make sure username is not more than 25 characters
+    if (fields.app_signup_username[0].trim().length > 25) {
       return res
         .status(400)
-        .json({ msg: "Username cannot be more than 100 characters" });
+        .json({ msg: "Username cannot be more than 25 characters" });
     }
 
     const a = await CreateAccount(fields, files);

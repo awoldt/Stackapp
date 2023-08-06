@@ -127,15 +127,10 @@ export default function Profilepage({
                           />
                         )}
 
-                        {page_data.user_profile_data!.first_name !== null && (
-                          <h1>
-                            {page_data.user_profile_data!.first_name}{" "}
-                            {page_data.user_profile_data!.last_name !==
-                              null && (
-                              <>{page_data.user_profile_data!.last_name}</>
-                            )}
-                          </h1>
-                        )}
+                        <h1>
+                          {page_data.user_profile_data!.first_name}{" "}
+                          {page_data.user_profile_data!.last_name}
+                        </h1>
 
                         <h5 style={{ marginBottom: "20px" }}>
                           @{page_data.user_profile_data!.username}

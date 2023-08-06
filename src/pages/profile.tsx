@@ -105,15 +105,12 @@ export default function Profile({
                             />
                           )}
 
-                          {page_data.user_profile_data.first_name !== null && (
-                            <h1>
-                              {page_data.user_profile_data.first_name}{" "}
-                              {page_data.user_profile_data.last_name !==
-                                null && (
-                                <>{page_data.user_profile_data.last_name}</>
-                              )}
-                            </h1>
-                          )}
+                          <h1>
+                            {page_data.user_profile_data.first_name}{" "}
+                            {page_data.user_profile_data.last_name !== null && (
+                              <>{page_data.user_profile_data.last_name}</>
+                            )}
+                          </h1>
 
                           <h5 style={{ marginBottom: "20px" }}>
                             @{page_data.user_profile_data.username}
@@ -354,7 +351,9 @@ export default function Profile({
                             </>
                           )}
                         {page_data.users_liked_stacks === "no_liked_stacks" && (
-                          <p><i>You have not liked any stacks yet</i></p>
+                          <p>
+                            <i>You have not liked any stacks yet</i>
+                          </p>
                         )}
                       </div>
                     </div>

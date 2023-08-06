@@ -497,8 +497,8 @@ export async function GetCreatorDetails(userUid: string) {
       username: "error",
       profile_pic: "/icons/noprofile.png",
       href: "",
-      first_name: null,
-      last_name: null,
+      first_name: "error",
+      last_name: "error",
     };
 
     return x;
@@ -1275,6 +1275,8 @@ export async function CreateAccount(
       created_on: Date.now(),
       profile_pic: iconUpload === null ? null : iconUpload![0],
       profile_pic_filename: iconUpload === null ? null : iconUpload![1],
+      first_name: fields.app_signup_firstname[0].trim(),
+      last_name: fields.app_signup_lastname[0].trim(),
     });
 
     const emailInput = {
