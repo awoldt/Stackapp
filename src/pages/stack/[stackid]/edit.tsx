@@ -132,7 +132,7 @@ export default function EditStackpage({
             <div className="card-container" style={{ paddingTop: "40px" }}>
               <div className="card-empty">
                 <h1>Edit Stack</h1>
-                <h5>Edit or change your Stack&apos;s current details.</h5>
+                <p>Edit or change your Stack&apos;s current details.</p>
               </div>
             </div>
             <form
@@ -324,11 +324,11 @@ export default function EditStackpage({
                     height={15}
                     style={{ display: "inline" }}
                   />
-                  <h5 style={{ display: "inline" }}>
+                  <p style={{ display: "inline" }}>
                     Languages used in your tech stack.
                     <br />
                     <br />
-                  </h5>
+                  </p>
                   {page_data.saved_stack_data?.languagesSelectedData[0].map(
                     (x: string, index: number) => {
                       return (
@@ -375,11 +375,11 @@ export default function EditStackpage({
                         height={15}
                         style={{ display: "inline" }}
                       />
-                      <h5 style={{ display: "inline" }}>
+                      <p style={{ display: "inline" }}>
                         Databases used in your tech stack.
                         <br />
                         <br />
-                      </h5>
+                      </p>
                       {page_data.saved_stack_data?.databasesSelectedData[0].map(
                         (x: string, index: number) => {
                           return (
@@ -427,11 +427,11 @@ export default function EditStackpage({
                         height={15}
                         style={{ display: "inline" }}
                       />
-                      <h5 style={{ display: "inline" }}>
+                      <p style={{ display: "inline" }}>
                         Databases used in your tech stack.
                         <br />
                         <br />
-                      </h5>
+                      </p>
                       {page_data.tech_values.databases.map(
                         (x: string, index: number) => {
                           return (
@@ -461,11 +461,11 @@ export default function EditStackpage({
                         height={15}
                         style={{ display: "inline" }}
                       />
-                      <h5 style={{ display: "inline" }}>
+                      <p style={{ display: "inline" }}>
                         APIs used in your tech stack.
                         <br />
                         <br />
-                      </h5>
+                      </p>
                       {page_data.saved_stack_data?.apisSelectedData[0].map(
                         (x: string, index: number) => {
                           return (
@@ -512,11 +512,11 @@ export default function EditStackpage({
                         height={15}
                         style={{ display: "inline" }}
                       />
-                      <h5 style={{ display: "inline" }}>
+                      <p style={{ display: "inline" }}>
                         APIs used in your tech stack.
                         <br />
                         <br />
-                      </h5>
+                      </p>
                       {page_data.tech_values.apis.map(
                         (x: string, index: number) => {
                           return (
@@ -546,11 +546,11 @@ export default function EditStackpage({
                         height={15}
                         style={{ display: "inline" }}
                       />
-                      <h5 style={{ display: "inline" }}>
+                      <p style={{ display: "inline" }}>
                         Cloud Deployment Services used in your tech stack.
                         <br />
                         <br />
-                      </h5>
+                      </p>
                       {page_data.saved_stack_data?.cloudsSelectedData[0].map(
                         (x: string, index: number) => {
                           return (
@@ -597,11 +597,11 @@ export default function EditStackpage({
                         height={15}
                         style={{ display: "inline" }}
                       />
-                      <h5 style={{ display: "inline" }}>
+                      <p style={{ display: "inline" }}>
                         Cloud Deployment Services used in your tech stack.
                         <br />
                         <br />
-                      </h5>
+                      </p>
                       {page_data.tech_values.clouds.map(
                         (x: string, index: number) => {
                           return (
@@ -632,11 +632,11 @@ export default function EditStackpage({
                         height={15}
                         style={{ display: "inline" }}
                       />
-                      <h5 style={{ display: "inline" }}>
+                      <p style={{ display: "inline" }}>
                         Frameworks used in your tech stack.
                         <br />
                         <br />
-                      </h5>
+                      </p>
                       {page_data.saved_stack_data?.frameworksSelectedData[0].map(
                         (x: string, index: number) => {
                           return (
@@ -685,11 +685,11 @@ export default function EditStackpage({
                         height={15}
                         style={{ display: "inline" }}
                       />
-                      <h5 style={{ display: "inline" }}>
+                      <p style={{ display: "inline" }}>
                         Frameworks used in your tech stack.
                         <br />
                         <br />
-                      </h5>
+                      </p>
                       {page_data.tech_values.frameworks.map(
                         (x: string, index: number) => {
                           return (
@@ -708,7 +708,7 @@ export default function EditStackpage({
                       )}
                     </>
                   )}
-                  <h5>
+                  <p>
                     <br />
                     <img
                       src="/icons/delete.svg"
@@ -718,7 +718,7 @@ export default function EditStackpage({
                     />
                     This action is irreversible, deleted Stacks are not
                     recoverable.
-                  </h5>
+                  </p>
                   {!deleteStackLoading && (
                     <button
                       type="button"

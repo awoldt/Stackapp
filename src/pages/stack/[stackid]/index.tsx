@@ -180,23 +180,21 @@ export default function Stackpage({
                         <h1>{page_data.app_name}</h1>
 
                         {page_data.website_url !== null && (
-                          <h4>
-                            <a
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              href={page_data.website_url}
-                              className="nav-element"
-                              style={{ paddingLeft: "0px", padding: "10px" }}
-                            >
-                              {/* <img
-                            src="/icons/link.svg"
-                            alt="link icon"
-                            width={20}
-                            height={15}
-                          />{" "} */}
-                              {new URL(page_data.website_url).hostname}
-                            </a>
-                          </h4>
+                          <a
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href={page_data.website_url}
+                            className="nav-element"
+                            style={{ paddingLeft: "0px", padding: "10px" }}
+                          >
+                            <img
+                              src="/icons/link.svg"
+                              alt="link icon"
+                              width={20}
+                              height={15}
+                            />{" "}
+                            {new URL(page_data.website_url).hostname}
+                          </a>
                         )}
 
                         <div className="user-profile-containerParent">
@@ -319,9 +317,9 @@ export default function Stackpage({
                         Languages
                       </h2>
 
-                      <h5 style={{ textAlign: "center" }}>
+                      <p style={{ textAlign: "center" }}>
                         Languages used in the development of this tech Stack.
-                      </h5>
+                      </p>
                       <div
                         className="grid-container"
                         style={{ paddingBottom: "40px" }}
@@ -369,10 +367,10 @@ export default function Stackpage({
                             Databases
                           </h2>
 
-                          <h5 style={{ textAlign: "center" }}>
+                          <p style={{ textAlign: "center" }}>
                             Databases used in the development of this tech
                             Stack.
-                          </h5>
+                          </p>
                           <div
                             className="grid-container"
                             style={{ paddingBottom: "40px" }}
@@ -422,9 +420,9 @@ export default function Stackpage({
                             APIs
                           </h2>
 
-                          <h5 style={{ textAlign: "center" }}>
+                          <p style={{ textAlign: "center" }}>
                             APIs used in the development of this tech Stack.
-                          </h5>
+                          </p>
                           <div
                             className="grid-container"
                             style={{ paddingBottom: "40px" }}
@@ -474,10 +472,10 @@ export default function Stackpage({
                             Cloud Services
                           </h2>
 
-                          <h5 style={{ textAlign: "center" }}>
+                          <p style={{ textAlign: "center" }}>
                             Cloud Services used in the development of this tech
                             Stack.
-                          </h5>
+                          </p>
                           <div
                             className="grid-container"
                             style={{ paddingBottom: "40px" }}
@@ -527,10 +525,10 @@ export default function Stackpage({
                             Frameworks
                           </h2>
 
-                          <h5 style={{ textAlign: "center" }}>
+                          <p style={{ textAlign: "center" }}>
                             Frameworks used in the development of this tech
                             Stack.
-                          </h5>
+                          </p>
                           <div
                             className="grid-container"
                             style={{ paddingBottom: "40px" }}
@@ -576,10 +574,10 @@ export default function Stackpage({
                   <div className="card-container">
                     <div className="card">
                       <h2 style={{ textAlign: "center" }}>Github</h2>
-                      <h5 style={{ textAlign: "center", marginBottom: "20px" }}>
+                      <p style={{ textAlign: "center", marginBottom: "20px" }}>
                         Commit history towards the development of this tech
                         Stack.
-                      </h5>
+                      </p>
                       {page_data.commit_logs.map(
                         (x: _repoCommitLogs, index: number) => {
                           return (

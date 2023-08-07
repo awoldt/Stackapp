@@ -121,9 +121,9 @@ export default function Profile({
                             )}
                           </h1>
 
-                          <h5 style={{ marginBottom: "20px" }}>
+                          <span style={{ marginBottom: "20px" }}>
                             @{page_data.user_profile_data.username}
-                          </h5>
+                          </span>
 
                           {page_data.user_profile_data.bio !== null && (
                             <p style={{ marginBottom: "20px" }}>
@@ -165,7 +165,7 @@ export default function Profile({
                         }
                       }}
                     >
-                      <h4 style={{ color: "white" }}>
+                      <span style={{ color: "white" }}>
                         <img
                           className="white-svg"
                           src="/icons/stack.svg"
@@ -174,7 +174,7 @@ export default function Profile({
                           height={20}
                         />{" "}
                         Stacks
-                      </h4>
+                      </span>
                     </button>
                     <button
                       id="btn-savedStacks"
@@ -186,7 +186,7 @@ export default function Profile({
                         }
                       }}
                     >
-                      <h4 style={{ color: "white" }}>
+                      <span style={{ color: "white" }}>
                         <img
                           className="white-svg"
                           src="/icons/like.svg"
@@ -195,7 +195,7 @@ export default function Profile({
                           height={20}
                         />{" "}
                         Liked
-                      </h4>
+                      </span>
                     </button>
                   </div>
 
@@ -219,7 +219,7 @@ export default function Profile({
                                     paddingBottom: "80px",
                                   }}
                                 >
-                                  <h3>
+                                  <h2>
                                     <img
                                       src="/icons/stack.svg"
                                       alt="globe icon"
@@ -227,12 +227,12 @@ export default function Profile({
                                       height={35}
                                     />{" "}
                                     Stacks
-                                  </h3>
-                                  <h5>
+                                  </h2>
+                                  <span>
                                     0 Stacks
                                     <br />
                                     <br />
-                                  </h5>
+                                  </span>
                                   <a href={"/create"} className="btn-create">
                                     <img
                                       src="/icons/create.svg"
@@ -260,7 +260,7 @@ export default function Profile({
                                   className="card"
                                   style={{ textAlign: "center" }}
                                 >
-                                  <h3>
+                                  <h2>
                                     <img
                                       src="/icons/stack.svg"
                                       alt="globe icon"
@@ -268,12 +268,12 @@ export default function Profile({
                                       height={35}
                                     />{" "}
                                     Stacks
-                                  </h3>
-                                  <h5>
+                                  </h2>
+                                  <span>
                                     {page_data.user_stacks.length} Stacks
                                     <br />
                                     <br />
-                                  </h5>
+                                  </span>
 
                                   {page_data.user_stacks.map(
                                     (x: Partial<_stack>, index: number) => {
@@ -291,9 +291,15 @@ export default function Profile({
                                               />
                                             </div>
                                           </div>
-                                          <h2 style={{ marginBottom: "40px" }}>
+                                          <span
+                                            style={{
+                                              marginBottom: "40px",
+                                              fontWeight: "bold",
+                                              fontSize: "30px",
+                                            }}
+                                          >
                                             {x.name}
-                                          </h2>
+                                          </span>
                                         </a>
                                       );
                                     }
@@ -315,15 +321,19 @@ export default function Profile({
                   )}
 
                   {view === "liked_stacks" && (
-                    <div className="card-container"
+                    <div
+                      className="card-container"
                       id="savedStacks"
                       style={{
                         paddingTop: "0px",
                         paddingBottom: "40px",
                       }}
                     >
-                      <div className="card" style={{ textAlign: "center", paddingBottom: "80px", }}>
-                        <h3>
+                      <div
+                        className="card"
+                        style={{ textAlign: "center", paddingBottom: "80px" }}
+                      >
+                        <h2>
                           <img
                             src="/icons/like.svg"
                             alt="globe icon"
@@ -331,20 +341,22 @@ export default function Profile({
                             height={35}
                           />{" "}
                           Liked
-                        </h3>
-                        <h5>
+                        </h2>
+                        <p>
                           Only you can see what you&apos;ve Liked.
                           <br />
                           <br />
-                        </h5>
+                        </p>
 
                         {page_data.users_liked_stacks !== "no_liked_stacks" &&
                           page_data.users_liked_stacks !== null && (
                             <>
-                              <div className="stack-container"
+                              <div
+                                className="stack-container"
                                 style={{
                                   paddingTop: "40px",
-                                }}>
+                                }}
+                              >
                                 {page_data.users_liked_stacks.map(
                                   (x: _stack, index: number) => {
                                     return (
@@ -354,7 +366,7 @@ export default function Profile({
                                       >
                                         <div className="stack-item">
                                           <img src={x.thumbnail_url} />
-                                          <h2>{x.name}</h2>
+                                          <span>{x.name}</span>
                                         </div>
                                       </a>
                                     );

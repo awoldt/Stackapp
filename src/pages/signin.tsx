@@ -60,12 +60,12 @@ export default function Signin({
               <h1 className="splash">
                 <a href={"/"}>Stack</a>
               </h1>
-              <h5 style={{ paddingBottom: "10px" }}>
+              <p style={{ paddingBottom: "10px" }}>
                 Looking to Stack it?
                 <a href={"/signup"} className="nav-element">
                   Sign Up.
                 </a>
-              </h5>
+              </p>
             </div>
           </div>
 

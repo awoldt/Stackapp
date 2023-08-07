@@ -56,7 +56,7 @@ export default function About({
           <div className="card-container" style={{ paddingTop: "40px" }}>
             <div className="card-empty">
               <h1>About Stack</h1>
-              <h5>Meet the development team behind the creation of Stack.</h5>
+              <p>Meet the development team behind the creation of Stack.</p>
             </div>
           </div>
 

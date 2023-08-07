@@ -132,9 +132,9 @@ export default function Profilepage({
                           {page_data.user_profile_data!.last_name}
                         </h1>
 
-                        <h5 style={{ marginBottom: "20px" }}>
+                        <span style={{ marginBottom: "20px" }}>
                           @{page_data.user_profile_data!.username}
-                        </h5>
+                        </span>
 
                         {page_data.user_profile_data!.bio !== null && (
                           <p style={{ marginBottom: "20px" }}>
@@ -161,12 +161,12 @@ export default function Profilepage({
                 <section>
                   <div className="card-container">
                     <div className="card" style={{ textAlign: "center" }}>
-                      <h3>Stacks</h3>
-                      <h5>
+                      <h2>Stacks</h2>
+                      <p>
                         {page_data.user_stacks!.length} Stacks
                         <br />
                         <br />
-                      </h5>
+                      </p>
                       {page_data.user_stacks!.map(
                         (x: Partial<_stack>, index: number) => {
                           return (
@@ -179,7 +179,9 @@ export default function Profilepage({
                                   />
                                 </div>
                               </div>
-                              <h2 style={{ marginBottom: "40px" }}>{x.name}</h2>
+                              <span style={{ marginBottom: "40px" }}>
+                                {x.name}
+                              </span>
                             </a>
                           );
                         }
@@ -193,7 +195,7 @@ export default function Profilepage({
                 <section>
                   <div className="card-container">
                     <div className="card" style={{ textAlign: "center" }}>
-                      <h3>Stacks</h3>
+                      <h2>Stacks</h2>
                       <p>This user does not currently have any Stacks.</p>
                     </div>
                   </div>

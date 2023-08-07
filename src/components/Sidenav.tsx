@@ -3,12 +3,14 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
   return (
     <aside className="aside-nav">
       <nav>
-        <h3 style={{ paddingTop: "20px" }}>
+        <span
+          style={{ paddingTop: "20px", fontWeight: "bold", fontSize: "50px" }}
+        >
           <a href={"/"}>Stack</a>
-        </h3>
+        </span>
         <ul>
           <li>
-            <h5>
+            <span>
               <a href={"/explore"} className="nav-element">
                 <img
                   src="/icons/explore.svg"
@@ -18,12 +20,12 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
                 />{" "}
                 Explore
               </a>
-            </h5>
+            </span>
           </li>
           {isSignedIn && (
             <>
               <li>
-                <h5>
+                <span>
                   <a href={"/create"} className="nav-element">
                     <img
                       src="/icons/create.svg"
@@ -33,10 +35,10 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
                     />{" "}
                     Create
                   </a>
-                </h5>
+                </span>
               </li>
               <li>
-                <h5>
+                <span>
                   <a href={"/profile"} className="nav-element">
                     <img
                       src="/icons/profile.svg"
@@ -46,10 +48,10 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
                     />{" "}
                     Profile
                   </a>
-                </h5>
+                </span>
               </li>
               <li>
-                <h5
+                <span
                   onClick={() => {
                     document.cookie =
                       "uid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -65,7 +67,7 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
                     />{" "}
                     Sign Out
                   </a>
-                </h5>
+                </span>
               </li>
             </>
           )}
@@ -73,7 +75,7 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
           {!isSignedIn && (
             <>
               <li>
-                <h5>
+                <span>
                   <a href={"/create"} className="nav-element">
                     <img
                       src="/icons/create.svg"
@@ -83,11 +85,11 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
                     />{" "}
                     Create
                   </a>
-                </h5>
+                </span>
               </li>
 
               <li>
-                <h5>
+                <span>
                   <a href={"/signup"} className="nav-element">
                     <img
                       src="/icons/signup.svg"
@@ -97,7 +99,7 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
                     />{" "}
                     Sign Up
                   </a>
-                </h5>
+                </span>
               </li>
             </>
           )}

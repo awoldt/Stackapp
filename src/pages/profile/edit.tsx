@@ -97,7 +97,7 @@ export default function EditProfile({
             <div className="card-container" style={{ paddingTop: "40px" }}>
               <div className="card-empty">
                 <h1>Edit Profile</h1>
-                <h5>Change the details of your profile.</h5>
+                <p>Change the details of your profile.</p>
               </div>
             </div>
             <div className="card-container" style={{ paddingBottom: "40px" }}>

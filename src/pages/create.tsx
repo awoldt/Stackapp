@@ -37,8 +37,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
       user === null
         ? null
         : user.github_access_token === null
-          ? null
-          : await GetRepoSelect(
+        ? null
+        : await GetRepoSelect(
             user!.github_access_token,
             String(req.cookies.uid)
           ),
@@ -99,9 +99,12 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
               <div className="card-container" style={{ paddingTop: "40px" }}>
                 <div className="card-empty">
                   <h1>Create Stack</h1>
-                  <h5>
-                    Enter the details of your tech stack&apos;s development.
-                  </h5>
+                  <p>
+                    Enter the tech stack used to create your app. Add all the
+                    languages you used along with databases, apis, frameworks,
+                    and cloud deployment services used to bring your application
+                    to life.
+                  </p>
                 </div>
               </div>
               <form
@@ -217,7 +220,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                           width: "100%",
                           display: "block",
                           marginBottom: "20px",
-                          borderRadius: "4px"
+                          borderRadius: "4px",
                         }}
                       />
                     )}
@@ -284,11 +287,11 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                       height={15}
                       style={{ display: "inline" }}
                     />
-                    <h5 style={{ display: "inline" }}>
+                    <p style={{ display: "inline" }}>
                       Select all Languages used in your tech stack.
                       <br />
                       <br />
-                    </h5>
+                    </p>
                     {page_data.tech_values.languages.map(
                       (x: string, index: number) => {
                         return (
@@ -312,11 +315,11 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                       height={15}
                       style={{ display: "inline" }}
                     />
-                    <h5 style={{ display: "inline" }}>
+                    <p style={{ display: "inline" }}>
                       Select all Databases used in your tech stack.
                       <br />
                       <br />
-                    </h5>
+                    </p>
                     {page_data.tech_values.databases.map(
                       (x: string, index: number) => {
                         return (
@@ -340,11 +343,11 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                       height={15}
                       style={{ display: "inline" }}
                     />
-                    <h5 style={{ display: "inline" }}>
+                    <p style={{ display: "inline" }}>
                       Select all APIs used in your tech stack.
                       <br />
                       <br />
-                    </h5>
+                    </p>
                     {page_data.tech_values.apis.map(
                       (x: string, index: number) => {
                         return (
@@ -364,12 +367,12 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                       height={15}
                       style={{ display: "inline" }}
                     />
-                    <h5 style={{ display: "inline" }}>
+                    <p style={{ display: "inline" }}>
                       Select all Cloud Deployment Services used in your tech
                       stack.
                       <br />
                       <br />
-                    </h5>
+                    </p>
                     {page_data.tech_values.clouds.map(
                       (x: string, index: number) => {
                         return (
@@ -393,11 +396,11 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                       height={15}
                       style={{ display: "inline" }}
                     />
-                    <h5 style={{ display: "inline" }}>
+                    <p style={{ display: "inline" }}>
                       Select all Frameworks used in your tech stack.
                       <br />
                       <br />
-                    </h5>
+                    </p>
                     {page_data.tech_values.frameworks.map(
                       (x: string, index: number) => {
                         return (
@@ -416,108 +419,112 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                   </div>
                 </div>
 
-            {page_data.is_signed_in && (
-              <>
-                {!loading && (
+                {page_data.is_signed_in && (
                   <>
-                    {disabledSubmit && (
-                      <div className="card-container">
-                        <div
-                          className="card-empty"
-                          style={{ marginTop: "0px", paddingTop: "0px" }}
-                        >
-                          <button
-                            disabled={true}
-                            id="create_stack_btn"
-                            type="submit"
-                            className="btn-create"
-                            style={{
-                              width: "100%",
-                              marginBottom: "0px",
-                              backgroundColor: "grey",
-                              cursor: "default",
-                            }}
-                          >
-                            <img
-                              src="/icons/create.svg"
-                              className="white-svg"
-                              alt="create logo"
-                              width={15}
-                              height={15}
-                            /> Create Stack
-                          </button>
-                        </div>
-                      </div>
+                    {!loading && (
+                      <>
+                        {disabledSubmit && (
+                          <div className="card-container">
+                            <div
+                              className="card-empty"
+                              style={{ marginTop: "0px", paddingTop: "0px" }}
+                            >
+                              <button
+                                disabled={true}
+                                id="create_stack_btn"
+                                type="submit"
+                                className="btn-create"
+                                style={{
+                                  width: "100%",
+                                  marginBottom: "0px",
+                                  backgroundColor: "grey",
+                                  cursor: "default",
+                                }}
+                              >
+                                <img
+                                  src="/icons/create.svg"
+                                  className="white-svg"
+                                  alt="create logo"
+                                  width={15}
+                                  height={15}
+                                />{" "}
+                                Create Stack
+                              </button>
+                            </div>
+                          </div>
+                        )}
+                        {!disabledSubmit && (
+                          <div className="card-container">
+                            <div
+                              className="card-empty"
+                              style={{ marginTop: "0px", paddingTop: "0px" }}
+                            >
+                              <button
+                                id="create_stack_btn"
+                                type="submit"
+                                className="btn-create"
+                                style={{ width: "100%", marginBottom: "0px" }}
+                              >
+                                <img
+                                  src="/icons/create.svg"
+                                  className="white-svg"
+                                  alt="create logo"
+                                  width={15}
+                                  height={15}
+                                />{" "}
+                                Create Stack
+                              </button>
+                            </div>
+                          </div>
+                        )}
+                      </>
                     )}
-                    {!disabledSubmit && (
-                      <div className="card-container">
-                        <div
-                          className="card-empty"
-                          style={{ marginTop: "0px", paddingTop: "0px" }}
-                        >
-                          <button
-                            id="create_stack_btn"
-                            type="submit"
-                            className="btn-create"
-                            style={{ width: "100%", marginBottom: "0px" }}
-                          >
-                            <img
-                              src="/icons/create.svg"
-                              className="white-svg"
-                              alt="create logo"
-                              width={15}
-                              height={15}
-                            /> Create Stack
-                          </button>
-                        </div>
-                      </div>
-                    )}
+                    {loading && <Spinner />}
                   </>
                 )}
-                {loading && <Spinner />}
-              </>
-            )}
-          </form>
+              </form>
 
-          <div className="card-container">
-            <div className="card-empty" style={{ paddingTop: "20px" }}>
-              {!page_data.is_signed_in && (
-                <>
-                  <h3>Start Stacking</h3>
-                  <h4 style={{ display: "inline" }}>
-                    <a
-                      href={"/signin"}
-                      className="nav-element"
-                      title="Sign into stack account"
-                    >
-                      <img
-                        src="/icons/signin.svg"
-                        alt="signin logo"
-                        width={15}
-                        height={15}
-                      /> Sign In
-                    </a>
-                  </h4>
-                  <h4 style={{ display: "inline" }}>
-                    <a
-                      href={"/signup"}
-                      className="nav-element"
-                      title="Create a stack account"
-                    >
-                      <img
-                        src="/icons/signup.svg"
-                        alt="signup logo"
-                        width={15}
-                        height={15}
-                      /> Sign Up
-                    </a>
-                  </h4>
-                </>
-              )}
-            </div>
-          </div>
-        </section>
-      )}
+              <div className="card-container">
+                <div className="card-empty" style={{ paddingTop: "20px" }}>
+                  {!page_data.is_signed_in && (
+                    <>
+                      <h2>Start Stacking</h2>
+                      <div style={{ display: "inline" }}>
+                        <a
+                          href={"/signin"}
+                          className="nav-element"
+                          title="Sign into stack account"
+                        >
+                          <img
+                            src="/icons/signin.svg"
+                            alt="signin logo"
+                            width={15}
+                            height={15}
+                          />{" "}
+                          Sign In
+                        </a>
+                      </div>
+                      <div style={{ display: "inline" }}>
+                        <a
+                          href={"/signup"}
+                          className="nav-element"
+                          title="Create a stack account"
+                        >
+                          <img
+                            src="/icons/signup.svg"
+                            alt="signup logo"
+                            width={15}
+                            height={15}
+                          />{" "}
+                          Sign Up
+                        </a>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
+            </section>
+          )}
 
           {stackSuccessfullyCreated && (
             <>
@@ -538,13 +545,13 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                 >
                   <div style={{ width: "100%", textAlign: "center" }}>
                     {" "}
-                    <h3>
+                    <h2>
                       Stack Created
                       <br />{" "}
                       <a href={`/stack/${newStackID}`} className="btn-create">
                         View Stack
                       </a>
-                    </h3>
+                    </h2>
                   </div>
                 </div>
               </section>
