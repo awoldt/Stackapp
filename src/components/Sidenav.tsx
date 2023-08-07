@@ -4,7 +4,9 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
     <><aside className="aside-nav">
       <nav>
         <span className="title">
-          Stack
+          <a href={"/"}>
+            Stack
+          </a>
         </span>
 
         <ul>

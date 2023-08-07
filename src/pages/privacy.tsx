@@ -55,7 +55,7 @@ export default function Privacy({
           </div>
           <section>
             <main>
-              <div className="card-container" style={{ paddingTop: "40px" }}>
+              <div className="card-container-title">
                 <div className="card-empty">
                   <h1>Privacy Policy</h1>
                   <p className="subtitle">

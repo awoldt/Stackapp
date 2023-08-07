@@ -8,7 +8,7 @@ import { GetServerSideProps } from "next";
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const pageData: DEFAULT_PAGE_LAYOUT = {
     header_tags: {
-      title: "About | Stack",
+      title: "About Stack | Stack",
       description: "About Stack",
       canonical_link: "https://stackapp.xyz/about",
       open_graph_tags: null,
@@ -45,6 +45,7 @@ export default function About({
             {page_data.is_signed_in && <Sidenav isSignedIn={true} />}
             {!page_data.is_signed_in && <Sidenav isSignedIn={false} />}
           </section>
+          
           <div className="background">
             <img
               src="/imgs/background.avif"
@@ -53,7 +54,7 @@ export default function About({
             />
           </div>
 
-          <div className="card-container" style={{ paddingTop: "40px" }}>
+          <div className="card-container-title">
             <div className="card-empty">
               <h1>About Stack</h1>
               <p className="subtitle">Meet the development team behind the creation of Stack.</p>

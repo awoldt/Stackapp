@@ -26,7 +26,19 @@ export default function LikeBtn({
   return (
     <div>
       {/* not signed in */}
-      {!isSignedIn && <p>This stack has {likesAmount} likes</p>}
+      {!isSignedIn &&
+        <>
+          <button className="btn-like">
+            <img
+              src="/icons/like.svg"
+              className="white-svg"
+              alt="likes icon"
+              width={25}
+              height={15} />
+            {likesAmount}
+          </button>
+        </>
+      }
       {/* signed in.... but its signed in user's stack (cannot like) */}
       {isSignedIn && isSignedInUsersStack && (
         <>

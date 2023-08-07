@@ -121,12 +121,12 @@ export default function Profile({
                             )}
                           </h1>
 
-                          <span style={{ marginBottom: "20px" }}>
+                          <span>
                             @{page_data.user_profile_data.username}
                           </span>
 
                           {page_data.user_profile_data.bio !== null && (
-                            <p style={{ marginBottom: "20px" }}>
+                            <p style={{ marginTop: "20px", marginBottom: "20px" }}>
                               {page_data.user_profile_data.bio}
                             </p>
                           )}
@@ -228,7 +228,7 @@ export default function Profile({
                                     />{" "}
                                     Stacks
                                   </h2>
-                                  <span>
+                                  <span className="subtitle">
                                     0 Stacks
                                     <br />
                                     <br />
@@ -269,7 +269,7 @@ export default function Profile({
                                     />{" "}
                                     Stacks
                                   </h2>
-                                  <span>
+                                  <span className="subtitle">
                                     {page_data.user_stacks.length} Stacks
                                     <br />
                                     <br />
@@ -336,11 +336,11 @@ export default function Profile({
                           />{" "}
                           Liked
                         </h2>
-                        <p>
+                        <span className="subtitle">
                           Only you can see what you&apos;ve Liked.
                           <br />
                           <br />
-                        </p>
+                        </span>
 
                         {page_data.users_liked_stacks !== "no_liked_stacks" &&
                           page_data.users_liked_stacks !== null && (

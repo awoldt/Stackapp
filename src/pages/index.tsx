@@ -65,7 +65,7 @@ export default function Home({
             <div className="card-empty">
               <h1 className="splash">Stack</h1>
               <p className="subtitle" style={{ paddingBottom: "20px" }}>
-                A platform designed for modern tech stack visualization.
+                A Platform for Modern Tech Stack Visualization.
               </p>
             </div>
           </div>
@@ -129,28 +129,28 @@ export default function Home({
             </div>
           </div>
 
-          {/* <div className="card-container" style={{ paddingTop: "0px" }}>
-            <div className="card-empty" style={{ paddingTop: "0px" }}>
-              <h2>
-                Visualize your Tech Stacks
+          <div className="card-container" style={{ paddingTop: "0px" }}>
+            <div className="card-empty" style={{ paddingTop: "40px" }}>
+              <p className="subtitle">
+                Visualize your Tech Stacks.
                 <br />
                 <img src="/icons/expand.svg" alt="expand icon" width={15} />
-              </h2>
+              </p>
             </div>
           </div>
 
-              <div className="card-container" id="landing">
-                <div
-                  className="card-empty"
-                  style={{ display: "flex", justifyContent: "center" }}
-                >
-                  <img
-                    src="/imgs/landing.png"
-                    style={{ width: "105%", textAlign: "center" }}
-                    alt="Stack Example"
-                  />
-                </div>
-              </div>
+          <div className="card-container" id="landing">
+            <div
+              className="card-empty"
+              style={{ display: "flex", justifyContent: "center", paddingTop: "0px" }}
+            >
+              <img
+                src="/imgs/tempstack/landing.png"
+                style={{ width: "105%", textAlign: "center" }}
+                alt="Stack Example"
+              />
+            </div>
+          </div>
 
           <div className="card-container" id="landing-mobile">
             <div
@@ -158,7 +158,7 @@ export default function Home({
               style={{ display: "flex", justifyContent: "center" }}
             >
               <img
-                src="/imgs/landing-mobile.png"
+                src="/imgs/tempstack/landing-mobile.png"
                 style={{ width: "105%", textAlign: "center" }}
                 alt="Stack Example"
               />
@@ -172,12 +172,12 @@ export default function Home({
             >
               <a
                 href={"/explore"}>
-                <button className="btn-like" style={{ fontSize: "42px" }}>
-                  <img src="/icons/explore.svg" className="white-svg" alt="explore logo" width={30} height={30} /> Explore Stacks
+                <button className="btn-edit" style={{ fontSize: "28px" }}>
+                  <img src="/icons/explore.svg" className="white-svg" alt="explore logo" width={25} height={25} /> Explore Stacks
                 </button>
               </a>
             </div>
-          </div> */}
+          </div>
         </section>
       </main>
     </>

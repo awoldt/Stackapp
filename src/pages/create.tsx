@@ -96,7 +96,8 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                   className="background-image"
                 ></img>
               </div>
-              <div className="card-container" style={{ paddingTop: "40px" }}>
+              
+              <div className="card-container-title">
                 <div className="card-empty">
                   <h1>Create Stack</h1>
                   <p className="subtitle">

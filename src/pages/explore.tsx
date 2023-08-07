@@ -48,17 +48,19 @@ export default function explorePage({
             openGraph={page_data.header_tags.open_graph_tags}
           />
           <section>
-            <div className="background">
-              <img
-                src={"/imgs/background.avif"}
-                alt="background design"
-                className="background-image"
-              ></img>
-            </div>
             {page_data.is_signed_in && <Sidenav isSignedIn={true} />}
             {!page_data.is_signed_in && <Sidenav isSignedIn={false} />}
           </section>
-          <div className="card-container" style={{ paddingTop: "40px" }}>
+
+          <div className="background">
+            <img
+              src={"/imgs/background.avif"}
+              alt="background design"
+              className="background-image"
+            />
+          </div>
+
+          <div className="card-container-title">
             <div className="card-empty">
               <h1>Explore Stacks</h1>
               <p className="subtitle">Explore recent and trending Stacks.</p>
@@ -110,8 +112,8 @@ export default function explorePage({
                       <img
                         src="/icons/trending.svg"
                         alt="globe icon"
-                        width={35}
-                        height={35}
+                        width={25}
+                        height={25}
                       />{" "}
                       Trending
                     </h2>
@@ -205,8 +207,8 @@ export default function explorePage({
                       <img
                         src="/icons/recent.svg"
                         alt="globe icon"
-                        width={35}
-                        height={35}
+                        width={25}
+                        height={25}
                       />{" "}
                       Recent
                     </h2>
