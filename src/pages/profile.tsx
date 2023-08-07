@@ -253,7 +253,7 @@ export default function Profile({
                                 className="card-container"
                                 style={{
                                   paddingTop: "0px",
-                                  paddingBottom: "40px",
+                                  paddingBottom: "80px",
                                 }}
                               >
                                 <div
@@ -315,8 +315,14 @@ export default function Profile({
                   )}
 
                   {view === "liked_stacks" && (
-                    <div className="card-container" id="savedStacks">
-                      <div className="card" style={{ textAlign: "center" }}>
+                    <div className="card-container"
+                      id="savedStacks"
+                      style={{
+                        paddingTop: "0px",
+                        paddingBottom: "40px",
+                      }}
+                    >
+                      <div className="card" style={{ textAlign: "center", paddingBottom: "80px", }}>
                         <h3>
                           <img
                             src="/icons/like.svg"
@@ -331,20 +337,14 @@ export default function Profile({
                           <br />
                           <br />
                         </h5>
-                        <a href={"/explore"} className="btn-create">
-                          <img
-                            src="/icons/explore.svg"
-                            className="white-svg"
-                            alt="explore logo"
-                            width={15}
-                            height={15}
-                          />{" "}
-                          Explore Stacks
-                        </a>
+
                         {page_data.users_liked_stacks !== "no_liked_stacks" &&
                           page_data.users_liked_stacks !== null && (
                             <>
-                              <div className="stack-container">
+                              <div className="stack-container"
+                                style={{
+                                  paddingTop: "40px",
+                                }}>
                                 {page_data.users_liked_stacks.map(
                                   (x: _stack, index: number) => {
                                     return (
@@ -363,11 +363,18 @@ export default function Profile({
                               </div>
                             </>
                           )}
-                        {/* {page_data.users_liked_stacks === "no_liked_stacks" && (
-                          <p>
-                            <i>You have not liked any stacks yet</i>
-                          </p>
-                        )} */}
+                        {page_data.users_liked_stacks === "no_liked_stacks" && (
+                          <a href={"/explore"} className="btn-create">
+                            <img
+                              src="/icons/explore.svg"
+                              className="white-svg"
+                              alt="explore logo"
+                              width={15}
+                              height={15}
+                            />{" "}
+                            Explore Stacks
+                          </a>
+                        )}
                       </div>
                     </div>
                   )}

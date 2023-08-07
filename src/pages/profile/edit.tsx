@@ -176,6 +176,7 @@ export default function EditProfile({
                   <div style={{ textAlign: "right" }}>
                     <ProfileBio defaultText={page_data.user_data!.bio} />
                     <br />
+                    <br />
                   </div>
 
                   {page_data.has_authenticated_github_account && (
@@ -189,11 +190,14 @@ export default function EditProfile({
                     <>
                       {" "}
                       <a
+                        style={{ margin: "0px", padding: "0px" }}
                         href={`https://github.com/login/oauth/authorize?client_id=${page_data.github_client_id}`}
                         title="Authorize Stackapp to connect to your GitHub Account"
                       >
-                        <p>Your GitHub account is not connected.</p>
-                        <button type="button" className="btn-edit">
+                        <button
+                          type="button"
+                          style={{ width: "100%" }}
+                          className="btn-extra">
                           <img
                             src="/icons/github.svg"
                             className="white-svg"
@@ -207,58 +211,75 @@ export default function EditProfile({
                     </>
                   )}
 
-                  <div style={{ display: "flex", justifyContent: "center" }}>
-                    <button
-                      className="btn-delete"
-                      type="button"
-                      style={{ display: "block" }}
-                      onClick={async () => {
-                        const c1 = confirm(
-                          "Are you sure you want to delete your Stack account?"
+                  <button
+                    className="btn-delete"
+                    type="button"
+                    style={{ width: "100%" }}
+                    onClick={async () => {
+                      const c1 = confirm(
+                        "Are you sure you want to delete your Stack account?"
+                      );
+                      if (c1) {
+                        const c2 = confirm(
+                          "This action is irreversible. Would you like to continue?"
                         );
-                        if (c1) {
-                          const c2 = confirm(
-                            "This action is irreversible. Would you like to continue?"
+                        if (c2) {
+                          const c3 = confirm(
+                            "Account deletion is permanant. In order to use Stack again you will need to create a new account. I understand, delete my account."
                           );
-                          if (c2) {
-                            const c3 = confirm(
-                              "Account deletion is permanant. In order to use Stack again you will need to create a new account. I understand, delete my account."
-                            );
 
-                            if (c3) {
-                              try {
-                                const req = await fetch("/api/delete-account");
-                                if (req.status === 200) {
-                                  alert(
-                                    "Account has been successfully deleted."
-                                  );
-
-                                  //this expression will remove cookie from browser
-                                  document.cookie =
-                                    "uid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                                  window.location.assign("/");
-                                }
-                              } catch (e) {
-                                console.log(e);
+                          if (c3) {
+                            try {
+                              const req = await fetch("/api/delete-account");
+                              if (req.status === 200) {
                                 alert(
-                                  "An error occurred while attempting to delete your account."
+                                  "Account has been successfully deleted."
                                 );
+
+                                //this expression will remove cookie from browser
+                                document.cookie =
+                                  "uid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                                window.location.assign("/");
                               }
+                            } catch (e) {
+                              console.log(e);
+                              alert(
+                                "An error occurred while attempting to delete your account."
+                              );
                             }
                           }
                         }
-                      }}
-                    >
-                      <img
-                        src="/icons/delete.svg"
-                        className="white-svg"
-                        alt="delete logo"
-                        width={15}
-                        height={15}
-                      />{" "}
-                      Delete Account
-                    </button>
-                  </div>
+                      }
+                    }}
+                  >
+                    <img
+                      src="/icons/delete.svg"
+                      className="white-svg"
+                      alt="delete logo"
+                      width={15}
+                      height={15}
+                    />{" "}
+                    Delete Account
+                  </button>
+
+                  <button
+                    style={{ width: "100%" }}
+                    className="btn-edit"
+                    onClick={() => {
+                      document.cookie =
+                        "uid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                      window.location.assign(window.location.href);
+                    }}
+                  >
+                    <img
+                      className="white-svg"
+                      src="/icons/signout.svg"
+                      alt="signout logo"
+                      width={15}
+                      height={15}
+                    />{" "}
+                    Sign Out
+                  </button>
 
                   {!loading && (
                     <>

@@ -48,7 +48,7 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
                   </a>
                 </h5>
               </li>
-              <li>
+              {/* <li>
                 <h5
                   onClick={() => {
                     document.cookie =
@@ -66,7 +66,7 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
                     Sign Out
                   </a>
                 </h5>
-              </li>
+              </li> */}
             </>
           )}
 
@@ -85,7 +85,7 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
                   </a>
                 </h5>
               </li>
-              <li>
+              {/* <li>
                 <h5>
                   <a href={"/signin"} className="nav-element">
                     <img
@@ -110,7 +110,7 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
                     Sign Up
                   </a>
                 </h5>
-              </li>
+              </li> */}
             </>
           )}
         </ul>

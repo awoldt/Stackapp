@@ -217,7 +217,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                           width: "100%",
                           display: "block",
                           marginBottom: "20px",
-                          borderRadius: "20px",
+                          borderRadius: "4px"
                         }}
                       />
                     )}

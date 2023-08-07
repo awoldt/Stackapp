@@ -247,7 +247,7 @@ export default function EditStackpage({
                       width: "100%",
                       display: "block",
                       marginBottom: "20px",
-                      borderRadius: "20px",
+                      borderRadius: "4px"
                     }}
                   />
                   <input

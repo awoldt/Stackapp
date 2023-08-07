@@ -100,7 +100,7 @@ export default function explorePage({
                 <div className="card-container" id="savedStacks">
                   <div
                     className="card"
-                    style={{ textAlign: "center", paddingBottom: "80px" }}
+                    style={{ textAlign: "center" }}
                   >
                     <h3>
                       <img
@@ -111,21 +111,116 @@ export default function explorePage({
                       />{" "}
                       Trending
                     </h3>
-                    <div className="explore-container">
-                      {page_data.explore_stack_categories?.popular_stacks !==
-                        null && (
-                          <>
-                            {page_data.explore_stack_categories?.popular_stacks.map(
-                              (x: _stack, index: number) => {
-                                return (
-                                  <a key={index} href={`/stack/${x.stack_id}`}>
-                                    <div className="explore-item">
-                                      <img src={x.thumbnail_url} />
 
-                                      {x.creator_details !== undefined && (
+                    {page_data.explore_stack_categories?.popular_stacks !==
+                      null && (
+                        <>
+                          {page_data.explore_stack_categories?.popular_stacks.map(
+                            (x: _stack, index: number) => {
+                              return (
+                                <a key={index} href={`/stack/${x.stack_id}`}>
+                                  <div className="explore-thumbnail">
+                                    <img src={x.thumbnail_url} />
+
+                                    {x.creator_details !== undefined && (
+                                      <div className="user-profile-containerParent">
+                                        <div className="explore-user-profile-container" style={{ marginTop: "10px" }}>
+                                          <h3 className="explore-user-profile-margin">
+                                            {x.name}
+                                          </h3>
+                                          <div>
+                                            <img
+                                              src={
+                                                x.creator_details!.profile_pic
+                                              }
+                                              style={{ marginTop: "2px" }}
+                                              className="user-profile-img"
+                                              alt={
+                                                x.creator_details!.username +
+                                                " profile picture"
+                                              }
+                                            />
+                                          </div>
+
+                                          <span
+                                            style={{
+                                              paddingLeft: "8px",
+                                              paddingTop: "8px",
+                                            }}
+                                          >
+                                            <b>
+                                              {x.creator_details!.first_name}{" "}
+                                              {x.creator_details!.last_name}
+                                            </b>
+                                            <p
+                                              style={{
+                                                fontSize: "16px",
+                                                opacity: "0.85",
+                                              }}
+                                            >
+                                              @{x.creator_details!.username}
+                                            </p>
+                                          </span>
+                                        </div>
+                                      </div>
+                                    )}
+                                    {/* <div className="user-profile-containerParent">
+                                        <div
+                                          className="explore-user-profile-container">
+                                          <button className="btn-like">
+                                            <img
+                                              src="/icons/like.svg"
+                                              className="white-svg"
+                                              alt="likes icon"
+                                              width={15}
+                                              height={15}
+                                            />{" "}
+                                            {x.likes}
+                                          </button>
+                                        </div>
+                                      </div> */}
+                                  </div>
+                                </a>
+                              );
+                            }
+                          )}
+                        </>
+                      )}
+                  </div>
+                </div>
+              )}
+
+              {/* RECENT STACKS */}
+              {page_data.explore_stack_categories?.recent_stacks !== null && (
+                <div className="card-container" id="savedStacks">
+                  <div
+                    className="card"
+                    style={{ textAlign: "center" }}
+                  >
+                    <h3>
+                      <img
+                        src="/icons/recent.svg"
+                        alt="globe icon"
+                        width={35}
+                        height={35}
+                      />{" "}
+                      Recent
+                    </h3>
+
+                    {page_data.explore_stack_categories?.recent_stacks !==
+                      null && (
+                        <>
+                          {page_data.explore_stack_categories?.recent_stacks.map(
+                            (x: _stack, index: number) => {
+                              return (
+                                <a key={index} href={`/stack/${x.stack_id}`}>
+                                  <div className="explore-thumbnail">
+                                    <img src={x.thumbnail_url} />
+                                    {x.creator_details !== undefined && (
+                                      <>
                                         <div className="user-profile-containerParent">
-                                          <div className="user-profile-container" style={{ marginTop: "10px" }}>
-                                            <h3 style={{ marginRight: "20px" }}>
+                                          <div className="explore-user-profile-container" style={{ marginTop: "10px" }}>
+                                            <h3 className="explore-user-profile-margin">
                                               {x.name}
                                             </h3>
                                             <div>
@@ -154,7 +249,6 @@ export default function explorePage({
                                               </b>
                                               <p
                                                 style={{
-                                                  textAlign: "left",
                                                   fontSize: "16px",
                                                   opacity: "0.85",
                                                 }}
@@ -164,114 +258,15 @@ export default function explorePage({
                                             </span>
                                           </div>
                                         </div>
-                                      )}
-                                      <div className="user-profile-containerParent">
-                                        <div
-                                          className="user-profile-container"
-                                        >
-                                          <button className="btn-like">
-                                            <img
-                                              src="/icons/like.svg"
-                                              className="white-svg"
-                                              alt="likes icon"
-                                              width={15}
-                                              height={15}
-                                            />{" "}
-                                            {x.likes}
-                                          </button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </a>
-                                );
-                              }
-                            )}
-                          </>
-                        )}
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* RECENT STACKS */}
-              {page_data.explore_stack_categories?.recent_stacks !== null && (
-                <div className="card-container" id="savedStacks">
-                  <div
-                    className="card"
-                    style={{ textAlign: "center", paddingBottom: "80px" }}
-                  >
-                    <h3>
-                      <img
-                        src="/icons/recent.svg"
-                        alt="globe icon"
-                        width={35}
-                        height={35}
-                      />{" "}
-                      Recent
-                    </h3>
-                    <div className="explore-container">
-                      {page_data.explore_stack_categories?.recent_stacks !==
-                        null && (
-                          <>
-                            {page_data.explore_stack_categories?.recent_stacks.map(
-                              (x: _stack, index: number) => {
-                                return (
-                                  <a key={index} href={`/stack/${x.stack_id}`}>
-                                    <div className="explore-item">
-                                      <img src={x.thumbnail_url} />
-                                      {x.creator_details !== undefined && (
-                                        <>
-                                          <div className="user-profile-containerParent">
-                                            <div className="user-profile-container" style={{ marginTop: "10px" }}>
-                                              <h3 style={{ marginRight: "20px" }}>
-                                                {x.name}
-                                              </h3>
-                                              <div>
-                                                <img
-                                                  src={
-                                                    x.creator_details!.profile_pic
-                                                  }
-                                                  style={{ marginTop: "2px" }}
-                                                  className="user-profile-img"
-                                                  alt={
-                                                    x.creator_details!.username +
-                                                    " profile picture"
-                                                  }
-                                                />
-                                              </div>
-
-                                              <span
-                                                style={{
-                                                  paddingLeft: "8px",
-                                                  paddingTop: "8px",
-                                                }}
-                                              >
-                                                <b>
-                                                  {x.creator_details!.first_name}{" "}
-                                                  {x.creator_details!.last_name}
-                                                </b>
-                                                <p
-                                                  style={{
-                                                    textAlign: "left",
-                                                    fontSize: "16px",
-                                                    opacity: "0.85",
-                                                  }}
-                                                >
-                                                  @{x.creator_details!.username}
-                                                </p>
-                                              </span>
-                                            </div>
-                                          </div>
-                                        </>
-                                      )}
-                                    </div>
-                                  </a>
-                                );
-                              }
-                            )}
-                          </>
-                        )}
-                    </div>
+                                      </>
+                                    )}
+                                  </div>
+                                </a>
+                              );
+                            }
+                          )}
+                        </>
+                      )}
                   </div>
                 </div>
               )}
