@@ -41,12 +41,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
       },
     };
   }
-  console.log("\nSTACK DATA uid");
-  console.log(stackData.uid);
 
   const userProfile = await GetUserProfile(req.cookies.uid);
-  console.log("\nUSER PROFILE uid");
-  console.log(userProfile?.uid);
 
   //make sure signed in user accessing page
   //actually owns the stack being edited
@@ -247,7 +243,7 @@ export default function EditStackpage({
                       width: "100%",
                       display: "block",
                       marginBottom: "20px",
-                      borderRadius: "4px"
+                      borderRadius: "4px",
                     }}
                   />
                   <input

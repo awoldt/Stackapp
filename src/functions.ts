@@ -983,7 +983,7 @@ export async function EditProfile(
     updateObj.last_name =
       fields.lname[0] === "" ? undefined : fields.lname[0].trim();
     updateObj.username =
-      fields.profile_username[0] === ""
+      fields.profile_username[0].replace(/\s/g, "") === ""
         ? undefined
         : fields.profile_username[0].replace(/\s/g, ""); //removes spaces
     updateObj.bio =

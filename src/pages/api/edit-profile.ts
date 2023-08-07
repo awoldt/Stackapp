@@ -29,10 +29,10 @@ export default async function handler(
         .status(400)
         .json({ msg: "Username cannot be more than 100 characters" });
     }
-    if (fields.profile_bio[0].trim().length > 1000) {
+    if (fields.profile_bio[0].trim().length > 500) {
       return res
         .status(400)
-        .json({ msg: "Profile bio cannot be more than 2500 characters" });
+        .json({ msg: "Profile bio cannot be more than 500 characters" });
     }
 
     const u = await EditProfile(req.cookies.uid!, fields, files.profile_icon);
