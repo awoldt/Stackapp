@@ -58,7 +58,7 @@ export default function Privacy({
               <div className="card-container" style={{ paddingTop: "40px" }}>
                 <div className="card-empty">
                   <h1>Privacy Policy</h1>
-                  <p>
+                  <p className="subtitle">
                     At Stack, we are committed to protecting your privacy and
                     ensuring the security of your personal information.
                   </p>

@@ -64,7 +64,7 @@ export default function Home({
           <div className="card-container">
             <div className="card-empty">
               <h1 className="splash">Stack</h1>
-              <p style={{ paddingBottom: "20px" }}>
+              <p className="subtitle" style={{ paddingBottom: "20px" }}>
                 A platform designed for modern tech stack visualization.
               </p>
             </div>

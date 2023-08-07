@@ -24,7 +24,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 
   const pageData: _PAGEDATA_create = {
     header_tags: {
-      title: "Create a New Stack | Stack",
+      title: "Create a Stack | Stack",
       description:
         "Create a stack that showcases the technology that went into making your application. This can include things like languages, databases, apis, and more.",
       canonical_link: "https://stackapp.xyz/create",
@@ -99,11 +99,9 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
               <div className="card-container" style={{ paddingTop: "40px" }}>
                 <div className="card-empty">
                   <h1>Create Stack</h1>
-                  <p>
-                    Enter the tech stack used to create your app. Add all the
-                    languages you used along with databases, apis, frameworks,
-                    and cloud deployment services used to bring your application
-                    to life.
+                  <p className="subtitle">
+                    Enter the details of your tech stack. Select all Languages, Databases, APIs, Frameworks,
+                    and Cloud Deployment Services used.
                   </p>
                 </div>
               </div>
@@ -488,8 +486,8 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                 <div className="card-empty" style={{ paddingTop: "20px" }}>
                   {!page_data.is_signed_in && (
                     <>
-                      <h2>Start Stacking</h2>
-                      <div style={{ display: "inline" }}>
+                      <h3>Start Stacking</h3>
+                      <div className="subtitle" style={{ display: "inline" }}>
                         <a
                           href={"/signin"}
                           className="nav-element"
@@ -504,7 +502,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                           Sign In
                         </a>
                       </div>
-                      <div style={{ display: "inline" }}>
+                      <div className="subtitle" style={{ display: "inline" }}>
                         <a
                           href={"/signup"}
                           className="nav-element"
@@ -545,13 +543,13 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                 >
                   <div style={{ width: "100%", textAlign: "center" }}>
                     {" "}
-                    <h2>
+                    <h3>
                       Stack Created
                       <br />{" "}
                       <a href={`/stack/${newStackID}`} className="btn-create">
                         View Stack
                       </a>
-                    </h2>
+                    </h3>
                   </div>
                 </div>
               </section>

@@ -69,9 +69,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
       stackData!.github_api_token_used! === null
         ? null
         : await GetRepoSelect(
-            stackData?.github_api_token_used!,
-            stackData!.uid!
-          ),
+          stackData?.github_api_token_used!,
+          stackData!.uid!
+        ),
     current_repo_id_selected:
       stackData!.github_api_token_used === null
         ? null
@@ -132,7 +132,7 @@ export default function EditStackpage({
             <div className="card-container" style={{ paddingTop: "40px" }}>
               <div className="card-empty">
                 <h1>Edit Stack</h1>
-                <p>Edit or change your Stack&apos;s current details.</p>
+                <p className="subtitle">Edit or change your Stack&apos;s current details.</p>
               </div>
             </div>
             <form
@@ -147,8 +147,7 @@ export default function EditStackpage({
                 setUpdateStackLoading(true);
                 try {
                   const req = await fetch(
-                    `/api/edit-stack?stack_id=${
-                      window.location.pathname.split("/")[2]
+                    `/api/edit-stack?stack_id=${window.location.pathname.split("/")[2]
                     }`,
                     {
                       method: "POST",
@@ -285,34 +284,34 @@ export default function EditStackpage({
                         <>
                           {page_data.repo_select_list ===
                             "too_many_requests" && (
-                            <p>
-                              Too many requests to the GitHub API at this
-                              moment.
-                            </p>
-                          )}
+                              <p>
+                                Too many requests to the GitHub API at this
+                                moment.
+                              </p>
+                            )}
                           {page_data.repo_select_list !==
                             "too_many_requests" && (
-                            <>
-                              <p>
-                                Select GitHub repo you would like to associate
-                                with this Stack.
-                              </p>
-                              <select name="githubRepoId">
-                                <option value="null" selected>
-                                  None
-                                </option>
-                                {page_data.repo_select_list.map(
-                                  (x: _repoSelectList, index: number) => {
-                                    return (
-                                      <option value={x.id} key={index}>
-                                        {x.name}
-                                      </option>
-                                    );
-                                  }
-                                )}
-                              </select>
-                            </>
-                          )}
+                              <>
+                                <p>
+                                  Select GitHub repo you would like to associate
+                                  with this Stack.
+                                </p>
+                                <select name="githubRepoId">
+                                  <option value="null" selected>
+                                    None
+                                  </option>
+                                  {page_data.repo_select_list.map(
+                                    (x: _repoSelectList, index: number) => {
+                                      return (
+                                        <option value={x.id} key={index}>
+                                          {x.name}
+                                        </option>
+                                      );
+                                    }
+                                  )}
+                                </select>
+                              </>
+                            )}
                         </>
                       )}
                     </>
@@ -367,90 +366,90 @@ export default function EditStackpage({
 
                   {page_data.saved_stack_data?.databasesSelectedData !==
                     null && (
-                    <>
-                      <img
-                        src="/icons/database-fill.svg"
-                        alt="database"
-                        width={20}
-                        height={15}
-                        style={{ display: "inline" }}
-                      />
-                      <p style={{ display: "inline" }}>
-                        Databases used in your tech stack.
-                        <br />
-                        <br />
-                      </p>
-                      {page_data.saved_stack_data?.databasesSelectedData[0].map(
-                        (x: string, index: number) => {
-                          return (
-                            <label htmlFor={x} key={index}>
-                              <input
-                                type="checkbox"
-                                id={x}
-                                name="databases_used"
-                                value={x}
-                                className="database-checkboxs"
-                                defaultChecked={true}
-                              />
-                              <span className="checkmark"></span>
-                              {x}
-                            </label>
-                          );
-                        }
-                      )}
-                      {page_data.saved_stack_data?.databasesSelectedData[1].map(
-                        (x: string, index: number) => {
-                          return (
-                            <label htmlFor={x} key={index}>
-                              <input
-                                type="checkbox"
-                                id={x}
-                                name="databases_used"
-                                value={x}
-                                className="database-checkboxs"
-                              />
-                              <span className="checkmark"></span>
-                              {x}
-                            </label>
-                          );
-                        }
-                      )}
-                    </>
-                  )}
+                      <>
+                        <img
+                          src="/icons/database-fill.svg"
+                          alt="database"
+                          width={20}
+                          height={15}
+                          style={{ display: "inline" }}
+                        />
+                        <p style={{ display: "inline" }}>
+                          Databases used in your tech stack.
+                          <br />
+                          <br />
+                        </p>
+                        {page_data.saved_stack_data?.databasesSelectedData[0].map(
+                          (x: string, index: number) => {
+                            return (
+                              <label htmlFor={x} key={index}>
+                                <input
+                                  type="checkbox"
+                                  id={x}
+                                  name="databases_used"
+                                  value={x}
+                                  className="database-checkboxs"
+                                  defaultChecked={true}
+                                />
+                                <span className="checkmark"></span>
+                                {x}
+                              </label>
+                            );
+                          }
+                        )}
+                        {page_data.saved_stack_data?.databasesSelectedData[1].map(
+                          (x: string, index: number) => {
+                            return (
+                              <label htmlFor={x} key={index}>
+                                <input
+                                  type="checkbox"
+                                  id={x}
+                                  name="databases_used"
+                                  value={x}
+                                  className="database-checkboxs"
+                                />
+                                <span className="checkmark"></span>
+                                {x}
+                              </label>
+                            );
+                          }
+                        )}
+                      </>
+                    )}
                   {page_data.saved_stack_data!.databasesSelectedData ===
                     null && (
-                    <>
-                      <img
-                        src="/icons/database-fill.svg"
-                        alt="database"
-                        width={20}
-                        height={15}
-                        style={{ display: "inline" }}
-                      />
-                      <p style={{ display: "inline" }}>
-                        Databases used in your tech stack.
-                        <br />
-                        <br />
-                      </p>
-                      {page_data.tech_values.databases.map(
-                        (x: string, index: number) => {
-                          return (
-                            <label htmlFor={x} key={index}>
-                              <input
-                                type="checkbox"
-                                id={x}
-                                name="databases_used"
-                                value={x}
-                                className="database-checkboxs"
-                              />
-                              <span className="checkmark"></span>
-                              {x}
-                            </label>
-                          );
-                        }
-                      )}
-                    </>
-                  )}
+                      <>
+                        <img
+                          src="/icons/database-fill.svg"
+                          alt="database"
+                          width={20}
+                          height={15}
+                          style={{ display: "inline" }}
+                        />
+                        <p style={{ display: "inline" }}>
+                          Databases used in your tech stack.
+                          <br />
+                          <br />
+                        </p>
+                        {page_data.tech_values.databases.map(
+                          (x: string, index: number) => {
+                            return (
+                              <label htmlFor={x} key={index}>
+                                <input
+                                  type="checkbox"
+                                  id={x}
+                                  name="databases_used"
+                                  value={x}
+                                  className="database-checkboxs"
+                                />
+                                <span className="checkmark"></span>
+                                {x}
+                              </label>
+                            );
+                          }
+                        )}
+                      </>
+                    )}
 
                   {page_data.saved_stack_data?.apisSelectedData !== null && (
                     <>
@@ -624,90 +623,90 @@ export default function EditStackpage({
 
                   {page_data.saved_stack_data?.frameworksSelectedData !==
                     null && (
-                    <>
-                      <img
-                        src="/icons/framework.svg"
-                        alt="api"
-                        width={20}
-                        height={15}
-                        style={{ display: "inline" }}
-                      />
-                      <p style={{ display: "inline" }}>
-                        Frameworks used in your tech stack.
-                        <br />
-                        <br />
-                      </p>
-                      {page_data.saved_stack_data?.frameworksSelectedData[0].map(
-                        (x: string, index: number) => {
-                          return (
-                            <label htmlFor={x} key={index}>
-                              <input
-                                type="checkbox"
-                                id={x}
-                                name="frameworks_used"
-                                value={x}
-                                className="framework-checkboxs"
-                                defaultChecked={true}
-                              />
-                              <span className="checkmark"></span>
-                              {x}
-                            </label>
-                          );
-                        }
-                      )}
-                      {page_data.saved_stack_data?.frameworksSelectedData[1].map(
-                        (x: string, index: number) => {
-                          return (
-                            <label htmlFor={x} key={index}>
-                              <input
-                                type="checkbox"
-                                id={x}
-                                name="frameworks_used"
-                                value={x}
-                                className="framework-checkboxs"
-                              />
-                              <span className="checkmark"></span>
-                              {x}
-                            </label>
-                          );
-                        }
-                      )}
-                    </>
-                  )}
+                      <>
+                        <img
+                          src="/icons/framework.svg"
+                          alt="api"
+                          width={20}
+                          height={15}
+                          style={{ display: "inline" }}
+                        />
+                        <p style={{ display: "inline" }}>
+                          Frameworks used in your tech stack.
+                          <br />
+                          <br />
+                        </p>
+                        {page_data.saved_stack_data?.frameworksSelectedData[0].map(
+                          (x: string, index: number) => {
+                            return (
+                              <label htmlFor={x} key={index}>
+                                <input
+                                  type="checkbox"
+                                  id={x}
+                                  name="frameworks_used"
+                                  value={x}
+                                  className="framework-checkboxs"
+                                  defaultChecked={true}
+                                />
+                                <span className="checkmark"></span>
+                                {x}
+                              </label>
+                            );
+                          }
+                        )}
+                        {page_data.saved_stack_data?.frameworksSelectedData[1].map(
+                          (x: string, index: number) => {
+                            return (
+                              <label htmlFor={x} key={index}>
+                                <input
+                                  type="checkbox"
+                                  id={x}
+                                  name="frameworks_used"
+                                  value={x}
+                                  className="framework-checkboxs"
+                                />
+                                <span className="checkmark"></span>
+                                {x}
+                              </label>
+                            );
+                          }
+                        )}
+                      </>
+                    )}
 
                   {page_data.saved_stack_data!.frameworksSelectedData ===
                     null && (
-                    <>
-                      <img
-                        src="/icons/framework.svg"
-                        alt="api"
-                        width={20}
-                        height={15}
-                        style={{ display: "inline" }}
-                      />
-                      <p style={{ display: "inline" }}>
-                        Frameworks used in your tech stack.
-                        <br />
-                        <br />
-                      </p>
-                      {page_data.tech_values.frameworks.map(
-                        (x: string, index: number) => {
-                          return (
-                            <label htmlFor={x} key={index}>
-                              <input
-                                type="checkbox"
-                                id={x}
-                                name="frameworks_used"
-                                value={x}
-                              />
-                              <span className="checkmark"></span>
-                              {x}
-                            </label>
-                          );
-                        }
-                      )}
-                    </>
-                  )}
+                      <>
+                        <img
+                          src="/icons/framework.svg"
+                          alt="api"
+                          width={20}
+                          height={15}
+                          style={{ display: "inline" }}
+                        />
+                        <p style={{ display: "inline" }}>
+                          Frameworks used in your tech stack.
+                          <br />
+                          <br />
+                        </p>
+                        {page_data.tech_values.frameworks.map(
+                          (x: string, index: number) => {
+                            return (
+                              <label htmlFor={x} key={index}>
+                                <input
+                                  type="checkbox"
+                                  id={x}
+                                  name="frameworks_used"
+                                  value={x}
+                                />
+                                <span className="checkmark"></span>
+                                {x}
+                              </label>
+                            );
+                          }
+                        )}
+                      </>
+                    )}
                   <p>
                     <br />
                     <img

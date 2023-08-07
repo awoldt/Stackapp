@@ -291,13 +291,7 @@ export default function Profile({
                                               />
                                             </div>
                                           </div>
-                                          <span
-                                            style={{
-                                              marginBottom: "40px",
-                                              fontWeight: "bold",
-                                              fontSize: "30px",
-                                            }}
-                                          >
+                                          <span className="bold">
                                             {x.name}
                                           </span>
                                         </a>
@@ -366,7 +360,9 @@ export default function Profile({
                                       >
                                         <div className="stack-item">
                                           <img src={x.thumbnail_url} />
-                                          <span>{x.name}</span>
+                                          <span className="bold">
+                                            {x.name}
+                                          </span>
                                         </div>
                                       </a>
                                     );

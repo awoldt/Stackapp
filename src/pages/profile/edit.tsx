@@ -97,7 +97,7 @@ export default function EditProfile({
             <div className="card-container" style={{ paddingTop: "40px" }}>
               <div className="card-empty">
                 <h1>Edit Profile</h1>
-                <p>Change the details of your profile.</p>
+                <p className="subtitle">Change the details of your profile.</p>
               </div>
             </div>
             <div className="card-container" style={{ paddingBottom: "40px" }}>
@@ -260,25 +260,6 @@ export default function EditProfile({
                       height={15}
                     />{" "}
                     Delete Account
-                  </button>
-
-                  <button
-                    style={{ width: "100%" }}
-                    className="btn-edit"
-                    onClick={() => {
-                      document.cookie =
-                        "uid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                      window.location.assign(window.location.href);
-                    }}
-                  >
-                    <img
-                      className="white-svg"
-                      src="/icons/signout.svg"
-                      alt="signout logo"
-                      width={15}
-                      height={15}
-                    />{" "}
-                    Sign Out
                   </button>
 
                   {!loading && (
