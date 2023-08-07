@@ -51,7 +51,7 @@ export default function LikeBtn({
               {/* default view, before submitting like */}
               {!submittingLike && (
                 <button
-                  className="btn-prelike"
+                  className="btn-like"
                   onClick={async () => {
                     setSubmittingLike(true);
                     try {
@@ -80,6 +80,7 @@ export default function LikeBtn({
                   }}
                 >
                   <img
+                    className="white-svg"
                     src="/icons/like.svg"
                     alt="likes icon"
                     width={25}
@@ -110,7 +111,7 @@ export default function LikeBtn({
               {/* default view, before removing like */}
               {!submittingLike && (
                 <button
-                  className="btn-prelike"
+                  className="btn-postlike"
                   onClick={async () => {
                     setSubmittingLike(true);
                     try {
@@ -139,6 +140,7 @@ export default function LikeBtn({
                   }}
                 >
                   <img
+                    className="white-svg"
                     src="/icons/like.svg"
                     alt="likes icon"
                     width={25}
@@ -149,7 +151,7 @@ export default function LikeBtn({
               )}
               {/* while removing like*/}
               {submittingLike && (
-                <button className="btn-like" disabled>
+                <button className="btn-postlike" disabled>
                   <img
                     src="/icons/like.svg"
                     className="white-svg"

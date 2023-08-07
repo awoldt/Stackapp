@@ -38,7 +38,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     header_tags: {
       title: `@${profileData!.username} | Stack`,
       canonical_link: "https://stackapp.xyz/profile",
-      description: "Welcome to your stackapp profile",
+      description: "Welcome to your Stack Profile.",
       open_graph_tags: {
         title: `Your stackapp profile`,
         image: null,
@@ -157,22 +157,17 @@ export default function Profile({
                   <div className="card-container">
                     <button
                       id="btn-yourStacks"
-                      className="nav-element"
-                      style={{
-                        marginRight: "10px",
-                        marginBottom: "0px",
-                        background: "none",
-                        border: "none",
-                        cursor: "pointer",
-                      }}
+                      className="btn-tags"
+                      style={{ marginRight: "10px", minWidth: "10%" }}
                       onClick={() => {
                         if (view !== "stacks") {
                           setView("stacks");
                         }
                       }}
                     >
-                      <h4>
+                      <h4 style={{ color: "white" }}>
                         <img
+                          className="white-svg"
                           src="/icons/stack.svg"
                           alt="globe icon"
                           width={20}
@@ -183,22 +178,17 @@ export default function Profile({
                     </button>
                     <button
                       id="btn-savedStacks"
-                      className="nav-element"
-                      style={{
-                        marginRight: "10px",
-                        marginBottom: "0px",
-                        background: "none",
-                        border: "none",
-                        cursor: "pointer",
-                      }}
+                      className="btn-tags"
+                      style={{ marginLeft: "10px", minWidth: "10%" }}
                       onClick={() => {
                         if (view !== "liked_stacks") {
                           setView("liked_stacks");
                         }
                       }}
                     >
-                      <h4>
+                      <h4 style={{ color: "white" }}>
                         <img
+                          className="white-svg"
                           src="/icons/like.svg"
                           alt="globe icon"
                           width={20}
@@ -336,7 +326,21 @@ export default function Profile({
                           />{" "}
                           Liked
                         </h3>
-                        <h5>Only you can see what you&apos;ve Liked.</h5>
+                        <h5>
+                          Only you can see what you&apos;ve Liked.
+                          <br />
+                          <br />
+                        </h5>
+                        <a href={"/explore"} className="btn-create">
+                          <img
+                            src="/icons/explore.svg"
+                            className="white-svg"
+                            alt="explore logo"
+                            width={15}
+                            height={15}
+                          />{" "}
+                          Explore Stacks
+                        </a>
                         {page_data.users_liked_stacks !== "no_liked_stacks" &&
                           page_data.users_liked_stacks !== null && (
                             <>
@@ -359,11 +363,11 @@ export default function Profile({
                               </div>
                             </>
                           )}
-                        {page_data.users_liked_stacks === "no_liked_stacks" && (
+                        {/* {page_data.users_liked_stacks === "no_liked_stacks" && (
                           <p>
                             <i>You have not liked any stacks yet</i>
                           </p>
-                        )}
+                        )} */}
                       </div>
                     </div>
                   )}

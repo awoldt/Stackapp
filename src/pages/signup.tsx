@@ -64,7 +64,7 @@ export default function CreateAccount({
                   <a href={"/"}>Stack</a>
                 </h1>
                 <h5 style={{ paddingBottom: "10px" }}>
-                  Create an account to sign up and start Stacking.
+                  Sign Up to start Stacking.
                   <a href={"/signin"} className="nav-element">
                     Sign In.
                   </a>

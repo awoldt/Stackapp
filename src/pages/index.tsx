@@ -74,46 +74,46 @@ export default function Home({
             <a
               href={"/signin"}
               className="btn-landing"
-              style={{ marginRight: "10px" }}
+              style={{ marginRight: "10px", width: "20%" }}
             >
               <img src="/icons/signin.svg" className="white-svg" alt="signin logo" width={15} height={15} /> Sign In
             </a>
             <a
               href={"/signup"}
               className="btn-landing"
-              style={{ marginLeft: "10px" }}
+              style={{ marginLeft: "10px", width: "20%" }}
             >
               <img src="/icons/signup.svg" className="white-svg" alt="signup logo" width={15} height={15} /> Sign Up
             </a>
           </div>
 
-              <div className="card-container" style={{ paddingTop: "20px" }}>
-                <div className="card">
-                  <p>
-                    Stack is a platform that empowers developers and designers
-                    to create beautifully designed web pages showcasing the most
-                    important details of their tech stacks. Stack allows users
-                    to accelerate the tech stack development process through a
-                    user-friendly interface and intuitive tools. Every Stack
-                    contains essential information regarding the tech stack
-                    development process. Easily display the Languages,
-                    Databases, Cloud Services, APIs, and Frameworks your tech
-                    stack is built upon. Every Stack includes an application
-                    description, URL, and images.
-                    <br />
-                    <br />
-                    Whether you&apos;re an individual developer looking to
-                    showcase your latest project or a team wanting to maintain a
-                    centralized repository of your technology choices, Stack
-                    provides an effective solution. By combining aesthetics with
-                    functionality, Stack enhances the communication of complex
-                    technical concepts, allowing developers and designers to
-                    express their ideas clearly and engagingly. The result is a
-                    platform that supports innovation and collaboration within
-                    the ever-evolving world of software development.
-                  </p>
-                </div>
-              </div>
+          <div className="card-container" style={{ paddingTop: "20px" }}>
+            <div className="card">
+              <p>
+                Stack is a platform that empowers developers and designers
+                to create beautifully designed web pages showcasing the most
+                important details of their tech stacks. Stack allows users
+                to accelerate the tech stack development process through a
+                user-friendly interface and intuitive tools. Every Stack
+                contains essential information regarding the tech stack
+                development process. Easily display the Languages,
+                Databases, Cloud Services, APIs, and Frameworks your tech
+                stack is built upon. Every Stack includes an application
+                description, URL, and images.
+                <br />
+                <br />
+                Whether you&apos;re an individual developer looking to
+                showcase your latest project or a team wanting to maintain a
+                centralized repository of your technology choices, Stack
+                provides an effective solution. By combining aesthetics with
+                functionality, Stack enhances the communication of complex
+                technical concepts, allowing developers and designers to
+                express their ideas clearly and engagingly. The result is a
+                platform that supports innovation and collaboration within
+                the ever-evolving world of software development.
+              </p>
+            </div>
+          </div>
 
           {/* <div className="card-container" style={{ paddingTop: "0px" }}>
             <div className="card-empty" style={{ paddingTop: "0px" }}>
