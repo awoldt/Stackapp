@@ -34,9 +34,9 @@
         height: 98vh;
     }
 
-    /* .background-image {
+    .background-image {
         display: none;
-    } */
+    }
 
     ::-webkit-scrollbar {
         width: 14px;

@@ -37,8 +37,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
       user === null
         ? null
         : user.github_access_token === null
-        ? null
-        : await GetRepoSelect(
+          ? null
+          : await GetRepoSelect(
             user!.github_access_token,
             String(req.cookies.uid)
           ),
@@ -145,7 +145,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                       type="text"
                       id="app_title"
                       name="app_name"
-                      placeholder="Stack Title"
+                      placeholder="*Stack Title"
                       required
                       maxLength={100}
                     />
@@ -166,7 +166,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                         width={25}
                         height={15}
                       />
-                      Stack Icon
+                      *Stack Icon
                     </label>
                     {showcaseIcon && (
                       <img
@@ -210,7 +210,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                         width={25}
                         height={15}
                       />
-                      Stack Thumbnail
+                      *Stack Thumbnail
                     </label>
                     {showcaseThumbnail && (
                       <img
@@ -287,7 +287,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                       height={15}
                       style={{ display: "inline" }}
                     />
-                    <p style={{ display: "inline" }}>
+                    <p className="subtitle" style={{ display: "inline" }}>
                       Select all Languages used in your tech stack.
                       <br />
                       <br />
@@ -315,7 +315,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                       height={15}
                       style={{ display: "inline" }}
                     />
-                    <p style={{ display: "inline" }}>
+                    <p className="subtitle" style={{ display: "inline" }}>
                       Select all Databases used in your tech stack.
                       <br />
                       <br />
@@ -343,7 +343,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                       height={15}
                       style={{ display: "inline" }}
                     />
-                    <p style={{ display: "inline" }}>
+                    <p className="subtitle" style={{ display: "inline" }}>
                       Select all APIs used in your tech stack.
                       <br />
                       <br />
@@ -367,7 +367,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                       height={15}
                       style={{ display: "inline" }}
                     />
-                    <p style={{ display: "inline" }}>
+                    <p className="subtitle" style={{ display: "inline" }}>
                       Select all Cloud Deployment Services used in your tech
                       stack.
                       <br />
@@ -396,7 +396,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                       height={15}
                       style={{ display: "inline" }}
                     />
-                    <p style={{ display: "inline" }}>
+                    <p className="subtitle" style={{ display: "inline" }}>
                       Select all Frameworks used in your tech stack.
                       <br />
                       <br />
@@ -416,72 +416,66 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                         );
                       }
                     )}
+
+                    {page_data.is_signed_in && (
+                      <>
+                        {!loading && (
+                          <>
+                            {disabledSubmit && (
+                              <div className="card-container">
+                                <button
+                                  disabled={true}
+                                  id="create_stack_btn"
+                                  type="submit"
+                                  className="btn-create"
+                                  style={{
+                                    width: "100%",
+                                    marginBottom: "0px",
+                                    marginTop: "40px",
+                                    backgroundColor: "grey",
+                                    cursor: "default",
+                                  }}
+                                >
+                                  <img
+                                    src="/icons/create.svg"
+                                    className="white-svg"
+                                    alt="create logo"
+                                    width={15}
+                                    height={15}
+                                  />{" "}
+                                  Create Stack
+                                </button>
+                              </div>
+                            )}
+                            {!disabledSubmit && (
+                              <div className="card-container">
+                                <button
+                                  id="create_stack_btn"
+                                  type="submit"
+                                  className="btn-create"
+                                  style={{ width: "100%", marginTop: "40px", marginBottom: "0px" }}
+                                >
+                                  <img
+                                    src="/icons/create.svg"
+                                    className="white-svg"
+                                    alt="create logo"
+                                    width={15}
+                                    height={15}
+                                  />{" "}
+                                  Create Stack
+                                </button>
+                              </div>
+                            )}
+                          </>
+                        )}
+                        {loading && <Spinner />}
+                      </>
+                    )}
+
                   </div>
                 </div>
 
-                {page_data.is_signed_in && (
-                  <>
-                    {!loading && (
-                      <>
-                        {disabledSubmit && (
-                          <div className="card-container">
-                            <div
-                              className="card-empty"
-                              style={{ marginTop: "0px", paddingTop: "0px" }}
-                            >
-                              <button
-                                disabled={true}
-                                id="create_stack_btn"
-                                type="submit"
-                                className="btn-create"
-                                style={{
-                                  width: "100%",
-                                  marginBottom: "0px",
-                                  backgroundColor: "grey",
-                                  cursor: "default",
-                                }}
-                              >
-                                <img
-                                  src="/icons/create.svg"
-                                  className="white-svg"
-                                  alt="create logo"
-                                  width={15}
-                                  height={15}
-                                />{" "}
-                                Create Stack
-                              </button>
-                            </div>
-                          </div>
-                        )}
-                        {!disabledSubmit && (
-                          <div className="card-container">
-                            <div
-                              className="card-empty"
-                              style={{ marginTop: "0px", paddingTop: "0px" }}
-                            >
-                              <button
-                                id="create_stack_btn"
-                                type="submit"
-                                className="btn-create"
-                                style={{ width: "100%", marginBottom: "0px" }}
-                              >
-                                <img
-                                  src="/icons/create.svg"
-                                  className="white-svg"
-                                  alt="create logo"
-                                  width={15}
-                                  height={15}
-                                />{" "}
-                                Create Stack
-                              </button>
-                            </div>
-                          </div>
-                        )}
-                      </>
-                    )}
-                    {loading && <Spinner />}
-                  </>
-                )}
+
               </form>
 
               <div className="card-container">

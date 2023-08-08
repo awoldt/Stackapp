@@ -21,7 +21,7 @@ export default function StackDesctiptionTextarea({
           rows={10}
           required
           style={{ marginBottom: "0px"}}
-          placeholder="Stack Description*"
+          placeholder="*Stack Description"
           maxLength={2500}
           onChange={(e) => {
             setWordCount(textareaRef.current!.value.length!);
