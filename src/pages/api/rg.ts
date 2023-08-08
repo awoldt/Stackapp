@@ -29,7 +29,6 @@ export default async function handler(
       for (const d of userStacks.docs) {
         await db.collection(process.env.STACKS_DB!).doc(d.id).update({
           github_repo_id: null,
-          github_api_token_used: null,
         });
       }
     }
