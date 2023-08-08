@@ -15,21 +15,21 @@ export default async function handler(
   if (a === "account_doesnt_exist") {
     return res
       .status(400)
-      .json({ msg: "Account does not exist", status: "does_not_exist" });
+      .json({ msg: "Account does not exist.", status: "does_not_exist" });
   }
   if (a === "incorrect_password") {
     return res
       .status(400)
-      .json({ msg: "Incorrect password", status: "wrong_password" });
+      .json({ msg: "Incorrect password.", status: "wrong_password" });
   }
   if (a === null) {
     return res
       .status(500)
-      .json({ msg: "There was an error while signing in", status: "error" });
+      .json({ msg: "There was an error while signing in.", status: "error" });
   }
 
   return res.json({
-    msg: "Successfully signed in",
+    msg: "Successfully Signed In.",
     uidCookie: a,
     status: "success",
   });

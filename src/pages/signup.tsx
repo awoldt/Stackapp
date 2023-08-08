@@ -5,6 +5,7 @@ import { IsUserSignedIn } from "@/functions";
 import { DEFAULT_PAGE_LAYOUT } from "@/types";
 import { GetServerSideProps } from "next";
 import { useRef, useState } from "react";
+import Sidenav from "@/components/Sidenav";
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const pageData: DEFAULT_PAGE_LAYOUT = {
@@ -50,6 +51,11 @@ export default function CreateAccount({
             openGraph={page_data.header_tags.open_graph_tags}
           />
           <section>
+            {page_data.is_signed_in && <Sidenav isSignedIn={true} />}
+            {!page_data.is_signed_in && <Sidenav isSignedIn={false} />}
+          </section>
+
+          <section>
             <div className="background">
               <img
                 src={"/imgs/background.avif"}
@@ -60,13 +66,13 @@ export default function CreateAccount({
 
             <div className="card-container">
               <div className="card-empty">
-                <h1 className="splash">
+                <h1 className="splash" style={{ marginTop: "5%" }}>
                   <a href={"/"}>Stack</a>
                 </h1>
                 <p className="subtitle" style={{ paddingBottom: "10px" }}>
-                  Sign Up to start Stacking.
+                  Sign up to start Stacking.
                   <a href={"/signin"} className="nav-element">
-                    Sign In.
+                    Sign in.
                   </a>
                 </p>
               </div>
@@ -139,12 +145,13 @@ export default function CreateAccount({
                         type="password"
                         name="app_signup_password"
                         placeholder="Password"
+                        style={{ marginBottom: "0px" }}
                         required
                       />
                       {!loading && (
                         <button
                           className="btn-create"
-                          style={{ width: "100%" }}
+                          style={{ width: "100%", marginTop: "40px" }}
                         >
                           <img
                             src="/icons/signup.svg"

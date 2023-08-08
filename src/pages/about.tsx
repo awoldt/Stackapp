@@ -45,7 +45,7 @@ export default function About({
             {page_data.is_signed_in && <Sidenav isSignedIn={true} />}
             {!page_data.is_signed_in && <Sidenav isSignedIn={false} />}
           </section>
-          
+
           <div className="background">
             <img
               src="/imgs/background.avif"
@@ -57,112 +57,35 @@ export default function About({
           <div className="card-container-title">
             <div className="card-empty">
               <h1>About Stack</h1>
-              <p className="subtitle">Meet the development team behind the creation of Stack.</p>
+              <p className="subtitle">Learn the basics behind creating Stacks.</p>
             </div>
           </div>
 
           <div className="card-container">
-            <div className="card-edit">
-              <img src="imgs/alex.jpg" className="profile-img" />
-              <h2>
-                <b>Alex Breckwoldt</b>
-              </h2>
-              <p style={{ marginBottom: "20px" }}>
-                Co-Founder / Software Engineer
+            <div className="card">
+              <p>
+                Stack is a platform that empowers developers and designers to
+                create beautifully designed web pages showcasing the most
+                important details of their tech stacks. Stack allows users to
+                accelerate the tech stack development process through a
+                user-friendly interface and intuitive tools. Every Stack
+                contains essential information regarding the tech stack
+                development process. Easily display the Languages, Databases,
+                Cloud Services, APIs, and Frameworks your tech stack is built
+                upon. Every Stack includes an application description, URL, and
+                images.
+                <br />
+                <br />
+                Whether you&apos;re an individual developer looking to showcase
+                your latest project or a team wanting to maintain a centralized
+                repository of your technology choices, Stack provides an
+                effective solution. By combining aesthetics with functionality,
+                Stack enhances the communication of complex technical concepts,
+                allowing developers and designers to express their ideas clearly
+                and engagingly. The result is a platform that supports
+                innovation and collaboration within the ever-evolving world of
+                software development.
               </p>
-              <div>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://www.linkedin.com/in/awoldt/"
-                  style={{ marginRight: "25px" }}
-                >
-                  <img
-                    src="/icons/linkedin.svg"
-                    alt="linkedin logo"
-                    width={25}
-                    height={40}
-                  />
-                </a>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://github.com/awoldt"
-                  style={{ marginRight: "25px" }}
-                >
-                  <img
-                    src="/icons/github.svg"
-                    alt="github logo"
-                    width={25}
-                    height={40}
-                  />
-                </a>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://awoldt.com/"
-                >
-                  <img
-                    src="/icons/globe.svg"
-                    alt="globe icon"
-                    width={25}
-                    height={40}
-                  />
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div className="card-container">
-            <div className="card-edit">
-              <img src="imgs/justin.jpg" className="profile-img" />
-              <h2>
-                <b>Justin Davenport</b>
-              </h2>
-              <p style={{ marginBottom: "20px" }}>
-                Co-Founder / Frontend Developer
-              </p>
-              <div>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://www.linkedin.com/in/justindavenport99"
-                  style={{ marginRight: "25px" }}
-                >
-                  {" "}
-                  <img
-                    src="/icons/linkedin.svg"
-                    alt="linkedin logo"
-                    width={25}
-                    height={40}
-                  />
-                </a>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://github.com/Jdavenport3199"
-                  style={{ marginRight: "25px" }}
-                >
-                  <img
-                    src="/icons/github.svg"
-                    alt="github logo"
-                    width={25}
-                    height={40}
-                  />
-                </a>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://justindavenport.space/"
-                >
-                  <img
-                    src="/icons/globe.svg"
-                    alt="globe icon"
-                    width={25}
-                    height={40}
-                  />
-                </a>
-              </div>
             </div>
           </div>
         </>

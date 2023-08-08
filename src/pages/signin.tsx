@@ -5,6 +5,8 @@ import UniqueHeader from "@/components/UniqueHeaderTags";
 import { GetServerSideProps } from "next";
 import { IsUserSignedIn } from "@/functions";
 import InvalidCookie from "@/components/InvalidUidCookie";
+import Sidenav from "@/components/Sidenav";
+
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const pageData: DEFAULT_PAGE_LAYOUT = {
@@ -42,11 +44,11 @@ export default function Signin({
   useEffect(() => {
     switch (error[1]) {
       case "does_not_exist":
-        emailUsernameRef.current!.style.border = "1px solid red";
-        passwordRef.current!.style.border = "1px solid red";
+        emailUsernameRef.current!.style.border = "2px solid red";
+        passwordRef.current!.style.border = "2px solid red";
         break;
       case "wrong_password":
-        passwordRef.current!.style.border = "1px solid red";
+        passwordRef.current!.style.border = "2px solid red";
         break;
       case "error":
         alert("There was an error while submitting your request");
@@ -67,6 +69,11 @@ export default function Signin({
             canonicalLink={page_data.header_tags.canonical_link!}
             openGraph={page_data.header_tags.open_graph_tags}
           />
+          <section>
+            {page_data.is_signed_in && <Sidenav isSignedIn={true} />}
+            {!page_data.is_signed_in && <Sidenav isSignedIn={false} />}
+          </section>
+
           <div className="background">
             <img
               src={"/imgs/background.avif"}
@@ -77,13 +84,13 @@ export default function Signin({
 
           <div className="card-container">
             <div className="card-empty">
-              <h1 className="splash">
+              <h1 className="splash" style={{ marginTop: "5%" }}>
                 <a href={"/"}>Stack</a>
               </h1>
               <p className="subtitle" style={{ paddingBottom: "10px" }}>
                 Looking to Stack it?
                 <a href={"/signup"} className="nav-element">
-                  Sign Up.
+                  Sign up.
                 </a>
               </p>
             </div>
@@ -129,12 +136,12 @@ export default function Signin({
                 }}
                 onChange={() => {
                   if (
-                    emailUsernameRef.current!.style.border === "1px solid red"
+                    emailUsernameRef.current!.style.border === "2px solid red"
                   ) {
-                    emailUsernameRef.current!.style.border = "none";
+                    emailUsernameRef.current!.style.border = "2px solid rgba(0, 0, 0, 0.065)";
                   }
-                  if (passwordRef.current!.style.border === "1px solid red") {
-                    passwordRef.current!.style.border = "none";
+                  if (passwordRef.current!.style.border === "2px solid red") {
+                    passwordRef.current!.style.border = "2px solid rgba(0, 0, 0, 0.065)";
                   }
                   if (error[0]) {
                     setError([false, null, null]);
@@ -145,27 +152,37 @@ export default function Signin({
                   type="text"
                   ref={emailUsernameRef}
                   placeholder="Email or Username"
+                  style={{
+                    margin: "0px"
+                  }}
                   required
                 />
+
+                <div style={{ margin: "20px" }}>
+
+                </div>
                 <input
                   type="password"
                   ref={passwordRef}
                   placeholder="Password"
+                  style={{
+                    margin: "0px"
+                  }}
                   required
                 />
                 {error[0] && (
                   <p
                     style={{
-                      marginTop: "10px",
-                      marginBottom: "10px",
                       color: "red",
+                      margin: "0px",
+                      padding: "0px"
                     }}
                   >
                     {error[2]}
                   </p>
                 )}
                 {!loading && (
-                  <button className="btn-create" style={{ width: "100%" }}>
+                  <button className="btn-create" style={{ width: "100%", marginTop: "40px" }}>
                     <img
                       src="/icons/signin.svg"
                       className="white-svg"

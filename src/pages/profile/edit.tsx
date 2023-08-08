@@ -185,19 +185,14 @@ export default function EditProfile({
                     <>
                       {!removedGithub && (
                         <>
-                          <img src="/icons/github.svg" alt="github logo" />
                           <p style={{ marginBottom: "20px" }}>
-                            Your GitHub account is connected.
-                            <br />
-                            Account ID #{page_data.user_data?.github_account_id}
+                            GitHub Account connected. <b>ID #{page_data.user_data?.github_account_id}</b>
                             <button
+                              className="btn-edit"
                               type="button"
                               style={{
-                                margin: "auto",
                                 display: "block",
-                                marginTop: "15px",
-                                fontSize: "14px",
-                                cursor: "pointer",
+                                width: "100%"
                               }}
                               onClick={async () => {
                                 try {
@@ -217,7 +212,7 @@ export default function EditProfile({
                                 }
                               }}
                             >
-                              Remove GitHub access
+                              <img src="/icons/github.svg" className="white-svg" alt="github logo" /> Unconnect GitHub
                             </button>
                           </p>
                         </>
@@ -319,6 +314,28 @@ export default function EditProfile({
                     />{" "}
                     Delete Account
                   </button>
+
+                  <a href={""}
+                    style={{ padding: "0px" }}
+                  >
+                    <button className="btn-edit" style={{ width: "100%" }}>
+                      <span
+                        style={{ color: "white", fontSize: "20px", fontWeight: "500" }}
+                        onClick={() => {
+                          document.cookie =
+                            "uid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                          window.location.assign(window.location.href);
+                        }}
+                      >
+                        <img
+                          src="/icons/signout.svg"
+                          className="white-svg"
+                          alt="signout logo"
+                          width={15}
+                          height={15} />{" "}
+                        Sign Out
+                      </span>
+                    </button></a>
 
                   {!loading && (
                     <>

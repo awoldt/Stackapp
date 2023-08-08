@@ -20,6 +20,9 @@ export default function Document() {
                 <a href={"/privacy"} className="footer-element">
                   Privacy
                 </a>
+                <a href={"/team"} className="footer-element">
+                  Team
+                </a>
                 <br />
                 <br />
               </span>

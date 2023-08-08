@@ -170,8 +170,8 @@ export default function Profile({
                           className="white-svg"
                           src="/icons/stack.svg"
                           alt="globe icon"
-                          width={20}
-                          height={20}
+                          width={15}
+                          height={15}
                         />{" "}
                         Stacks
                       </span>
@@ -191,8 +191,8 @@ export default function Profile({
                           className="white-svg"
                           src="/icons/like.svg"
                           alt="globe icon"
-                          width={20}
-                          height={20}
+                          width={15}
+                          height={15}
                         />{" "}
                         Liked
                       </span>
@@ -264,8 +264,8 @@ export default function Profile({
                                     <img
                                       src="/icons/stack.svg"
                                       alt="globe icon"
-                                      width={35}
-                                      height={35}
+                                      width={25}
+                                      height={25}
                                     />{" "}
                                     Stacks
                                   </h2>
@@ -331,8 +331,8 @@ export default function Profile({
                           <img
                             src="/icons/like.svg"
                             alt="globe icon"
-                            width={35}
-                            height={35}
+                            width={25}
+                            height={25}
                           />{" "}
                           Liked
                         </h2>

@@ -137,7 +137,7 @@ export default function Profilepage({
                         </span>
 
                         {page_data.user_profile_data!.bio !== null && (
-                          <p style={{ marginBottom: "20px" }}>
+                          <p style={{ marginTop: "20px", marginBottom: "20px" }}>
                             {page_data.user_profile_data!.bio}
                           </p>
                         )}
@@ -159,9 +159,23 @@ export default function Profilepage({
 
               {page_data.user_stacks !== 0 && (
                 <section>
-                  <div className="card-container">
+                  <div
+                    className="card-container"
+                    style={{
+                      paddingTop: "0px",
+                      paddingBottom: "80px",
+                    }}
+                  >
                     <div className="card" style={{ textAlign: "center" }}>
-                      <h2>Stacks</h2>
+                      <h2>
+                        <img
+                          src="/icons/stack.svg"
+                          alt="globe icon"
+                          width={25}
+                          height={25}
+                        />{" "}
+                        Stacks
+                      </h2>
                       <p>
                         {page_data.user_stacks!.length} Stacks
                         <br />
@@ -179,8 +193,9 @@ export default function Profilepage({
                                   />
                                 </div>
                               </div>
-                              <span style={{ marginBottom: "40px" }}>
+                              <span className="bold">
                                 {x.name}
+                                <br />
                               </span>
                             </a>
                           );

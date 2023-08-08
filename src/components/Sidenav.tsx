@@ -48,28 +48,24 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
                   </a>
                 </span>
               </li>
-              <li>
-                <span className="subtitle"
-                  onClick={() => {
-                    document.cookie =
-                      "uid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                    window.location.assign(window.location.href);
-                  }}>
-                  <a href={""} className="nav-element">
-                    <img
-                      src="/icons/signout.svg"
-                      alt="signout logo"
-                      width={15}
-                      height={15} />{" "}
-                    Sign Out
-                  </a>
-                </span>
-              </li>
             </>
           )}
 
           {!isSignedIn && (
             <>
+              <li>
+                <span className="subtitle">
+                  <a href={"/"} className="nav-element">
+                    <img
+                      src="/icons/home.svg"
+                      alt="home logo"
+                      width={15}
+                      height={15}
+                    />{" "}
+                    Home
+                  </a>
+                </span>
+              </li>
               <li>
                 <span className="subtitle">
                   <a href={"/explore"} className="nav-element">
@@ -79,42 +75,6 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
                       width={15}
                       height={15} />{" "}
                     Explore
-                  </a>
-                </span>
-              </li>
-              <li>
-                <span className="subtitle">
-                  <a href={"/create"} className="nav-element">
-                    <img
-                      src="/icons/create.svg"
-                      alt="create logo"
-                      width={15}
-                      height={15} />{" "}
-                    Create
-                  </a>
-                </span>
-              </li>
-              <li>
-                <span className="subtitle">
-                  <a href={"/signin"} className="nav-element">
-                    <img
-                      src="/icons/signin.svg"
-                      alt="signin logo"
-                      width={15}
-                      height={15} />{" "}
-                    Sign In
-                  </a>
-                </span>
-              </li>
-              <li>
-                <span className="subtitle">
-                  <a href={"/signup"} className="nav-element">
-                    <img
-                      src="/icons/signup.svg"
-                      alt="signup logo"
-                      width={15}
-                      height={15} />{" "}
-                    Sign Up
                   </a>
                 </span>
               </li>
@@ -165,22 +125,6 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
                   Profile
                 </a>
               </span>
-              <span className="subtitle"
-                onClick={() => {
-                  document.cookie =
-                    "uid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                  window.location.assign(window.location.href);
-                }}
-              >
-                <a href={""} className="nav-element">
-                  <img
-                    src="/icons/signout.svg"
-                    alt="signout logo"
-                    width={15}
-                    height={15} />{" "}
-                  Sign Out
-                </a>
-              </span>
             </div>
           </div>
         </div>
@@ -195,6 +139,17 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
               </span>
             </button>
             <div className="dropdown-content">
+              <span className="subtitle">
+                <a href={"/"} className="nav-element">
+                  <img
+                    src="/icons/home.svg"
+                    alt="home logo"
+                    width={15}
+                    height={15}
+                  />{" "}
+                  Home
+                </a>
+              </span>
               <span className="subtitle">
                 <a href={"/explore"} className="nav-element">
                   <img
@@ -215,28 +170,6 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
                     height={15}
                   />{" "}
                   Create
-                </a>
-              </span>
-              <span className="subtitle">
-                <a href={"/signin"} className="nav-element">
-                  <img
-                    src="/icons/signin.svg"
-                    alt="signin logo"
-                    width={15}
-                    height={15}
-                  />{" "}
-                  Sign In
-                </a>
-              </span>
-              <span className="subtitle">
-                <a href={"/signup"} className="nav-element">
-                  <img
-                    src="/icons/signup.svg"
-                    alt="signup logo"
-                    width={15}
-                    height={15}
-                  />{" "}
-                  Sign Up
                 </a>
               </span>
             </div>
