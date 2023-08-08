@@ -572,6 +572,21 @@
         padding-top: 5vh;
     }
 
+    .card-create {
+        border-radius: 4px;
+        text-align: center;
+        width: 40%;
+        height: auto;
+        word-wrap: break-word;
+        padding-top: 5vh;
+    }
+
+    @media (max-width: 1550px) {
+        .card-create {
+            width: 95%;
+        }
+    }
+
     .card {
         border-radius: 4px;
         width: 70%;
@@ -935,10 +950,10 @@
     }
 
     .create-content {
-        column-count: 2;
+        column-count: 1;
         text-align: left;
         border-radius: 4px;
-        width: 70%;
+        width: 40%;
         padding: 40px;
         background: -moz-radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%);
         background: -webkit-radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%);
