@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Spinner from "@/components/Spinner";
 import { DEFAULT_PAGE_LAYOUT } from "@/types";
 import UniqueHeader from "@/components/UniqueHeaderTags";
@@ -29,10 +29,30 @@ export default function Signin({
 }: {
   page_data: DEFAULT_PAGE_LAYOUT;
 }) {
-  const emailRef = useRef<HTMLInputElement>(null);
+  const emailUsernameRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<[boolean, null | string, null | string]>([
+    false,
+    null,
+    null,
+  ]); //[true, "no_account", "Account does not exist"]
+
+  useEffect(() => {
+    switch (error[1]) {
+      case "does_not_exist":
+        emailUsernameRef.current!.style.border = "1px solid red";
+        passwordRef.current!.style.border = "1px solid red";
+        break;
+      case "wrong_password":
+        passwordRef.current!.style.border = "1px solid red";
+        break;
+      case "error":
+        alert("There was an error while submitting your request");
+        break;
+    }
+  }, [error]);
 
   return (
     <>
@@ -71,6 +91,9 @@ export default function Signin({
 
           <div className="card-container">
             <div className="card-registration">
+              {error[1] === "client_error" && (
+                <p style={{ color: "red" }}>{error[2]}</p>
+              )}
               <form
                 onSubmit={async (e) => {
                   e.preventDefault();
@@ -80,7 +103,7 @@ export default function Signin({
                     const x = await fetch("api/signin", {
                       method: "POST",
                       body: JSON.stringify({
-                        e: emailRef.current!.value,
+                        e: emailUsernameRef.current!.value,
                         p: passwordRef.current!.value,
                       }),
                       headers: {
@@ -90,30 +113,38 @@ export default function Signin({
                     const data = await x.json();
                     if (x.status === 200) {
                       document.cookie = `uid=${data.uidCookie}; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/`;
-
                       window.location.assign("/profile");
                     } else {
                       setLoading(false);
-                      alert(data.msg);
+                      setError([true, data.status, data.msg]);
                     }
                   } catch (e: any) {
                     setLoading(false);
-                    switch (e.code) {
-                      case "auth/wrong-password":
-                        alert("Email or password is wrong");
-                        break;
-
-                      case "auth/user-not-found":
-                        alert("Account does not exist");
-                        break;
-                    }
+                    setError([
+                      true,
+                      "client_error",
+                      "There was an error while submitting your request",
+                    ]);
+                  }
+                }}
+                onChange={() => {
+                  if (
+                    emailUsernameRef.current!.style.border === "1px solid red"
+                  ) {
+                    emailUsernameRef.current!.style.border = "none";
+                  }
+                  if (passwordRef.current!.style.border === "1px solid red") {
+                    passwordRef.current!.style.border = "none";
+                  }
+                  if (error[0]) {
+                    setError([false, null, null]);
                   }
                 }}
               >
                 <input
-                  type="email"
-                  ref={emailRef}
-                  placeholder="Email"
+                  type="text"
+                  ref={emailUsernameRef}
+                  placeholder="Email or Username"
                   required
                 />
                 <input
@@ -122,6 +153,17 @@ export default function Signin({
                   placeholder="Password"
                   required
                 />
+                {error[0] && (
+                  <p
+                    style={{
+                      marginTop: "10px",
+                      marginBottom: "10px",
+                      color: "red",
+                    }}
+                  >
+                    {error[2]}
+                  </p>
+                )}
                 {!loading && (
                   <button className="btn-create" style={{ width: "100%" }}>
                     <img

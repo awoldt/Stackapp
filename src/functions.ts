@@ -1314,20 +1314,35 @@ export async function CreateAccount(
 }
 
 export async function SignUserIn(
-  e: string,
+  e: string, //can be email OR username
   p: string
-): Promise<"account_doesnt_exist" | null | any> {
+): Promise<"account_doesnt_exist" | null | any | "incorrect_password"> {
   try {
     const a = await db
       .collection("profiles")
-      .where("email", "==", e)
-      .where("password", "==", p)
+      .where("email", "==", e.replace(/\s/g, ""))
       .get();
     if (a.empty) {
-      return "account_doesnt_exist";
-    } else {
-      return a.docs[0].data().uid;
+      //check to see if username exists with input value
+      const a2 = await db
+        .collection("profiles")
+        .where("username", "==", e.replace(/\s/g, ""))
+        .get();
+      if (a2.empty) {
+        return "account_doesnt_exist";
+      }
+      //check if password is correct
+      if (a2.docs[0].data().password !== p) {
+        return "incorrect_password";
+      }
+      return a2.docs[0].data().uid;
     }
+
+    //check if password is correct
+    if (a.docs[0].data().password !== p) {
+      return "incorrect_password";
+    }
+    return a.docs[0].data().uid;
   } catch (e) {
     console.log(e);
     return null;
@@ -1407,6 +1422,7 @@ export async function GetExplorePageStacks(): Promise<_explorepageCategories | n
     const recentStacks = await db
       .collection(process.env.STACKS_DB!)
       .orderBy("created_on", "desc")
+      .limit(5)
       .get();
 
     if (!recentStacks.empty) {
@@ -1427,6 +1443,7 @@ export async function GetExplorePageStacks(): Promise<_explorepageCategories | n
       .collection(process.env.STACKS_DB!)
       .where("likes", ">", 0)
       .orderBy("likes", "desc")
+      .limit(5)
       .get();
     if (!popularStacks.empty) {
       //need to use for loop instead of snapshot query forEach

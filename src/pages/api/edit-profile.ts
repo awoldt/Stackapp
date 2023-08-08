@@ -1,4 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { EditProfile } from "@/functions";
 import formidable from "formidable";
 import type { NextApiRequest, NextApiResponse } from "next";
@@ -7,6 +6,7 @@ const form = formidable({
   keepExtensions: true,
   allowEmptyFiles: true,
   minFileSize: 0,
+  maxFileSize: 2000000, //2mb
 });
 
 export default async function handler(
@@ -16,7 +16,9 @@ export default async function handler(
   form.parse(req, async (err, fields, files: any) => {
     if (err) {
       console.log(err);
-
+      if (err.httpCode === 413) {
+        return res.status(413).json({ msg: "File size too large" });
+      }
       return res
         .status(500)
         .json({ msg: "There was an error while processing upload" });
