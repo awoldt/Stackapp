@@ -67,6 +67,7 @@ export default function EditProfile({
 }) {
   const [loading, setLoading] = useState(false);
   const [disabledSubmit, setDisabledSubmit] = useState(true);
+  const [removedGithub, setRemovedGithub] = useState(false); //only true when user revokes github access
 
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -179,36 +180,95 @@ export default function EditProfile({
                     <br />
                   </div>
 
+                  {/* HAS GITHUB CONNECTED */}
                   {page_data.has_authenticated_github_account && (
-                    <p style={{ marginBottom: "20px" }}>
-                      Your GitHub account is connected.
-                      <br />
-                      Account ID #{page_data.user_data?.github_account_id}
-                    </p>
-                  )}
-                  {!page_data.has_authenticated_github_account && (
                     <>
-                      {" "}
-                      <a
-                        style={{ margin: "0px", padding: "0px" }}
-                        href={`https://github.com/login/oauth/authorize?client_id=${page_data.github_client_id}`}
-                        title="Authorize Stackapp to connect to your GitHub Account"
-                      >
-                        <button
-                          type="button"
-                          style={{ width: "100%" }}
-                          className="btn-extra">
-                          <img
-                            src="/icons/github.svg"
-                            className="white-svg"
-                            alt="github logo"
-                            width={15}
-                            height={15}
-                          />{" "}
-                          Connect Github
-                        </button>
-                      </a>
+                      {!removedGithub && (
+                        <>
+                          <img src="/icons/github.svg" alt="github logo" />
+                          <p style={{ marginBottom: "20px" }}>
+                            Your GitHub account is connected.
+                            <br />
+                            Account ID #{page_data.user_data?.github_account_id}
+                            <button
+                              type="button"
+                              style={{
+                                margin: "auto",
+                                display: "block",
+                                marginTop: "15px",
+                                fontSize: "14px",
+                                cursor: "pointer",
+                              }}
+                              onClick={async () => {
+                                try {
+                                  const req = await fetch("/api/rg", {
+                                    method: "GET",
+                                  });
+                                  if (req.status === 200) {
+                                    alert(
+                                      "Successfully removed GitHub access from your stack account"
+                                    );
+                                    setRemovedGithub(true);
+                                  } else {
+                                    alert("Error. Please try again.");
+                                  }
+                                } catch (e) {
+                                  alert("Error. Please try again.");
+                                }
+                              }}
+                            >
+                              Remove GitHub access
+                            </button>
+                          </p>
+                        </>
+                      )}
+                      {removedGithub && (
+                        <a
+                          style={{ margin: "0px", padding: "0px" }}
+                          href={`https://github.com/login/oauth/authorize?client_id=${page_data.github_client_id}`}
+                          title="Authorize Stackapp to connect to your GitHub Account"
+                        >
+                          <button
+                            type="button"
+                            style={{ width: "100%" }}
+                            className="btn-extra"
+                          >
+                            <img
+                              src="/icons/github.svg"
+                              className="white-svg"
+                              alt="github logo"
+                              width={15}
+                              height={15}
+                            />{" "}
+                            Connect Github
+                          </button>
+                        </a>
+                      )}
                     </>
+                  )}
+
+                  {/* DOES NOT HAVE GITHUB CONNECTED */}
+                  {!page_data.has_authenticated_github_account && (
+                    <a
+                      style={{ margin: "0px", padding: "0px" }}
+                      href={`https://github.com/login/oauth/authorize?client_id=${page_data.github_client_id}`}
+                      title="Authorize Stackapp to connect to your GitHub Account"
+                    >
+                      <button
+                        type="button"
+                        style={{ width: "100%" }}
+                        className="btn-extra"
+                      >
+                        <img
+                          src="/icons/github.svg"
+                          className="white-svg"
+                          alt="github logo"
+                          width={15}
+                          height={15}
+                        />{" "}
+                        Connect Github
+                      </button>
+                    </a>
                   )}
 
                   <button
@@ -232,9 +292,7 @@ export default function EditProfile({
                             try {
                               const req = await fetch("/api/delete-account");
                               if (req.status === 200) {
-                                alert(
-                                  "Account has been successfully deleted."
-                                );
+                                alert("Account has been successfully deleted.");
 
                                 //this expression will remove cookie from browser
                                 document.cookie =

@@ -11,16 +11,7 @@ export interface _stack {
   clouds_used: string[] | null;
   frameworks_used: string[] | null;
   apis_used: string[] | null;
-  github_repo_id: string | null; //the github repo connected to this stack, used to pull commit logs
-  /* 
-      - github_api_token_used
-  
-    the user with the authenticated github connection to their slack account 
-    will leave their unqiue github token to each stack they include repo details on, 
-    this is to improve rate limiting across entire site, 
-    each stack relies on a users token instead of using a single global token
-    */
-  github_api_token_used: string | null;
+  github_repo_id: number | null; //the github repo connected to this stack, used to pull commit logs
   website_url: string | null;
   created_on: number;
   likes: number;
@@ -41,9 +32,7 @@ export interface _editStackData {
   cloudsSelectedData: [string[], string[]] | null;
   apisSelectedData: [string[], string[]] | null;
   frameworksSelectedData: [string[], string[]] | null;
-
   github_repo_id: number | null; //the github repo connected to this stack, used to pull commit logs
-  github_api_token_used: string | null;
   website_url: string | null;
   uid: string;
   stack_id: string;
@@ -84,6 +73,11 @@ export interface _creator {
 export interface _explorepageCategories {
   recent_stacks: _stack[] | null;
   popular_stacks: _stack[] | null;
+}
+
+export interface _repoDetails {
+  name: string;
+  id: number;
 }
 
 export interface _nameWithLogo {
@@ -174,8 +168,9 @@ export interface _PAGEDATA_publicprofile extends DEFAULT_PAGE_LAYOUT {
 export interface _PAGEDATA_editstack extends DEFAULT_PAGE_LAYOUT {
   saved_stack_data: _editStackData | null;
   repo_select_list: _repoSelectList[] | null | "too_many_requests";
-  current_repo_id_selected: number | null;
+  current_repo_details: _repoDetails | null;
   tech_values: _techStackValues;
+  has_authenticated_github_account: boolean;
 }
 
 export interface _PAGEDATA_editprofile extends DEFAULT_PAGE_LAYOUT {
@@ -199,23 +194,6 @@ export interface _repoCommitLogs {
   sha: string;
   date_commited: string;
 }
-
-///////
-//API RESPONSES
-//////
-
-//most of these are empty, but good to have them if needed in future...
-
-export interface DEFAULT_APIRESPONSE {
-  msg: string;
-}
-export interface _API_NEWSTACK_RESPONSE extends DEFAULT_APIRESPONSE {
-  new_stack_id?: string; //will not be returned if error thrown
-}
-
-///////
-//END API RESPONSES
-//////
 
 //all the tech featured in a stack
 export interface _techStackValues {

@@ -8,6 +8,7 @@ import {
   GetCreatorDetails,
   GetRepoCommitLogs,
   GetStackData,
+  GetUserProfile,
   HasUserAlreadyLikedThisStack,
   IsUserSignedIn,
 } from "@/functions";
@@ -81,9 +82,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
       stackData.github_repo_id === null
         ? null
         : await GetRepoCommitLogs(
-          stackData.github_repo_id,
-          stackData.github_api_token_used!
-        ),
+            stackData.github_repo_id,
+            String((await GetUserProfile(stackData.uid))?.github_access_token)
+          ),
     creator_data: await GetCreatorDetails(stackData.uid),
     created_on: stackData.created_on,
     stack_id: stackData.stack_id!,
@@ -91,9 +92,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     has_signed_in_user_already_liked_stack:
       req.cookies.uid !== stackData.uid
         ? (await HasUserAlreadyLikedThisStack(
-          req.cookies.uid!,
-          stackData.stack_id!
-        ))!
+            req.cookies.uid!,
+            stackData.stack_id!
+          ))!
         : "current_signed_in_users_stack",
   };
 
@@ -186,7 +187,9 @@ export default function Stackpage({
                             href={page_data.website_url}
                             className="nav-element"
                             style={{ padding: "10px", paddingLeft: "0px" }}
-                          >{new URL(page_data.website_url).hostname}</a>
+                          >
+                            {new URL(page_data.website_url).hostname}
+                          </a>
                         )}
 
                         <div className="user-profile-containerParent">
@@ -359,7 +362,10 @@ export default function Stackpage({
                             Databases
                           </h2>
 
-                          <p className="subtitle" style={{ textAlign: "center" }}>
+                          <p
+                            className="subtitle"
+                            style={{ textAlign: "center" }}
+                          >
                             Databases used in the development of this tech
                             Stack.
                           </p>
@@ -412,7 +418,10 @@ export default function Stackpage({
                             APIs
                           </h2>
 
-                          <p className="subtitle" style={{ textAlign: "center" }}>
+                          <p
+                            className="subtitle"
+                            style={{ textAlign: "center" }}
+                          >
                             APIs used in the development of this tech Stack.
                           </p>
                           <div
@@ -464,7 +473,10 @@ export default function Stackpage({
                             Cloud Services
                           </h2>
 
-                          <p className="subtitle" style={{ textAlign: "center" }}>
+                          <p
+                            className="subtitle"
+                            style={{ textAlign: "center" }}
+                          >
                             Cloud Services used in the development of this tech
                             Stack.
                           </p>
@@ -517,7 +529,10 @@ export default function Stackpage({
                             Frameworks
                           </h2>
 
-                          <p className="subtitle" style={{ textAlign: "center" }}>
+                          <p
+                            className="subtitle"
+                            style={{ textAlign: "center" }}
+                          >
                             Frameworks used in the development of this tech
                             Stack.
                           </p>
@@ -566,7 +581,10 @@ export default function Stackpage({
                   <div className="card-container">
                     <div className="card">
                       <h2 style={{ textAlign: "center" }}>Github</h2>
-                      <p className="subtitle" style={{ textAlign: "center", marginBottom: "20px" }}>
+                      <p
+                        className="subtitle"
+                        style={{ textAlign: "center", marginBottom: "20px" }}
+                      >
                         Commit history towards the development of this tech
                         Stack.
                       </p>

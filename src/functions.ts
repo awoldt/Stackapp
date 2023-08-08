@@ -11,6 +11,7 @@ import {
   _PAGEDATA_stackpage,
   _editStackData,
   _explorepageCategories,
+  _repoDetails,
 } from "./types";
 import { uid } from "uid";
 
@@ -283,18 +284,14 @@ export function IsUsersStack(
 }
 
 export async function GetRepoSelect(
-  githubAccessToken: string | null,
-  userUid: string
+  githubAccessToken: string,
+  userCookie: string
 ): Promise<_repoSelectList[] | null | "too_many_requests"> {
   //renders out all the github repos a user owns
   //to put in <select> tag on frontend create page
 
-  if (githubAccessToken === null) {
-    return null;
-  }
-
   try {
-    //1. get the authenticated github user's profile
+    // get the authenticated github user's profile
     const githubData = await fetch("https://api.github.com/user", {
       headers: {
         Accept: "application/vnd.github+json",
@@ -311,6 +308,7 @@ export async function GetRepoSelect(
 
     const githubProfile = await githubData.json();
 
+    //get repos of user
     const userRepos = await fetch(`${githubProfile.repos_url}`, {
       headers: {
         "Content-Type": "application/json",
@@ -337,35 +335,45 @@ export async function GetRepoSelect(
         return l;
       });
 
-    //only return repos that are not already selected
-    //for another stack
-
-    const userStacks = await db
+    //remove all repos currently in use by other stacks
+    //omit from select values being returned
+    const reposCurrentlyInUse = await db
       .collection(process.env.STACKS_DB!)
-      .where("uid", "==", userUid)
+      .where("uid", "==", userCookie)
       .where("github_repo_id", "!=", null)
       .get();
 
-    if (userStacks.empty) {
-      return repoSelectList;
-    } else {
-      let repoIdsInUse: number[] = [];
-      //return stacks that have a github_repo_id assigned to it
-      userStacks.forEach((x: any) => {
-        repoIdsInUse.push(x.data().github_repo_id);
+    let indexsToRemove: number[] = [];
+    if (!reposCurrentlyInUse.empty) {
+      console.log("\nThere is currently a repo in use from this user!");
+      for (const k of reposCurrentlyInUse.docs) {
+        console.log(k.data());
+      }
+
+      repoSelectList.forEach((x: _repoSelectList, index: number) => {
+        for (const l of reposCurrentlyInUse.docs) {
+          if (l.data().github_repo_id === x.id) {
+            //this repo id is already in use by another stack
+            //remove from array being returned
+            console.log("\n remove id " + l.data().github_repo_id + "\n");
+            indexsToRemove.push(index);
+          }
+        }
+      });
+    }
+
+    const filteredArray: any = repoSelectList
+      .map((x: _repoSelectList, index: number) => {
+        if (indexsToRemove.includes(index)) {
+          return null;
+        }
+        return x;
+      })
+      .filter((y) => {
+        return y !== null;
       });
 
-      //loop through repoSelectList array and remove any
-      //repo that has an id in repoIdsInUse
-
-      let finalRepoList: _repoSelectList[] = [
-        ...repoSelectList.filter((x) => {
-          return !repoIdsInUse.includes(x.id);
-        }),
-      ];
-
-      return finalRepoList;
-    }
+    return filteredArray;
   } catch (e) {
     console.log(e);
     console.log("There was an error while generating github repo select");
@@ -374,7 +382,7 @@ export async function GetRepoSelect(
 }
 
 export async function GetRepoCommitLogs(
-  repoId: string,
+  repoId: number,
   githubAccessToken: string
 ): Promise<_repoCommitLogs[] | "too_many_requests" | "error"> {
   try {
@@ -590,10 +598,6 @@ export async function GetStackData(
         stackData.data()!.github_repo_id === null
           ? null
           : stackData.data()!.github_repo_id,
-      github_api_token_used:
-        stackData.data()!.github_api_token_used === null
-          ? null
-          : stackData.data()!.github_api_token_used,
       website_url:
         stackData.data()!.website_url === ""
           ? null
@@ -753,7 +757,7 @@ export async function GetStackDataEditPage(
       )!,
 
       github_repo_id: stackData.data()!.github_repo_id,
-      github_api_token_used: stackData.data()!.github_api_token_used,
+
       website_url: stackData.data()!.website_url,
       uid: stackData.data()!.uid,
       stack_id: stackData.id,
@@ -1108,6 +1112,10 @@ export async function EditStack(
       fields.frameworks_used === undefined
         ? null
         : Array.from(new Set(fields.frameworks_used));
+    updateObj.github_repo_id =
+      fields.githubRepoId === "null" || fields.githubRepoId === undefined
+        ? null
+        : Number(Array.from(new Set(fields.githubRepoId))[0]);
 
     //filter out all undefined values (values not being updated)
     const filteredUpdateObj: any = updateObj;
@@ -1187,13 +1195,7 @@ export async function CreateStack(
           ? null
           : fields.githubRepoId[0] === "null"
           ? null
-          : fields.githubRepoId[0],
-      github_api_token_used:
-        user === null
-          ? null
-          : user.github_access_token === null
-          ? null
-          : user.github_access_token,
+          : Number(Array.from(new Set(fields.githubRepoId))[0]),
       website_url: fields.website_url[0].trim(),
       created_on: Date.now(),
     };
@@ -1444,6 +1446,37 @@ export async function GetExplorePageStacks(): Promise<_explorepageCategories | n
     };
 
     return returnObj;
+  } catch (e) {
+    console.log(e);
+    return null;
+  }
+}
+
+export async function GetRepoDetails(
+  githubAccessToken: string,
+  repoId: number
+) {
+  //gets github repo name, id, and href
+  try {
+    const req = await fetch(`https://api.github.com/repositories/${repoId}`, {
+      headers: {
+        Accept: "application/vnd.github+json",
+        Authorization: `Bearer ${githubAccessToken}`,
+      },
+    });
+    if (req.status !== 200) {
+      console.log("error getting repo details");
+
+      return null;
+    }
+    const res = await req.json();
+
+    const x: _repoDetails = {
+      name: res.name,
+      id: res.id,
+    };
+
+    return x;
   } catch (e) {
     console.log(e);
     return null;

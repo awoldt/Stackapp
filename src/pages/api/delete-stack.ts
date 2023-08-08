@@ -1,6 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { DeleteStack } from "@/functions";
-import { _API_NEWSTACK_RESPONSE, _stack } from "@/types";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(

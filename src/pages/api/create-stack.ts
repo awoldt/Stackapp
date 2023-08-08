@@ -1,5 +1,4 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { _API_NEWSTACK_RESPONSE, _stack } from "@/types";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 import formidable from "formidable";

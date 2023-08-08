@@ -96,13 +96,14 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                   className="background-image"
                 ></img>
               </div>
-              
+
               <div className="card-container-title">
                 <div className="card-empty">
                   <h1>Create Stack</h1>
                   <p className="subtitle">
-                    Enter the details of your tech stack. Select all Languages, Databases, APIs, Frameworks,
-                    and Cloud Deployment Services used.
+                    Enter the details of your tech stack. Select all Languages,
+                    Databases, APIs, Frameworks, and Cloud Deployment Services
+                    used.
                   </p>
                 </div>
               </div>
