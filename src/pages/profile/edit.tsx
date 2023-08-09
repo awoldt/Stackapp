@@ -68,6 +68,7 @@ export default function EditProfile({
   const [loading, setLoading] = useState(false);
   const [disabledSubmit, setDisabledSubmit] = useState(true);
   const [removedGithub, setRemovedGithub] = useState(false); //only true when user revokes github access
+  const [removedGithubMsg, setRemovedGithubMsg] = useState<null | string>(null);
 
   const [profileImgSrc, setProfileImgSrc] = useState(
     page_data.user_data?.profile_pic
@@ -79,6 +80,17 @@ export default function EditProfile({
   ]); //[showMessage, msg]
 
   const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    if (removedGithubMsg !== null) {
+      const timer = setTimeout(() => {
+        setRemovedGithubMsg(null);
+      }, 2500);
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [removedGithubMsg]);
 
   useEffect(() => {
     if (formSubmitted[0]) {
@@ -218,62 +230,69 @@ export default function EditProfile({
                           <p style={{ marginBottom: "20px" }}>
                             GitHub Account connected.{" "}
                             <b>ID #{page_data.user_data?.github_account_id}</b>
-                            <button
-                              className="btn-edit"
-                              type="button"
-                              style={{
-                                display: "block",
-                                width: "100%",
-                              }}
-                              onClick={async () => {
-                                try {
-                                  const req = await fetch("/api/rg", {
-                                    method: "GET",
-                                  });
-                                  if (req.status === 200) {
-                                    alert(
-                                      "Successfully removed GitHub access from your stack account"
-                                    );
-                                    setRemovedGithub(true);
-                                  } else {
-                                    alert("Error. Please try again.");
-                                  }
-                                } catch (e) {
+                          </p>
+                          <button
+                            className="btn-edit"
+                            type="button"
+                            style={{
+                              display: "block",
+                              width: "100%",
+                            }}
+                            onClick={async () => {
+                              try {
+                                const req = await fetch("/api/rg", {
+                                  method: "GET",
+                                });
+                                if (req.status === 200) {
+                                  setRemovedGithub(true);
+                                  setRemovedGithubMsg(
+                                    "GitHub account access successfully revoked"
+                                  );
+                                } else {
                                   alert("Error. Please try again.");
                                 }
-                              }}
-                            >
-                              <img
-                                src="/icons/github.svg"
-                                className="white-svg"
-                                alt="github logo"
-                              />{" "}
-                              Unconnect GitHub
-                            </button>
-                          </p>
-                        </>
-                      )}
-                      {removedGithub && (
-                        <a
-                          style={{ margin: "0px", padding: "0px" }}
-                          href={`https://github.com/login/oauth/authorize?client_id=${page_data.github_client_id}`}
-                          title="Authorize Stackapp to connect to your GitHub Account"
-                        >
-                          <button
-                            type="button"
-                            style={{ width: "100%" }}
-                            className="btn-extra"
+                              } catch (e) {
+                                alert("Error. Please try again.");
+                              }
+                            }}
                           >
                             <img
                               src="/icons/github.svg"
                               className="white-svg"
                               alt="github logo"
-                              width={15}
-                              height={15}
                             />{" "}
-                            Connect Github
+                            Unconnect GitHub
                           </button>
-                        </a>
+                        </>
+                      )}
+                      {removedGithub && (
+                        <>
+                          {removedGithubMsg !== null && (
+                            <p style={{ marginBottom: "20px" }}>
+                              <b>{removedGithubMsg}</b>
+                            </p>
+                          )}
+                          <a
+                            style={{ margin: "0px", padding: "0px" }}
+                            href={`https://github.com/login/oauth/authorize?client_id=${page_data.github_client_id}`}
+                            title="Authorize Stack to connect to your GitHub Account"
+                          >
+                            <button
+                              type="button"
+                              style={{ width: "100%" }}
+                              className="btn-extra"
+                            >
+                              <img
+                                src="/icons/github.svg"
+                                className="white-svg"
+                                alt="github logo"
+                                width={15}
+                                height={15}
+                              />{" "}
+                              Connect Github
+                            </button>
+                          </a>
+                        </>
                       )}
                     </>
                   )}

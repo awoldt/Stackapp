@@ -57,7 +57,9 @@ export default function About({
           <div className="card-container-title">
             <div className="card-empty">
               <h1>About Stack</h1>
-              <p className="subtitle">Learn the basics behind creating Stacks.</p>
+              <p className="subtitle">
+                Learn the basics behind creating Stacks.
+              </p>
             </div>
           </div>
 
@@ -74,8 +76,31 @@ export default function About({
                 Cloud Services, APIs, and Frameworks your tech stack is built
                 upon. Every Stack includes an application description, URL, and
                 images.
-                <br />
-                <br />
+              </p>
+
+              <h2 style={{ marginTop: "25px" }} id="what_is_a_stack">What is a Stack?</h2>
+              <p>
+                A Stack is a visual representation of the technologies used to
+                build an app. Every application has many moving parts that work
+                together to perform specific tasks, such as updating a contact
+                in a database or sending out emails in mass. During the
+                development process, an application can get ever so complex,
+                with many different technologies being used to achieve the
+                app&apos;s primary purpose. For example, there could be multiple
+                databases to store information, each with a different use case.
+                One of the databases could read data faster, while the other
+                could write data more quickly. Multiple APIs could be used to
+                get the data needed to render a page for a client, along with a
+                frontend library such as Reactjs that renders an interactive UI
+                for the end user. Backend servers could be written in different
+                languages based on speed, reliability, readability, etc. How
+                would you explain to a colleague or employer what technology
+                your app uses and why? Stack takes all these parts that make an
+                app function and provides an easy-to-understand and informative
+                way to see behind the curtain of the applications that help us
+                in our everyday lives.
+              </p>
+              <p style={{ marginTop: "25px" }}>
                 Whether you&apos;re an individual developer looking to showcase
                 your latest project or a team wanting to maintain a centralized
                 repository of your technology choices, Stack provides an
