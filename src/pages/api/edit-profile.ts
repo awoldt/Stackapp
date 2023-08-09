@@ -19,29 +19,29 @@ export default async function handler(
       if (err.httpCode === 413) {
         return res.status(413).json({ msg: "File size too large" });
       }
-      return res
-        .status(500)
-        .json({ msg: "There was an error while processing upload" });
+      return res.status(500).json({
+        msg: "There was an error while processing upload",
+      });
     }
 
     //make sure username and bio do not exceed their max length
     if (fields.profile_username[0].trim().length > 100) {
-      return res
-        .status(400)
-        .json({ msg: "Username cannot be more than 100 characters" });
+      return res.status(400).json({
+        msg: "Username cannot be more than 100 characters",
+      });
     }
     if (fields.profile_bio[0].trim().length > 500) {
-      return res
-        .status(400)
-        .json({ msg: "Profile bio cannot be more than 500 characters" });
+      return res.status(400).json({
+        msg: "Profile bio cannot be more than 500 characters",
+      });
     }
 
     const u = await EditProfile(req.cookies.uid!, fields, files.profile_icon);
 
     if (u === null) {
-      return res
-        .status(500)
-        .json({ msg: "There was an error while updating proile" });
+      return res.status(500).json({
+        msg: "There was an error while updating proile",
+      });
     }
 
     if (u === "invalid_username") {

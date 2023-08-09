@@ -11,7 +11,7 @@ import {
 } from "@/functions";
 import Sidenav from "@/components/Sidenav";
 import UniqueHeader from "@/components/UniqueHeaderTags";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Spinner from "@/components/Spinner";
 import StackDesctiptionTextarea from "@/components/StackDescriptionTextarea";
 import InvalidCookie from "@/components/InvalidUidCookie";
@@ -70,24 +70,24 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
       userProfile.github_access_token === null
         ? null
         : await GetRepoSelect(
-          userProfile.github_access_token!,
-          userProfile!.uid!
-        ),
+            userProfile.github_access_token!,
+            userProfile!.uid!
+          ),
     current_repo_details:
       stackData!.github_repo_id === null
         ? null
         : await GetRepoDetails(
-          userProfile.github_access_token!,
-          stackData!.github_repo_id!
-        ),
+            userProfile.github_access_token!,
+            stackData!.github_repo_id!
+          ),
     tech_values: await ReadTechValuesFromS3(),
     is_signed_in: await IsUserSignedIn(req.cookies.uid),
     has_authenticated_github_account:
       userProfile === null
         ? false
         : userProfile.github_access_token === null
-          ? false
-          : true,
+        ? false
+        : true,
   };
 
   return {
@@ -113,7 +113,24 @@ export default function EditStackpage({
     page_data.saved_stack_data?.thumbnail_url
   );
 
+  const [formSubmitted, setFormSubmitted] = useState<[boolean, string | null]>([
+    false,
+    null,
+  ]); //[showMessage, msg]
+
   const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    if (formSubmitted[0]) {
+      const timer = setTimeout(() => {
+        setFormSubmitted([false, null]);
+        setDisabledSubmit(true);
+      }, 1500);
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [formSubmitted]);
 
   return (
     <>
@@ -159,7 +176,8 @@ export default function EditStackpage({
                 setUpdateStackLoading(true);
                 try {
                   const req = await fetch(
-                    `/api/edit-stack?stack_id=${window.location.pathname.split("/")[2]
+                    `/api/edit-stack?stack_id=${
+                      window.location.pathname.split("/")[2]
                     }`,
                     {
                       method: "POST",
@@ -167,16 +185,11 @@ export default function EditStackpage({
                     }
                   );
                   const res = await req.json();
-                  alert(res.msg);
-                  if (req.status === 200) {
-                    window.location.assign(
-                      `/stack/${window.location.pathname.split("/")[2]}`
-                    );
-                  }
+                  setFormSubmitted([true, res.msg]);
                   setUpdateStackLoading(false);
                 } catch (e) {
                   console.log(e);
-                  alert("There was an error while editing stack ");
+                  setFormSubmitted([true, "Error"]);
                   setUpdateStackLoading(false);
                 }
               }}
@@ -289,8 +302,8 @@ export default function EditStackpage({
                         <>
                           <p className="subtitle">
                             <img src="/icons/github.svg" alt="github logo" />
-                            <b> {page_data.current_repo_details.name}</b>{" "}
-                            is linked to this Stack.
+                            <b> {page_data.current_repo_details.name}</b> is
+                            linked to this Stack.
                           </p>
                         </>
                       )}
@@ -374,90 +387,90 @@ export default function EditStackpage({
 
                   {page_data.saved_stack_data?.databasesSelectedData !==
                     null && (
-                      <>
-                        <img
-                          src="/icons/database-fill.svg"
-                          alt="database"
-                          width={20}
-                          height={15}
-                          style={{ display: "inline" }}
-                        />
-                        <p className="subtitle" style={{ display: "inline" }}>
-                          Databases used in your tech stack.
-                          <br />
-                          <br />
-                        </p>
-                        {page_data.saved_stack_data?.databasesSelectedData[0].map(
-                          (x: string, index: number) => {
-                            return (
-                              <label htmlFor={x} key={index}>
-                                <input
-                                  type="checkbox"
-                                  id={x}
-                                  name="databases_used"
-                                  value={x}
-                                  className="database-checkboxs"
-                                  defaultChecked={true}
-                                />
-                                <span className="checkmark"></span>
-                                {x}
-                              </label>
-                            );
-                          }
-                        )}
-                        {page_data.saved_stack_data?.databasesSelectedData[1].map(
-                          (x: string, index: number) => {
-                            return (
-                              <label htmlFor={x} key={index}>
-                                <input
-                                  type="checkbox"
-                                  id={x}
-                                  name="databases_used"
-                                  value={x}
-                                  className="database-checkboxs"
-                                />
-                                <span className="checkmark"></span>
-                                {x}
-                              </label>
-                            );
-                          }
-                        )}
-                      </>
-                    )}
+                    <>
+                      <img
+                        src="/icons/database-fill.svg"
+                        alt="database"
+                        width={20}
+                        height={15}
+                        style={{ display: "inline" }}
+                      />
+                      <p className="subtitle" style={{ display: "inline" }}>
+                        Databases used in your tech stack.
+                        <br />
+                        <br />
+                      </p>
+                      {page_data.saved_stack_data?.databasesSelectedData[0].map(
+                        (x: string, index: number) => {
+                          return (
+                            <label htmlFor={x} key={index}>
+                              <input
+                                type="checkbox"
+                                id={x}
+                                name="databases_used"
+                                value={x}
+                                className="database-checkboxs"
+                                defaultChecked={true}
+                              />
+                              <span className="checkmark"></span>
+                              {x}
+                            </label>
+                          );
+                        }
+                      )}
+                      {page_data.saved_stack_data?.databasesSelectedData[1].map(
+                        (x: string, index: number) => {
+                          return (
+                            <label htmlFor={x} key={index}>
+                              <input
+                                type="checkbox"
+                                id={x}
+                                name="databases_used"
+                                value={x}
+                                className="database-checkboxs"
+                              />
+                              <span className="checkmark"></span>
+                              {x}
+                            </label>
+                          );
+                        }
+                      )}
+                    </>
+                  )}
                   {page_data.saved_stack_data!.databasesSelectedData ===
                     null && (
-                      <>
-                        <img
-                          src="/icons/database-fill.svg"
-                          alt="database"
-                          width={20}
-                          height={15}
-                          style={{ display: "inline" }}
-                        />
-                        <p className="subtitle" style={{ display: "inline" }}>
-                          Databases used in your tech stack.
-                          <br />
-                          <br />
-                        </p>
-                        {page_data.tech_values.databases.map(
-                          (x: string, index: number) => {
-                            return (
-                              <label htmlFor={x} key={index}>
-                                <input
-                                  type="checkbox"
-                                  id={x}
-                                  name="databases_used"
-                                  value={x}
-                                  className="database-checkboxs"
-                                />
-                                <span className="checkmark"></span>
-                                {x}
-                              </label>
-                            );
-                          }
-                        )}
-                      </>
-                    )}
+                    <>
+                      <img
+                        src="/icons/database-fill.svg"
+                        alt="database"
+                        width={20}
+                        height={15}
+                        style={{ display: "inline" }}
+                      />
+                      <p className="subtitle" style={{ display: "inline" }}>
+                        Databases used in your tech stack.
+                        <br />
+                        <br />
+                      </p>
+                      {page_data.tech_values.databases.map(
+                        (x: string, index: number) => {
+                          return (
+                            <label htmlFor={x} key={index}>
+                              <input
+                                type="checkbox"
+                                id={x}
+                                name="databases_used"
+                                value={x}
+                                className="database-checkboxs"
+                              />
+                              <span className="checkmark"></span>
+                              {x}
+                            </label>
+                          );
+                        }
+                      )}
+                    </>
+                  )}
 
                   {page_data.saved_stack_data?.apisSelectedData !== null && (
                     <>
@@ -631,90 +644,90 @@ export default function EditStackpage({
 
                   {page_data.saved_stack_data?.frameworksSelectedData !==
                     null && (
-                      <>
-                        <img
-                          src="/icons/framework.svg"
-                          alt="api"
-                          width={20}
-                          height={15}
-                          style={{ display: "inline" }}
-                        />
-                        <p className="subtitle" style={{ display: "inline" }}>
-                          Frameworks used in your tech stack.
-                          <br />
-                          <br />
-                        </p>
-                        {page_data.saved_stack_data?.frameworksSelectedData[0].map(
-                          (x: string, index: number) => {
-                            return (
-                              <label htmlFor={x} key={index}>
-                                <input
-                                  type="checkbox"
-                                  id={x}
-                                  name="frameworks_used"
-                                  value={x}
-                                  className="framework-checkboxs"
-                                  defaultChecked={true}
-                                />
-                                <span className="checkmark"></span>
-                                {x}
-                              </label>
-                            );
-                          }
-                        )}
-                        {page_data.saved_stack_data?.frameworksSelectedData[1].map(
-                          (x: string, index: number) => {
-                            return (
-                              <label htmlFor={x} key={index}>
-                                <input
-                                  type="checkbox"
-                                  id={x}
-                                  name="frameworks_used"
-                                  value={x}
-                                  className="framework-checkboxs"
-                                />
-                                <span className="checkmark"></span>
-                                {x}
-                              </label>
-                            );
-                          }
-                        )}
-                      </>
-                    )}
+                    <>
+                      <img
+                        src="/icons/framework.svg"
+                        alt="api"
+                        width={20}
+                        height={15}
+                        style={{ display: "inline" }}
+                      />
+                      <p className="subtitle" style={{ display: "inline" }}>
+                        Frameworks used in your tech stack.
+                        <br />
+                        <br />
+                      </p>
+                      {page_data.saved_stack_data?.frameworksSelectedData[0].map(
+                        (x: string, index: number) => {
+                          return (
+                            <label htmlFor={x} key={index}>
+                              <input
+                                type="checkbox"
+                                id={x}
+                                name="frameworks_used"
+                                value={x}
+                                className="framework-checkboxs"
+                                defaultChecked={true}
+                              />
+                              <span className="checkmark"></span>
+                              {x}
+                            </label>
+                          );
+                        }
+                      )}
+                      {page_data.saved_stack_data?.frameworksSelectedData[1].map(
+                        (x: string, index: number) => {
+                          return (
+                            <label htmlFor={x} key={index}>
+                              <input
+                                type="checkbox"
+                                id={x}
+                                name="frameworks_used"
+                                value={x}
+                                className="framework-checkboxs"
+                              />
+                              <span className="checkmark"></span>
+                              {x}
+                            </label>
+                          );
+                        }
+                      )}
+                    </>
+                  )}
 
                   {page_data.saved_stack_data!.frameworksSelectedData ===
                     null && (
-                      <>
-                        <img
-                          src="/icons/framework.svg"
-                          alt="api"
-                          width={20}
-                          height={15}
-                          style={{ display: "inline" }}
-                        />
-                        <p className="subtitle" style={{ display: "inline" }}>
-                          Frameworks used in your tech stack.
-                          <br />
-                          <br />
-                        </p>
-                        {page_data.tech_values.frameworks.map(
-                          (x: string, index: number) => {
-                            return (
-                              <label htmlFor={x} key={index}>
-                                <input
-                                  type="checkbox"
-                                  id={x}
-                                  name="frameworks_used"
-                                  value={x}
-                                />
-                                <span className="checkmark"></span>
-                                {x}
-                              </label>
-                            );
-                          }
-                        )}
-                      </>
-                    )}
+                    <>
+                      <img
+                        src="/icons/framework.svg"
+                        alt="api"
+                        width={20}
+                        height={15}
+                        style={{ display: "inline" }}
+                      />
+                      <p className="subtitle" style={{ display: "inline" }}>
+                        Frameworks used in your tech stack.
+                        <br />
+                        <br />
+                      </p>
+                      {page_data.tech_values.frameworks.map(
+                        (x: string, index: number) => {
+                          return (
+                            <label htmlFor={x} key={index}>
+                              <input
+                                type="checkbox"
+                                id={x}
+                                name="frameworks_used"
+                                value={x}
+                              />
+                              <span className="checkmark"></span>
+                              {x}
+                            </label>
+                          );
+                        }
+                      )}
+                    </>
+                  )}
                   <p className="subtitle">
                     <br />
                     <img
@@ -723,8 +736,7 @@ export default function EditStackpage({
                       width={20}
                       height={15}
                     />
-                    This action is irreversible, Stacks are not
-                    recoverable.
+                    This action is irreversible, Stacks are not recoverable.
                   </p>
                   {!deleteStackLoading && (
                     <button
@@ -764,54 +776,63 @@ export default function EditStackpage({
                   )}
                   {deleteStackLoading && <Spinner />}
 
-                  {!updateStackLoading && (
+                  {!formSubmitted[0] && (
                     <>
-                      {disabledSubmit && (
-                        <div className="card-container">
-                          <button
-                            disabled={true}
-                            className="btn-edit"
-                            type="submit"
-                            style={{
-                              width: "100%",
-                              marginBottom: "0px",
-                              marginTop: "40px",
-                              backgroundColor: "grey",
-                              cursor: "default",
-                            }}
-                          >
-                            <img
-                              src="/icons/update.svg"
-                              className="white-svg"
-                              alt="update logo"
-                              width={15}
-                              height={15}
-                            />{" "}
-                            Update Stack
-                          </button>
-                        </div>
+                      {!updateStackLoading && (
+                        <>
+                          {disabledSubmit && (
+                            <div className="card-container">
+                              <button
+                                disabled={true}
+                                className="btn-edit"
+                                type="submit"
+                                style={{
+                                  width: "100%",
+                                  marginBottom: "0px",
+                                  marginTop: "40px",
+                                  backgroundColor: "grey",
+                                  cursor: "default",
+                                }}
+                              >
+                                <img
+                                  src="/icons/update.svg"
+                                  className="white-svg"
+                                  alt="update logo"
+                                  width={15}
+                                  height={15}
+                                />{" "}
+                                Update Stack
+                              </button>
+                            </div>
+                          )}
+                          {!disabledSubmit && (
+                            <div className="card-container">
+                              <button
+                                className="btn-create"
+                                type="submit"
+                                style={{
+                                  width: "100%",
+                                  marginTop: "40px",
+                                  marginBottom: "0px",
+                                }}
+                              >
+                                <img
+                                  src="/icons/update.svg"
+                                  className="white-svg"
+                                  alt="update logo"
+                                  width={15}
+                                  height={15}
+                                />{" "}
+                                Update Stack
+                              </button>
+                            </div>
+                          )}
+                        </>
                       )}
-                      {!disabledSubmit && (
-                        <div className="card-container">
-                          <button
-                            className="btn-create"
-                            type="submit"
-                            style={{ width: "100%", marginTop: "40px", marginBottom: "0px" }}
-                          >
-                            <img
-                              src="/icons/update.svg"
-                              className="white-svg"
-                              alt="update logo"
-                              width={15}
-                              height={15}
-                            />{" "}
-                            Update Stack
-                          </button>
-                        </div>
-                      )}
+                      {updateStackLoading && <Spinner />}
                     </>
                   )}
-                  {updateStackLoading && <Spinner />}
+                  {formSubmitted[0] && <p>{formSubmitted[1]}</p>}
                 </div>
               </div>
             </form>

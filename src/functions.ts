@@ -1360,7 +1360,13 @@ export async function ReadTechValuesFromS3() {
         Key: "tech.json",
       })
     );
-    return JSON.parse(await data.Body?.transformToString()!);
+    const json = await JSON.parse(await data.Body?.transformToString()!);
+    for (const a in json) {
+      json[a].sort();
+    }
+    console.log(json);
+
+    return json;
   } catch (e) {
     console.log(e);
     return null;

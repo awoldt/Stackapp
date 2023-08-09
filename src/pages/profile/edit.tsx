@@ -7,7 +7,7 @@ import UniqueHeader from "@/components/UniqueHeaderTags";
 import { GetUserProfile, IsUserSignedIn } from "@/functions";
 import { _PAGEDATA_editprofile } from "@/types";
 import { GetServerSideProps } from "next";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 //MUST BE SIGNED IN TO VIEW THIS PAGE
 
@@ -69,7 +69,28 @@ export default function EditProfile({
   const [disabledSubmit, setDisabledSubmit] = useState(true);
   const [removedGithub, setRemovedGithub] = useState(false); //only true when user revokes github access
 
+  const [profileImgSrc, setProfileImgSrc] = useState(
+    page_data.user_data?.profile_pic
+  );
+
+  const [formSubmitted, setFormSubmitted] = useState<[boolean, string | null]>([
+    false,
+    null,
+  ]); //[showMessage, msg]
+
   const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    if (formSubmitted[0]) {
+      const timer = setTimeout(() => {
+        setFormSubmitted([false, null]);
+        setDisabledSubmit(true);
+      }, 1500);
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [formSubmitted]);
 
   return (
     <>
@@ -122,15 +143,12 @@ export default function EditProfile({
                       const res = await req.json();
                       setLoading(false);
 
-                      alert(res.msg);
-                      if (req.status === 200) {
-                        window.location.assign("/profile");
-                      }
+                      setFormSubmitted([true, res.msg]);
                     } catch (e) {
                       console.log(e);
                       setLoading(false);
 
-                      alert("Error while updating profile");
+                      setFormSubmitted([true, "Error"]);
                     }
                   }}
                 >
@@ -143,17 +161,29 @@ export default function EditProfile({
                     }}
                   >
                     <img
-                      src={
-                        page_data.user_data?.profile_pic === null
-                          ? "/icons/noprofile.png"
-                          : page_data.user_data?.profile_pic
-                      }
+                      src={profileImgSrc!}
                       className="profile-img"
                       alt="Proflie picture"
                     />
                   </label>
 
-                  <input type="file" name="profile_icon" accept="image/*" />
+                  <input
+                    type="file"
+                    name="profile_icon"
+                    accept="image/*"
+                    onChange={async (e) => {
+                      const fileInput = e.target;
+                      if (fileInput.files && fileInput.files[0]) {
+                        const reader = new FileReader();
+
+                        reader.onload = (r) => {
+                          setProfileImgSrc(r.target?.result?.toString()!);
+                        };
+
+                        reader.readAsDataURL(fileInput.files[0]);
+                      }
+                    }}
+                  />
 
                   <input
                     type="text"
@@ -186,13 +216,14 @@ export default function EditProfile({
                       {!removedGithub && (
                         <>
                           <p style={{ marginBottom: "20px" }}>
-                            GitHub Account connected. <b>ID #{page_data.user_data?.github_account_id}</b>
+                            GitHub Account connected.{" "}
+                            <b>ID #{page_data.user_data?.github_account_id}</b>
                             <button
                               className="btn-edit"
                               type="button"
                               style={{
                                 display: "block",
-                                width: "100%"
+                                width: "100%",
                               }}
                               onClick={async () => {
                                 try {
@@ -212,7 +243,12 @@ export default function EditProfile({
                                 }
                               }}
                             >
-                              <img src="/icons/github.svg" className="white-svg" alt="github logo" /> Unconnect GitHub
+                              <img
+                                src="/icons/github.svg"
+                                className="white-svg"
+                                alt="github logo"
+                              />{" "}
+                              Unconnect GitHub
                             </button>
                           </p>
                         </>
@@ -315,77 +351,88 @@ export default function EditProfile({
                     Delete Account
                   </button>
 
-                  <a href={""}
-                    style={{ padding: "0px" }}
+                  <button
+                    className="btn-edit"
+                    style={{ width: "100%" }}
+                    type="button"
+                    onClick={() => {
+                      document.cookie =
+                        "uid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                      window.location.assign(window.location.href);
+                    }}
                   >
-                    <button className="btn-edit" style={{ width: "100%" }}>
-                      <span
-                        style={{ color: "white", fontSize: "20px", fontWeight: "500" }}
-                        onClick={() => {
-                          document.cookie =
-                            "uid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                          window.location.assign(window.location.href);
-                        }}
-                      >
-                        <img
-                          src="/icons/signout.svg"
-                          className="white-svg"
-                          alt="signout logo"
-                          width={15}
-                          height={15} />{" "}
-                        Sign Out
-                      </span>
-                    </button></a>
+                    <span
+                      style={{
+                        color: "white",
+                        fontSize: "20px",
+                        fontWeight: "500",
+                      }}
+                    >
+                      <img
+                        src="/icons/signout.svg"
+                        className="white-svg"
+                        alt="signout logo"
+                        width={15}
+                        height={15}
+                      />{" "}
+                      Sign Out
+                    </span>
+                  </button>
 
-                  {!loading && (
+                  {!formSubmitted[0] && (
                     <>
-                      {!disabledSubmit && (
-                        <div className="modal-header">
-                          <button
-                            className="btn-create"
-                            type="submit"
-                            style={{ width: "100%", marginBottom: "0px" }}
-                            id="edit_profile_btn"
-                          >
-                            <img
-                              src="/icons/update.svg"
-                              className="white-svg"
-                              alt="update logo"
-                              width={15}
-                              height={15}
-                            />{" "}
-                            Update Profile
-                          </button>
-                        </div>
+                      {!loading && (
+                        <>
+                          {!disabledSubmit && (
+                            <div className="modal-header">
+                              <button
+                                className="btn-create"
+                                type="submit"
+                                style={{ width: "100%", marginBottom: "0px" }}
+                                id="edit_profile_btn"
+                              >
+                                <img
+                                  src="/icons/update.svg"
+                                  className="white-svg"
+                                  alt="update logo"
+                                  width={15}
+                                  height={15}
+                                />{" "}
+                                Update Profile
+                              </button>
+                            </div>
+                          )}
+                          {disabledSubmit && (
+                            <div className="modal-header">
+                              <button
+                                className="btn-create"
+                                type="submit"
+                                disabled={true}
+                                style={{
+                                  width: "100%",
+                                  marginBottom: "0px",
+                                  backgroundColor: "grey",
+                                  cursor: "default",
+                                }}
+                                id="edit_profile_btn"
+                              >
+                                <img
+                                  src="/icons/update.svg"
+                                  className="white-svg"
+                                  alt="update logo"
+                                  width={15}
+                                  height={15}
+                                />{" "}
+                                Update Profile
+                              </button>
+                            </div>
+                          )}
+                        </>
                       )}
-                      {disabledSubmit && (
-                        <div className="modal-header">
-                          <button
-                            className="btn-create"
-                            type="submit"
-                            disabled={true}
-                            style={{
-                              width: "100%",
-                              marginBottom: "0px",
-                              backgroundColor: "grey",
-                              cursor: "default",
-                            }}
-                            id="edit_profile_btn"
-                          >
-                            <img
-                              src="/icons/update.svg"
-                              className="white-svg"
-                              alt="update logo"
-                              width={15}
-                              height={15}
-                            />{" "}
-                            Update Profile
-                          </button>
-                        </div>
-                      )}
+                      {loading && <Spinner />}
                     </>
                   )}
-                  {loading && <Spinner />}
+                  {formSubmitted[0] && <p>{formSubmitted[1]}</p>}
                 </form>
               </div>
             </div>
