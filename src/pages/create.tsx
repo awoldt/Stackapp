@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import InvalidCookie from "@/components/InvalidUidCookie";
 import Sidenav from "@/components/Sidenav";
 import Spinner from "@/components/Spinner";
@@ -17,7 +18,7 @@ import {
   _techStackValues,
 } from "@/types";
 import { GetServerSideProps } from "next";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const user = await GetUserProfile(req.cookies.uid);
@@ -37,8 +38,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
       user === null
         ? null
         : user.github_access_token === null
-          ? null
-          : await GetRepoSelect(
+        ? null
+        : await GetRepoSelect(
             user!.github_access_token,
             String(req.cookies.uid)
           ),
@@ -67,7 +68,41 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
   const [showcaseThumbnailSrc, setShowcaseThumbnailSrc] = useState("");
   const [showcaseThumbnail, setShowcaseThumbnail] = useState(false);
 
+  //once all required properties true, enable form submit btn
+  const [allFormFieldData, setAllFormFieldData] = useState<{
+    appName: boolean;
+    appDescription: boolean;
+    language: boolean;
+    icon: boolean;
+    thumbnail: boolean;
+  }>({
+    appName: false,
+    language: false,
+    appDescription: false,
+    icon: false,
+    thumbnail: false,
+  });
+
   const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    let allRequiredValuesFilled: boolean = true;
+    let obj: any = allFormFieldData; //need to set to any to prevent typescript error
+    for (const v in obj) {
+      if (!obj[v]) {
+        allRequiredValuesFilled = false;
+        break;
+      }
+    }
+
+    if (allRequiredValuesFilled) {
+      setDisabledSubmit(false);
+    } else {
+      if (!disabledSubmit) {
+        setDisabledSubmit(true);
+      }
+    }
+  }, [allFormFieldData]);
 
   return (
     <>
@@ -103,21 +138,22 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                   <p className="subtitle">
                     Enter the details of your tech stack. Select all Languages,
                     Databases, APIs, Frameworks, and Cloud Deployment Services
-                    used. Read more about what a Stack is <a href={"/about#what_is_a_stack"} style={{ padding: '0px' }}>here</a>.
+                    used. Read more about what a Stack is{" "}
+                    <a
+                      href={"/about#what_is_a_stack"}
+                      style={{ padding: "0px" }}
+                    >
+                      here
+                    </a>
+                    .
                   </p>
                 </div>
               </div>
               <form
-                onChange={(e) => {
-                  if (disabledSubmit) {
-                    setDisabledSubmit(false);
-                  }
-                }}
                 ref={formRef}
                 onSubmit={async (e) => {
-                  e.preventDefault();
-
                   setLoading(true);
+                  e.preventDefault();
 
                   try {
                     const req = await fetch("/api/create-stack", {
@@ -148,19 +184,39 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                       placeholder="*Stack Title"
                       required
                       maxLength={100}
+                      onChange={(e) => {
+                        if (e.target.value === "") {
+                          setAllFormFieldData({
+                            ...allFormFieldData,
+                            appName: false,
+                          });
+                        } else {
+                          if (!allFormFieldData.appName) {
+                            setAllFormFieldData({
+                              ...allFormFieldData,
+                              appName: true,
+                            });
+                          }
+                        }
+                      }}
                     />
 
                     <div style={{ textAlign: "right" }}>
-                      <StackDesctiptionTextarea />
+                      <StackDesctiptionTextarea
+                        allFormFieldData={allFormFieldData}
+                        setAllFormFieldData={setAllFormFieldData}
+                      />
                       <br />
                       <br />
                     </div>
 
-                    <label className="subtitle"
+                    <label
+                      className="subtitle"
                       htmlFor="app_icon_input"
                       style={{ marginBottom: "0px" }}
                     >
-                      *<img
+                      *
+                      <img
                         src="/icons/fileimage.svg"
                         alt="fileimage logo"
                         width={25}
@@ -196,15 +252,22 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                           };
 
                           reader.readAsDataURL(fileInput.files[0]);
+
+                          setAllFormFieldData({
+                            ...allFormFieldData,
+                            icon: true,
+                          });
                         }
                       }}
                     />
 
-                    <label className="subtitle"
+                    <label
+                      className="subtitle"
                       htmlFor="app_thumbnail_input"
                       style={{ marginBottom: "0px" }}
                     >
-                      *<img
+                      *
+                      <img
                         src="/icons/fileimage.svg"
                         alt="fileimage logo"
                         width={25}
@@ -221,7 +284,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                           display: "block",
                           marginBottom: "20px",
                           borderRadius: "4px",
-                          boxShadow: "0px 2px 10px 2px rgba(0, 0, 0, 0.075)"
+                          boxShadow: "0px 2px 10px 2px rgba(0, 0, 0, 0.075)",
                         }}
                       />
                     )}
@@ -244,6 +307,11 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                           };
 
                           reader.readAsDataURL(fileInput.files[0]);
+
+                          setAllFormFieldData({
+                            ...allFormFieldData,
+                            thumbnail: true,
+                          });
                         }
                       }}
                     />
@@ -258,9 +326,8 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                     {page_data.has_authenticated_github_account && (
                       <>
                         <p className="subtitle">
-                          <img
-                            src="/icons/github.svg"
-                            alt="github logo" /> Select an associated GitHub Repo.
+                          <img src="/icons/github.svg" alt="github logo" />{" "}
+                          Select an associated GitHub Repo.
                         </p>
                         <select
                           name="githubRepoId"
@@ -304,6 +371,26 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                               type="checkbox"
                               name="languages_used"
                               value={x}
+                              onChange={() => {
+                                const f = new FormData(formRef.current!);
+                                const l = f.getAll("languages_used");
+                                if (!allFormFieldData.language) {
+                                  if (l.length > 0) {
+                                    setAllFormFieldData({
+                                      ...allFormFieldData,
+                                      language: true,
+                                    });
+                                  }
+                                }
+                                if (allFormFieldData.language) {
+                                  if (l.length === 0) {
+                                    setAllFormFieldData({
+                                      ...allFormFieldData,
+                                      language: false,
+                                    });
+                                  }
+                                }
+                              }}
                             />
                             <span className="checkmark"></span>
                             {x}
@@ -545,7 +632,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                   <div style={{ width: "100%", textAlign: "center" }}>
                     {" "}
                     <h3>
-                      Stack Created
+                      Stack Successfully Created
                       <br />{" "}
                       <a href={`/stack/${newStackID}`} className="btn-create">
                         View Stack

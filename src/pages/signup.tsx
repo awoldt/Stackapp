@@ -4,7 +4,7 @@ import UniqueHeader from "@/components/UniqueHeaderTags";
 import { IsUserSignedIn } from "@/functions";
 import { DEFAULT_PAGE_LAYOUT } from "@/types";
 import { GetServerSideProps } from "next";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Sidenav from "@/components/Sidenav";
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
@@ -30,13 +30,34 @@ export default function CreateAccount({
 }: {
   page_data: DEFAULT_PAGE_LAYOUT;
 }) {
-  const formRef = useRef<HTMLFormElement>(null);
+  const emailInputRef = useRef<HTMLInputElement>(null);
+  const firstNameInputRef = useRef<HTMLInputElement>(null);
+  const lastNameInputRef = useRef<HTMLInputElement>(null);
+  const usernameInputRef = useRef<HTMLInputElement>(null);
+  const passwordInputRef = useRef<HTMLInputElement>(null);
 
   const [loading, setLoading] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
-  const [hasProfilePicture, setHasProfilePicture] = useState(false);
+  const [error, setError] = useState<[boolean, null | string, null | string]>([
+    false,
+    null,
+    null,
+  ]); //[true, "no_account", "Account does not exist"]
 
+  useEffect(() => {
+    switch (error[1]) {
+      case "email_already_in_use":
+        emailInputRef.current!.style.border = "2px solid red";
+        break;
+      case "no_space_username":
+        usernameInputRef.current!.style.border = "2px solid red";
+        break;
+      case "username_already_in_use":
+        usernameInputRef.current!.style.border = "2px solid red";
+        break;
+    }
+  }, [error]);
   return (
     <>
       {page_data.is_signed_in === "remove_uid_cookie" && (
@@ -83,20 +104,65 @@ export default function CreateAccount({
                 {!showSuccessMessage && (
                   <>
                     <form
-                      ref={formRef}
-                      encType="multipart/form-data"
+                      onChange={() => {
+                        if (
+                          emailInputRef.current!.style.border ===
+                          "2px solid red"
+                        ) {
+                          emailInputRef.current!.style.border =
+                            "2px solid rgba(0, 0, 0, 0.065)";
+                        }
+
+                        if (
+                          firstNameInputRef.current!.style.border ===
+                          "2px solid red"
+                        ) {
+                          firstNameInputRef.current!.style.border =
+                            "2px solid rgba(0, 0, 0, 0.065)";
+                        }
+                        if (
+                          lastNameInputRef.current!.style.border ===
+                          "2px solid red"
+                        ) {
+                          lastNameInputRef.current!.style.border =
+                            "2px solid rgba(0, 0, 0, 0.065)";
+                        }
+                        if (
+                          usernameInputRef.current!.style.border ===
+                          "2px solid red"
+                        ) {
+                          usernameInputRef.current!.style.border =
+                            "2px solid rgba(0, 0, 0, 0.065)";
+                        }
+                        if (
+                          passwordInputRef.current!.style.border ===
+                          "2px solid red"
+                        ) {
+                          passwordInputRef.current!.style.border =
+                            "2px solid rgba(0, 0, 0, 0.065)";
+                        }
+
+                        if (error[0]) {
+                          setError([false, null, null]);
+                        }
+                      }}
                       onSubmit={async (e) => {
                         setLoading(true);
                         e.preventDefault();
 
                         try {
-                          const formData = new FormData(formRef.current!);
-                          !hasProfilePicture
-                            ? formData.delete("profile_icon")
-                            : null;
-                          const req = await fetch("/api/create-account", {
+                          const req = await fetch("/api/signup", {
                             method: "POST",
-                            body: formData,
+                            body: JSON.stringify({
+                              e: emailInputRef.current!.value,
+                              fname: firstNameInputRef.current!.value,
+                              lname: lastNameInputRef.current!.value,
+                              u: usernameInputRef.current!.value,
+                              p: passwordInputRef.current!.value,
+                            }),
+                            headers: {
+                              "Content-Type": "application/json",
+                            },
                           });
                           const data = await req.json();
 
@@ -105,16 +171,17 @@ export default function CreateAccount({
                             setShowSuccessMessage(true);
                           } else {
                             setLoading(false);
-                            alert(data.msg);
+                            setError([true, data.errCode, data.msg]);
                           }
                         } catch (e) {
                           setLoading(false);
                           console.log(e);
-                          alert("Error while creating acount");
+                          setError([true, null, "Error while submitting form"]); //no errCode, just display message
                         }
                       }}
                     >
                       <input
+                        ref={emailInputRef}
                         type="email"
                         name="app_signup_email"
                         placeholder="Email"
@@ -122,6 +189,7 @@ export default function CreateAccount({
                       />
                       <input
                         type="text"
+                        ref={firstNameInputRef}
                         name="app_signup_firstname"
                         placeholder="First Name"
                         maxLength={25}
@@ -129,12 +197,14 @@ export default function CreateAccount({
                       />
                       <input
                         type="text"
+                        ref={lastNameInputRef}
                         name="app_signup_lastname"
                         placeholder="Last Name"
                         maxLength={25}
                         required
                       />
                       <input
+                        ref={usernameInputRef}
                         type="text"
                         name="app_signup_username"
                         placeholder="Username"
@@ -142,12 +212,24 @@ export default function CreateAccount({
                         required
                       />
                       <input
+                        ref={passwordInputRef}
                         type="password"
                         name="app_signup_password"
                         placeholder="Password"
                         style={{ marginBottom: "0px" }}
                         required
                       />
+                      {error[0] && (
+                        <p
+                          style={{
+                            color: "red",
+                            margin: "0px",
+                            padding: "0px",
+                          }}
+                        >
+                          {error[2]}
+                        </p>
+                      )}
                       {!loading && (
                         <button
                           className="btn-create"

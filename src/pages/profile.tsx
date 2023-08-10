@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import InvalidCookie from "@/components/InvalidUidCookie";
+import ProfileTabViews from "@/components/ProfileViewTabs";
 import Sidenav from "@/components/Sidenav";
 import UniqueHeader from "@/components/UniqueHeaderTags";
 import {
@@ -121,12 +122,15 @@ export default function Profile({
                             )}
                           </h1>
 
-                          <span>
-                            @{page_data.user_profile_data.username}
-                          </span>
+                          <span>@{page_data.user_profile_data.username}</span>
 
                           {page_data.user_profile_data.bio !== null && (
-                            <p style={{ marginTop: "20px", marginBottom: "20px" }}>
+                            <p
+                              style={{
+                                marginTop: "20px",
+                                marginBottom: "20px",
+                              }}
+                            >
                               {page_data.user_profile_data.bio}
                             </p>
                           )}
@@ -154,238 +158,11 @@ export default function Profile({
                     </div>
                   </div>
 
-                  <div className="card-container">
-                    <button
-                      id="btn-yourStacks"
-                      className="btn-tag-selected"
-                      style={{ marginRight: "10px", minWidth: "10%" }}
-                      onClick={() => {
-                        if (view !== "stacks") {
-                          setView("stacks");
-                        }
-                      }}
-                    >
-                      <span style={{ color: "white" }}>
-                        <img
-                          className="white-svg"
-                          src="/icons/stack.svg"
-                          alt="globe icon"
-                          width={15}
-                          height={15}
-                        />{" "}
-                        Stacks
-                      </span>
-                    </button>
-                    <button
-                      id="btn-savedStacks"
-                      className="btn-tags"
-                      style={{ marginLeft: "10px", minWidth: "10%" }}
-                      onClick={() => {
-                        if (view !== "liked_stacks") {
-                          setView("liked_stacks");
-                        }
-                      }}
-                    >
-                      <span style={{ color: "white" }}>
-                        <img
-                          className="white-svg"
-                          src="/icons/like.svg"
-                          alt="globe icon"
-                          width={15}
-                          height={15}
-                        />{" "}
-                        Liked
-                      </span>
-                    </button>
-                  </div>
-
-                  {view === "stacks" && (
-                    <>
-                      {page_data.user_stacks !== null && (
-                        <section>
-                          {page_data.user_stacks === 0 && (
-                            <>
-                              <div
-                                className="card-container"
-                                style={{
-                                  paddingTop: "0px",
-                                  paddingBottom: "40px",
-                                }}
-                              >
-                                <div
-                                  className="card"
-                                  style={{
-                                    textAlign: "center",
-                                    paddingBottom: "80px",
-                                  }}
-                                >
-                                  <h2>
-                                    <img
-                                      src="/icons/stack.svg"
-                                      alt="globe icon"
-                                      width={35}
-                                      height={35}
-                                    />{" "}
-                                    Stacks
-                                  </h2>
-                                  <span className="subtitle">
-                                    0 Stacks
-                                    <br />
-                                    <br />
-                                  </span>
-                                  <a href={"/create"} className="btn-create">
-                                    <img
-                                      src="/icons/create.svg"
-                                      className="white-svg"
-                                      alt="create logo"
-                                      width={15}
-                                      height={15}
-                                    />{" "}
-                                    Create Stack
-                                  </a>
-                                </div>
-                              </div>
-                            </>
-                          )}
-                          {page_data.user_stacks !== 0 &&
-                            page_data.user_stacks.length > 0 && (
-                              <div
-                                className="card-container"
-                                style={{
-                                  paddingTop: "0px",
-                                  paddingBottom: "80px",
-                                }}
-                              >
-                                <div
-                                  className="card"
-                                  style={{ textAlign: "center" }}
-                                >
-                                  <h2>
-                                    <img
-                                      src="/icons/stack.svg"
-                                      alt="globe icon"
-                                      width={25}
-                                      height={25}
-                                    />{" "}
-                                    Stacks
-                                  </h2>
-                                  <span className="subtitle">
-                                    {page_data.user_stacks.length} Stacks
-                                    <br />
-                                    <br />
-                                  </span>
-
-                                  {page_data.user_stacks.map(
-                                    (x: Partial<_stack>, index: number) => {
-                                      return (
-                                        <a
-                                          href={`/stack/${x.stack_id}`}
-                                          key={index}
-                                        >
-                                          <div className="card-container">
-                                            <div className="card-thumbnail">
-                                              <img
-                                                src={x.thumbnail_url!}
-                                                style={{ cursor: "pointer" }}
-                                                alt={`${x.name} thumbnail`}
-                                              />
-                                            </div>
-                                          </div>
-                                          <span className="bold">
-                                            {x.name}
-                                          </span>
-                                        </a>
-                                      );
-                                    }
-                                  )}
-                                </div>
-                              </div>
-                            )}
-                        </section>
-                      )}
-                      {page_data.user_stacks === null && (
-                        <p>There was an error while fetching your Stacks.</p>
-                      )}
-                      {page_data.user_profile_data === null && (
-                        <p>
-                          There was an error while fetching your profile details
-                        </p>
-                      )}
-                    </>
-                  )}
-
-                  {view === "liked_stacks" && (
-                    <div
-                      className="card-container"
-                      id="savedStacks"
-                      style={{
-                        paddingTop: "0px",
-                        paddingBottom: "40px",
-                      }}
-                    >
-                      <div
-                        className="card"
-                        style={{ textAlign: "center", paddingBottom: "80px" }}
-                      >
-                        <h2>
-                          <img
-                            src="/icons/like.svg"
-                            alt="globe icon"
-                            width={25}
-                            height={25}
-                          />{" "}
-                          Liked
-                        </h2>
-                        <span className="subtitle">
-                          Only you can see what you&apos;ve Liked.
-                          <br />
-                          <br />
-                        </span>
-
-                        {page_data.users_liked_stacks !== "no_liked_stacks" &&
-                          page_data.users_liked_stacks !== null && (
-                            <>
-                              <div
-                                className="stack-container"
-                                style={{
-                                  paddingTop: "40px",
-                                }}
-                              >
-                                {page_data.users_liked_stacks.map(
-                                  (x: _stack, index: number) => {
-                                    return (
-                                      <a
-                                        href={`/stack/${x.stack_id}`}
-                                        key={index}
-                                      >
-                                        <div className="stack-item">
-                                          <img src={x.thumbnail_url} />
-                                          <span className="bold">
-                                            {x.name}
-                                          </span>
-                                        </div>
-                                      </a>
-                                    );
-                                  }
-                                )}
-                              </div>
-                            </>
-                          )}
-                        {page_data.users_liked_stacks === "no_liked_stacks" && (
-                          <a href={"/explore"} className="btn-create">
-                            <img
-                              src="/icons/explore.svg"
-                              className="white-svg"
-                              alt="explore logo"
-                              width={15}
-                              height={15}
-                            />{" "}
-                            Explore Stacks
-                          </a>
-                        )}
-                      </div>
-                    </div>
-                  )}
+                  <ProfileTabViews
+                    view={view}
+                    setView={setView}
+                    pageData={page_data}
+                  />
                 </main>
               </section>
             )}

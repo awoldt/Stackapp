@@ -41,7 +41,7 @@ export default async function handler(
               .get()
           ).data();
 
-          //remove all unverified account with same email
+          //remove all unverified account with same email AND username
           //also delete profile picture for this unauthenticated account
           const r = await db
             .collection("unverified-accounts")
@@ -53,6 +53,20 @@ export default async function handler(
             );
 
             r.forEach(async (x: any) => {
+              await db.collection("unverified-accounts").doc(x.id).delete();
+              console.log("deleted unveriied account " + x.id);
+            });
+          }
+          const r2 = await db
+            .collection("unverified-accounts")
+            .where("username", "==", unverifiedDetails!.username)
+            .get();
+          if (!r2.empty) {
+            console.log(
+              "removing all other unverified account with this username"
+            );
+
+            r2.forEach(async (x: any) => {
               await db.collection("unverified-accounts").doc(x.id).delete();
               console.log("deleted unveriied account " + x.id);
             });

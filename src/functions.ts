@@ -1214,8 +1214,11 @@ export async function CreateStack(
 }
 
 export async function CreateAccount(
-  fields: formidable.Fields,
-  files: any
+  email: string,
+  firstName: string,
+  lastName: string,
+  username: string,
+  password: string
 ): Promise<
   | "no_space_username"
   | "username_already_in_use"
@@ -1225,7 +1228,7 @@ export async function CreateAccount(
 > {
   try {
     //make sure username has no spaces
-    if (fields.app_signup_username[0].trim().split(" ").length > 1) {
+    if (username.trim().split(" ").length > 1) {
       return "no_space_username";
     }
 
@@ -1234,7 +1237,7 @@ export async function CreateAccount(
       !(
         await db
           .collection("profiles")
-          .where("username", "==", fields.app_signup_username[0].trim())
+          .where("username", "==", username.trim())
           .get()
       ).empty
     ) {
@@ -1244,10 +1247,7 @@ export async function CreateAccount(
     //email already in use
     if (
       !(
-        await db
-          .collection("profiles")
-          .where("email", "==", fields.app_signup_email[0].trim())
-          .get()
+        await db.collection("profiles").where("email", "==", email.trim()).get()
       ).empty
     ) {
       return "email_already_in_use";
@@ -1257,38 +1257,25 @@ export async function CreateAccount(
     //once user confirms email remove this docuemnt from collection and
     //add user to database
 
-    //user does not have to inlcude profile on account creation
-    //if not, their profile will have default profile icon
-    let iconUpload: null | [string, string] = null;
-    if (files.profile_icon !== undefined) {
-      const profileIcon = files.profile_icon;
-
-      //upload profile icon
-      iconUpload = await UploadImagesToS3(
-        profileIcon[0].newFilename,
-        profileIcon[0].filepath
-      );
-    }
-
     const unverifiedAccount = await db.collection("unverified-accounts").add({
-      email: fields.app_signup_email[0].trim(),
-      password: fields.app_signup_password[0].trim(),
-      username: fields.app_signup_username[0].trim(),
+      email: email.trim(),
+      password: password.trim(),
+      username: username.trim(),
       created_on: Date.now(),
-      profile_pic: iconUpload === null ? null : iconUpload![0],
-      profile_pic_filename: iconUpload === null ? null : iconUpload![1],
-      first_name: fields.app_signup_firstname[0].trim(),
-      last_name: fields.app_signup_lastname[0].trim(),
+      profile_pic: null,
+      profile_pic_filename: null,
+      first_name: firstName.trim(),
+      last_name: lastName.trim(),
     });
 
     const emailInput = {
-      Source: "stackbot@stackapp.xyz",
+      Source: "StackBot@stackapp.xyz",
       Destination: {
-        ToAddresses: [fields.app_signup_email[0].trim()],
+        ToAddresses: [email.trim()],
       },
       Message: {
         Subject: {
-          Data: "Verify your Stackapp account",
+          Data: "Verify your Stack account",
           Charset: "utf-8",
         },
         Body: {
