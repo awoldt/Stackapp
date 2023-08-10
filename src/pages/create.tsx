@@ -37,8 +37,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
       user === null
         ? null
         : user.github_access_token === null
-        ? null
-        : await GetRepoSelect(
+          ? null
+          : await GetRepoSelect(
             user!.github_access_token,
             String(req.cookies.uid)
           ),
@@ -103,7 +103,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                   <p className="subtitle">
                     Enter the details of your tech stack. Select all Languages,
                     Databases, APIs, Frameworks, and Cloud Deployment Services
-                    used. Read more about what a Stack is <a href={"/about#what_is_a_stack"} style={{padding: '0px'}}>here</a>.
+                    used. Read more about what a Stack is <a href={"/about#what_is_a_stack"} style={{ padding: '0px' }}>here</a>.
                   </p>
                 </div>
               </div>
@@ -156,17 +156,17 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                       <br />
                     </div>
 
-                    <label
+                    <label className="subtitle"
                       htmlFor="app_icon_input"
                       style={{ marginBottom: "0px" }}
                     >
-                      <img
+                      *<img
                         src="/icons/fileimage.svg"
                         alt="fileimage logo"
                         width={25}
                         height={15}
                       />
-                      *Stack Icon
+                      Stack Icon
                     </label>
                     {showcaseIcon && (
                       <img
@@ -200,17 +200,17 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                       }}
                     />
 
-                    <label
+                    <label className="subtitle"
                       htmlFor="app_thumbnail_input"
                       style={{ marginBottom: "0px" }}
                     >
-                      <img
+                      *<img
                         src="/icons/fileimage.svg"
                         alt="fileimage logo"
                         width={25}
                         height={15}
                       />
-                      *Stack Thumbnail
+                      Stack Thumbnail
                     </label>
                     {showcaseThumbnail && (
                       <img
@@ -256,15 +256,18 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
 
                     {page_data.has_authenticated_github_account && (
                       <>
-                        <p>Associated GitHub Repo</p>
-
+                        <p className="subtitle">
+                          <img
+                            src="/icons/github.svg"
+                            alt="github logo" /> Select an associated GitHub Repo.
+                        </p>
                         <select
                           name="githubRepoId"
-                          className="btn-edit"
+                          className="btn-extra"
                           style={{ display: "block", width: "100%" }}
                         >
                           <option value="null" selected>
-                            None
+                            Choose Repo
                           </option>
                           {Array.isArray(page_data.repo_select_list) &&
                             page_data.repo_select_list.map(

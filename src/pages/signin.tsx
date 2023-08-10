@@ -193,7 +193,9 @@ export default function Signin({
                     Sign In
                   </button>
                 )}
-                {loading && <Spinner />}
+                <div style={{ width: "100%", marginTop: "40px" }}>
+                  {loading && <Spinner />}
+                </div>
               </form>
             </div>
           </div>

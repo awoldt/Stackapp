@@ -163,7 +163,9 @@ export default function CreateAccount({
                           Sign Up
                         </button>
                       )}
-                      {loading && <Spinner />}
+                      <div style={{ width: "100%", marginTop: "40px" }}>
+                        {loading && <Spinner />}
+                      </div>
                     </form>
                   </>
                 )}

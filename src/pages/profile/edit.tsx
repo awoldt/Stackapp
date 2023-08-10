@@ -236,7 +236,7 @@ export default function EditProfile({
                             type="button"
                             style={{
                               display: "block",
-                              width: "100%",
+                              width: "100%"
                             }}
                             onClick={async () => {
                               try {
@@ -321,70 +321,20 @@ export default function EditProfile({
                     </a>
                   )}
 
-                  <button
-                    className="btn-delete"
-                    type="button"
-                    style={{ width: "100%" }}
-                    onClick={async () => {
-                      const c1 = confirm(
-                        "Are you sure you want to delete your Stack account?"
-                      );
-                      if (c1) {
-                        const c2 = confirm(
-                          "This action is irreversible. Would you like to continue?"
-                        );
-                        if (c2) {
-                          const c3 = confirm(
-                            "Account deletion is permanant. In order to use Stack again you will need to create a new account. I understand, delete my account."
-                          );
-
-                          if (c3) {
-                            try {
-                              const req = await fetch("/api/delete-account");
-                              if (req.status === 200) {
-                                alert("Account has been successfully deleted.");
-
-                                //this expression will remove cookie from browser
-                                document.cookie =
-                                  "uid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                                window.location.assign("/");
-                              }
-                            } catch (e) {
-                              console.log(e);
-                              alert(
-                                "An error occurred while attempting to delete your account."
-                              );
-                            }
-                          }
-                        }
-                      }
-                    }}
-                  >
-                    <img
-                      src="/icons/delete.svg"
-                      className="white-svg"
-                      alt="delete logo"
-                      width={15}
-                      height={15}
-                    />{" "}
-                    Delete Account
-                  </button>
-
-                  <button
-                    className="btn-edit"
-                    style={{ width: "100%" }}
-                    type="button"
-                    onClick={() => {
-                      document.cookie =
-                        "uid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                      window.location.assign(window.location.href);
-                    }}
-                  >
-                    <span
-                      style={{
-                        color: "white",
-                        fontSize: "20px",
-                        fontWeight: "500",
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      width: "100%",
+                    }}>
+                    <button
+                      className="btn-edit"
+                      style={{ minWidth: "40%" }}
+                      type="button"
+                      onClick={() => {
+                        document.cookie =
+                          "uid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                        window.location.assign(window.location.href);
                       }}
                     >
                       <img
@@ -395,8 +345,64 @@ export default function EditProfile({
                         height={15}
                       />{" "}
                       Sign Out
-                    </span>
-                  </button>
+                    </button>
+                  </div>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      width: "100%",
+                    }}>
+                    <button
+                      className="btn-delete"
+                      type="button"
+                      style={{ minWidth: "40%" }}
+                      onClick={async () => {
+                        const c1 = confirm(
+                          "Are you sure you want to delete your Stack account?"
+                        );
+                        if (c1) {
+                          const c2 = confirm(
+                            "This action is irreversible. Would you like to continue?"
+                          );
+                          if (c2) {
+                            const c3 = confirm(
+                              "Account deletion is permanant. In order to use Stack again you will need to create a new account. I understand, delete my account."
+                            );
+
+                            if (c3) {
+                              try {
+                                const req = await fetch("/api/delete-account");
+                                if (req.status === 200) {
+                                  alert("Account has been successfully deleted.");
+
+                                  //this expression will remove cookie from browser
+                                  document.cookie =
+                                    "uid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                                  window.location.assign("/");
+                                }
+                              } catch (e) {
+                                console.log(e);
+                                alert(
+                                  "An error occurred while attempting to delete your account."
+                                );
+                              }
+                            }
+                          }
+                        }
+                      }}
+                    >
+                      <img
+                        src="/icons/delete.svg"
+                        className="white-svg"
+                        alt="delete logo"
+                        width={15}
+                        height={15}
+                      />{" "}
+                      Delete Account
+                    </button>
+                  </div>
 
                   {!formSubmitted[0] && (
                     <>
@@ -457,7 +463,8 @@ export default function EditProfile({
             </div>
           </section>
         </>
-      )}
+      )
+      }
     </>
   );
 }

@@ -30,13 +30,14 @@ export default function LikeBtn({
         <>
           <button className="btn-like">
             <img
-              src="/icons/like.svg"
-              className="white-svg"
+              src="/icons/prelike.svg"
               alt="likes icon"
-              width={25}
-              height={15} />
-            {likesAmount}
+              width={35}
+              height={35} />
           </button>
+          <p>
+            {likesAmount} likes
+          </p>
         </>
       }
       {/* signed in.... but its signed in user's stack (cannot like) */}
@@ -44,14 +45,15 @@ export default function LikeBtn({
         <>
           <button className="btn-like">
             <img
-              src="/icons/like.svg"
-              className="white-svg"
+              src="/icons/prelike.svg"
               alt="likes icon"
-              width={15}
-              height={15}
+              width={35}
+              height={35}
             />{" "}
-            {likesAmount}
           </button>
+          <p>
+            {likesAmount} likes
+          </p>
         </>
       )}
       {/* ALLOW USER SIGNED IN TO LIKE/UNLIKE STACK */}
@@ -62,7 +64,7 @@ export default function LikeBtn({
             <>
               {/* default view, before submitting like */}
               {!submittingLike && (
-                <button
+                <><button
                   className="btn-like"
                   onClick={async () => {
                     setSubmittingLike(true);
@@ -92,27 +94,25 @@ export default function LikeBtn({
                   }}
                 >
                   <img
-                    className="white-svg"
-                    src="/icons/like.svg"
+                    src="/icons/prelike.svg"
                     alt="likes icon"
-                    width={25}
-                    height={15}
-                  />
-                  {likesAmount}
-                </button>
+                    width={35}
+                    height={35} />
+                </button><p>
+                    {likesAmount} likes
+                  </p></>
               )}
               {/* while submitting like*/}
               {submittingLike && (
-                <button className="btn-like" disabled>
+                <><button className="btn-like" disabled>
                   <img
                     src="/icons/like.svg"
-                    className="white-svg"
                     alt="likes icon"
-                    width={25}
-                    height={15}
-                  />
-                  {likesAmount}
-                </button>
+                    width={35}
+                    height={35} />
+                </button><p>
+                    {likesAmount} likes
+                  </p></>
               )}
             </>
           )}
@@ -122,8 +122,8 @@ export default function LikeBtn({
             <>
               {/* default view, before removing like */}
               {!submittingLike && (
-                <button
-                  className="btn-postlike"
+                <><button
+                  className="btn-like"
                   onClick={async () => {
                     setSubmittingLike(true);
                     try {
@@ -152,27 +152,26 @@ export default function LikeBtn({
                   }}
                 >
                   <img
-                    className="white-svg"
                     src="/icons/like.svg"
                     alt="likes icon"
-                    width={25}
-                    height={15}
-                  />
-                  {likesAmount}
+                    width={35}
+                    height={35} />
                 </button>
+                  <p>
+                    {likesAmount} likes
+                  </p></>
               )}
               {/* while removing like*/}
               {submittingLike && (
-                <button className="btn-postlike" disabled>
+                <><button className="btn-like" disabled>
                   <img
-                    src="/icons/like.svg"
-                    className="white-svg"
+                    src="/icons/prelike.svg"
                     alt="likes icon"
-                    width={25}
-                    height={15}
-                  />
-                  {likesAmount}
-                </button>
+                    width={35}
+                    height={35} />
+                </button><p>
+                    {likesAmount} likes
+                  </p></>
               )}
             </>
           )}

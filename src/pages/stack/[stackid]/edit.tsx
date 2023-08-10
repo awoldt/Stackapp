@@ -71,24 +71,24 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
       userProfile.github_access_token === null
         ? null
         : await GetRepoSelect(
-            userProfile.github_access_token!,
-            userProfile!.uid!
-          ),
+          userProfile.github_access_token!,
+          userProfile!.uid!
+        ),
     current_repo_details:
       stackData!.github_repo_id === null
         ? null
         : await GetRepoDetails(
-            userProfile.github_access_token!,
-            stackData!.github_repo_id!
-          ),
+          userProfile.github_access_token!,
+          stackData!.github_repo_id!
+        ),
     tech_values: await ReadTechValuesFromS3(),
     is_signed_in: await IsUserSignedIn(req.cookies.uid),
     has_authenticated_github_account:
       userProfile === null
         ? false
         : userProfile.github_access_token === null
-        ? false
-        : true,
+          ? false
+          : true,
   };
 
   return {
@@ -177,8 +177,7 @@ export default function EditStackpage({
                 setUpdateStackLoading(true);
                 try {
                   const req = await fetch(
-                    `/api/edit-stack?stack_id=${
-                      window.location.pathname.split("/")[2]
+                    `/api/edit-stack?stack_id=${window.location.pathname.split("/")[2]
                     }`,
                     {
                       method: "POST",
@@ -204,7 +203,7 @@ export default function EditStackpage({
                       name="app_name"
                       style={{ marginBottom: "0px" }}
                       defaultValue={page_data.saved_stack_data?.name}
-                      placeholder="Stack Title"
+                      placeholder="*Stack Title"
                       required
                     />
                   </label>
@@ -217,8 +216,8 @@ export default function EditStackpage({
                     </div>
                   </label>
 
-                  <p>
-                    <img
+                  <p className="subtitle">
+                    *<img
                       src="/icons/fileimage.svg"
                       alt="fileimage logo"
                       width={25}
@@ -253,8 +252,8 @@ export default function EditStackpage({
                     }}
                   />
 
-                  <p>
-                    <img
+                  <p className="subtitle">
+                    *<img
                       src="/icons/fileimage.svg"
                       alt="fileimage logo"
                       width={25}
@@ -309,20 +308,20 @@ export default function EditStackpage({
                         </>
                       )}
                       {page_data.current_repo_details === null && (
-                        <p>
-                          You have not connected a repo to this stack.
-                          Associating a public repo will show the 5 latest
-                          commits alongside your stack.
+                        <p className="subtitle">
+                          <img
+                            src="/icons/github.svg"
+                            alt="github logo" /> Associated GitHub Repo
                         </p>
                       )}
 
                       <select
                         name="githubRepoId"
-                        className="btn-edit"
+                        className="btn-extra"
                         style={{ display: "block", width: "100%" }}
                       >
                         <option value="null" selected>
-                          None
+                          Choose Repo
                         </option>
                         {Array.isArray(page_data.repo_select_list) &&
                           page_data.repo_select_list.map(

@@ -75,29 +75,8 @@ export default function ExplorePage({
               {/* BUTTONS TO TOGGLE SECTIONS */}
               <div className="card-container">
                 <button
-                  className="btn-tags"
+                  className="btn-tag-selected"
                   style={{ marginRight: "10px", minWidth: "10%" }}
-                  onClick={() => {
-                    if (view !== "trending") {
-                      setView("trending")
-                    }
-                  }}
-                >
-                  <span style={{ color: "white" }}>
-                    <img
-                      className="white-svg"
-                      src="/icons/trending.svg"
-                      alt="globe icon"
-                      width={15}
-                      height={15}
-                    />{" "}
-                    Trending
-                  </span>
-                </button>
-
-                <button
-                  className="btn-tags"
-                  style={{ marginLeft: "10px", minWidth: "10%" }}
                   onClick={() => {
                     if (view !== "recent") {
                       setView("recent")
@@ -113,6 +92,27 @@ export default function ExplorePage({
                       height={15}
                     />{" "}
                     Recent
+                  </span>
+                </button>
+
+                <button
+                  className="btn-tags"
+                  style={{ marginLeft: "10px", minWidth: "10%" }}
+                  onClick={() => {
+                    if (view !== "trending") {
+                      setView("trending")
+                    }
+                  }}
+                >
+                  <span style={{ color: "white" }}>
+                    <img
+                      className="white-svg"
+                      src="/icons/trending.svg"
+                      alt="globe icon"
+                      width={15}
+                      height={15}
+                    />{" "}
+                    Trending
                   </span>
                 </button>
               </div>
@@ -191,21 +191,14 @@ export default function ExplorePage({
                                               </div>
                                             </div>
                                           )}
-                                          <div className="user-profile-containerParent">
+                                          {/* <div className="user-profile-containerParent">
                                             <div
                                               className="explore-user-profile-container">
-                                              <button className="btn-like">
-                                                <img
-                                                  src="/icons/like.svg"
-                                                  className="white-svg"
-                                                  alt="likes icon"
-                                                  width={15}
-                                                  height={15}
-                                                />{" "}
-                                                {x.likes}
-                                              </button>
+                                              <p>
+                                                {x.likes} likes
+                                              </p>
                                             </div>
-                                          </div>
+                                          </div> */}
                                         </div>
                                       </a>
                                     );

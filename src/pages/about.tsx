@@ -58,13 +58,14 @@ export default function About({
             <div className="card-empty">
               <h1>About Stack</h1>
               <p className="subtitle">
-                Learn the basics behind creating Stacks.
+                Learn the basics behind the Stack platform and creating Stacks.
               </p>
             </div>
           </div>
 
           <div className="card-container">
             <div className="card">
+              <h2 id="what_is_a_stack">What is Stack?</h2>
               <p>
                 Stack is a platform that empowers developers and designers to
                 create beautifully designed web pages showcasing the most
@@ -78,7 +79,7 @@ export default function About({
                 images.
               </p>
 
-              <h2 style={{ marginTop: "25px" }} id="what_is_a_stack">What is a Stack?</h2>
+              <h2 style={{ marginTop: "20px" }} id="what_is_a_stack">What are Stacks?</h2>
               <p>
                 A Stack is a visual representation of the technologies used to
                 build an app. Every application has many moving parts that work
@@ -93,14 +94,14 @@ export default function About({
                 get the data needed to render a page for a client, along with a
                 frontend library such as Reactjs that renders an interactive UI
                 for the end user. Backend servers could be written in different
-                languages based on speed, reliability, readability, etc. How
-                would you explain to a colleague or employer what technology
-                your app uses and why? Stack takes all these parts that make an
-                app function and provides an easy-to-understand and informative
-                way to see behind the curtain of the applications that help us
-                in our everyday lives.
+                languages based on speed, reliability, readability, etc. Stack
+                takes all these parts that make an app function and provides an
+                easy-to-understand and informative way to see behind the curtain
+                of the applications that help us in our everyday lives.
               </p>
-              <p style={{ marginTop: "25px" }}>
+
+              <h2 style={{ marginTop: "20px" }} id="what_is_a_stack">Why Stack?</h2>
+              <p>
                 Whether you&apos;re an individual developer looking to showcase
                 your latest project or a team wanting to maintain a centralized
                 repository of your technology choices, Stack provides an

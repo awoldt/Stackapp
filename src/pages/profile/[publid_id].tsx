@@ -137,12 +137,12 @@ export default function Profilepage({
                         </span>
 
                         {page_data.user_profile_data!.bio !== null && (
-                          <p style={{ marginTop: "20px", marginBottom: "20px" }}>
+                          <p style={{ marginTop: "20px" }}>
                             {page_data.user_profile_data!.bio}
                           </p>
                         )}
                         {page_data.user_profile_data?.bio === null && (
-                          <p>This user has not yet set up their bio.</p>
+                          <p style={{ marginTop: "20px" }}>This user has not yet set up their bio.</p>
                         )}
 
                         {/* {page_data.user_stacks !== 0 && (

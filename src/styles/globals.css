@@ -803,7 +803,18 @@
 
     .btn-landing:hover {
         border: 2px solid rgba(0, 0, 0, 0.2);
-        background: #479aff;
+        background: #1f84ff;
+    }
+
+    .btn-like {
+        cursor: pointer;
+        margin-top: 10px;
+        border: none;
+        background: transparent;
+    }
+
+    .btn-like:hover {
+        opacity: 0.8;
     }
 
     .btn-tags {
@@ -821,6 +832,17 @@
     .btn-tags:hover {
         border: 2px solid rgba(0, 0, 0, 0.2);
         background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(90deg, #479aff 0%, #de91c1 100%);
+    }
+
+    .btn-tag-selected {
+        padding: 6px;
+        padding-left: 16px;
+        padding-right: 16px;
+        border: 2px solid rgba(0, 0, 0, 0.275);
+        border-radius: 50px;
+        background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(90deg, #479aff 0%, #de91c1 100%);
+        background-origin: border-box;
+        background-clip: content-box, border-box;
     }
 
     .btn-create {
@@ -841,49 +863,7 @@
 
     .btn-create:hover {
         border: 2px solid rgba(0, 0, 0, 0.2);
-        background: #479aff;
-    }
-
-    .btn-like {
-        cursor: pointer;
-        margin-bottom: 20px;
-        border-radius: 50px;
-        padding: 12px;
-        padding-left: 24px;
-        padding-right: 24px;
-        border: 2px solid rgba(0, 0, 0, 0.065);
-        background: rgba(230, 170, 206, 0.8);
-        color: white;
-        font-size: 20px;
-        font-weight: 500;
-        font-family: 'Inter', sans-serif;
-        transition: 250ms ease-in-out;
-    }
-
-    .btn-like:hover {
-        border: 2px solid rgba(0, 0, 0, 0.2);
-        background: #de91c1;
-    }
-
-    .btn-postlike {
-        cursor: pointer;
-        margin-bottom: 20px;
-        border-radius: 50px;
-        padding: 12px;
-        padding-left: 24px;
-        padding-right: 24px;
-        border: 2px solid rgba(0, 0, 0, 0.065);
-        background: #de91c1;
-        color: white;
-        font-size: 20px;
-        font-weight: 500;
-        font-family: 'Inter', sans-serif;
-        transition: 250ms ease-in-out;
-    }
-
-    .btn-postlike:hover {
-        border: 2px solid rgba(0, 0, 0, 0.2);
-        background: #e6aace;
+        background: #1f84ff;
     }
 
     .btn-edit {
@@ -904,7 +884,7 @@
 
     .btn-edit:hover {
         border: 2px solid rgba(0, 0, 0, 0.2);
-        background: #f29e02;
+        background: #ca8402;
     }
 
     .btn-extra {
@@ -915,7 +895,7 @@
         padding-left: 24px;
         padding-right: 24px;
         border: 2px solid rgba(0, 0, 0, 0.065);
-        background: #94fbab;
+        background: #e6aace;
         color: white;
         font-size: 20px;
         font-weight: 500;
@@ -925,7 +905,7 @@
 
     .btn-extra:hover {
         border: 2px solid rgba(0, 0, 0, 0.2);
-        background: #4EF973;
+        background: #d671ad;
     }
 
     .btn-delete {
@@ -946,7 +926,7 @@
 
     .btn-delete:hover {
         border: 2px solid rgba(0, 0, 0, 0.2);
-        background: #F6131E;
+        background: #d90812;
     }
 
     .create-content {
@@ -985,7 +965,7 @@
         padding-left: 24px;
         padding-right: 24px;
         border: 2px solid rgba(0, 0, 0, 0.065);
-        background: #fcab10;
+        background: #e6aace;
         color: white;
         font-size: 20px;
         font-weight: 500;
@@ -995,7 +975,7 @@
 
     input[type="file"]::file-selector-button:hover {
         border: 2px solid rgba(0, 0, 0, 0.2);
-        background: #f29e02;
+        background: #d671ad;
     }
 
     input[type="email"],
@@ -1065,7 +1045,7 @@
 
     input[type="checkbox"]:checked:hover~.checkmark {
         border: 2px solid rgba(0, 0, 0, 0.2);
-        background: #4EF973;
+        background: #4ef973;
         transition: 250ms ease-in-out;
     }
 

@@ -157,7 +157,7 @@ export default function Profile({
                   <div className="card-container">
                     <button
                       id="btn-yourStacks"
-                      className="btn-tags"
+                      className="btn-tag-selected"
                       style={{ marginRight: "10px", minWidth: "10%" }}
                       onClick={() => {
                         if (view !== "stacks") {
@@ -189,7 +189,7 @@ export default function Profile({
                       <span style={{ color: "white" }}>
                         <img
                           className="white-svg"
-                          src="/icons/like.svg"
+                          src="/icons/prelike.svg"
                           alt="globe icon"
                           width={15}
                           height={15}
@@ -329,7 +329,7 @@ export default function Profile({
                       >
                         <h2>
                           <img
-                            src="/icons/like.svg"
+                            src="/icons/prelike.svg"
                             alt="globe icon"
                             width={25}
                             height={25}
