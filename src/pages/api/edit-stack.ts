@@ -17,11 +17,11 @@ export default async function handler(
     if (err) {
       console.log(err);
       if (err.httpCode === 413) {
-        return res.status(413).json({ msg: "File size too large" });
+        return res.status(413).json({ msg: "File size too large." });
       }
       return res
         .status(500)
-        .json({ msg: "There was an error while processing upload" });
+        .json({ msg: "There was an error while processing upload." });
     }
 
     //make sure at least 1 language is included
@@ -29,7 +29,7 @@ export default async function handler(
     if (fields.languages_used === undefined) {
       return res
         .status(400)
-        .json({ msg: "You must include at least one language for each stack" });
+        .json({ msg: "You must include at least one language for each stack." });
     }
     const s = await EditStack(
       String(req.query.stack_id),
@@ -42,10 +42,10 @@ export default async function handler(
     if (s === null) {
       return res
         .status(500)
-        .json({ msg: "There was an error while updating stack" });
+        .json({ msg: "There was an error while updating stack." });
     }
 
-    return res.json({ msg: "Successfully updated stack" });
+    return res.json({ msg: "Stack successfully updated." });
   });
 }
 

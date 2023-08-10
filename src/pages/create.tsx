@@ -221,6 +221,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                           display: "block",
                           marginBottom: "20px",
                           borderRadius: "4px",
+                          boxShadow: "0px 2px 10px 2px rgba(0, 0, 0, 0.075)"
                         }}
                       />
                     )}
@@ -544,7 +545,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                   <div style={{ width: "100%", textAlign: "center" }}>
                     {" "}
                     <h3>
-                      Stack Successfully Created
+                      Stack Created
                       <br />{" "}
                       <a href={`/stack/${newStackID}`} className="btn-create">
                         View Stack

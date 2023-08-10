@@ -268,6 +268,7 @@ export default function EditStackpage({
                       display: "block",
                       marginBottom: "20px",
                       borderRadius: "4px",
+                      boxShadow: "0px 2px 10px 2px rgba(0, 0, 0, 0.075)"
                     }}
                   />
                   <input
@@ -388,14 +389,19 @@ export default function EditStackpage({
                       Delete Stack
                     </button>
                   )}
-                  {deleteStackLoading && <Spinner />}
-
+                  <div style={{ width: "100%", marginTop: "20px", marginBottom: "40px" }}>
+                    {deleteStackLoading && <Spinner />}
+                  </div>
                   {!formSubmitted[0] && (
                     <>
                       {!updateStackLoading && (
                         <>
                           {disabledSubmit && (
-                            <div className="card-container">
+                            <div className="card-container"
+                              style={{
+                                paddingBottom: "0px",
+                                marginBottom: "0px"
+                              }}>
                               <button
                                 disabled={true}
                                 className="btn-edit"
@@ -403,9 +409,8 @@ export default function EditStackpage({
                                 style={{
                                   width: "100%",
                                   marginBottom: "0px",
-                                  marginTop: "40px",
                                   backgroundColor: "grey",
-                                  cursor: "default",
+                                  cursor: "default"
                                 }}
                               >
                                 <img
@@ -420,14 +425,17 @@ export default function EditStackpage({
                             </div>
                           )}
                           {!disabledSubmit && (
-                            <div className="card-container">
+                            <div className="card-container"
+                              style={{
+                                paddingBottom: "0px",
+                                marginBottom: "0px"
+                              }}>
                               <button
                                 className="btn-create"
                                 type="submit"
                                 style={{
                                   width: "100%",
-                                  marginTop: "40px",
-                                  marginBottom: "0px",
+                                  marginBottom: "0px"
                                 }}
                               >
                                 <img
@@ -443,10 +451,11 @@ export default function EditStackpage({
                           )}
                         </>
                       )}
-                      {updateStackLoading && <Spinner />}
+                      <div style={{ width: "100%", marginTop: "40px" }}>
+                        {updateStackLoading && <Spinner />}</div>
                     </>
                   )}
-                  {formSubmitted[0] && <p>{formSubmitted[1]}</p>}
+                  {formSubmitted[0] && <p className="subtitle" style={{ textAlign: "center" }}>{formSubmitted[1]}</p>}
                 </div>
               </div>
             </form>
