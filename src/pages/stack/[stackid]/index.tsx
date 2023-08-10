@@ -82,9 +82,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
       stackData.github_repo_id === null
         ? null
         : await GetRepoCommitLogs(
-            stackData.github_repo_id,
-            String((await GetUserProfile(stackData.uid))?.github_access_token)
-          ),
+          stackData.github_repo_id,
+          String((await GetUserProfile(stackData.uid))?.github_access_token)
+        ),
     creator_data: await GetCreatorDetails(stackData.uid),
     created_on: stackData.created_on,
     stack_id: stackData.stack_id!,
@@ -92,9 +92,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     has_signed_in_user_already_liked_stack:
       req.cookies.uid !== stackData.uid
         ? (await HasUserAlreadyLikedThisStack(
-            req.cookies.uid!,
-            stackData.stack_id!
-          ))!
+          req.cookies.uid!,
+          stackData.stack_id!
+        ))!
         : "current_signed_in_users_stack",
   };
 
@@ -181,16 +181,31 @@ export default function Stackpage({
                         <h1>{page_data.app_name}</h1>
 
                         {page_data.website_url !== null && (
-                          <a
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            href={page_data.website_url}
-                            className="nav-element"
-                            style={{ padding: "10px", paddingLeft: "0px" }}
-                          >
-                            {new URL(page_data.website_url).hostname}
-                          </a>
+                          <div style={{ marginBottom: "10px" }}>
+                            <a
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              href={page_data.website_url}
+                              className="subtitle"
+                              style={{ padding: "0px" }}
+                            >
+                              {new URL(page_data.website_url).hostname}
+                            </a>
+                          </div>
                         )}
+
+                        <p style={{
+                          fontSize: "16px"
+                        }}>
+                          <img
+                            src="/icons/date.svg"
+                            alt="api"
+                            width={12}
+                            height={12}
+                            style={{ display: "inline" }}
+                          />{" "}
+                          {new Date(page_data.created_on).toDateString()}
+                        </p>
 
                         <div className="user-profile-containerParent">
                           <a href={page_data.creator_data.href}>
@@ -227,6 +242,27 @@ export default function Stackpage({
                           </a>
                         </div>
 
+                        {page_data.is_signedin_users_stack && (
+                          <>
+                            <div style={{ marginBottom: "20px" }}>
+                              <a
+                                href={`/stack/${page_data.stack_id}/edit`}
+                                className="btn-create"
+                              >
+                                <img
+                                  src="/icons/edit.svg"
+                                  className="white-svg"
+                                  alt="edit logo"
+                                  width={15}
+                                  height={15}
+                                  style={{ marginTop: "20px" }}
+                                />{" "}
+                                Edit Stack
+                              </a>
+                            </div>
+                          </>
+                        )}
+
                         <LikeBtn
                           isSignedIn={page_data.is_signed_in!}
                           isSignedInUsersStack={
@@ -238,29 +274,6 @@ export default function Stackpage({
                             page_data.has_signed_in_user_already_liked_stack
                           }
                         />
-
-                        {page_data.is_signedin_users_stack && (
-                          <>
-                            <a
-                              href={`/stack/${page_data.stack_id}/edit`}
-                              className="btn-create"
-                            >
-                              <img
-                                src="/icons/edit.svg"
-                                className="white-svg"
-                                alt="edit logo"
-                                width={15}
-                                height={15}
-                                style={{ marginTop: "10px" }}
-                              />{" "}
-                              Edit Stack
-                            </a>
-                          </>
-                        )}
-
-                        {/* <h5>
-                      Stacked {new Date(page_data.created_on).toDateString()}
-                    </h5> */}
                       </div>
                     </div>
 
@@ -289,7 +302,17 @@ export default function Stackpage({
               <section>
                 <div className="card-container">
                   <div className="card">
-                    <p>{page_data.description}</p>
+                    <h2 style={{ textAlign: "center" }}>
+                      <img
+                        src="/icons/description.svg"
+                        alt="api"
+                        width={20}
+                        height={20}
+                        style={{ display: "inline" }}
+                      />{" "}
+                      Description
+                    </h2>
+                    <p style={{ paddingTop: "20px" }}>{page_data.description}</p>
                   </div>
                 </div>
               </section>

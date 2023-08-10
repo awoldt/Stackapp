@@ -25,37 +25,42 @@ export default function LikeBtn({
 
   return (
     <div>
+
+
       {/* not signed in */}
-      {!isSignedIn &&
+      {/* {!isSignedIn &&
         <>
-          <button className="btn-like">
-            <img
-              src="/icons/prelike.svg"
-              alt="likes icon"
-              width={35}
-              height={35} />
-          </button>
-          <p>
-            {likesAmount} likes
-          </p>
+          <div className="btn-container-like">
+            <button className="btn-postlike">
+              <img
+                className="white-svg"
+                src="/icons/like.svg"
+                alt="likes icon"
+                width={20}
+                height={20} /> Like
+            </button>
+          </div>
         </>
-      }
+      } */}
+
+
       {/* signed in.... but its signed in user's stack (cannot like) */}
-      {isSignedIn && isSignedInUsersStack && (
+      {/* {isSignedIn && isSignedInUsersStack && (
         <>
-          <button className="btn-like">
-            <img
-              src="/icons/prelike.svg"
-              alt="likes icon"
-              width={35}
-              height={35}
-            />{" "}
-          </button>
-          <p>
-            {likesAmount} likes
-          </p>
+          <div className="btn-container-like">
+            <button className="btn-postlike">
+              <img
+                className="white-svg"
+                src="/icons/like.svg"
+                alt="likes icon"
+                width={20}
+                height={20} /> Like
+            </button>
+          </div>
         </>
-      )}
+      )} */}
+
+
       {/* ALLOW USER SIGNED IN TO LIKE/UNLIKE STACK */}
       {isSignedIn && !isSignedInUsersStack && (
         <>
@@ -64,55 +69,63 @@ export default function LikeBtn({
             <>
               {/* default view, before submitting like */}
               {!submittingLike && (
-                <><button
-                  className="btn-like"
-                  onClick={async () => {
-                    setSubmittingLike(true);
-                    try {
-                      const req = await fetch("/api/like", {
-                        method: "POST",
-                        body: JSON.stringify({
-                          sid: stackID,
-                          nl: likesAmount + 1,
-                          method: "like",
-                        }),
-                      });
-                      const data = await req.json();
+                <div className="btn-container-like">
+                  <button
+                    className="btn-like"
+                    onClick={async () => {
+                      setSubmittingLike(true);
+                      try {
+                        const req = await fetch("/api/like", {
+                          method: "POST",
+                          body: JSON.stringify({
+                            sid: stackID,
+                            nl: likesAmount + 1,
+                            method: "like",
+                          }),
+                        });
+                        const data = await req.json();
 
-                      if (req.status === 200) {
-                        setLikesAmount(data.newNumberOfLikes);
-                        setSubmissionType("unlike");
-                      } else {
-                        alert(data.msg);
+                        if (req.status === 200) {
+                          setLikesAmount(data.newNumberOfLikes);
+                          setSubmissionType("unlike");
+                        } else {
+                          alert(data.msg);
+                        }
+                        setSubmittingLike(false);
+                      } catch (e) {
+                        console.log(e);
+                        alert("Error while liking stack");
+                        setSubmittingLike(false);
                       }
-                      setSubmittingLike(false);
-                    } catch (e) {
-                      console.log(e);
-                      alert("Error while liking stack");
-                      setSubmittingLike(false);
-                    }
-                  }}
-                >
-                  <img
-                    src="/icons/prelike.svg"
-                    alt="likes icon"
-                    width={35}
-                    height={35} />
-                </button><p>
-                    {likesAmount} likes
-                  </p></>
+                    }}
+                  >
+                    <img
+                      className="white-svg"
+                      src="/icons/prelike.svg"
+                      alt="likes icon"
+                      width={20}
+                      height={20} /> Like
+                  </button>
+                  <p style={{ fontSize: "16px" }}>
+                    &nbsp;{likesAmount} likes
+                  </p>
+                </div>
               )}
               {/* while submitting like*/}
               {submittingLike && (
-                <><button className="btn-like" disabled>
-                  <img
-                    src="/icons/like.svg"
-                    alt="likes icon"
-                    width={35}
-                    height={35} />
-                </button><p>
-                    {likesAmount} likes
-                  </p></>
+                <div className="btn-container-like">
+                  <button className="btn-postlike" disabled>
+                    <img
+                      className="white-svg"
+                      src="/icons/like.svg"
+                      alt="likes icon"
+                      width={20}
+                      height={20} /> Unlike
+                  </button>
+                  <p style={{ fontSize: "16px" }}>
+                    &nbsp;{likesAmount} likes
+                  </p>
+                </div>
               )}
             </>
           )}
@@ -122,56 +135,65 @@ export default function LikeBtn({
             <>
               {/* default view, before removing like */}
               {!submittingLike && (
-                <><button
-                  className="btn-like"
-                  onClick={async () => {
-                    setSubmittingLike(true);
-                    try {
-                      const req = await fetch("/api/like", {
-                        method: "POST",
-                        body: JSON.stringify({
-                          sid: stackID,
-                          nl: likesAmount - 1,
-                          method: "unlike",
-                        }),
-                      });
-                      const data = await req.json();
+                <>
+                  <div className="btn-container-like">
+                    <button
+                      className="btn-postlike"
+                      onClick={async () => {
+                        setSubmittingLike(true);
+                        try {
+                          const req = await fetch("/api/like", {
+                            method: "POST",
+                            body: JSON.stringify({
+                              sid: stackID,
+                              nl: likesAmount - 1,
+                              method: "unlike",
+                            }),
+                          });
+                          const data = await req.json();
 
-                      if (req.status === 200) {
-                        setLikesAmount(data.newNumberOfLikes);
-                        setSubmissionType("like");
-                      } else {
-                        alert(data.msg);
-                      }
-                      setSubmittingLike(false);
-                    } catch (e) {
-                      console.log(e);
-                      alert("Error while liking stack");
-                      setSubmittingLike(false);
-                    }
-                  }}
-                >
-                  <img
-                    src="/icons/like.svg"
-                    alt="likes icon"
-                    width={35}
-                    height={35} />
-                </button>
-                  <p>
-                    {likesAmount} likes
-                  </p></>
+                          if (req.status === 200) {
+                            setLikesAmount(data.newNumberOfLikes);
+                            setSubmissionType("like");
+                          } else {
+                            alert(data.msg);
+                          }
+                          setSubmittingLike(false);
+                        } catch (e) {
+                          console.log(e);
+                          alert("Error while liking stack");
+                          setSubmittingLike(false);
+                        }
+                      }}
+                    >
+                      <img
+                        className="white-svg"
+                        src="/icons/like.svg"
+                        alt="likes icon"
+                        width={20}
+                        height={20} /> Unlike
+                    </button>
+                    <p style={{ fontSize: "16px" }}>
+                      &nbsp;{likesAmount} likes
+                    </p>
+                  </div>
+                </>
               )}
               {/* while removing like*/}
               {submittingLike && (
-                <><button className="btn-like" disabled>
-                  <img
-                    src="/icons/prelike.svg"
-                    alt="likes icon"
-                    width={35}
-                    height={35} />
-                </button><p>
-                    {likesAmount} likes
-                  </p></>
+                <div className="btn-container-like">
+                  <button className="btn-like" disabled>
+                    <img
+                      className="white-svg"
+                      src="/icons/prelike.svg"
+                      alt="likes icon"
+                      width={20}
+                      height={20} /> Like
+                  </button>
+                  <p style={{ fontSize: "16px" }}>
+                    &nbsp;{likesAmount} likes
+                  </p>
+                </div>
               )}
             </>
           )}

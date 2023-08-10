@@ -189,7 +189,7 @@ export default function Profile({
                       <span style={{ color: "white" }}>
                         <img
                           className="white-svg"
-                          src="/icons/prelike.svg"
+                          src="/icons/like.svg"
                           alt="globe icon"
                           width={15}
                           height={15}
@@ -329,7 +329,7 @@ export default function Profile({
                       >
                         <h2>
                           <img
-                            src="/icons/prelike.svg"
+                            src="/icons/like.svg"
                             alt="globe icon"
                             width={25}
                             height={25}
