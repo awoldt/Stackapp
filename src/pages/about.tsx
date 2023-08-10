@@ -79,7 +79,9 @@ export default function About({
                 images.
               </p>
 
-              <h2 style={{ marginTop: "20px" }} id="what_is_a_stack">What are Stacks?</h2>
+              <h2 style={{ marginTop: "20px" }} id="what_is_a_stack">
+                What are Stacks?
+              </h2>
               <p>
                 A Stack is a visual representation of the technologies used to
                 build an app. Every application has many moving parts that work
@@ -95,12 +97,14 @@ export default function About({
                 frontend library such as Reactjs that renders an interactive UI
                 for the end user. Backend servers could be written in different
                 languages based on speed, reliability, readability, etc. Stack
-                takes all these parts that make an app function and provides an
-                easy-to-understand and informative way to see behind the curtain
-                of the applications that help us in our everyday lives.
+                takes all these parts and provides a view behind the curtain of
+                the applications that help us in our everyday lives and the
+                technologies that power them.
               </p>
 
-              <h2 style={{ marginTop: "20px" }} id="what_is_a_stack">Why Stack?</h2>
+              <h2 style={{ marginTop: "20px" }} id="what_is_a_stack">
+                Why Stack?
+              </h2>
               <p>
                 Whether you&apos;re an individual developer looking to showcase
                 your latest project or a team wanting to maintain a centralized
