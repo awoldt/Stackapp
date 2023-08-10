@@ -241,7 +241,8 @@ export default function Stackpage({
 
                         {page_data.is_signedin_users_stack && (
                           <>
-                            <a
+                          <div style={{marginTop: '25px'}}>
+                             <a
                               href={`/stack/${page_data.stack_id}/edit`}
                               className="btn-create"
                             >
@@ -255,6 +256,8 @@ export default function Stackpage({
                               />{" "}
                               Edit Stack
                             </a>
+                          </div>
+                           
                           </>
                         )}
 
