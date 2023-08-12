@@ -18,7 +18,7 @@ export default function ExploreViewTabs({
           <div className="card-container">
             <button
               className="btn-tags"
-              style={{ marginRight: "10px", minWidth: "10%" }}
+              style={{ marginRight: "10px", minWidth: "15%" }}
               onClick={() => {
                 setView("recent");
               }}
@@ -37,7 +37,7 @@ export default function ExploreViewTabs({
 
             <button
               className="btn-tag-selected"
-              style={{ marginLeft: "10px", minWidth: "10%" }}
+              style={{ marginLeft: "10px", minWidth: "15%" }}
             >
               <span style={{ color: "white" }}>
                 <img
@@ -142,7 +142,7 @@ export default function ExploreViewTabs({
           <div className="card-container">
             <button
               className="btn-tag-selected"
-              style={{ marginRight: "10px", minWidth: "10%" }}
+              style={{ marginRight: "10px", minWidth: "15%" }}
             >
               <span style={{ color: "white" }}>
                 <img
@@ -158,7 +158,7 @@ export default function ExploreViewTabs({
 
             <button
               className="btn-tags"
-              style={{ marginLeft: "10px", minWidth: "10%" }}
+              style={{ marginLeft: "10px", minWidth: "15%" }}
               onClick={() => {
                 setView("trending");
               }}

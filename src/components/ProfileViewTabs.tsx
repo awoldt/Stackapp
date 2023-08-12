@@ -20,7 +20,7 @@ export default function ProfileTabViews({
             <button
               id="btn-yourStacks"
               className="btn-tag-selected"
-              style={{ marginRight: "10px", minWidth: "10%" }}
+              style={{ marginRight: "10px", minWidth: "15%" }}
             >
               <span style={{ color: "white" }}>
                 <img
@@ -36,7 +36,7 @@ export default function ProfileTabViews({
             <button
               id="btn-savedStacks"
               className="btn-tags"
-              style={{ marginLeft: "10px", minWidth: "10%" }}
+              style={{ marginLeft: "10px", minWidth: "15%" }}
               onClick={() => {
                 setView("liked_stacks");
               }}
@@ -75,8 +75,8 @@ export default function ProfileTabViews({
                         <img
                           src="/icons/stack.svg"
                           alt="globe icon"
-                          width={35}
-                          height={35}
+                          width={25}
+                          height={25}
                         />{" "}
                         Stacks
                       </h2>
@@ -162,7 +162,7 @@ export default function ProfileTabViews({
             <button
               id="btn-yourStacks"
               className="btn-tags"
-              style={{ marginRight: "10px", minWidth: "10%" }}
+              style={{ marginRight: "10px", minWidth: "15%" }}
               onClick={() => {
                 setView("stacks");
               }}
@@ -181,7 +181,7 @@ export default function ProfileTabViews({
             <button
               id="btn-savedStacks"
               className="btn-tag-selected"
-              style={{ marginLeft: "10px", minWidth: "10%" }}
+              style={{ marginLeft: "10px", minWidth: "15%" }}
             >
               <span style={{ color: "white" }}>
                 <img
@@ -200,7 +200,7 @@ export default function ProfileTabViews({
             id="savedStacks"
             style={{
               paddingTop: "0px",
-              paddingBottom: "40px",
+              paddingBottom: "20px",
             }}
           >
             <div
@@ -228,7 +228,7 @@ export default function ProfileTabViews({
                       <div
                         className="stack-container"
                         style={{
-                          paddingTop: "40px",
+                          paddingTop: "0px"
                         }}
                       >
                         {pageData.users_liked_stacks.map(

@@ -38,8 +38,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
       user === null
         ? null
         : user.github_access_token === null
-        ? null
-        : await GetRepoSelect(
+          ? null
+          : await GetRepoSelect(
             user!.github_access_token,
             String(req.cookies.uid)
           ),
@@ -138,14 +138,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                   <p className="subtitle">
                     Enter the details of your tech stack. Select all Languages,
                     Databases, APIs, Frameworks, and Cloud Deployment Services
-                    used. Read more about what a Stack is{" "}
-                    <a
-                      href={"/about#what_is_a_stack"}
-                      style={{ padding: "0px" }}
-                    >
-                      here
-                    </a>
-                    .
+                    used.
                   </p>
                 </div>
               </div>

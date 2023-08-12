@@ -161,7 +161,7 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
                   Explore
                 </a>
               </span>
-              <span className="subtitle">
+              {/* <span className="subtitle">
                 <a href={"/create"} className="nav-element">
                   <img
                     src="/icons/create.svg"
@@ -171,7 +171,7 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
                   />{" "}
                   Create
                 </a>
-              </span>
+              </span> */}
             </div>
           </div>
         </div>

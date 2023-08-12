@@ -128,7 +128,7 @@ export default function EditProfile({
                 className="background-image"
               ></img>
             </div>
-            <div className="card-container" style={{ paddingTop: "40px" }}>
+            <div className="card-container-title">
               <div className="card-empty">
                 <h1>Edit Profile</h1>
                 <p className="subtitle">Change the details of your profile.</p>
@@ -329,7 +329,7 @@ export default function EditProfile({
                     }}>
                     <button
                       className="btn-edit"
-                      style={{ minWidth: "40%" }}
+                      style={{ width: "100%" }}
                       type="button"
                       onClick={() => {
                         document.cookie =
@@ -357,7 +357,7 @@ export default function EditProfile({
                     <button
                       className="btn-delete"
                       type="button"
-                      style={{ minWidth: "40%" }}
+                      style={{ width: "100%" }}
                       onClick={async () => {
                         const c1 = confirm(
                           "Are you sure you want to delete your Stack account?"

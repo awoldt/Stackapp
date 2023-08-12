@@ -207,8 +207,8 @@ export default function Stackpage({
                           {new Date(page_data.created_on).toDateString()}
                         </p>
 
-                        <div className="user-profile-containerParent">
-                          <a href={page_data.creator_data.href}>
+                        <div className="user-profile-containerParent" style={{ marginBottom: "0px", paddingBottom: "20px" }}>
+                          <a href={page_data.creator_data.href} style={{ margin: "0px", padding: "0px" }}>
                             <div className="user-profile-container">
                               <img
                                 src={page_data.creator_data.profile_pic!}
@@ -281,7 +281,7 @@ export default function Stackpage({
                       className="card-container"
                       style={{
                         paddingBottom: "0px",
-                        marginTop: "20px",
+                        marginTop: "0px",
                         marginBottom: "0px",
                         width: "100%",
                         display: "flex",
