@@ -207,7 +207,7 @@ export default function Stackpage({
                           {new Date(page_data.created_on).toDateString()}
                         </p>
 
-                        <div className="user-profile-containerParent" style={{ marginBottom: "0px", paddingBottom: "20px" }}>
+                        <div className="user-profile-containerParent" style={{ marginBottom: "0px", paddingBottom: "0px" }}>
                           <a href={page_data.creator_data.href} style={{ margin: "0px", padding: "0px" }}>
                             <div className="user-profile-container">
                               <img
@@ -244,7 +244,7 @@ export default function Stackpage({
 
                         {page_data.is_signedin_users_stack && (
                           <>
-                            <div style={{ marginBottom: "20px" }}>
+                            <div style={{ marginBottom: "40px", marginTop: "20px" }}>
                               <a
                                 href={`/stack/${page_data.stack_id}/edit`}
                                 className="btn-create"
@@ -263,17 +263,19 @@ export default function Stackpage({
                           </>
                         )}
 
-                        <LikeBtn
-                          isSignedIn={page_data.is_signed_in!}
-                          isSignedInUsersStack={
-                            page_data.is_signedin_users_stack
-                          }
-                          stackID={page_data.stack_id}
-                          currentNumOfLikes={page_data.stack_num_of_likes}
-                          hasSignedInUserAlreadyLikedStack={
-                            page_data.has_signed_in_user_already_liked_stack
-                          }
-                        />
+                        <div style={{ marginBottom: "20px" }}>
+                          <LikeBtn
+                            isSignedIn={page_data.is_signed_in!}
+                            isSignedInUsersStack={
+                              page_data.is_signedin_users_stack
+                            }
+                            stackID={page_data.stack_id}
+                            currentNumOfLikes={page_data.stack_num_of_likes}
+                            hasSignedInUserAlreadyLikedStack={
+                              page_data.has_signed_in_user_already_liked_stack
+                            }
+                          />
+                        </div>
                       </div>
                     </div>
 

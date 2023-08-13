@@ -157,7 +157,7 @@ export default function EditStackpage({
                 className="background-image"
               ></img>
             </div>
-            <div className="card-container" style={{ paddingTop: "40px" }}>
+            <div className="card-container-title">
               <div className="card-empty">
                 <h1>Edit Stack</h1>
                 <p className="subtitle">

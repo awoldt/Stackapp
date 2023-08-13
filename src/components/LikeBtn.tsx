@@ -106,8 +106,8 @@ export default function LikeBtn({
                       width={20}
                       height={20} /> Like
                   </button>
-                  <p style={{ fontSize: "16px" }}>
-                    &nbsp;{likesAmount} likes
+                  <p style={{ paddingLeft: "8px", fontSize: "16px" }}>
+                    <b>{likesAmount} Likes</b>
                   </p>
                 </div>
               )}
@@ -122,8 +122,8 @@ export default function LikeBtn({
                       width={20}
                       height={20} /> Unlike
                   </button>
-                  <p style={{ fontSize: "16px" }}>
-                    &nbsp;{likesAmount} likes
+                  <p style={{ paddingLeft: "8px", fontSize: "16px" }}>
+                    <b>{likesAmount} Likes</b>
                   </p>
                 </div>
               )}
@@ -136,7 +136,7 @@ export default function LikeBtn({
               {/* default view, before removing like */}
               {!submittingLike && (
                 <>
-                  <div className="btn-container-like">
+                  <div className="btn-container-like" style={{ textAlign: "left" }}>
                     <button
                       className="btn-postlike"
                       onClick={async () => {
@@ -173,8 +173,10 @@ export default function LikeBtn({
                         width={20}
                         height={20} /> Unlike
                     </button>
-                    <p style={{ fontSize: "16px" }}>
-                      &nbsp;{likesAmount} likes
+                    <p style={{ paddingLeft: "8px", fontSize: "16px", width: "fit-content" }}>
+                      <b>{likesAmount} Likes</b>
+                      <br />
+                      You Like this Stack.
                     </p>
                   </div>
                 </>
@@ -190,8 +192,8 @@ export default function LikeBtn({
                       width={20}
                       height={20} /> Like
                   </button>
-                  <p style={{ fontSize: "16px" }}>
-                    &nbsp;{likesAmount} likes
+                  <p style={{ paddingLeft: "8px", fontSize: "16px" }}>
+                    <b>{likesAmount} Likes</b>
                   </p>
                 </div>
               )}

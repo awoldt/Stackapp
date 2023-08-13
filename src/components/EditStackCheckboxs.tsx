@@ -9,6 +9,7 @@ export default function StackCheckboxs({
 }) {
   return (
     <>
+      <br />
       <img
         src="/icons/code.svg"
         alt="language"
@@ -18,8 +19,6 @@ export default function StackCheckboxs({
       />
       <p className="subtitle" style={{ display: "inline" }}>
         Languages used in your tech stack.
-        <br />
-        <br />
       </p>
       {savedStackData!.languagesSelectedData[0].map(
         (x: string, index: number) => {
@@ -59,6 +58,7 @@ export default function StackCheckboxs({
 
       {savedStackData!.databasesSelectedData !== null && (
         <>
+          <br />
           <img
             src="/icons/database-fill.svg"
             alt="database"
@@ -68,8 +68,6 @@ export default function StackCheckboxs({
           />
           <p className="subtitle" style={{ display: "inline" }}>
             Databases used in your tech stack.
-            <br />
-            <br />
           </p>
           {savedStackData!.databasesSelectedData[0].map(
             (x: string, index: number) => {
@@ -110,6 +108,7 @@ export default function StackCheckboxs({
       )}
       {savedStackData!.databasesSelectedData === null && (
         <>
+          <br />
           <img
             src="/icons/database-fill.svg"
             alt="database"
@@ -119,8 +118,6 @@ export default function StackCheckboxs({
           />
           <p className="subtitle" style={{ display: "inline" }}>
             Databases used in your tech stack.
-            <br />
-            <br />
           </p>
           {techValues.databases.map((x: string, index: number) => {
             return (
@@ -142,6 +139,7 @@ export default function StackCheckboxs({
 
       {savedStackData!.apisSelectedData !== null && (
         <>
+          <br />
           <img
             src="/icons/api.svg"
             alt="api"
@@ -151,8 +149,6 @@ export default function StackCheckboxs({
           />
           <p className="subtitle" style={{ display: "inline" }}>
             APIs used in your tech stack.
-            <br />
-            <br />
           </p>
           {savedStackData!.apisSelectedData[0].map(
             (x: string, index: number) => {
@@ -193,6 +189,7 @@ export default function StackCheckboxs({
       )}
       {savedStackData!.apisSelectedData === null && (
         <>
+          <br />
           <img
             src="/icons/api.svg"
             alt="api"
@@ -202,8 +199,6 @@ export default function StackCheckboxs({
           />
           <p className="subtitle" style={{ display: "inline" }}>
             APIs used in your tech stack.
-            <br />
-            <br />
           </p>
           {techValues.apis.map((x: string, index: number) => {
             return (
@@ -225,6 +220,7 @@ export default function StackCheckboxs({
 
       {savedStackData!.cloudsSelectedData !== null && (
         <>
+          <br />
           <img
             src="/icons/cloud-fill.svg"
             alt="cloud"
@@ -234,8 +230,6 @@ export default function StackCheckboxs({
           />
           <p className="subtitle" style={{ display: "inline" }}>
             Cloud Deployment Services used in your tech stack.
-            <br />
-            <br />
           </p>
           {savedStackData!.cloudsSelectedData[0].map(
             (x: string, index: number) => {
@@ -276,6 +270,7 @@ export default function StackCheckboxs({
       )}
       {savedStackData!.cloudsSelectedData === null && (
         <>
+          <br />
           <img
             src="/icons/cloud-fill.svg"
             alt="cloud"
@@ -285,8 +280,6 @@ export default function StackCheckboxs({
           />
           <p className="subtitle" style={{ display: "inline" }}>
             Cloud Deployment Services used in your tech stack.
-            <br />
-            <br />
           </p>
           {techValues.clouds.map((x: string, index: number) => {
             return (
@@ -308,6 +301,7 @@ export default function StackCheckboxs({
 
       {savedStackData!.frameworksSelectedData !== null && (
         <>
+          <br />
           <img
             src="/icons/framework.svg"
             alt="api"
@@ -317,8 +311,6 @@ export default function StackCheckboxs({
           />
           <p className="subtitle" style={{ display: "inline" }}>
             Frameworks used in your tech stack.
-            <br />
-            <br />
           </p>
           {savedStackData!.frameworksSelectedData[0].map(
             (x: string, index: number) => {
@@ -360,6 +352,7 @@ export default function StackCheckboxs({
 
       {savedStackData!.frameworksSelectedData === null && (
         <>
+          <br />
           <img
             src="/icons/framework.svg"
             alt="api"
@@ -369,8 +362,6 @@ export default function StackCheckboxs({
           />
           <p className="subtitle" style={{ display: "inline" }}>
             Frameworks used in your tech stack.
-            <br />
-            <br />
           </p>
           {techValues.frameworks.map((x: string, index: number) => {
             return (

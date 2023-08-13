@@ -199,8 +199,6 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                         allFormFieldData={allFormFieldData}
                         setAllFormFieldData={setAllFormFieldData}
                       />
-                      <br />
-                      <br />
                     </div>
 
                     <label
@@ -351,10 +349,8 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                       height={15}
                       style={{ display: "inline" }}
                     />
-                    <p className="subtitle" style={{ display: "inline" }}>
+                    <p className="subtitle" style={{ display: "inline", marginTop: "10px" }}>
                       Select all Languages used in your tech stack.
-                      <br />
-                      <br />
                     </p>
                     {page_data.tech_values.languages.map(
                       (x: string, index: number) => {
@@ -392,6 +388,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                       }
                     )}
 
+                    <br />
                     <img
                       src="/icons/database-fill.svg"
                       alt="database"
@@ -401,8 +398,6 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                     />
                     <p className="subtitle" style={{ display: "inline" }}>
                       Select all Databases used in your tech stack.
-                      <br />
-                      <br />
                     </p>
                     {page_data.tech_values.databases.map(
                       (x: string, index: number) => {
@@ -420,6 +415,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                       }
                     )}
 
+                    <br />
                     <img
                       src="/icons/api.svg"
                       alt="api"
@@ -429,8 +425,6 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                     />
                     <p className="subtitle" style={{ display: "inline" }}>
                       Select all APIs used in your tech stack.
-                      <br />
-                      <br />
                     </p>
                     {page_data.tech_values.apis.map(
                       (x: string, index: number) => {
@@ -444,6 +438,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                       }
                     )}
 
+                    <br />
                     <img
                       src="/icons/cloud-fill.svg"
                       alt="cloud"
@@ -454,8 +449,6 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                     <p className="subtitle" style={{ display: "inline" }}>
                       Select all Cloud Deployment Services used in your tech
                       stack.
-                      <br />
-                      <br />
                     </p>
                     {page_data.tech_values.clouds.map(
                       (x: string, index: number) => {
@@ -473,6 +466,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                       }
                     )}
 
+                    <br />
                     <img
                       src="/icons/framework.svg"
                       alt="api"
@@ -482,8 +476,6 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                     />
                     <p className="subtitle" style={{ display: "inline" }}>
                       Select all Frameworks used in your tech stack.
-                      <br />
-                      <br />
                     </p>
                     {page_data.tech_values.frameworks.map(
                       (x: string, index: number) => {
@@ -624,13 +616,13 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                 >
                   <div style={{ width: "100%", textAlign: "center" }}>
                     {" "}
-                    <h3>
-                      Stack Successfully Created
+                    <p className="title">
+                      Stack Created
                       <br />{" "}
                       <a href={`/stack/${newStackID}`} className="btn-create">
                         View Stack
                       </a>
-                    </h3>
+                    </p>
                   </div>
                 </div>
               </section>
