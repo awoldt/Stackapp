@@ -92,8 +92,6 @@ export async function GetPublicProfile(username: string) {
       return null;
     }
 
-    console.log(user.docs[0].data());
-
     let profileData: _userProfile = {
       uid: user.docs[0].id,
       bio: user.docs[0].data().bio,
@@ -136,8 +134,6 @@ export async function GetUserStacks(
       .where("uid", "==", uid)
       .orderBy("created_on", "desc")
       .get();
-
-    console.log(data.empty);
 
     if (data.empty) {
       return 0;
@@ -345,17 +341,11 @@ export async function GetRepoSelect(
 
     let indexsToRemove: number[] = [];
     if (!reposCurrentlyInUse.empty) {
-      console.log("\nThere is currently a repo in use from this user!");
-      for (const k of reposCurrentlyInUse.docs) {
-        console.log(k.data());
-      }
-
       repoSelectList.forEach((x: _repoSelectList, index: number) => {
         for (const l of reposCurrentlyInUse.docs) {
           if (l.data().github_repo_id === x.id) {
             //this repo id is already in use by another stack
             //remove from array being returned
-            console.log("\n remove id " + l.data().github_repo_id + "\n");
             indexsToRemove.push(index);
           }
         }
@@ -427,13 +417,14 @@ export async function FilterProfanity(appName: string, appDescription: string) {
   //prevents creation of stack if there is any detected
   //profanity in any of the text uploaded
 
-  console.log(appName);
-  console.log(appDescription);
-
   try {
-    const badWords = (
-      await fs.readFile(path.join(__dirname, "..", "profanity.txt"), "utf-8")
-    ).split("\n");
+    const data = await s3.send(
+      new GetObjectCommand({
+        Bucket: process.env.AWS_S3_BUCKET!,
+        Key: "profanity.txt",
+      })
+    );
+    const badWords = (await data.Body?.transformToString())?.split("\n");
 
     //for every word in description and app name
     //check for profanity
@@ -445,7 +436,7 @@ export async function FilterProfanity(appName: string, appDescription: string) {
 
     let CONTAINS_PROFANITY = false;
     for (let index = 0; index < allStackWords.length; index++) {
-      if (badWords.includes(allStackWords[index].toLowerCase())) {
+      if (badWords!.includes(allStackWords[index].toLowerCase())) {
         console.log("cannot use the word " + allStackWords[index]);
         CONTAINS_PROFANITY = true;
         break;
@@ -583,8 +574,6 @@ export async function GetStackData(
       return 404;
     }
 
-    console.log(stackData.data());
-
     const x: _stack = {
       uid: stackData.data()!.uid,
       name: stackData.data()!.name,
@@ -623,8 +612,6 @@ export async function GetStackData(
       created_on: stackData.data()!.created_on,
       stack_id: stackId,
     };
-
-    console.log(x);
 
     return x;
   } catch (e) {
@@ -724,8 +711,6 @@ export async function GetStackDataEditPage(
       .doc(stackId)
       .get();
 
-    console.log(stackData.data());
-
     if (!stackData.exists) {
       return null;
     }
@@ -781,8 +766,6 @@ export async function DeleteStack(stackId: string) {
       return null;
     }
 
-    console.log(stackData.data());
-
     //delete stack icon
     await s3.send(
       new DeleteObjectCommand({
@@ -800,8 +783,6 @@ export async function DeleteStack(stackId: string) {
 
     //delete the actual stack
     await await db.collection(process.env.STACKS_DB!).doc(stackId).delete();
-
-    console.log("syuccessfully delete stack");
 
     return true;
   } catch (e) {
@@ -1001,9 +982,6 @@ export async function EditProfile(
       }
     }
 
-    console.log("update object");
-    console.log(filteredUpdateObj);
-
     await db.collection("profiles").doc(uidCookie).update(filteredUpdateObj);
     return true;
   } catch (e) {
@@ -1026,9 +1004,6 @@ export async function EditStack(
       return null;
     }
 
-    console.log("\n\nUPDATE STACK FIELDS");
-    console.log(fields);
-
     let newIcon: string | null = null;
     let newIconFilename: string | null = null;
     let newThumbnail: string | null = null;
@@ -1036,8 +1011,6 @@ export async function EditStack(
 
     //user included new stack icon in form
     if (stackIcon[0].originalFilename !== "") {
-      console.log("user changed stack icon!");
-
       const newStackIcon = await UploadImagesToS3(
         stackIcon[0].newFilename,
         stackIcon[0].filepath
@@ -1057,7 +1030,6 @@ export async function EditStack(
 
     //user included new stack thumbnail in form
     if (stackThumbnail[0].originalFilename !== "") {
-      console.log("user changed stack thumbnail!");
       const newStackThumbnail = await UploadImagesToS3(
         stackThumbnail[0].newFilename,
         stackThumbnail[0].filepath
@@ -1141,8 +1113,19 @@ export async function CreateStack(
   files: any,
   fields: formidable.Fields,
   cookieUid: string
-) {
+): Promise<_stack | "contains_profanity" | null> {
   try {
+    //make sure no profanity in either stack name
+    //or stack description
+    if (
+      await FilterProfanity(
+        fields.app_name[0].trim(),
+        fields.app_description[0].trim()
+      )
+    ) {
+      return "contains_profanity";
+    }
+
     const x = files.stack_icon;
     const y = files.stack_thumbnail;
 
@@ -1160,9 +1143,7 @@ export async function CreateStack(
       return null;
     }
 
-    console.log(fields);
-
-    const user = await GetUserProfile(cookieUid);
+    await GetUserProfile(cookieUid);
 
     const newStack: _stack = {
       uid: cookieUid,
@@ -1200,13 +1181,9 @@ export async function CreateStack(
       created_on: Date.now(),
     };
 
-    console.log("\nNEW STACK BEING ADDED!");
-
-    console.log(newStack);
-
     const s = await db.collection(process.env.STACKS_DB!).add(newStack);
-    console.log(s);
-    return s;
+    newStack.stack_id = s.id;
+    return newStack;
   } catch (e) {
     console.log(e);
     return null;
@@ -1351,7 +1328,6 @@ export async function ReadTechValuesFromS3() {
     for (const a in json) {
       json[a].sort();
     }
-    console.log(json);
 
     return json;
   } catch (e) {

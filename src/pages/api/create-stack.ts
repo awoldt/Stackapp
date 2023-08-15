@@ -43,9 +43,23 @@ export default async function handler(
         .json({ msg: "Stack description cannot be more than 2500 characters" });
     }
 
-    const s = await CreateStack(files, fields, req.cookies.uid!);
+    const s = await CreateStack(files, fields, req.cookies.uid!); //any to prevent error below
 
-    return res.json({ msg: "Successfully created stack", stackId: s!.id });
+    if (s === null) {
+      return res
+        .status(500)
+        .json({ msg: "There was an error while creating Stack" });
+    }
+    if (s === "contains_profanity") {
+      return res
+        .status(400)
+        .json({ msg: "Stack name and description cannot contain profanity" });
+    }
+
+    return res.json({
+      msg: "Successfully created stack",
+      stackId: s!.stack_id,
+    });
   });
 }
 

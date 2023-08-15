@@ -25,41 +25,35 @@ export default function LikeBtn({
 
   return (
     <div>
-
-
       {/* not signed in */}
-      {/* {!isSignedIn &&
+      {!isSignedIn && (
         <>
           <div className="btn-container-like">
-            <button className="btn-postlike">
+            <button
+              className="btn-postlike"
+              onClick={() => {
+                alert("Sign in to like Stack");
+              }}
+            >
               <img
                 className="white-svg"
                 src="/icons/like.svg"
                 alt="likes icon"
                 width={20}
-                height={20} /> Like
+                height={20}
+              />{" "}
+              Like ({currentNumOfLikes})
             </button>
           </div>
         </>
-      } */}
-
+      )}
 
       {/* signed in.... but its signed in user's stack (cannot like) */}
-      {/* {isSignedIn && isSignedInUsersStack && (
+      {isSignedIn && isSignedInUsersStack && (
         <>
-          <div className="btn-container-like">
-            <button className="btn-postlike">
-              <img
-                className="white-svg"
-                src="/icons/like.svg"
-                alt="likes icon"
-                width={20}
-                height={20} /> Like
-            </button>
-          </div>
+          <p>Your stack has {currentNumOfLikes} likes</p>
         </>
-      )} */}
-
+      )}
 
       {/* ALLOW USER SIGNED IN TO LIKE/UNLIKE STACK */}
       {isSignedIn && !isSignedInUsersStack && (
@@ -104,7 +98,9 @@ export default function LikeBtn({
                       src="/icons/prelike.svg"
                       alt="likes icon"
                       width={20}
-                      height={20} /> Like
+                      height={20}
+                    />{" "}
+                    Like
                   </button>
                   <p style={{ paddingLeft: "8px", fontSize: "16px" }}>
                     <b>{likesAmount} Likes</b>
@@ -120,7 +116,9 @@ export default function LikeBtn({
                       src="/icons/like.svg"
                       alt="likes icon"
                       width={20}
-                      height={20} /> Unlike
+                      height={20}
+                    />{" "}
+                    Unlike
                   </button>
                   <p style={{ paddingLeft: "8px", fontSize: "16px" }}>
                     <b>{likesAmount} Likes</b>
@@ -136,7 +134,10 @@ export default function LikeBtn({
               {/* default view, before removing like */}
               {!submittingLike && (
                 <>
-                  <div className="btn-container-like" style={{ textAlign: "left" }}>
+                  <div
+                    className="btn-container-like"
+                    style={{ textAlign: "left" }}
+                  >
                     <button
                       className="btn-postlike"
                       onClick={async () => {
@@ -171,9 +172,17 @@ export default function LikeBtn({
                         src="/icons/like.svg"
                         alt="likes icon"
                         width={20}
-                        height={20} /> Unlike
+                        height={20}
+                      />{" "}
+                      Unlike
                     </button>
-                    <p style={{ paddingLeft: "8px", fontSize: "16px", width: "fit-content" }}>
+                    <p
+                      style={{
+                        paddingLeft: "8px",
+                        fontSize: "16px",
+                        width: "fit-content",
+                      }}
+                    >
                       <b>{likesAmount} Likes</b>
                       <br />
                       You Like this Stack.
@@ -190,7 +199,9 @@ export default function LikeBtn({
                       src="/icons/prelike.svg"
                       alt="likes icon"
                       width={20}
-                      height={20} /> Like
+                      height={20}
+                    />{" "}
+                    Like
                   </button>
                   <p style={{ paddingLeft: "8px", fontSize: "16px" }}>
                     <b>{likesAmount} Likes</b>
