@@ -203,7 +203,7 @@ export default function EditStackpage({
                       name="app_name"
                       style={{ marginBottom: "0px" }}
                       defaultValue={page_data.saved_stack_data?.name}
-                      placeholder="*Stack Title"
+                      placeholder="*Title"
                       required
                     />
                   </label>
@@ -217,13 +217,7 @@ export default function EditStackpage({
                   </label>
 
                   <p className="subtitle">
-                    *<img
-                      src="/icons/fileimage.svg"
-                      alt="fileimage logo"
-                      width={25}
-                      height={15}
-                    />
-                    Stack Icon
+                    *Icon
                   </p>
                   <img
                     src={iconImgSrc}
@@ -253,13 +247,7 @@ export default function EditStackpage({
                   />
 
                   <p className="subtitle">
-                    *<img
-                      src="/icons/fileimage.svg"
-                      alt="fileimage logo"
-                      width={25}
-                      height={15}
-                    />
-                    Stack Thumbnail
+                    *Thumbnail
                   </p>
                   <img
                     src={thumbnailImgSrc}
@@ -267,8 +255,8 @@ export default function EditStackpage({
                       width: "100%",
                       display: "block",
                       marginBottom: "20px",
-                      borderRadius: "4px",
-                      boxShadow: "0px 2px 10px 2px rgba(0, 0, 0, 0.075)"
+                      borderRadius: "20px",
+                      boxShadow: "0px 2px 10px 2px rgba(0, 0, 0, 0.085)"
                     }}
                   />
                   <input
@@ -289,20 +277,11 @@ export default function EditStackpage({
                     }}
                   />
 
-                  <input
-                    type="url"
-                    id="website_url"
-                    name="website_url"
-                    placeholder="Application URL"
-                    defaultValue={page_data.saved_stack_data?.website_url!}
-                  />
-
                   {page_data.has_authenticated_github_account && (
                     <>
                       {page_data.current_repo_details !== null && (
                         <>
                           <p className="subtitle">
-                            <img src="/icons/github.svg" alt="github logo" />
                             <b> {page_data.current_repo_details.name}</b> is
                             linked to this Stack.
                           </p>
@@ -310,9 +289,12 @@ export default function EditStackpage({
                       )}
                       {page_data.current_repo_details === null && (
                         <p className="subtitle">
-                          <img
-                            src="/icons/github.svg"
-                            alt="github logo" /> Associated GitHub Repo
+                          <label
+                            className="subtitle"
+                            style={{ marginBottom: "0px", paddingBottom: "0px" }}
+                          >
+                            GitHub
+                          </label>
                         </p>
                       )}
 
@@ -322,7 +304,7 @@ export default function EditStackpage({
                         style={{ display: "block", width: "100%" }}
                       >
                         <option value="null" selected>
-                          Choose Repo
+                          Select a Repo
                         </option>
                         {Array.isArray(page_data.repo_select_list) &&
                           page_data.repo_select_list.map(
@@ -337,6 +319,14 @@ export default function EditStackpage({
                       </select>
                     </>
                   )}
+
+                  <input
+                    type="url"
+                    id="website_url"
+                    name="website_url"
+                    placeholder="URL"
+                    defaultValue={page_data.saved_stack_data?.website_url!}
+                  />
 
                   <StackCheckboxs
                     savedStackData={page_data.saved_stack_data}

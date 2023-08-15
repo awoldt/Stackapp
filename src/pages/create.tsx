@@ -174,7 +174,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                       type="text"
                       id="app_title"
                       name="app_name"
-                      placeholder="*Stack Title"
+                      placeholder="*Title"
                       required
                       maxLength={100}
                       onChange={(e) => {
@@ -204,16 +204,9 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                     <label
                       className="subtitle"
                       htmlFor="app_icon_input"
-                      style={{ marginBottom: "0px" }}
+                      style={{ marginBottom: "0px", paddingBottom: "0px" }}
                     >
-                      *
-                      <img
-                        src="/icons/fileimage.svg"
-                        alt="fileimage logo"
-                        width={25}
-                        height={15}
-                      />
-                      Stack Icon
+                      *Icon
                     </label>
                     {showcaseIcon && (
                       <img
@@ -255,16 +248,9 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                     <label
                       className="subtitle"
                       htmlFor="app_thumbnail_input"
-                      style={{ marginBottom: "0px" }}
+                      style={{ marginBottom: "0px", paddingBottom: "0px" }}
                     >
-                      *
-                      <img
-                        src="/icons/fileimage.svg"
-                        alt="fileimage logo"
-                        width={25}
-                        height={15}
-                      />
-                      Stack Thumbnail
+                      *Thumbnail
                     </label>
                     {showcaseThumbnail && (
                       <img
@@ -274,8 +260,8 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                           width: "100%",
                           display: "block",
                           marginBottom: "20px",
-                          borderRadius: "4px",
-                          boxShadow: "0px 2px 10px 2px rgba(0, 0, 0, 0.075)",
+                          borderRadius: "20px",
+                          boxShadow: "0px 2px 10px 2px rgba(0, 0, 0, 0.085)",
                         }}
                       />
                     )}
@@ -307,26 +293,21 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                       }}
                     />
 
-                    <input
-                      type="url"
-                      id="website_url"
-                      name="website_url"
-                      placeholder="Application URL"
-                    />
-
                     {page_data.has_authenticated_github_account && (
                       <>
-                        <p className="subtitle">
-                          <img src="/icons/github.svg" alt="github logo" />{" "}
-                          Select an associated GitHub Repo.
-                        </p>
+                        <label
+                          className="subtitle"
+                          style={{ marginBottom: "0px", paddingBottom: "0px" }}
+                        >
+                          GitHub
+                        </label>
                         <select
                           name="githubRepoId"
                           className="btn-extra"
                           style={{ display: "block", width: "100%" }}
                         >
                           <option value="null" selected>
-                            Choose Repo
+                            Select a Repo
                           </option>
                           {Array.isArray(page_data.repo_select_list) &&
                             page_data.repo_select_list.map(
@@ -341,6 +322,13 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                         </select>
                       </>
                     )}
+
+                    <input
+                      type="url"
+                      id="website_url"
+                      name="website_url"
+                      placeholder="URL"
+                    />
 
                     <img
                       src="/icons/code.svg"

@@ -94,7 +94,7 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
             </button>
             <div className="dropdown-content">
               <span className="subtitle">
-                <a href={"/explore"} className="nav-element">
+                <a href={"/explore"}>
                   <img
                     src="/icons/explore.svg"
                     alt="explore logo"
@@ -105,7 +105,7 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
                 </a>
               </span>
               <span className="subtitle">
-                <a href={"/create"} className="nav-element">
+                <a href={"/create"}>
                   <img
                     src="/icons/create.svg"
                     alt="create logo"
@@ -116,7 +116,7 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
                 </a>
               </span>
               <span className="subtitle">
-                <a href={"/profile"} className="nav-element">
+                <a href={"/profile"}>
                   <img
                     src="/icons/profile.svg"
                     alt="profile logo"
@@ -140,7 +140,7 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
             </button>
             <div className="dropdown-content">
               <span className="subtitle">
-                <a href={"/"} className="nav-element">
+                <a href={"/"}>
                   <img
                     src="/icons/home.svg"
                     alt="home logo"
@@ -151,7 +151,7 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
                 </a>
               </span>
               <span className="subtitle">
-                <a href={"/explore"} className="nav-element">
+                <a href={"/explore"}>
                   <img
                     src="/icons/explore.svg"
                     alt="explore logo"
@@ -161,17 +161,6 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
                   Explore
                 </a>
               </span>
-              {/* <span className="subtitle">
-                <a href={"/create"} className="nav-element">
-                  <img
-                    src="/icons/create.svg"
-                    alt="create logo"
-                    width={15}
-                    height={15}
-                  />{" "}
-                  Create
-                </a>
-              </span> */}
             </div>
           </div>
         </div>

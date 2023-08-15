@@ -181,6 +181,7 @@
     @media (max-width: 800px) {
         label {
             width: 100%;
+            padding: 0px;
         }
     }
 
@@ -212,7 +213,7 @@
         left: 0;
         bottom: 0;
         transition: 0.2s ease-in-out;
-        border-radius: 4px;
+        border-radius: 20px;
     }
 
     .nav-element:hover:after,
@@ -224,13 +225,12 @@
         display: flex;
         justify-content: center;
         padding-top: 40px;
-        padding-bottom: 20px;
+        padding-bottom: 10px;
     }
 
     @media (max-width: 1550px) {
         .header-container {
             padding-top: 10px;
-            padding-bottom: 10px;
         }
     }
 
@@ -244,8 +244,9 @@
         background: -webkit-radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%);
         background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%);
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f39a59", endColorstr="#8084c0", GradientType=1);
-        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.075);
+        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.085);
         border: 2px solid rgba(0, 0, 0, 0.065);
+        border-radius: 20px;
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
     }
@@ -292,7 +293,7 @@
     }
 
     .title-header {
-        min-width: 40%;
+        min-width: 35%;
         padding-right: 20px;
     }
 
@@ -418,7 +419,7 @@
         border-radius: 50%;
         overflow: hidden;
         object-fit: cover;
-        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.075);
+        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.085);
     }
 
     .grid-container {
@@ -468,10 +469,10 @@
 
     .grid-item {
         background: white;
-        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.075);
+        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.085);
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
-        border-radius: 4px;
+        border-radius: 20px;
         width: 140px;
         height: 140px;
         border: 2px solid rgba(0, 0, 0, 0.065);
@@ -515,10 +516,10 @@
 
     .stack-item {
         background: none;
-        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.075);
+        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.085);
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
-        border-radius: 4px;
+        border-radius: 20px;
         width: 260px;
         height: 260px;
         margin-bottom: 40px;
@@ -546,12 +547,11 @@
         }
     }
 
-    .grid-item>img,
-    .stack-item>img {
+    .grid-item>img {
         cursor: pointer;
         overflow: hidden;
         object-fit: contain;
-        border-radius: 4px;
+        border-radius: 20px;
         background: white;
         padding: 20px;
         width: 100%;
@@ -567,13 +567,7 @@
     .card-container {
         display: flex;
         justify-content: center;
-        padding-bottom: 20px;
-    }
-
-    @media (max-width: 1550px) {
-        .card-container {
-            padding-bottom: 10px;
-        }
+        padding-bottom: 10px;
     }
 
     .card-container-title {
@@ -590,7 +584,7 @@
     }
 
     .card-empty {
-        border-radius: 4px;
+        border-radius: 20px;
         text-align: center;
         width: 70%;
         height: auto;
@@ -599,7 +593,7 @@
     }
 
     .card-create {
-        border-radius: 4px;
+        border-radius: 20px;
         text-align: center;
         width: 40%;
         height: auto;
@@ -614,7 +608,7 @@
     }
 
     .card {
-        border-radius: 4px;
+        border-radius: 20px;
         width: 70%;
         height: auto;
         padding: 40px;
@@ -622,7 +616,7 @@
         background: -webkit-radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%);
         background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%);
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f39a59", endColorstr="#8084c0", GradientType=1);
-        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.075);
+        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.085);
         border: 2px solid rgba(0, 0, 0, 0.065);
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
@@ -650,7 +644,7 @@
 
     .card-edit {
         text-align: center;
-        border-radius: 4px;
+        border-radius: 20px;
         width: 40%;
         height: auto;
         padding: 40px;
@@ -658,7 +652,7 @@
         background: -webkit-radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%);
         background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%);
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f39a59", endColorstr="#8084c0", GradientType=1);
-        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.075);
+        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.085);
         border: 2px solid rgba(0, 0, 0, 0.065);
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
@@ -682,7 +676,7 @@
 
     .card-registration {
         text-align: left;
-        border-radius: 4px;
+        border-radius: 20px;
         width: 40%;
         height: auto;
         padding: 40px;
@@ -691,7 +685,7 @@
         background: -webkit-radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%);
         background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%);
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f39a59", endColorstr="#8084c0", GradientType=1);
-        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.075);
+        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.085);
         border: 2px solid rgba(0, 0, 0, 0.065);
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
@@ -714,35 +708,32 @@
     }
 
     .card-thumbnail {
-        border-radius: 4px;
+        border-radius: 20px;
         width: 100%;
         height: 650px;
         background: white;
-        border: 2px solid rgba(0, 0, 0, 0.065);
-        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.075);
+        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.085);
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
     }
 
     .thumbnail {
-        border-radius: 4px;
+        border-radius: 20px;
         width: 100%;
         height: 600px;
         float: right;
-        border: 2px solid rgba(0, 0, 0, 0.065);
         background: white;
-        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.075);
+        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.085);
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
     }
 
     .explore-thumbnail {
-        border-radius: 4px;
+        border-radius: 20px;
         width: 100%;
         height: 650px;
         background: white;
-        border: 2px solid rgba(0, 0, 0, 0.065);
-        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.075);
+        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.085);
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
         margin-bottom: 80px;
@@ -767,12 +758,13 @@
 
     .thumbnail>img,
     .card-thumbnail>img,
-    .explore-thumbnail>img {
+    .explore-thumbnail>img,
+    .stack-item>img {
         overflow: hidden;
         object-fit: cover;
-        border-radius: 4px;
         width: 100%;
         height: 100%;
+        border-radius: 20px;
     }
 
     i {
@@ -786,7 +778,7 @@
         border-radius: 50%;
         overflow: hidden;
         object-fit: cover;
-        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.075);
+        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.085);
     }
 
     .btn-container {
@@ -821,7 +813,7 @@
     .btn-landing {
         cursor: pointer;
         margin-bottom: 20px;
-        border-radius: 4px;
+        border-radius: 10px;
         padding: 12px;
         padding-left: 24px;
         padding-right: 24px;
@@ -870,8 +862,8 @@
         font-size: 20px;
         font-weight: 500;
         font-family: 'Inter', sans-serif;
-        border-radius: 4px;
-        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.075);
+        border-radius: 10px;
+        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.085);
         border: 2px solid rgba(0, 0, 0, 0.065);
         background: #70b0ff;
         color: white;
@@ -925,7 +917,7 @@
     .btn-create {
         cursor: pointer;
         margin-bottom: 20px;
-        border-radius: 4px;
+        border-radius: 10px;
         padding: 12px;
         padding-left: 24px;
         padding-right: 24px;
@@ -946,7 +938,7 @@
     .btn-edit {
         cursor: pointer;
         margin-bottom: 20px;
-        border-radius: 4px;
+        border-radius: 10px;
         padding: 12px;
         padding-left: 24px;
         padding-right: 24px;
@@ -967,7 +959,7 @@
     .btn-extra {
         cursor: pointer;
         margin-bottom: 20px;
-        border-radius: 4px;
+        border-radius: 10px;
         padding: 12px;
         padding-left: 24px;
         padding-right: 24px;
@@ -988,7 +980,7 @@
     .btn-delete {
         cursor: pointer;
         margin-bottom: 20px;
-        border-radius: 4px;
+        border-radius: 10px;
         padding: 12px;
         padding-left: 24px;
         padding-right: 24px;
@@ -1009,14 +1001,14 @@
     .create-content {
         column-count: 1;
         text-align: left;
-        border-radius: 4px;
+        border-radius: 10px;
         width: 40%;
         padding: 40px;
         background: -moz-radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%);
         background: -webkit-radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%);
         background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%);
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f39a59", endColorstr="#8084c0", GradientType=1);
-        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.075);
+        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.085);
         border: 2px solid rgba(0, 0, 0, 0.065);
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
@@ -1037,7 +1029,7 @@
     input[type="file"]::file-selector-button {
         cursor: pointer;
         margin-bottom: 20px;
-        border-radius: 4px;
+        border-radius: 10px;
         padding: 12px;
         padding-left: 24px;
         padding-right: 24px;
@@ -1064,7 +1056,7 @@
         cursor: pointer;
         border: none;
         margin-bottom: 20px;
-        border-radius: 4px;
+        border-radius: 10px;
         padding: 12px;
         padding-left: 16px;
         background: none;
@@ -1216,7 +1208,7 @@
         margin-top: 20px;
         margin-bottom: 20px;
         border-color: rgba(0, 0, 0, 0.05);
-        border-radius: 4px;
+        border-radius: 20px;
     }
 
     ul>li {
@@ -1254,7 +1246,7 @@
         background: -webkit-radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%);
         background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%);
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f39a59", endColorstr="#8084c0", GradientType=1);
-        box-shadow: 0px 10px 10px 2px rgba(0, 0, 0, 0.075);
+        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.085);
         border: 2px solid rgba(0, 0, 0, 0.065);
         border-top: none;
         backdrop-filter: blur(8px);
