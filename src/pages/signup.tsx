@@ -100,7 +100,8 @@ export default function CreateAccount({
             </div>
 
             <div className="card-container">
-              <div className="card-registration">
+              <div className="card-registration"
+                style={{ paddingBottom: "0px" }}>
                 {!showSuccessMessage && (
                   <>
                     <form

@@ -4,6 +4,7 @@ import { IsUserSignedIn } from "@/functions";
 import { DEFAULT_PAGE_LAYOUT } from "@/types";
 import UniqueHeader from "@/components/UniqueHeaderTags";
 import InvalidCookie from "@/components/InvalidUidCookie";
+import Sidenav from "@/components/Sidenav";
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const signedIn = await IsUserSignedIn(req.cookies.uid);
@@ -52,6 +53,11 @@ export default function Home({
         canonicalLink={page_data.header_tags.canonical_link!}
         openGraph={page_data.header_tags.open_graph_tags}
       />
+
+      <section>
+        {page_data.is_signed_in && <Sidenav isSignedIn={true} />}
+        {!page_data.is_signed_in && <Sidenav isSignedIn={false} />}
+      </section>
       <main>
         <section>
           <div className="background">
@@ -65,40 +71,44 @@ export default function Home({
             <div className="card-empty">
               <h1 className="splash">Stack</h1>
               <p className="bold" style={{ fontWeight: "500", paddingBottom: "20px" }}>
-                A Platform for Modern Tech Stack Visualization.
+                A Platform for Modern Tech Stack Visualization
               </p>
             </div>
           </div>
 
-          <div className="btn-container-landing">
-            <a
-              href={"/signin"}
-              className="btn-landing"
-            >
-              <img
-                src="/icons/signin.svg"
-                className="white-svg"
-                alt="signin logo"
-                width={15}
-                height={15}
-              />{" "}
-              Sign In
-            </a>
-          </div>
-          <div className="btn-container-landing">
-            <a
-              href={"/signup"}
-              className="btn-landing"
-            >
-              <img
-                src="/icons/signup.svg"
-                className="white-svg"
-                alt="signup logo"
-                width={15}
-                height={15}
-              />{" "}
-              Sign Up
-            </a>
+          <div className="card-container">
+            <div className="card-registration">
+              <div className="btn-container-landing">
+                <a
+                  href={"/signin"}
+                  className="btn-landing"
+                >
+                  <img
+                    src="/icons/signin.svg"
+                    className="white-svg"
+                    alt="signin logo"
+                    width={15}
+                    height={15}
+                  />{" "}
+                  Sign In
+                </a>
+              </div>
+              <div className="btn-container-landing">
+                <a
+                  href={"/signup"}
+                  className="btn-landing"
+                >
+                  <img
+                    src="/icons/signup.svg"
+                    className="white-svg"
+                    alt="signup logo"
+                    width={15}
+                    height={15}
+                  />{" "}
+                  Sign Up
+                </a>
+              </div>
+            </div>
           </div>
         </section>
       </main>

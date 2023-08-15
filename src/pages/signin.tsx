@@ -97,7 +97,8 @@ export default function Signin({
           </div>
 
           <div className="card-container">
-            <div className="card-registration">
+            <div className="card-registration"
+              style={{ paddingBottom: "0px" }}>
               {error[1] === "client_error" && (
                 <p style={{ color: "red" }}>{error[2]}</p>
               )}
