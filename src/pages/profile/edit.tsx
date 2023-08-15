@@ -134,7 +134,7 @@ export default function EditProfile({
                 <p className="subtitle">Change the details of your profile.</p>
               </div>
             </div>
-            <div className="card-container" style={{ paddingBottom: "40px" }}>
+            <div className="card-container">
               <div className="card-edit">
                 <form
                   ref={formRef}
