@@ -413,7 +413,7 @@ export async function GetRepoCommitLogs(
   }
 }
 
-export async function FilterProfanity(appName: string, appDescription: string) {
+export async function FilterProfanity(phrase: string) {
   //prevents creation of stack if there is any detected
   //profanity in any of the text uploaded
 
@@ -429,15 +429,12 @@ export async function FilterProfanity(appName: string, appDescription: string) {
     //for every word in description and app name
     //check for profanity
 
-    const allStackWords = appName
-      .replace(/\s+/g, " ")
-      .split(" ")
-      .concat(appDescription.replace(/\s+/g, " ").split(" "));
+    const words = phrase.replace(/\s+/g, " ").split(" ");
 
     let CONTAINS_PROFANITY = false;
-    for (let index = 0; index < allStackWords.length; index++) {
-      if (badWords!.includes(allStackWords[index].toLowerCase())) {
-        console.log("cannot use the word " + allStackWords[index]);
+    for (let index = 0; index < words.length; index++) {
+      if (badWords!.includes(words[index].toLowerCase())) {
+        console.log("cannot use the word " + words[index]);
         CONTAINS_PROFANITY = true;
         break;
       }
@@ -998,6 +995,19 @@ export async function EditStack(
   fields: formidable.Fields
 ) {
   try {
+    //make sure no profanity in either stack name
+    //or stack description
+    if (fields.app_name[0] !== "") {
+      if (await FilterProfanity(fields.app_name[0].trim())) {
+        return "contains_profanity";
+      }
+    }
+    if (fields.app_description[0] !== "") {
+      if (await FilterProfanity(fields.app_description[0].trim())) {
+        return "contains_profanity";
+      }
+    }
+
     const oldStackDetails = await GetStackData(stackId, cookieUid);
 
     if (oldStackDetails === null || oldStackDetails === 404) {
@@ -1118,10 +1128,8 @@ export async function CreateStack(
     //make sure no profanity in either stack name
     //or stack description
     if (
-      await FilterProfanity(
-        fields.app_name[0].trim(),
-        fields.app_description[0].trim()
-      )
+      (await FilterProfanity(fields.app_name[0].trim())) ||
+      (await FilterProfanity(fields.app_description[0].trim()))
     ) {
       return "contains_profanity";
     }

@@ -29,7 +29,9 @@ export default async function handler(
     if (fields.languages_used === undefined) {
       return res
         .status(400)
-        .json({ msg: "You must include at least one language for each stack." });
+        .json({
+          msg: "You must include at least one language for each stack.",
+        });
     }
     const s = await EditStack(
       String(req.query.stack_id),
@@ -43,6 +45,11 @@ export default async function handler(
       return res
         .status(500)
         .json({ msg: "There was an error while updating stack." });
+    }
+    if (s === "contains_profanity") {
+      return res
+        .status(400)
+        .json({ msg: "Stack name and description cannot contain profanity" });
     }
 
     return res.json({ msg: "Stack successfully updated." });
