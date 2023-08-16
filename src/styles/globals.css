@@ -224,7 +224,7 @@
         display: flex;
         justify-content: center;
         padding-top: 40px;
-        padding-bottom: 10px;
+        padding-bottom: 20px;
     }
 
     @media (max-width: 1550px) {
@@ -830,7 +830,6 @@
     }
 
     .btn-container-like {
-        margin-top: 20px;
         display: flex;
         justify-content: left;
         align-items: center;
@@ -847,33 +846,35 @@
     .btn-like,
     .btn-postlike {
         cursor: pointer;
-        padding: 20px;
-        padding-top: 10px;
-        padding-bottom: 10px;
+        padding: 14px;
+        padding-left: 16px;
+        padding-right: 16px;
         font-size: 20px;
         font-weight: 500;
         font-family: 'Inter', sans-serif;
-        border-radius: 10px;
-        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.085);
-        border: 2px solid rgba(0, 0, 0, 0.065);
-        background: #70b0ff;
-        color: white;
+        border-radius: 50px;
+        border: 2px solid transparent;
+        background: transparent;
         transition: 250ms ease-in-out;
     }
 
     .btn-like:hover {
+        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.085);
+        background: rgba(0, 0, 0, 0.065);
         border: 2px solid rgba(0, 0, 0, 0.2);
-        background: #1f84ff;
         transition: 250ms ease-in-out;
     }
 
     .btn-postlike {
-        background: #1f84ff;
+        border: 2px solid rgba(0, 0, 0, 0.2);
+        background: #70b0ff;
+        transition: 250ms ease-in-out;
     }
 
     .btn-postlike:hover {
+        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.085);
         border: 2px solid rgba(0, 0, 0, 0.2);
-        background: #70b0ff;
+        background: #1f84ff;
         transition: 250ms ease-in-out;
     }
 

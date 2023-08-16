@@ -144,13 +144,6 @@ export default function Profilepage({
                         {page_data.user_profile_data?.bio === null && (
                           <p style={{ marginTop: "20px" }}>This user has not yet set up their bio.</p>
                         )}
-
-                        {/* {page_data.user_stacks !== 0 && (
-                  <p>
-                    This user currently has {page_data.user_stacks!.length}{" "}
-                    Stacks.
-                  </p>
-                )} */}
                       </div>
                     </div>
                   </div>

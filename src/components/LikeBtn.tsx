@@ -28,21 +28,31 @@ export default function LikeBtn({
       {/* not signed in */}
       {!isSignedIn && (
         <>
+          <div className="btn-container-like"
+            style={{ marginTop: "20px", marginBottom: "10px" }}>
+            <p className="subtitle">
+              <b>{currentNumOfLikes}</b>
+            </p>
+            <p className="subtitle"
+              style={{ opacity: "0.85" }}>
+              &nbsp;likes
+            </p>
+          </div>
+
           <div className="btn-container-like">
             <button
-              className="btn-postlike"
+              className="btn-like"
               onClick={() => {
-                alert("Sign in to like Stack");
+                // alert("A Stack account is required to like Stacks.");
+                document.location = '/signin';
               }}
             >
               <img
-                className="white-svg"
-                src="/icons/like.svg"
+                src="/icons/prelike.svg"
                 alt="likes icon"
-                width={20}
-                height={20}
+                width={30}
+                height={30}
               />{" "}
-              Like ({currentNumOfLikes})
             </button>
           </div>
         </>
@@ -51,7 +61,7 @@ export default function LikeBtn({
       {/* signed in.... but its signed in user's stack (cannot like) */}
       {isSignedIn && isSignedInUsersStack && (
         <>
-          <p>Your stack has {currentNumOfLikes} likes</p>
+          <p className="subtitle">Your Stack has <b>{currentNumOfLikes}</b> likes.</p>
         </>
       )}
 
@@ -63,67 +73,87 @@ export default function LikeBtn({
             <>
               {/* default view, before submitting like */}
               {!submittingLike && (
-                <div className="btn-container-like">
-                  <button
-                    className="btn-like"
-                    onClick={async () => {
-                      setSubmittingLike(true);
-                      try {
-                        const req = await fetch("/api/like", {
-                          method: "POST",
-                          body: JSON.stringify({
-                            sid: stackID,
-                            nl: likesAmount + 1,
-                            method: "like",
-                          }),
-                        });
-                        const data = await req.json();
+                <>
+                  <div className="btn-container-like"
+                    style={{ marginTop: "20px", marginBottom: "10px" }}>
+                    <p className="subtitle">
+                      <b>{likesAmount}</b>
+                    </p>
+                    <p className="subtitle"
+                      style={{ opacity: "0.85" }}>
+                      &nbsp;likes
+                    </p>
+                  </div>
+                  <div className="btn-container-like">
+                    <button
+                      className="btn-like"
+                      onClick={async () => {
+                        setSubmittingLike(true);
+                        try {
+                          const req = await fetch("/api/like", {
+                            method: "POST",
+                            body: JSON.stringify({
+                              sid: stackID,
+                              nl: likesAmount + 1,
+                              method: "like",
+                            }),
+                          });
+                          const data = await req.json();
 
-                        if (req.status === 200) {
-                          setLikesAmount(data.newNumberOfLikes);
-                          setSubmissionType("unlike");
-                        } else {
-                          alert(data.msg);
+                          if (req.status === 200) {
+                            setLikesAmount(data.newNumberOfLikes);
+                            setSubmissionType("unlike");
+                          } else {
+                            alert(data.msg);
+                          }
+                          setSubmittingLike(false);
+                        } catch (e) {
+                          console.log(e);
+                          alert("Error while liking stack");
+                          setSubmittingLike(false);
                         }
-                        setSubmittingLike(false);
-                      } catch (e) {
-                        console.log(e);
-                        alert("Error while liking stack");
-                        setSubmittingLike(false);
-                      }
-                    }}
-                  >
-                    <img
-                      className="white-svg"
-                      src="/icons/prelike.svg"
-                      alt="likes icon"
-                      width={20}
-                      height={20}
-                    />{" "}
-                    Like
-                  </button>
-                  <p style={{ paddingLeft: "8px", fontSize: "16px" }}>
-                    <b>{likesAmount} Likes</b>
-                  </p>
-                </div>
+                      }}
+                    >
+                      <img
+                        src="/icons/prelike.svg"
+                        alt="likes icon"
+                        width={30}
+                        height={30} />{" "}
+                    </button>
+                  </div>
+                </>
               )}
               {/* while submitting like*/}
               {submittingLike && (
-                <div className="btn-container-like">
-                  <button className="btn-postlike" disabled>
-                    <img
-                      className="white-svg"
-                      src="/icons/like.svg"
-                      alt="likes icon"
-                      width={20}
-                      height={20}
-                    />{" "}
-                    Unlike
-                  </button>
-                  <p style={{ paddingLeft: "8px", fontSize: "16px" }}>
-                    <b>{likesAmount} Likes</b>
-                  </p>
-                </div>
+                <>
+                  <div className="btn-container-like"
+                    style={{ marginTop: "20px" }}>
+                    <p className="subtitle">
+                      <b>{likesAmount}</b>
+                    </p>
+                    <p className="subtitle"
+                      style={{ opacity: "0.85" }}>
+                      &nbsp;likes
+                    </p>
+                  </div>
+                  <div className="btn-container-like" style={{ marginTop: "0px", marginBottom: "10px" }}>
+                    <p className="subtitle"
+                      style={{ opacity: "0.85" }}>
+                      You like this Stack.
+                    </p>
+                  </div>
+                  <div className="btn-container-like">
+                    <button
+                      className="btn-postlike" disabled>
+                      <img
+                        className="white-svg"
+                        src="/icons/like.svg"
+                        alt="likes icon"
+                        width={30}
+                        height={30} />{" "}
+                    </button>
+                  </div>
+                </>
               )}
             </>
           )}
@@ -134,6 +164,22 @@ export default function LikeBtn({
               {/* default view, before removing like */}
               {!submittingLike && (
                 <>
+                  <div className="btn-container-like"
+                    style={{ marginTop: "20px" }}>
+                    <p className="subtitle">
+                      <b>{likesAmount}</b>
+                    </p>
+                    <p className="subtitle"
+                      style={{ opacity: "0.85" }}>
+                      &nbsp;likes
+                    </p>
+                  </div>
+                  <div className="btn-container-like" style={{ marginTop: "0px", marginBottom: "10px" }}>
+                    <p className="subtitle"
+                      style={{ opacity: "0.85" }}>
+                      You like this Stack.
+                    </p>
+                  </div>
                   <div
                     className="btn-container-like"
                     style={{ textAlign: "left" }}
@@ -171,42 +217,36 @@ export default function LikeBtn({
                         className="white-svg"
                         src="/icons/like.svg"
                         alt="likes icon"
-                        width={20}
-                        height={20}
+                        width={30}
+                        height={30}
                       />{" "}
-                      Unlike
                     </button>
-                    <p
-                      style={{
-                        paddingLeft: "8px",
-                        fontSize: "16px",
-                        width: "fit-content",
-                      }}
-                    >
-                      <b>{likesAmount} Likes</b>
-                      <br />
-                      You Like this Stack.
-                    </p>
                   </div>
                 </>
               )}
               {/* while removing like*/}
               {submittingLike && (
-                <div className="btn-container-like">
-                  <button className="btn-like" disabled>
-                    <img
-                      className="white-svg"
-                      src="/icons/prelike.svg"
-                      alt="likes icon"
-                      width={20}
-                      height={20}
-                    />{" "}
-                    Like
-                  </button>
-                  <p style={{ paddingLeft: "8px", fontSize: "16px" }}>
-                    <b>{likesAmount} Likes</b>
-                  </p>
-                </div>
+                <>
+                  <div className="btn-container-like"
+                    style={{ marginTop: "20px", marginBottom: "10px" }}>
+                    <p className="subtitle">
+                      <b>{likesAmount}</b>
+                    </p>
+                    <p className="subtitle"
+                      style={{ opacity: "0.85" }}>
+                      &nbsp;likes
+                    </p>
+                  </div><div className="btn-container-like">
+                    <button
+                      className="btn-like" disabled>
+                      <img
+                        src="/icons/prelike.svg"
+                        alt="likes icon"
+                        width={30}
+                        height={30} />{" "}
+                    </button>
+                  </div>
+                </>
               )}
             </>
           )}
