@@ -68,9 +68,9 @@ export default function Home({
             ></img>
           </div>
           <div className="card-container">
-            <div className="card-empty">
+            <div className="card-empty-home">
               <h1 className="splash">Stack</h1>
-              <p className="bold" style={{ fontWeight: "500", paddingBottom: "20px" }}>
+              <p className="subtitle" style={{ paddingBottom: "10px" }}>
                 A Platform for Modern Tech Stack Visualization
               </p>
             </div>

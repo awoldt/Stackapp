@@ -260,8 +260,9 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                           width: "100%",
                           display: "block",
                           marginBottom: "20px",
-                          borderRadius: "20px",
-                          boxShadow: "0px 2px 10px 2px rgba(0, 0, 0, 0.085)",
+                          borderRadius: "4px",
+                          boxShadow: "0px 2px 10px 2px rgba(0, 0, 0, 0.025)",
+                          border: "1px solid rgba(0, 0, 0, 0.095)"
                         }}
                       />
                     )}
@@ -336,7 +337,7 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                       width={20}
                       height={15}
                       style={{ display: "inline" }}
-                    />
+                    /> 
                     <p className="subtitle" style={{ display: "inline", marginTop: "10px" }}>
                       Select all Languages used in your tech stack.
                     </p>
@@ -500,13 +501,13 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                                     cursor: "default",
                                   }}
                                 >
-                                  <img
+                                  {/* <img
                                     src="/icons/create.svg"
                                     className="white-svg"
                                     alt="create logo"
                                     width={15}
                                     height={15}
-                                  />{" "}
+                                  />{" "} */}
                                   Create Stack
                                 </button>
                               </div>
@@ -523,13 +524,13 @@ export default function Create({ page_data }: { page_data: _PAGEDATA_create }) {
                                     marginBottom: "0px",
                                   }}
                                 >
-                                  <img
+                                  {/* <img
                                     src="/icons/create.svg"
                                     className="white-svg"
                                     alt="create logo"
                                     width={15}
                                     height={15}
-                                  />{" "}
+                                  />{" "} */}
                                   Create Stack
                                 </button>
                               </div>

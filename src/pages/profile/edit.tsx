@@ -235,8 +235,7 @@ export default function EditProfile({
                             className="btn-edit"
                             type="button"
                             style={{
-                              display: "block",
-                              width: "100%"
+                              width: "60%"
                             }}
                             onClick={async () => {
                               try {
@@ -256,11 +255,11 @@ export default function EditProfile({
                               }
                             }}
                           >
-                            <img
+                            {/* <img
                               src="/icons/github.svg"
                               className="white-svg"
                               alt="github logo"
-                            />{" "}
+                            />{" "} */}
                             Unconnect GitHub
                           </button>
                         </>
@@ -279,16 +278,16 @@ export default function EditProfile({
                           >
                             <button
                               type="button"
-                              style={{ width: "100%" }}
+                              style={{ width: "60%" }}
                               className="btn-extra"
                             >
-                              <img
+                              {/* <img
                                 src="/icons/github.svg"
                                 className="white-svg"
                                 alt="github logo"
                                 width={15}
                                 height={15}
-                              />{" "}
+                              />{" "} */}
                               Connect Github
                             </button>
                           </a>
@@ -306,16 +305,16 @@ export default function EditProfile({
                     >
                       <button
                         type="button"
-                        style={{ width: "100%" }}
+                        style={{ width: "60%" }}
                         className="btn-extra"
                       >
-                        <img
+                        {/* <img
                           src="/icons/github.svg"
                           className="white-svg"
                           alt="github logo"
                           width={15}
                           height={15}
-                        />{" "}
+                        />{" "} */}
                         Connect Github
                       </button>
                     </a>
@@ -329,7 +328,7 @@ export default function EditProfile({
                     }}>
                     <button
                       className="btn-edit"
-                      style={{ width: "100%" }}
+                      style={{ width: "60%" }}
                       type="button"
                       onClick={() => {
                         document.cookie =
@@ -337,13 +336,13 @@ export default function EditProfile({
                         window.location.assign(window.location.href);
                       }}
                     >
-                      <img
+                      {/* <img
                         src="/icons/signout.svg"
                         className="white-svg"
                         alt="signout logo"
                         width={15}
                         height={15}
-                      />{" "}
+                      />{" "} */}
                       Sign Out
                     </button>
                   </div>
@@ -357,7 +356,7 @@ export default function EditProfile({
                     <button
                       className="btn-delete"
                       type="button"
-                      style={{ width: "100%" }}
+                      style={{ width: "60%" }}
                       onClick={async () => {
                         const c1 = confirm(
                           "Are you sure you want to delete your Stack account?"
@@ -393,13 +392,13 @@ export default function EditProfile({
                         }
                       }}
                     >
-                      <img
+                      {/* <img
                         src="/icons/delete.svg"
                         className="white-svg"
                         alt="delete logo"
                         width={15}
                         height={15}
-                      />{" "}
+                      />{" "} */}
                       Delete Account
                     </button>
                   </div>
@@ -416,13 +415,13 @@ export default function EditProfile({
                                 style={{ width: "100%", marginBottom: "0px" }}
                                 id="edit_profile_btn"
                               >
-                                <img
+                                {/* <img
                                   src="/icons/update.svg"
                                   className="white-svg"
                                   alt="update logo"
                                   width={15}
                                   height={15}
-                                />{" "}
+                                />{" "} */}
                                 Update Profile
                               </button>
                             </div>
@@ -441,13 +440,13 @@ export default function EditProfile({
                                 }}
                                 id="edit_profile_btn"
                               >
-                                <img
+                                {/* <img
                                   src="/icons/update.svg"
                                   className="white-svg"
                                   alt="update logo"
                                   width={15}
                                   height={15}
-                                />{" "}
+                                />{" "} */}
                                 Update Profile
                               </button>
                             </div>

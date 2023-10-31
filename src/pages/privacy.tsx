@@ -65,27 +65,28 @@ export default function Privacy({
                 </div>
               </div>
 
-          <div className="card-container">
-            <div className="card">
-              <p>
-                This Privacy Policy explains how we collect, use, share, and
-                protect your data when you use our web application to create and
-                share tech stacks. By accessing or using Stack, you consent
-                to the practices described in this Privacy Policy. Stack may
-                update this Privacy Policy from time to time. We will notify you
-                of any material changes through our platform or via email. It is
-                your responsibility to review the Privacy Policy periodically
-                for any updates. By using Stack, you agree to the terms of
-                this Privacy Policy. We encourage you to read this policy
-                carefullyand make informed decisions about your privacy while
-                using our web app.If you have any questions, concerns, or
-                requests regarding this Privacy Policy or the data we hold about
-                you, please contact us at [stackapphelp@gmail.com].
-                <br />
-                <br />
-              </p>
+              <div className="card-container">
+                <div className="card">
+                  <h2 className="bold">General Use</h2>
+                  <p>
+                    This Privacy Policy explains how we collect, use, share, and
+                    protect your data when you use our web application to create and
+                    share tech stacks. By accessing or using Stack, you consent
+                    to the practices described in this Privacy Policy. Stack may
+                    update this Privacy Policy from time to time. We will notify you
+                    of any material changes through our platform or via email. It is
+                    your responsibility to review the Privacy Policy periodically
+                    for any updates. By using Stack, you agree to the terms of
+                    this Privacy Policy. We encourage you to read this policy
+                    carefullyand make informed decisions about your privacy while
+                    using our web app. If you have any questions, concerns, or
+                    requests regarding this Privacy Policy or the data we hold about
+                    you, please contact us at [stackapphelp@gmail.com].
+                    <br />
+                    <br />
+                  </p>
 
-                  <h2>Personal Information</h2>
+                  <h2 className="bold">Personal Information</h2>
                   <p>
                     When you sign up for an account on Stack, we may collect
                     certain personal information from you, such as your name,
@@ -96,7 +97,7 @@ export default function Privacy({
                     <br />
                   </p>
 
-                  <h2>Usage Data</h2>
+                  <h2 className="bold">Usage Data</h2>
                   <p>
                     We may collect usage data related to your interactions with
                     the Stack web app. This includes information about your
@@ -108,7 +109,7 @@ export default function Privacy({
                     <br />
                   </p>
 
-                  <h2>Providing Services</h2>
+                  <h2 className="bold">Providing Services</h2>
                   <p>
                     Stack uses the information collected to offer our web
                     application and enable you to create, customize, and share
@@ -117,7 +118,7 @@ export default function Privacy({
                     <br />
                   </p>
 
-                  <h2>Personalization</h2>
+                  <h2 className="bold">Personalization</h2>
                   <p>
                     We may use your personal information to personalize your
                     experience on the Stack platform, including displaying your
@@ -126,7 +127,7 @@ export default function Privacy({
                     <br />
                   </p>
 
-                  <h2>Communication</h2>
+                  <h2 className="bold">Communication</h2>
                   <p>
                     We may use your email address to send you important updates,
                     notifications, and information about your account or changes
@@ -137,7 +138,7 @@ export default function Privacy({
                     <br />
                   </p>
 
-                  <h2>Public Sharing</h2>
+                  <h2 className="bold">Public Sharing</h2>
                   <p>
                     Stack allows you to share your tech stacks publicly. Please
                     be aware that any information you choose to share publicly
@@ -146,7 +147,7 @@ export default function Privacy({
                     <br />
                   </p>
 
-                  <h2>Legal Compliance</h2>
+                  <h2 className="bold">Legal Compliance</h2>
                   <p>
                     We may disclose your information when required to comply
                     with applicable laws, regulations, legal processes, or
@@ -155,7 +156,7 @@ export default function Privacy({
                     <br />
                   </p>
 
-                  <h2>Data Security</h2>
+                  <h2 className="bold">Data Security</h2>
                   <p>
                     We prioritize the security of your data and employ
                     reasonable technical and organizational measures to

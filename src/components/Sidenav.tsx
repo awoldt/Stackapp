@@ -12,7 +12,7 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
         <ul>
           {isSignedIn && (
             <>
-              <li>
+              {/* <li>
                 <span className="subtitle">
                   <a href={"/explore"} className="nav-element">
                     <img
@@ -23,7 +23,7 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
                     Explore
                   </a>
                 </span>
-              </li>
+              </li> */}
               <li>
                 <span className="subtitle">
                   <a href={"/create"} className="nav-element">
@@ -66,7 +66,7 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
                   </a>
                 </span>
               </li>
-              <li>
+              {/* <li>
                 <span className="subtitle">
                   <a href={"/explore"} className="nav-element">
                     <img
@@ -77,7 +77,7 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
                     Explore
                   </a>
                 </span>
-              </li>
+              </li> */}
             </>
           )}
         </ul>
@@ -93,7 +93,7 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
               </span>
             </button>
             <div className="dropdown-content">
-              <span className="subtitle">
+              {/* <span className="subtitle">
                 <a href={"/explore"}>
                   <img
                     src="/icons/explore.svg"
@@ -103,7 +103,7 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
                   />{" "}
                   Explore
                 </a>
-              </span>
+              </span> */}
               <span className="subtitle">
                 <a href={"/create"}>
                   <img
@@ -150,7 +150,7 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
                   Home
                 </a>
               </span>
-              <span className="subtitle">
+              {/* <span className="subtitle">
                 <a href={"/explore"}>
                   <img
                     src="/icons/explore.svg"
@@ -160,7 +160,7 @@ export default function Sidenav({ isSignedIn }: { isSignedIn: boolean }) {
                   />{" "}
                   Explore
                 </a>
-              </span>
+              </span> */}
             </div>
           </div>
         </div>

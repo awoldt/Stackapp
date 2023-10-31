@@ -55,7 +55,7 @@ export default function ExploreViewTabs({
           {pageData.explore_stack_categories?.popular_stacks !== null && (
             <div className="card-container" id="savedStacks">
               <div className="card" style={{ textAlign: "center" }}>
-                <h2>
+                {/* <h2>
                   <img
                     src="/icons/trending.svg"
                     alt="globe icon"
@@ -63,7 +63,7 @@ export default function ExploreViewTabs({
                     height={25}
                   />{" "}
                   Trending
-                </h2>
+                </h2> */}
 
                 {pageData.explore_stack_categories?.popular_stacks !== null && (
                   <>
@@ -179,7 +179,7 @@ export default function ExploreViewTabs({
           {pageData.explore_stack_categories?.recent_stacks !== null && (
             <div className="card-container" id="savedStacks">
               <div className="card" style={{ textAlign: "center" }}>
-                <h2>
+                {/* <h2>
                   <img
                     src="/icons/recent.svg"
                     alt="globe icon"
@@ -187,7 +187,7 @@ export default function ExploreViewTabs({
                     height={25}
                   />{" "}
                   Recent
-                </h2>
+                </h2> */}
 
                 {pageData.explore_stack_categories?.recent_stacks !== null && (
                   <>

@@ -16,7 +16,7 @@ export default function ProfileTabViews({
     <>
       {view === "stacks" && (
         <>
-          <div className="card-container">
+          {/* <div className="card-container">
             <button
               id="btn-yourStacks"
               className="btn-tag-selected"
@@ -52,7 +52,7 @@ export default function ProfileTabViews({
                 Liked
               </span>
             </button>
-          </div>
+          </div> */}
           {pageData.user_stacks !== null && (
             <section>
               {pageData.user_stacks === 0 && (
@@ -72,12 +72,6 @@ export default function ProfileTabViews({
                       }}
                     >
                       <h2>
-                        <img
-                          src="/icons/stack.svg"
-                          alt="globe icon"
-                          width={25}
-                          height={25}
-                        />{" "}
                         Stacks
                       </h2>
                       <span className="subtitle">
@@ -86,13 +80,6 @@ export default function ProfileTabViews({
                         <br />
                       </span>
                       <a href={"/create"} className="btn-create">
-                        <img
-                          src="/icons/create.svg"
-                          className="white-svg"
-                          alt="create logo"
-                          width={15}
-                          height={15}
-                        />{" "}
                         Create Stack
                       </a>
                     </div>
@@ -110,17 +97,16 @@ export default function ProfileTabViews({
                   >
                     <div className="card" style={{ textAlign: "center" }}>
                       <h2>
-                        <img
+                        {/* <img
                           src="/icons/stack.svg"
                           alt="globe icon"
                           width={25}
                           height={25}
-                        />{" "}
+                        />{" "} */}
                         Stacks
                       </h2>
                       <span className="subtitle">
                         {pageData.user_stacks.length} Stacks
-                        <br />
                         <br />
                       </span>
 
@@ -208,17 +194,16 @@ export default function ProfileTabViews({
               style={{ textAlign: "center", paddingBottom: "80px" }}
             >
               <h2>
-                <img
+                {/* <img
                   src="/icons/like.svg"
                   alt="globe icon"
                   width={25}
                   height={25}
-                />{" "}
+                />{" "} */}
                 Liked
               </h2>
               <span className="subtitle">
                 Only you can see what you&apos;ve Liked.
-                <br />
                 <br />
               </span>
               {pageData.users_liked_stacks !== null && (

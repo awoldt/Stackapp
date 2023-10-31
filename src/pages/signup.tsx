@@ -86,8 +86,8 @@ export default function CreateAccount({
             </div>
 
             <div className="card-container">
-              <div className="card-empty">
-                <h1 className="splash" style={{ marginTop: "5%" }}>
+              <div className="card-empty-home">
+                <h1 className="splash" style={{ marginTop: "2.5%" }}>
                   <a href={"/"}>Stack</a>
                 </h1>
                 <p className="subtitle" style={{ paddingBottom: "10px" }}>

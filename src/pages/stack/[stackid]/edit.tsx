@@ -255,8 +255,9 @@ export default function EditStackpage({
                       width: "100%",
                       display: "block",
                       marginBottom: "20px",
-                      borderRadius: "20px",
-                      boxShadow: "0px 2px 10px 2px rgba(0, 0, 0, 0.085)"
+                      borderRadius: "4px",
+                      boxShadow: "0px 2px 10px 2px rgba(0, 0, 0, 0.025)",
+                      border: "1px solid rgba(0, 0, 0, 0.095)"
                     }}
                   />
                   <input
@@ -333,7 +334,7 @@ export default function EditStackpage({
                     techValues={page_data.tech_values}
                   />
 
-                  <p className="subtitle">
+                  {/* <p className="subtitle">
                     <br />
                     <img
                       src="/icons/delete.svg"
@@ -342,7 +343,7 @@ export default function EditStackpage({
                       height={15}
                     />
                     This action is irreversible, Stacks are not recoverable.
-                  </p>
+                  </p> */}
                   {!deleteStackLoading && (
                     <button
                       type="button"
@@ -369,13 +370,13 @@ export default function EditStackpage({
                         }
                       }}
                     >
-                      <img
+                      {/* <img
                         src="/icons/delete.svg"
                         className="white-svg"
                         alt="delete logo"
                         width={15}
                         height={15}
-                      />{" "}
+                      />{" "} */}
                       Delete Stack
                     </button>
                   )}
@@ -403,13 +404,13 @@ export default function EditStackpage({
                                   cursor: "default"
                                 }}
                               >
-                                <img
+                                {/* <img
                                   src="/icons/update.svg"
                                   className="white-svg"
                                   alt="update logo"
                                   width={15}
                                   height={15}
-                                />{" "}
+                                />{" "} */}
                                 Update Stack
                               </button>
                             </div>
@@ -428,13 +429,13 @@ export default function EditStackpage({
                                   marginBottom: "0px"
                                 }}
                               >
-                                <img
+                                {/* <img
                                   src="/icons/update.svg"
                                   className="white-svg"
                                   alt="update logo"
                                   width={15}
                                   height={15}
-                                />{" "}
+                                />{" "} */}
                                 Update Stack
                               </button>
                             </div>

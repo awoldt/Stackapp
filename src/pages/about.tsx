@@ -65,7 +65,7 @@ export default function About({
 
           <div className="card-container">
             <div className="card">
-              <h2 id="what_is_a_stack">What is Stack?</h2>
+              <h2 className="bold" id="what_is_a_stack">What is Stack?</h2>
               <p>
                 Stack is a platform that empowers developers and designers to
                 create beautifully designed web pages showcasing the most
@@ -79,7 +79,7 @@ export default function About({
                 images.
               </p>
 
-              <h2 style={{ marginTop: "20px" }} id="what_is_a_stack">
+              <h2 className="bold" style={{ marginTop: "20px" }} id="what_is_a_stack">
                 What are Stacks?
               </h2>
               <p>
@@ -102,7 +102,7 @@ export default function About({
                 technologies that power them.
               </p>
 
-              <h2 style={{ marginTop: "20px" }} id="what_is_a_stack">
+              <h2 className="bold" style={{ marginTop: "20px" }} id="what_is_a_stack">
                 Why Stack?
               </h2>
               <p>

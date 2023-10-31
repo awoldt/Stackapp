@@ -161,17 +161,10 @@ export default function Profilepage({
                   >
                     <div className="card" style={{ textAlign: "center" }}>
                       <h2>
-                        <img
-                          src="/icons/stack.svg"
-                          alt="globe icon"
-                          width={25}
-                          height={25}
-                        />{" "}
                         Stacks
                       </h2>
                       <p>
                         {page_data.user_stacks!.length} Stacks
-                        <br />
                         <br />
                       </p>
                       {page_data.user_stacks!.map(

@@ -263,7 +263,7 @@ export default function Stackpage({
                           </>
                         )}
 
-                        <div style={{ marginBottom: "20px" }}>
+                        {/* <div style={{ marginBottom: "20px" }}>
                           <LikeBtn
                             isSignedIn={page_data.is_signed_in!}
                             isSignedInUsersStack={
@@ -275,7 +275,7 @@ export default function Stackpage({
                               page_data.has_signed_in_user_already_liked_stack
                             }
                           />
-                        </div>
+                        </div> */}
                       </div>
                     </div>
 
@@ -304,17 +304,7 @@ export default function Stackpage({
               <section>
                 <div className="card-container">
                   <div className="card">
-                    <h2 style={{ textAlign: "center" }}>
-                      <img
-                        src="/icons/description.svg"
-                        alt="api"
-                        width={20}
-                        height={20}
-                        style={{ display: "inline" }}
-                      />{" "}
-                      Description
-                    </h2>
-                    <p style={{ paddingTop: "20px" }}>{page_data.description}</p>
+                    <p>{page_data.description}</p>
                   </div>
                 </div>
               </section>
