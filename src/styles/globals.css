@@ -424,7 +424,7 @@
         border-radius: 50%;
         overflow: hidden;
         object-fit: cover;
-        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.025);
+        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.065);
     }
 
     .grid-container {
