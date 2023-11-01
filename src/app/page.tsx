@@ -1,95 +1,65 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+/* eslint-disable @next/next/no-img-element */
+
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Stack - Modern Tech Stack Visualization",
+  description:
+    "Stack is a platform that empowers developers to create beautifully designed web pages showcasing the most important details of their tech stacks. Include things such as coding languages, databases, frameworks, and more.",
+  alternates: {
+    canonical: "https://stackapp.xyz",
+  },
+};
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main>
+      <section>
+        <div className="background">
+          <img
+            src={"/imgs/background.avif"}
+            alt="background design"
+            className="background-image"
+          ></img>
         </div>
-      </div>
+        <div className="card-container">
+          <div className="card-empty-home">
+            <h1 className="splash">Stack</h1>
+            <p className="subtitle" style={{ paddingBottom: "10px" }}>
+              A Platform for Modern Tech Stack Visualization
+            </p>
+          </div>
+        </div>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+        <div className="card-container">
+          <div className="card-registration">
+            <div className="btn-container-landing">
+              <a href={"/signin"} className="btn-landing">
+                <img
+                  src="/imgs/icons/signin.svg"
+                  className="white-svg"
+                  alt="signin logo"
+                  width={15}
+                  height={15}
+                />{" "}
+                Sign In
+              </a>
+            </div>
+            <div className="btn-container-landing">
+              <a href={"/signup"} className="btn-landing">
+                <img
+                  src="/imgs/icons/signup.svg"
+                  className="white-svg"
+                  alt="signup logo"
+                  width={15}
+                  height={15}
+                />{" "}
+                Sign Up
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
-  )
+  );
 }
