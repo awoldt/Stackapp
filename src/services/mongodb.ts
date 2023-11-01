@@ -2,7 +2,7 @@ import { AccountModel } from "@/models/account";
 import { MongoClient } from "mongodb";
 import { z } from "zod";
 
-type UserAccount = z.infer<typeof AccountModel>;
+export type UserAccount = z.infer<typeof AccountModel>;
 
 export const unverifiedAccountsColleciton = new MongoClient(
   process.env.MONGODB_KEY!

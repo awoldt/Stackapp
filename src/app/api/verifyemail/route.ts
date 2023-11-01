@@ -3,10 +3,8 @@ import {
   unverifiedAccountsColleciton,
 } from "@/services/mongodb";
 import { ObjectId } from "mongodb";
-import { NextApiRequest, NextApiResponse } from "next";
 
 import { cookies } from "next/headers";
-import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
   // 1. check if id query is valid
@@ -56,7 +54,7 @@ export async function GET(request: Request) {
          <p>Account successfully verified! Redirecting.....</p>
          <script>
          setTimeout(function() {
-          window.location.href = "/";
+          window.location.href = "/profile";
         }, 2500);
          </script>
       </body>
