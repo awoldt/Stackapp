@@ -2,6 +2,7 @@
 
 .env
 Dockerfile
+gcp-key.json
 
 # dependencies
 /node_modules
