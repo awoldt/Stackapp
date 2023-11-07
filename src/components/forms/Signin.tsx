@@ -7,13 +7,13 @@ export default function Form() {
 
   const [formSubmission, setFormSubmission] = useState<
     | {
-        status: "success";
-        msg: string;
-      }
+      status: "success";
+      msg: string;
+    }
     | {
-        status: "error";
-        msg: string;
-      }
+      status: "error";
+      msg: string;
+    }
     | null
   >(null);
 
@@ -50,42 +50,53 @@ export default function Form() {
 
   return (
     <>
-      {formSubmission !== null && (
-        <>
-          {formSubmission.status === "success" && (
-            <div>
-              <p style={{ color: "green" }}>{formSubmission.msg}</p>
-            </div>
-          )}
-          {formSubmission.status === "error" && (
-            <div>
-              <p style={{ color: "red" }}>{formSubmission.msg}</p>
-            </div>
-          )}
-        </>
-      )}
-      {formSubmission === null && (
-        <>
-          <form
-            onSubmit={(e) => {
-              FormSubmit(e, emailUsernameRef.current!.value);
-            }}
-          >
-            <input
-              type="text"
-              placeholder="Email or Username"
-              name="email_username_input"
-              ref={emailUsernameRef}
-              required
-              disabled={formDisabled}
-            />
+      <div className="card-container" style={{ height: "100vh", alignItems: "center", flexDirection: "column" }}>
+        <h1 className="splash" style={{ marginTop: "0", marginBottom: "1rem" }}>
+          Stack
+        </h1>
 
-            <button type="submit" disabled={formDisabled}>
-              Sign in
-            </button>
-          </form>
-        </>
-      )}
+        <div className="card-registration">
+
+          {formSubmission !== null && (
+            <>
+              {formSubmission.status === "success" && (
+                <div>
+                  <p style={{ color: "green" }}>{formSubmission.msg}</p>
+                </div>
+              )}
+              {formSubmission.status === "error" && (
+                <div>
+                  <p style={{ color: "red" }}>{formSubmission.msg}</p>
+                </div>
+              )}
+            </>
+          )}
+          {formSubmission === null && (
+            <>
+              <form
+                onSubmit={(e) => {
+                  FormSubmit(e, emailUsernameRef.current!.value);
+                }}
+              >
+                <input
+                  type="text"
+                  placeholder="Email or Username"
+                  name="email_username_input"
+                  ref={emailUsernameRef}
+                  required
+                  disabled={formDisabled}
+                />
+
+                <div className="btn-container" style={{ margin: "auto" }}>
+                  <button className="btn" type="submit" disabled={formDisabled}>
+                    Login
+                  </button>
+                </div>
+              </form>
+            </>
+          )}
+        </div>
+      </div>
     </>
   );
 }

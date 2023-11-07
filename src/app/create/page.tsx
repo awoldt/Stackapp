@@ -1,6 +1,18 @@
+import { Metadata } from "next";
 import { cookies } from "next/headers";
 import CreateStackForm from "../../components/forms/CreateStack";
 import { GetGitHubRepoSelectData, IsUserSignedIn } from "@/functions";
+import SideNav from "../../components/SideNav";
+
+export const metadata: Metadata = {
+  title: "Create Stack | Stack",
+  description:
+    " ",
+
+  alternates: {
+    canonical: " ",
+  },
+};
 
 export default async function Page() {
   const cookieStore = cookies();
@@ -20,7 +32,17 @@ export default async function Page() {
 
     return (
       <>
-        <h1>Create a stack</h1>
+        <section>
+          <SideNav />
+        </section>
+        
+        <div className="card-container-title">
+          <div className="card-empty">
+            <h1>Create Stack</h1>
+            {/* <p>Change the details of your profile.</p> */}
+          </div>
+        </div>
+
         <CreateStackForm repoSelectList={repoSelectList} />
       </>
     );

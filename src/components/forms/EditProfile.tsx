@@ -54,6 +54,8 @@ export default function Form({ user }: { user: UserAccount }) {
           }
         }}
       />
+      <br />
+      <br />
 
       <input type="text" defaultValue={user.first_name} name="fname" />
 
@@ -67,8 +69,7 @@ export default function Form({ user }: { user: UserAccount }) {
       />
 
       <div style={{ textAlign: "right" }}>
-        <p style={{ color: "orange" }}>PROFIle BIO GOES HERE</p>
-        <br />
+        <p style={{ color: "orange" }}>PROFILE BIO GOES HERE</p>
         <br />
       </div>
 
@@ -79,26 +80,18 @@ export default function Form({ user }: { user: UserAccount }) {
       {/* DOES NOT HAVE GITHUB CONNECTED */}
       {user.github_account_id === null && (
         <a
-          style={{ margin: "0px", padding: "0px" }}
           href={`https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}`}
           title="Authorize Stack to connect to your GitHub Account"
         >
           <div
-            style={{ width: "60%", backgroundColor: "#545d68", border: "none" }}
-            className="btn-extra"
+            className="btn"
           >
-            <img
-              src="/imgs/icons/github.svg"
-              className="white-svg"
-              alt="github logo"
-              width={25}
-              height={25}
-            />{" "}
             Connect Github
           </div>
         </a>
       )}
 
+      <br />
       <div
         style={{
           display: "flex",
@@ -107,8 +100,7 @@ export default function Form({ user }: { user: UserAccount }) {
         }}
       >
         <button
-          className="btn-edit"
-          style={{ width: "60%" }}
+          className="btn"
           type="button"
           onClick={() => {
             document.cookie =
@@ -116,17 +108,11 @@ export default function Form({ user }: { user: UserAccount }) {
             window.location.assign(window.location.href);
           }}
         >
-          {/* <img
-        src="/icons/signout.svg"
-        className="white-svg"
-        alt="signout logo"
-        width={15}
-        height={15}
-      />{" "} */}
           Sign Out
         </button>
       </div>
 
+      <br />
       <div
         style={{
           display: "flex",
@@ -135,9 +121,8 @@ export default function Form({ user }: { user: UserAccount }) {
         }}
       >
         <button
-          className="btn-delete"
+          className="btn"
           type="button"
-          style={{ width: "60%" }}
           onClick={async () => {
             const c1 = confirm(
               "Are you sure you want to delete your Stack account?"
@@ -173,13 +158,6 @@ export default function Form({ user }: { user: UserAccount }) {
             }
           }}
         >
-          {/* <img
-        src="/icons/delete.svg"
-        className="white-svg"
-        alt="delete logo"
-        width={15}
-        height={15}
-      />{" "} */}
           Delete Account
         </button>
       </div>

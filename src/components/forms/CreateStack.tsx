@@ -178,22 +178,8 @@ export default function Form({
                   <button
                     id="create_stack_btn"
                     type="submit"
-                    className="btn-create"
-                    style={{
-                      width: "100%",
-                      marginBottom: "0px",
-                      marginTop: "40px",
-                      backgroundColor: "grey",
-                      cursor: "default",
-                    }}
+                    className="btn"
                   >
-                    {/* <img
-                                    src="/icons/create.svg"
-                                    className="white-svg"
-                                    alt="create logo"
-                                    width={15}
-                                    height={15}
-                                  />{" "} */}
                     Create Stack
                   </button>
                 )}

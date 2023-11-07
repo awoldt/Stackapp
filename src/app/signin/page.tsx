@@ -1,8 +1,9 @@
 import { Metadata } from "next";
 import SigninForm from "../../components/forms/Signin";
+import SideNav from "../../components/SideNav";
 
 export const metadata: Metadata = {
-  title: "Signin",
+  title: "Login | Stack",
   description: "Sign into your Stack account",
 
   alternates: {
@@ -13,8 +14,9 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1>Sign in</h1>
-      <p>Sign into your account!</p>
+      <section>
+        <SideNav />
+      </section>
       <SigninForm />
     </>
   );

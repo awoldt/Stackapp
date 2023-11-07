@@ -1,9 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { Metadata } from "next";
+import SideNav from "../components/SideNav";
 
 export const metadata: Metadata = {
-  title: "Stack - Modern Tech Stack Visualization",
+  title: "Stack",
   description:
     "Stack is a platform that empowers developers to create beautifully designed web pages showcasing the most important details of their tech stacks. Include things such as coding languages, databases, frameworks, and more.",
   alternates: {
@@ -14,6 +15,10 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main>
+      <section>
+        <SideNav />
+      </section>
+
       <section>
         <div className="card-container" id="landing">
           <div className="card-empty-splash">
@@ -26,9 +31,9 @@ export default function Home() {
             </h4>
 
             <div className="btn-container">
-              <button className="btn" style={{ fontSize: "24px" }}>
+              <a href="/signup" className="btn" style={{ fontSize: "24px" }}>
                 Get Started
-              </button>
+              </a>
             </div>
 
             <div className="btn-container" style={{ marginBottom: "2rem" }}>
@@ -60,7 +65,7 @@ export default function Home() {
 
             <div
               className="home-container"
-              style={{ marginTop: "8rem", marginBottom: "4rem;" }}
+              style={{ marginTop: "8rem", marginBottom: "10rem" }}
             >
               <div className="card">
                 <h2>The Future of Tech Stack Presentation.</h2>
@@ -116,12 +121,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <footer>
-        <div className="footer-container">
-          <p>&copy;Stack 2023. All Rights Reserved.</p>
-        </div>
-      </footer>
     </main>
   );
 }

@@ -1,8 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
+import { Metadata } from "next";
 import { IsUserSignedIn } from "@/functions";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import SideNav from "../../components/SideNav";
+
+export const metadata: Metadata = {
+  title: "@profile | Stack",
+  description:
+    " ",
+
+  alternates: {
+    canonical: " ",
+  },
+};
 
 export default async function Page() {
   const cookieStore = cookies();
@@ -23,7 +34,7 @@ export default async function Page() {
           <section>
             <main>
               <div className="header-container">
-                <div className="profile-container-header">
+                <div className="profile-container-header" style={{ marginTop: "4rem" }}>
                   <div className="profile-header">
                     <div className="header">
                       {account.profile_pic === null && (
