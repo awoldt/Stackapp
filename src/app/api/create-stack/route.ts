@@ -1,79 +1,95 @@
-import { Storage } from "@google-cloud/storage";
-import fs from "fs/promises";
-import path from "path";
-import { uid } from "uid";
-
-const storage = new Storage({
-  keyFilename: path.join(
-    __dirname,
-    "..",
-    "..",
-    "..",
-    "..",
-    "..",
-    "gcp-key.json"
-  ),
-});
-const bucket = storage.bucket("stackapp");
+import { cookies } from "next/headers";
+import { StackModel } from "@/models/stacks";
+import { stacksCollection } from "@/services/mongodb";
+import { UploadImage } from "@/functions";
 
 export async function POST(request: Request) {
+  const cookieStore = cookies();
+
+  if (cookieStore.get("a_id") === undefined) {
+    return Response.json({ status: 500, message: "error" });
+  }
+
   try {
     const form = await request.formData();
+
+    console.log(form);
+
     const icon = form.get("stack_icon") as Blob | null;
-    const buffer = Buffer.from(await icon!.arrayBuffer());
+    const thumbnail = form.get("stack_thumbnail") as Blob | null;
+    const uploadedIcon = await UploadImage(icon);
+    const uploadedThumbnail = await UploadImage(thumbnail);
 
-    // generate random name for image
-    // make sure not already stored in google bucket
-
-    let randomFileName = uid(25);
-    while (true) {
-      if (
-        !(
-          await bucket
-            .file(`imgs/${randomFileName}.${icon!.type.split("/")[1]}`)
-            .exists()
-        )[0]
-      ) {
-        break;
-      }
-      randomFileName = uid(25);
+    if (uploadedIcon === null || uploadedThumbnail === null) {
+      return Response.json({
+        status: 500,
+        message: "Error while uploading images",
+      });
     }
 
-    // write file to temp folder
-    await fs.writeFile(
-      path.join(
-        __dirname,
-        "..",
-        "..",
-        "..",
-        "..",
-        "..",
-        "tmp",
-        `${randomFileName}.${icon!.type.split("/")[1]}`
-      ),
-      buffer,
-      { encoding: "utf-8" }
-    );
+    const languagesUsed = [];
+    const databasesUsed = [];
+    const apisUsed = [];
+    const cloudsUsed = [];
+    const frameworksUsed = [];
+    for (const x of form) {
+      if (x[0] === "languages_used") {
+        languagesUsed.push(x[1]);
+      }
+      if (x[0] === "databases_used") {
+        databasesUsed.push(x[1]);
+      }
+      if (x[0] === "apis_used") {
+        apisUsed.push(x[1]);
+      }
+      if (x[0] === "clouds_used") {
+        cloudsUsed.push(x[1]);
+      }
+      if (x[0] === "frameworks_used") {
+        frameworksUsed.push(x[1]);
+      }
+    }
 
-    console.log(randomFileName);
+    // user MUST select at least 1 language
+    if (languagesUsed.length === 0) {
+      return Response.json({
+        status: 400,
+        message: "Must select at least 1 language for Stack",
+      });
+    }
 
-    const x = await bucket.upload(
-      path.join(
-        __dirname,
-        "..",
-        "..",
-        "..",
-        "..",
-        "..",
-        "tmp",
-        `${randomFileName}.${icon!.type.split("/")[1]}`
-      ),
-      { destination: `imgs/${randomFileName}.${icon!.type.split("/")[1]}` }
-    );
+    const githubRepoId = form.get("github_repo_id");
 
-    console.log(x);
+    // construct stack model object
+    const stackObj = StackModel.parse({
+      aid: cookieStore.get("a_id")!.value,
+      apis_used: apisUsed.length === 0 ? null : apisUsed,
+      clouds_used: cloudsUsed.length === 0 ? null : cloudsUsed,
+      created_on: new Date(),
+      databases_used: databasesUsed.length === 0 ? null : databasesUsed,
+      description: form.get("app_description"),
+      frameworks_used: frameworksUsed.length === 0 ? null : frameworksUsed,
+      github_repo_id:
+        githubRepoId === null || githubRepoId === "none"
+          ? null
+          : Number(githubRepoId),
+      icon_filename: uploadedIcon,
+      icon_url: `https://storage.googleapis.com/stackapp/imgs/${uploadedIcon}`,
+      languages_used: languagesUsed,
+      likes: 0,
+      name: form.get("app_name"),
+      thumbnail_filename: uploadedThumbnail,
+      thumbnail_url: `https://storage.googleapis.com/stackapp/imgs/${uploadedThumbnail}`,
+      website_url: null,
+    });
 
-    return Response.json({ status: 200, message: "ok!" });
+    const doc = await stacksCollection.insertOne(stackObj);
+
+    return Response.json({
+      status: 200,
+      message: "Stack successfully created.",
+      stack_id: doc.insertedId.toString(),
+    });
   } catch (err) {
     console.log(err);
     console.log("There was an error while parsing the request body");

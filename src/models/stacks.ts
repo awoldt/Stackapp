@@ -1,4 +1,5 @@
 import { z } from "zod";
+export type Stack = z.infer<typeof StackModel>;
 
 export const StackModel = z.object({
   aid: z.string().trim(), // THE ID OF THE ACCOUNT DOCUMENT THAT CREATED THE STACK

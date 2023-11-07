@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+export type UserAccount = z.infer<typeof AccountModel>;
+
 export const AccountModel = z.object({
   bio: z.string().trim().nullable(),
   created_on: z.coerce.date(),
