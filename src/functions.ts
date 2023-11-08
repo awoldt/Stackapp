@@ -18,6 +18,13 @@ export interface RepoSelectList {
   id: number;
 }
 
+export interface RepoCommitLogs {
+  message: string;
+  url: string;
+  sha: string;
+  date_commited: string;
+}
+
 export async function IsUserSignedIn(
   accountId: RequestCookie | undefined
 ): Promise<false | null | UserAccount> {
@@ -337,6 +344,48 @@ export async function GetGitHubRepoSelectData(
   } catch (err) {
     console.log(err);
 
+    return "error";
+  }
+}
+
+export async function GetRepoCommitLogs(
+  repoId: number,
+  githubAccessToken: string
+): Promise<RepoCommitLogs[] | "too_many_requests" | "error"> {
+  try {
+    const repoLogs = await fetch(
+      `https://api.github.com/repositories/${repoId}/commits`,
+      {
+        headers: {
+          Accept: "application/vnd.github+json",
+          Authorization: `Bearer ${githubAccessToken}`,
+        },
+      }
+    );
+    if (repoLogs.status !== 200 && repoLogs.status !== 403) {
+      throw new Error();
+    }
+    if (repoLogs.status === 403) {
+      console.log("too many requests to github api");
+      return "too_many_requests";
+    }
+
+    const repoLogsData: any[] = await repoLogs.json();
+
+    const logs = repoLogsData.map((x: any) => {
+      const commit: RepoCommitLogs = {
+        message: x.commit.message,
+        url: x.html_url,
+        sha: x.sha,
+        date_commited: new Date(x.commit.committer.date).toDateString(),
+      };
+      return commit;
+    });
+
+    return logs.length > 5 ? logs.slice(0, 5) : logs;
+  } catch (e) {
+    console.log(e);
+    console.log("There was an error while getting repo commit history");
     return "error";
   }
 }

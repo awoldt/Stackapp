@@ -4,7 +4,7 @@ import { TechOffered } from "@/techOffered";
 export default function Tech() {
   return (
     <>
-      <div>
+      <div className="tech-select-div">
         <img
           src="/imgs/icons/code.svg"
           alt="language"
@@ -31,7 +31,7 @@ export default function Tech() {
         })}
       </div>
 
-      <div>
+      <div className="tech-select-div">
         <img
           src="/imgs/icons/database-fill.svg"
           alt="database"
@@ -55,7 +55,7 @@ export default function Tech() {
         })}
       </div>
 
-      <div>
+      <div className="tech-select-div">
         <img
           src="/imgs/icons/api.svg"
           alt="api"
@@ -79,7 +79,7 @@ export default function Tech() {
         })}
       </div>
 
-      <div>
+      <div className="tech-select-div">
         <img
           src="/imgs/icons/cloud-fill.svg"
           alt="cloud"
@@ -103,7 +103,7 @@ export default function Tech() {
         })}
       </div>
 
-      <div>
+      <div className="tech-select-div">
         <img
           src="/imgs/icons/framework.svg"
           alt="api"

@@ -17,9 +17,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-
-        {/* GIVES ERROR WHEN 'npm run build'. NEED TO DOWNLOAD SVGs */}
-        <script src="https://kit.fontawesome.com/5f2bb09986.js" crossOrigin="anonymous"></script>
+        <script
+          src="https://kit.fontawesome.com/5f2bb09986.js"
+          crossOrigin="anonymous"
+          async
+        ></script>
       </head>
       <body className={inter.className}>{children}</body>
     </html>

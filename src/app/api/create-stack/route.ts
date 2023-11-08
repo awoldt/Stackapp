@@ -93,6 +93,9 @@ export async function POST(request: Request) {
   } catch (err) {
     console.log(err);
     console.log("There was an error while parsing the request body");
-    return Response.json({ status: 500, message: "error" });
+    return Response.json({
+      status: 500,
+      message: "There was an error while creating a Stack. Try again later.",
+    });
   }
 }

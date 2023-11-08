@@ -21,8 +21,9 @@ export default function Form({
     | "must_connect_github_account"
     | "error";
 }) {
+  // stack submission is used only when there is an error with creating new stack
+  // if successful, redirect page to /stack/${stackId}
   const [stackSubmission, setStackSubmission] = useState<null | {
-    success: boolean;
     msg: string;
     stackId?: string | undefined;
   }>(null);
@@ -44,16 +45,13 @@ export default function Form({
       });
       const data: FormResponse = await req.json();
 
+      // SUCCESS
       if (data.status === 200) {
+        window.location.href = `/stack/${data.stack_id}`;
+      }
+      // ERROR
+      else {
         setStackSubmission({
-          success: true,
-          msg: data.message,
-          stackId: data.stack_id,
-        });
-        setLoading(false);
-      } else {
-        setStackSubmission({
-          success: false,
           msg: data.message,
         });
         setLoading(false);
@@ -65,130 +63,119 @@ export default function Form({
   }
   return (
     <>
-      {stackSubmission !== null && (
+      {stackSubmission !== null && !loading && (
         <>
-          {stackSubmission.success && (
-            <>
-              <p>{stackSubmission?.msg}</p>
-              <a href={"/stack/" + stackSubmission?.stackId}>Visit stack</a>
-            </>
-          )}
-          {!stackSubmission.success && (
-            <>
-              <span style={{ color: "red" }}>error</span>
-              <p>{stackSubmission?.msg}</p>
-              <a href={"/stack/" + stackSubmission?.stackId}>Visit stack</a>
-            </>
-          )}
+          <div className="card-container">
+            <p style={{ color: "red" }}>{stackSubmission?.msg}</p>
+          </div>
         </>
       )}
-      {stackSubmission === null && (
-        <form
-          ref={formRef}
-          encType="multipart/form-data"
-          onSubmit={async (e) => {
-            await FormSubmit(e, formRef.current!);
-          }}
-        >
-          <div className="card-container">
-            <div className="create-content">
-              <input
-                type="text"
-                id="app_title"
-                name="app_name"
-                placeholder="*Title"
+      <form
+        ref={formRef}
+        encType="multipart/form-data"
+        onSubmit={async (e) => {
+          await FormSubmit(e, formRef.current!);
+        }}
+      >
+        <div className="card-container">
+          <div className="create-content">
+            <input
+              type="text"
+              id="app_title"
+              name="app_name"
+              placeholder="* Title"
+              required
+              maxLength={100}
+            />
+
+            <div style={{ textAlign: "right" }}>
+              <textarea
+                name="app_description"
+                placeholder="* App description"
+                maxLength={2000}
                 required
-                maxLength={100}
               />
+            </div>
 
-              <div style={{ textAlign: "right" }}>
-                <textarea name="app_description" required />
-              </div>
+            <label
+              className="subtitle"
+              htmlFor="app_icon_input"
+              style={{ marginBottom: "0px", paddingBottom: "0px" }}
+            >
+              *Icon
+            </label>
 
-              <label
-                className="subtitle"
-                htmlFor="app_icon_input"
-                style={{ marginBottom: "0px", paddingBottom: "0px" }}
-              >
-                *Icon
-              </label>
+            <input
+              type="file"
+              name="stack_icon"
+              accept="image/png, image/jpeg, image/webp, image/avif, image/tiff"
+              required
+              onChange={async (e) => {
+                const fileInput = e.target;
+                if (fileInput.files && fileInput.files[0]) {
+                  const reader = new FileReader();
 
-              <input
-                type="file"
-                name="stack_icon"
-                accept="image/png, image/jpeg, image/webp, image/avif, image/tiff"
-                required
-                onChange={async (e) => {
-                  const fileInput = e.target;
-                  if (fileInput.files && fileInput.files[0]) {
-                    const reader = new FileReader();
+                  reader.onload = (r) => {
+                    console.log(r);
+                  };
 
-                    reader.onload = (r) => {
-                      console.log(r);
-                    };
+                  reader.readAsDataURL(fileInput.files[0]);
+                }
+              }}
+            />
 
-                    reader.readAsDataURL(fileInput.files[0]);
-                  }
-                }}
-              />
+            <label
+              className="subtitle"
+              htmlFor="app_thumbnail_input"
+              style={{ marginBottom: "0px", paddingBottom: "0px" }}
+            >
+              *Thumbnail
+            </label>
 
-              <label
-                className="subtitle"
-                htmlFor="app_thumbnail_input"
-                style={{ marginBottom: "0px", paddingBottom: "0px" }}
-              >
-                *Thumbnail
-              </label>
+            <input
+              type="file"
+              name="stack_thumbnail"
+              accept="image/png, image/jpeg, image/webp, image/avif, image/tiff"
+              id="app_thumbnail_input"
+              required
+              onChange={async (e) => {
+                const fileInput = e.target;
+                if (fileInput.files && fileInput.files[0]) {
+                  const reader = new FileReader();
 
-              <input
-                type="file"
-                name="stack_thumbnail"
-                accept="image/png, image/jpeg, image/webp, image/avif, image/tiff"
-                id="app_thumbnail_input"
-                required
-                onChange={async (e) => {
-                  const fileInput = e.target;
-                  if (fileInput.files && fileInput.files[0]) {
-                    const reader = new FileReader();
+                  reader.onload = (r) => {
+                    console.log(r);
+                  };
 
-                    reader.onload = (r) => {
-                      console.log(r);
-                    };
+                  reader.readAsDataURL(fileInput.files[0]);
+                }
+              }}
+            />
 
-                    reader.readAsDataURL(fileInput.files[0]);
-                  }
-                }}
-              />
+            {}
 
-              {}
+            <input
+              type="url"
+              id="website_url"
+              name="website_url"
+              placeholder="URL"
+            />
 
-              <input
-                type="url"
-                id="website_url"
-                name="website_url"
-                placeholder="URL"
-              />
+            <RepoSelect repoData={repoSelectList} />
 
-              <RepoSelect repoData={repoSelectList} />
+            <Tech />
 
-              <Tech />
-
-              <div className="card-container">
-                {!loading && (
-                  <button
-                    id="create_stack_btn"
-                    type="submit"
-                    className="btn"
-                  >
-                    Create Stack
-                  </button>
-                )}
-                {loading && <div>CREATING STACK OK!......</div>}
-              </div>
+            <div className="card-container">
+              {!loading && (
+                <button id="create_stack_btn" type="submit" className="btn">
+                  Create Stack
+                </button>
+              )}
+              {loading && <div>CREATING STACK OK!......</div>}
             </div>
           </div>
-        </form>
-      )}
+        </div>
+      </form>
     </>
   );
 }

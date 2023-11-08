@@ -3,11 +3,14 @@ import { accountsCollection, stacksCollection } from "@/services/mongodb";
 import { ObjectId } from "mongodb";
 import { notFound } from "next/navigation";
 import { cookies } from "next/headers";
+import StackTechGrid from "../../../components/StackTechGrid";
+import { GetRepoCommitLogs, RepoCommitLogs } from "@/functions";
+import StackCommitLogs from "../../../components/StackCommitLogs";
 
 export default async function Page({ params }: { params: any }) {
   const cookieStore = cookies();
 
-  // make sure stack is valid
+  // make sure stack id is valid
   if (!ObjectId.isValid(params.stack_id)) {
     notFound();
   }
@@ -19,13 +22,26 @@ export default async function Page({ params }: { params: any }) {
   if (!stackDetails) {
     notFound();
   }
+
   // get user who created stack details
   let creatorDetails = await accountsCollection.findOne({
     _id: new ObjectId(stackDetails.aid),
   });
-  if (!creatorDetails) {
-    console.log("error while getting stack creator details :(");
-    creatorDetails = null;
+
+  // stack has github repo id associated with it, get commit logs
+  let commitLogs: null | "error" | RepoCommitLogs[] | "too_many_requests" =
+    null;
+
+  if (creatorDetails) {
+    if (
+      stackDetails.github_repo_id !== null &&
+      creatorDetails.github_access_token !== null
+    ) {
+      commitLogs = await GetRepoCommitLogs(
+        stackDetails.github_repo_id,
+        creatorDetails.github_access_token
+      );
+    }
   }
 
   const isUsersStack =
@@ -34,6 +50,8 @@ export default async function Page({ params }: { params: any }) {
       : cookieStore.get("a_id")!.value !== stackDetails.aid
       ? false
       : true;
+
+  console.log(stackDetails);
 
   return (
     <>
@@ -191,37 +209,8 @@ export default async function Page({ params }: { params: any }) {
         </div>
       </section>
 
-      <section>
-        <div className="card-container" style={{ paddingBottom: "40px" }}>
-          <div className="card">
-            <div className="container">
-              <div className="grid-container" style={{ paddingBottom: "40px" }}>
-                <p style={{ color: "orange" }}>languages used</p>
-              </div>
-
-              <div>
-                <p style={{ color: "orange" }}>databases used</p>
-              </div>
-
-              <div>
-                <p style={{ color: "orange" }}>apis used</p>
-              </div>
-
-              <div>
-                <p style={{ color: "orange" }}>clouds used</p>
-              </div>
-
-              <div>
-                <p style={{ color: "orange" }}>frameowrkds used</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div>
-        <p style={{ color: "orange" }}>COMMIT HISTORYU</p>
-      </div>
+      <StackTechGrid stackDetails={stackDetails} />
+      <StackCommitLogs commitLogs={commitLogs} />
     </>
   );
 }

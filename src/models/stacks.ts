@@ -7,7 +7,7 @@ export const StackModel = z.object({
   clouds_used: z.array(z.string().trim()).nullable(),
   created_on: z.coerce.date(),
   databases_used: z.array(z.string().trim()).nullable(),
-  description: z.string().trim(),
+  description: z.string().max(2000).trim(),
   frameworks_used: z.array(z.string().trim()).nullable(),
   github_repo_id: z.number().nullable(),
   icon_filename: z.string().trim(),
