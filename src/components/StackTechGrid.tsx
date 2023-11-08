@@ -7,8 +7,11 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
       <div className="card-container" style={{ paddingBottom: "40px" }}>
         <div className="card">
           <div className="container">
-            <div className="grid-container" style={{ paddingBottom: "40px" }}>
-              <div className="grid-container" style={{ paddingBottom: "40px" }}>
+            <h3>
+              Languages
+            </h3>
+            <div className="grid-container">
+              <div className="grid-container">
                 {stackDetails.languages_used.map((x: string, index: number) => {
                   return (
                     <div
@@ -38,10 +41,12 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
 
           {stackDetails.databases_used !== null && (
             <div className="container">
-              <div className="grid-container" style={{ paddingBottom: "40px" }}>
+              <h3>
+                Databases
+              </h3>
+              <div className="grid-container">
                 <div
                   className="grid-container"
-                  style={{ paddingBottom: "40px" }}
                 >
                   {stackDetails.databases_used.map(
                     (x: string, index: number) => {
@@ -75,10 +80,12 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
 
           {stackDetails.apis_used !== null && (
             <div className="container">
-              <div className="grid-container" style={{ paddingBottom: "40px" }}>
+              <h3>
+                APIs
+              </h3>
+              <div className="grid-container">
                 <div
                   className="grid-container"
-                  style={{ paddingBottom: "40px" }}
                 >
                   {stackDetails.apis_used.map((x: string, index: number) => {
                     return (
@@ -110,10 +117,12 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
 
           {stackDetails.frameworks_used !== null && (
             <div className="container">
-              <div className="grid-container" style={{ paddingBottom: "40px" }}>
+              <h3>
+                Frameworks
+              </h3>
+              <div className="grid-container">
                 <div
                   className="grid-container"
-                  style={{ paddingBottom: "40px" }}
                 >
                   {stackDetails.frameworks_used.map(
                     (x: string, index: number) => {
@@ -147,10 +156,12 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
 
           {stackDetails.clouds_used !== null && (
             <div className="container">
-              <div className="grid-container" style={{ paddingBottom: "40px" }}>
+              <h3>
+                Clouds
+              </h3>
+              <div className="grid-container">
                 <div
                   className="grid-container"
-                  style={{ paddingBottom: "40px" }}
                 >
                   {stackDetails.clouds_used.map((x: string, index: number) => {
                     return (

@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { Metadata } from "next";
 import { accountsCollection, stacksCollection } from "@/services/mongodb";
 import { ObjectId } from "mongodb";
 import { notFound } from "next/navigation";
@@ -6,6 +7,17 @@ import { cookies } from "next/headers";
 import StackTechGrid from "../../../components/StackTechGrid";
 import { GetRepoCommitLogs, RepoCommitLogs } from "@/functions";
 import StackCommitLogs from "../../../components/StackCommitLogs";
+import SideNav from "../../../components/SideNav";
+
+export const metadata: Metadata = {
+  title: "[STACKNAME] | Stack",
+  description:
+    " ",
+
+  alternates: {
+    canonical: " ",
+  },
+};
 
 export default async function Page({ params }: { params: any }) {
   const cookieStore = cookies();
@@ -48,23 +60,20 @@ export default async function Page({ params }: { params: any }) {
     cookieStore.get("a_id") === undefined
       ? false
       : cookieStore.get("a_id")!.value !== stackDetails.aid
-      ? false
-      : true;
+        ? false
+        : true;
 
   console.log(stackDetails);
 
   return (
     <>
       <section>
-        <div className="background">
-          <img
-            src={"/imgs/background.avif"}
-            alt="background design"
-            className="background-image"
-          ></img>
-        </div>
+        <SideNav />
+      </section>
+
+      <section>
         <div className="header-container">
-          <div className="title-container-header">
+          <div className="title-container-header" style={{ marginTop: "4rem" }}>
             <div className="title-header">
               <div className="header">
                 <img
@@ -73,7 +82,7 @@ export default async function Page({ params }: { params: any }) {
                   alt={stackDetails.name + " icon"}
                 />
 
-                <h1>{`${stackDetails.name} Tech Stack`}</h1>
+                <h1>{`${stackDetails.name}`}</h1>
 
                 {stackDetails.website_url !== null && (
                   <div style={{ marginBottom: "10px" }}>
@@ -92,90 +101,56 @@ export default async function Page({ params }: { params: any }) {
                 <p
                   style={{
                     fontSize: "16px",
+                    opacity: "0.85",
+                    marginBottom: "1rem"
                   }}
                 >
-                  <img
-                    src="/imgs/icons/calendar.svg"
-                    alt="calendar icon"
-                    width={12}
-                    height={12}
-                    style={{ display: "inline" }}
-                  />{" "}
                   {stackDetails.created_on.toDateString()}
                 </p>
 
-                <div
-                  className="user-profile-containerParent"
-                  style={{ marginBottom: "0px", paddingBottom: "0px" }}
+                <a
+                  href={creatorDetails?.username}
+                  style={{ margin: "0px", padding: "0px", display: "flex" }}
                 >
-                  <a
-                    href={creatorDetails?.username}
-                    style={{ margin: "0px", padding: "0px" }}
-                  >
-                    <div className="user-profile-container">
-                      <img
-                        src={creatorDetails?.profile_pic!}
-                        className="user-profile-img"
-                        alt={creatorDetails?.username + " profile picture"}
-                      />
+                  <img
+                    src={creatorDetails?.profile_pic!}
+                    className="user-profile-img"
+                    alt={"img"}
+                  />
 
-                      <span
-                        style={{
-                          paddingLeft: "8px",
-                          paddingTop: "6px",
-                        }}
-                      >
-                        <b>
-                          {creatorDetails?.first_name}{" "}
-                          {creatorDetails?.last_name}
-                        </b>
-                        <p
-                          style={{
-                            fontSize: "16px",
-                            opacity: "0.85",
-                          }}
-                        >
-                          @{creatorDetails?.username}
-                        </p>
-                      </span>
-                    </div>
-                  </a>
-                </div>
+                  <span
+                    style={{
+                      paddingLeft: "8px",
+                      paddingTop: "6px",
+                    }}
+                  >
+                    <h5>
+                      {creatorDetails?.first_name}{" "}
+                      {creatorDetails?.last_name}
+                    </h5>
+                    <p
+                      style={{
+                        fontSize: "16px",
+                        opacity: "0.85",
+                      }}
+                    >
+                      @{creatorDetails?.username}
+                    </p>
+                  </span>
+                </a>
 
                 {isUsersStack && (
                   <>
-                    <div style={{ marginBottom: "40px", marginTop: "20px" }}>
+                    <div style={{ marginBottom: "2rem", marginTop: "2rem" }}>
                       <a
                         href={`/stack/${stackDetails._id}/edit`}
-                        className="btn-create"
+                        className="btn"
                       >
-                        <img
-                          src="/imgs/icons/edit.svg"
-                          className="white-svg"
-                          alt="edit icon"
-                          width={15}
-                          height={15}
-                          style={{ marginTop: "20px" }}
-                        />{" "}
                         Edit Stack
                       </a>
                     </div>
                   </>
                 )}
-
-                {/* <div style={{ marginBottom: "20px" }}>
-                          <LikeBtn
-                            isSignedIn={page_data.is_signed_in!}
-                            isSignedInUsersStack={
-                              page_data.is_signedin_users_stack
-                            }
-                            stackID={page_data.stack_id}
-                            currentNumOfLikes={page_data.stack_num_of_likes}
-                            hasSignedInUserAlreadyLikedStack={
-                              page_data.has_signed_in_user_already_liked_stack
-                            }
-                          />
-                        </div> */}
               </div>
             </div>
 
