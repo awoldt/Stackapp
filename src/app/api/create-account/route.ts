@@ -1,4 +1,4 @@
-import { AccountModel } from "@/models/account";
+import { ProfileModel } from "@/models/profile";
 import { SendEmail } from "@/services/aws-ses";
 
 import {
@@ -9,7 +9,7 @@ import {
 export async function POST(request: Request) {
   try {
     const reqBody = await request.json();
-    const body = AccountModel.parse(reqBody);
+    const body = ProfileModel.parse(reqBody);
 
     // 1. make sure email and username are not already in use
     const accountsInUse = await accountsCollection
@@ -19,7 +19,10 @@ export async function POST(request: Request) {
       .toArray();
 
     if (accountsInUse.length > 0) {
-      return Response.json({ status: 500, message: "Account already in use" });
+      return Response.json(
+        { message: "Account already in use" },
+        { status: 400 }
+      );
     }
 
     // 2. store unverified account credentials in db
@@ -53,19 +56,26 @@ export async function POST(request: Request) {
 
     const emailResult = await SendEmail(emailInput);
     if (!emailResult) {
-      return Response.json({
-        status: 500,
-        message: "There was an error while sending email",
-      });
+      return Response.json(
+        {
+          message: "There was an error while sending email",
+        },
+        { status: 500 }
+      );
     }
 
-    return Response.json({
-      status: 200,
-      message: "Check your inbox for the verification link",
-    });
+    return Response.json(
+      {
+        message: "Check your inbox for the verification link",
+      },
+      { status: 200 }
+    );
   } catch (err) {
     console.log(err);
     console.log("There was an error while parsing the request body");
-    return Response.json({ status: 500, message: "not raw" });
+    return Response.json(
+      { message: "There was an error while parsing the request body" },
+      { status: 500 }
+    );
   }
 }

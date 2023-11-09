@@ -1,8 +1,8 @@
 import { z } from "zod";
 
-export type UserAccount = z.infer<typeof AccountModel>;
+export type UserProfile = z.infer<typeof ProfileModel>;
 
-export const AccountModel = z.object({
+export const ProfileModel = z.object({
   bio: z.string().trim().nullable(),
   created_on: z.coerce.date(),
   email: z.string().trim().email(),

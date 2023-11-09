@@ -7,7 +7,7 @@ export async function POST(request: Request) {
   const cookieStore = cookies();
 
   if (cookieStore.get("a_id") === undefined) {
-    return Response.json({ status: 500, message: "error" });
+    return Response.json({ message: "error" }, { status: 400 });
   }
 
   try {
@@ -21,10 +21,12 @@ export async function POST(request: Request) {
     const uploadedThumbnail = await UploadImage(thumbnail);
 
     if (uploadedIcon === null || uploadedThumbnail === null) {
-      return Response.json({
-        status: 500,
-        message: "Error while uploading images",
-      });
+      return Response.json(
+        {
+          message: "Error while uploading images",
+        },
+        { status: 500 }
+      );
     }
 
     const languagesUsed = [];
@@ -52,10 +54,12 @@ export async function POST(request: Request) {
 
     // user MUST select at least 1 language
     if (languagesUsed.length === 0) {
-      return Response.json({
-        status: 400,
-        message: "Must select at least 1 language for Stack",
-      });
+      return Response.json(
+        {
+          message: "Must select at least 1 language for Stack",
+        },
+        { status: 400 }
+      );
     }
 
     const githubRepoId = form.get("github_repo_id");
@@ -74,28 +78,32 @@ export async function POST(request: Request) {
           ? null
           : Number(githubRepoId),
       icon_filename: uploadedIcon,
-      icon_url: `https://storage.googleapis.com/stackapp/imgs/${uploadedIcon}`,
+      icon_url: `https://storage.googleapis.com/stackapp/uploads/${uploadedIcon}`,
       languages_used: languagesUsed,
       likes: 0,
       name: form.get("app_name"),
       thumbnail_filename: uploadedThumbnail,
-      thumbnail_url: `https://storage.googleapis.com/stackapp/imgs/${uploadedThumbnail}`,
+      thumbnail_url: `https://storage.googleapis.com/stackapp/uploads/${uploadedThumbnail}`,
       website_url: null,
     });
 
     const doc = await stacksCollection.insertOne(stackObj);
 
-    return Response.json({
-      status: 200,
-      message: "Stack successfully created.",
-      stack_id: doc.insertedId.toString(),
-    });
+    return Response.json(
+      {
+        message: "Stack successfully created.",
+        stack_id: doc.insertedId.toString(),
+      },
+      { status: 200 }
+    );
   } catch (err) {
     console.log(err);
     console.log("There was an error while parsing the request body");
-    return Response.json({
-      status: 500,
-      message: "There was an error while creating a Stack. Try again later.",
-    });
+    return Response.json(
+      {
+        message: "There was an error while creating a Stack. Try again later.",
+      },
+      { status: 500 }
+    );
   }
 }

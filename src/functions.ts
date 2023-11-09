@@ -2,16 +2,10 @@ import { ObjectId } from "mongodb";
 import { accountsCollection, stacksCollection } from "./services/mongodb";
 import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import path from "path";
-import { Storage } from "@google-cloud/storage";
 import fs from "fs/promises";
 import { uid } from "uid";
 import sharp from "sharp";
-import { UserAccount } from "./models/account";
-
-const storage = new Storage({
-  keyFilename: path.join(path.join(process.cwd(), "gcp-key.json")),
-});
-const bucket = storage.bucket("stackapp");
+import { storageBucket } from "./services/google-storage";
 
 export interface RepoSelectList {
   name: string;
@@ -23,36 +17,6 @@ export interface RepoCommitLogs {
   url: string;
   sha: string;
   date_commited: string;
-}
-
-export async function IsUserSignedIn(
-  accountId: RequestCookie | undefined
-): Promise<false | null | UserAccount> {
-  try {
-    if (accountId === undefined) {
-      return false;
-    }
-
-    // check if this account id is a valid object id
-    if (!ObjectId.isValid(accountId.value)) {
-      return false;
-    }
-
-    // see if account id exists in db
-    const account = await accountsCollection.findOne({
-      _id: new ObjectId(accountId.value),
-    });
-    if (!account) {
-      return false;
-    }
-
-    // account exists!
-    // return account details to display on frontend
-    return account;
-  } catch (err) {
-    console.log(err);
-    return null;
-  }
 }
 
 export async function AuthenticateGithubAccount(
@@ -164,7 +128,9 @@ export async function UploadImage(img: Blob | null) {
     while (true) {
       if (
         !(
-          await bucket.file(`imgs/${randomFileName}.${imgExtension}`).exists()
+          await storageBucket
+            .file(`imgs/${randomFileName}.${imgExtension}`)
+            .exists()
         )[0]
       ) {
         break;
@@ -231,14 +197,14 @@ export async function UploadImage(img: Blob | null) {
     }
 
     // upload img file to google cloud storage
-    await bucket.upload(
+    await storageBucket.upload(
       path.join(
         process.cwd(),
 
         "tmp",
         `${randomFileName}.${imgExtension}`
       ),
-      { destination: `imgs/${randomFileName}.${imgExtension}` }
+      { destination: `uploads/${randomFileName}.${imgExtension}` }
     );
 
     // delete file from tmp folder
@@ -387,5 +353,35 @@ export async function GetRepoCommitLogs(
     console.log(e);
     console.log("There was an error while getting repo commit history");
     return "error";
+  }
+}
+
+export async function IsValidAccountCookie(
+  accountCookie: RequestCookie | undefined
+) {
+  // will determine if cookie sent in request is
+  // 1. valid mongoDB objectid
+  // 2. associated with document in accounts collection
+
+  try {
+    if (accountCookie === undefined) {
+      return false;
+    }
+
+    if (!ObjectId.isValid(accountCookie.value)) {
+      return false;
+    }
+
+    const a = await accountsCollection.findOne({
+      _id: new ObjectId(accountCookie.value),
+    });
+    if (!a) {
+      return false;
+    }
+
+    return a;
+  } catch (e) {
+    console.log(e);
+    return false;
   }
 }

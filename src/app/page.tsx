@@ -1,7 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { Metadata } from "next";
-import SideNav from "../components/SideNav";
+import SideNav from "../components/CustomNav";
+import { IsValidAccountCookie } from "@/functions";
+import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
   title: "Stack",
@@ -12,11 +14,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Home() {
+export default async function Home() {
+  const cookieStore = cookies();
+  const account = await IsValidAccountCookie(cookieStore.get("a_id"));
+
   return (
     <main>
       <section>
-        <SideNav />
+        <SideNav isSignedIn={account === false ? false : true} />
       </section>
 
       <section>

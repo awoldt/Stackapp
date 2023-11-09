@@ -1,14 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 import { Metadata } from "next";
-import { IsUserSignedIn } from "@/functions";
+import { IsValidAccountCookie } from "@/functions";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import SideNav from "../../components/SideNav";
+import SideNav from "../../components/CustomNav";
 
 export const metadata: Metadata = {
   title: "@profile | Stack",
-  description:
-    " ",
+  description: " ",
 
   alternates: {
     canonical: " ",
@@ -18,23 +17,26 @@ export const metadata: Metadata = {
 export default async function Page() {
   const cookieStore = cookies();
 
-  const account = await IsUserSignedIn(cookieStore.get("a_id"));
+  const account = await IsValidAccountCookie(cookieStore.get("a_id"));
 
-  if (account === null || account === false) {
+  if (account === false) {
     redirect("/signup");
   } else {
     return (
       <>
         <div>
           <section>
-            <SideNav />
+            <SideNav isSignedIn={true} />
           </section>
 
           {/* USER PROFILE */}
           <section>
             <main>
               <div className="header-container">
-                <div className="profile-container-header" style={{ marginTop: "4rem" }}>
+                <div
+                  className="profile-container-header"
+                  style={{ marginTop: "4rem" }}
+                >
                   <div className="profile-header">
                     <div className="header">
                       {account.profile_pic === null && (
@@ -44,9 +46,9 @@ export default async function Page() {
                           alt="basic profile pic"
                         />
                       )}
-                      {account.profile_pic !== null && (
+                      {account.profile_pic_filename !== null && (
                         <img
-                          src={account.profile_pic}
+                          src={account.profile_pic_filename}
                           className="profile-img"
                           alt={`${account.username}'s profile pic`}
                         />

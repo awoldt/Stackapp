@@ -46,7 +46,7 @@ export default function Form({
       const data: FormResponse = await req.json();
 
       // SUCCESS
-      if (data.status === 200) {
+      if (req.status === 200) {
         window.location.href = `/stack/${data.stack_id}`;
       }
       // ERROR

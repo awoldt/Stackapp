@@ -1,15 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 import { Metadata } from "next";
-import { IsUserSignedIn } from "@/functions";
+import { IsValidAccountCookie } from "@/functions";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import EditProfileForm from "../../../components/forms/EditProfile";
-import SideNav from "../../../components/SideNav";
+import SideNav from "../../../components/CustomNav";
 
 export const metadata: Metadata = {
   title: "Edit Profile | Stack",
-  description:
-    " ",
+  description: " ",
 
   alternates: {
     canonical: " ",
@@ -18,8 +17,9 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   const cookieStore = cookies();
-  const user = await IsUserSignedIn(cookieStore.get("a_id"));
-  if (user === null || user === false) {
+  const account = await IsValidAccountCookie(cookieStore.get("a_id"));
+
+  if (account === false) {
     redirect("/signin");
   }
 
@@ -27,7 +27,7 @@ export default async function Page() {
     <>
       <>
         <section>
-          <SideNav />
+          <SideNav isSignedIn={true} />
         </section>
 
         <section>
@@ -37,10 +37,10 @@ export default async function Page() {
               {/* <p>Change the details of your profile.</p> */}
             </div>
           </div>
-          
+
           <div className="card-container">
             <div className="card-registration">
-              <EditProfileForm user={user} />
+              <EditProfileForm user={account} />
             </div>
           </div>
         </section>

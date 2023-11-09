@@ -5,14 +5,17 @@ import { ObjectId } from "mongodb";
 import { notFound } from "next/navigation";
 import { cookies } from "next/headers";
 import StackTechGrid from "../../../components/StackTechGrid";
-import { GetRepoCommitLogs, RepoCommitLogs } from "@/functions";
+import {
+  GetRepoCommitLogs,
+  IsValidAccountCookie,
+  RepoCommitLogs,
+} from "@/functions";
 import StackCommitLogs from "../../../components/StackCommitLogs";
-import SideNav from "../../../components/SideNav";
+import SideNav from "../../../components/CustomNav";
 
 export const metadata: Metadata = {
   title: "[STACKNAME] | Stack",
-  description:
-    " ",
+  description: " ",
 
   alternates: {
     canonical: " ",
@@ -56,19 +59,21 @@ export default async function Page({ params }: { params: any }) {
     }
   }
 
+  const account = await IsValidAccountCookie(cookieStore.get("a_id"));
+
   const isUsersStack =
     cookieStore.get("a_id") === undefined
       ? false
       : cookieStore.get("a_id")!.value !== stackDetails.aid
-        ? false
-        : true;
+      ? false
+      : true;
 
   console.log(stackDetails);
 
   return (
     <>
       <section>
-        <SideNav />
+        <SideNav isSignedIn={account === false ? false : true} />
       </section>
 
       <section>
@@ -102,7 +107,7 @@ export default async function Page({ params }: { params: any }) {
                   style={{
                     fontSize: "16px",
                     opacity: "0.85",
-                    marginBottom: "1rem"
+                    marginBottom: "1rem",
                   }}
                 >
                   {stackDetails.created_on.toDateString()}
@@ -113,7 +118,11 @@ export default async function Page({ params }: { params: any }) {
                   style={{ margin: "0px", padding: "0px", display: "flex" }}
                 >
                   <img
-                    src={creatorDetails?.profile_pic!}
+                    src={
+                      creatorDetails?.profile_pic_filename! === null
+                        ? "/imgs/icons/noprofile.png"
+                        : creatorDetails?.profile_pic_filename!
+                    }
                     className="user-profile-img"
                     alt={"img"}
                   />
@@ -125,8 +134,7 @@ export default async function Page({ params }: { params: any }) {
                     }}
                   >
                     <h5>
-                      {creatorDetails?.first_name}{" "}
-                      {creatorDetails?.last_name}
+                      {creatorDetails?.first_name} {creatorDetails?.last_name}
                     </h5>
                     <p
                       style={{

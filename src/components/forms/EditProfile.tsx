@@ -1,81 +1,116 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { UserAccount } from "@/models/account";
+import { UserProfile } from "@/models/profile";
+import { FormEvent, useRef, useState } from "react";
 
-export default function Form({ user }: { user: UserAccount }) {
+export default function Form({ user }: { user: UserProfile }) {
+  const [firstName, setFirstName] = useState<string>(user.first_name);
+  const [lastName, setLastName] = useState<string>(user.last_name);
+  const [bio, setBio] = useState<string>(
+    user.bio === null ? "No bio yet" : user.bio
+  );
+  const [profileImgSrc, setProfileImgSrc] = useState(
+    user.profile_pic_filename === null
+      ? "/imgs/icons/noprofile.png"
+      : user.profile_pic_filename
+  );
+
+  const formRef = useRef<HTMLFormElement>(null);
+
+  async function FormSubmit(e: FormEvent<HTMLFormElement>) {
+    try {
+      e.preventDefault();
+
+      const req = await fetch("/api/update-profile", {
+        method: "POST",
+        body: new FormData(formRef.current!),
+      });
+      if (req.ok) {
+        alert("Profile successfully updated");
+      }
+    } catch (e) {
+      alert("Error while submitting form");
+    }
+  }
+
   return (
     <form
+      ref={formRef}
       onSubmit={async (e) => {
-        e.preventDefault();
-
-        try {
-          //
-        } catch (e) {
-          alert(e);
-        }
+        await FormSubmit(e);
       }}
     >
-      <img
-        src={
-          user.profile_pic === null
-            ? "/imgs/icons/noprofile.png"
-            : user.profile_pic
-        }
-        className="profile-img"
-        alt="Proflie picture"
-      />
-      <div>
-        <span>
-          {user.first_name} {user.last_name}
-        </span>
-      </div>
-      <div>
-        {user.bio === null && (
-          <p style={{ color: "grey" }}>This user has no bio yet</p>
-        )}
-        {user.bio !== null && <p>{user.bio}</p>}
+      <img src={profileImgSrc} className="profile-img" alt="Proflie picture" />
+      <div style={{ marginBottom: "25px" }}>
+        <div>
+          <span>
+            {firstName} {lastName}
+          </span>
+        </div>
+        <div>
+          <span>@{user.username}</span>
+        </div>
+        <div style={{ marginTop: "5px" }}>
+          <span>{bio}</span>
+        </div>
       </div>
 
       <input
         type="file"
         name="profile_icon"
-        accept="image/*"
+        accept="image/png, image/jpeg, image/webp, image/avif, image/tiff"
+        style={{ marginBottom: "50px" }}
         onChange={async (e) => {
           const fileInput = e.target;
           if (fileInput.files && fileInput.files[0]) {
             const reader = new FileReader();
 
             reader.onload = (r) => {
-              //
+              setProfileImgSrc(r.target?.result?.toString()!);
             };
 
             reader.readAsDataURL(fileInput.files[0]);
           }
         }}
       />
-      <br />
-      <br />
-
-      <input type="text" defaultValue={user.first_name} name="fname" />
-
-      <input type="text" defaultValue={user.last_name} name="lname" />
 
       <input
         type="text"
-        name="profile_username"
-        placeholder={"@" + user.username}
-        maxLength={100}
+        defaultValue={user.first_name}
+        name="fname"
+        onChange={(e) => {
+          setFirstName(e.target.value);
+        }}
       />
 
-      <div style={{ textAlign: "right" }}>
-        <p style={{ color: "orange" }}>PROFILE BIO GOES HERE</p>
-        <br />
+      <input
+        type="text"
+        defaultValue={user.last_name}
+        name="lname"
+        onChange={(e) => {
+          setLastName(e.target.value);
+        }}
+      />
+
+      <div>
+        <textarea
+          defaultValue={user.bio === null ? "" : user.bio}
+          onChange={(e) => {
+            setBio(e.target.value);
+          }}
+          name="bio_input"
+        />
       </div>
 
       {/* HAS GITHUB CONNECTED */}
       {user.github_account_id !== null && (
-        <p style={{ color: "orange" }}>github connected goes here</p>
+        <>
+          <p>You currently have your GitHub account connected</p>
+          <button>
+            <a href="/api/disconnect-github">Disconnect GitHub Account</a>
+          </button>
+        </>
       )}
       {/* DOES NOT HAVE GITHUB CONNECTED */}
       {user.github_account_id === null && (
@@ -83,15 +118,24 @@ export default function Form({ user }: { user: UserAccount }) {
           href={`https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}`}
           title="Authorize Stack to connect to your GitHub Account"
         >
-          <div
-            className="btn"
-          >
-            Connect Github
-          </div>
+          <div className="btn">Connect Github</div>
         </a>
       )}
 
       <br />
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          width: "100%",
+        }}
+      >
+        <button className="btn" type="submit">
+          Update
+        </button>
+      </div>
+
       <div
         style={{
           display: "flex",
@@ -104,8 +148,8 @@ export default function Form({ user }: { user: UserAccount }) {
           type="button"
           onClick={() => {
             document.cookie =
-              "uid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            window.location.assign(window.location.href);
+              "a_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            window.location.assign("/");
           }}
         >
           Sign Out
@@ -139,12 +183,14 @@ export default function Form({ user }: { user: UserAccount }) {
                 if (c3) {
                   try {
                     const req = await fetch("/api/delete-account");
-                    if (req.status === 200) {
-                      alert("Account has been successfully deleted.");
+                    if (req.ok) {
+                      alert(
+                        "Account and all associated stacks have been successfully deleted."
+                      );
 
                       //this expression will remove cookie from browser
                       document.cookie =
-                        "uid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                        "a_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
                       window.location.assign("/");
                     }
                   } catch (e) {

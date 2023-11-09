@@ -1,13 +1,12 @@
 import { Metadata } from "next";
 import { cookies } from "next/headers";
 import CreateStackForm from "../../components/forms/CreateStack";
-import { GetGitHubRepoSelectData, IsUserSignedIn } from "@/functions";
-import SideNav from "../../components/SideNav";
+import { GetGitHubRepoSelectData, IsValidAccountCookie } from "@/functions";
+import SideNav from "../../components/CustomNav";
 
 export const metadata: Metadata = {
   title: "Create Stack | Stack",
-  description:
-    " ",
+  description: " ",
 
   alternates: {
     canonical: " ",
@@ -17,9 +16,9 @@ export const metadata: Metadata = {
 export default async function Page() {
   const cookieStore = cookies();
 
-  const account: any = await IsUserSignedIn(cookieStore.get("a_id"));
+  const account = await IsValidAccountCookie(cookieStore.get("a_id"));
 
-  if (account === null || account === false) {
+  if (account === false) {
     return <p>You must be signed in to create a stack</p>;
   } else {
     // if github access token is not null
@@ -33,9 +32,9 @@ export default async function Page() {
     return (
       <>
         <section>
-          <SideNav />
+          <SideNav isSignedIn={true} />
         </section>
-        
+
         <div className="card-container-title">
           <div className="card-empty">
             <h1>Create Stack</h1>

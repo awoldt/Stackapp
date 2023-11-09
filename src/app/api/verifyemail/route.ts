@@ -10,10 +10,10 @@ export async function GET(request: Request) {
   // 1. check if id query is valid
   const id = new URLSearchParams(new URL(request.url).search).get("id");
   if (id === null) {
-    return Response.json({ status: 400, data: "bad request" });
+    return Response.json({ data: "bad request" }, { status: 400 });
   }
   if (!ObjectId.isValid(id)) {
-    return Response.json({ status: 400, data: "bad request" });
+    return Response.json({ data: "bad request" }, { status: 400 });
   }
 
   // 2. check to see if document with id query exists
@@ -22,7 +22,7 @@ export async function GET(request: Request) {
   });
 
   if (!account) {
-    return Response.json({ status: 400, data: "bad request" });
+    return Response.json({ data: "bad request" }, { status: 400 });
   }
 
   const { _id, ...actObj } = account;

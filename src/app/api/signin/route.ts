@@ -25,10 +25,12 @@ export async function POST(request: Request) {
     });
 
     if (!account) {
-      return Response.json({
-        status: 400,
-        message: "Account does not exist",
-      });
+      return Response.json(
+        {
+          message: "Account does not exist",
+        },
+        { status: 400 }
+      );
     }
 
     // 2. send verification link to email
@@ -57,14 +59,16 @@ export async function POST(request: Request) {
 
     await emailClient.send(new SendEmailCommand(emailInput));
 
-    return Response.json({
-      status: 200,
-      message: "Check your inbox for the sign in link",
-    });
+    return Response.json(
+      {
+        message: "Check your inbox for the sign in link",
+      },
+      { status: 200 }
+    );
   } catch (err) {
     console.log(err);
     console.log("There was an error while parsing the request body");
-    return Response.json({ status: 500, message: "error" });
+    return Response.json({ message: "error" }, { status: 500 });
   }
 }
 
@@ -73,10 +77,10 @@ export async function GET(request: Request) {
     // 1. check if id query is valid
     const id = new URLSearchParams(new URL(request.url).search).get("id");
     if (id === null) {
-      return Response.json({ status: 400, data: "bad request" });
+      return Response.json({ data: "bad request" }, { status: 400 });
     }
     if (!ObjectId.isValid(id)) {
-      return Response.json({ status: 400, data: "bad request" });
+      return Response.json({ data: "bad request" }, { status: 400 });
     }
 
     // 2. check to see if document with id query exists
@@ -85,7 +89,7 @@ export async function GET(request: Request) {
     });
 
     if (!account) {
-      return Response.json({ status: 400, data: "bad request" });
+      return Response.json({ data: "bad request" }, { status: 400 });
     }
 
     // 3. set cookie
@@ -104,7 +108,7 @@ export async function GET(request: Request) {
         <html lang="en" dir="ltr">
             <body>
               <script>
-                window.location.href = "/";
+                window.location.href = "/profile";
               </script>
             </body>
         </html>`,
@@ -118,6 +122,6 @@ export async function GET(request: Request) {
   } catch (err) {
     console.log(err);
     console.log("There was an error while parsing the request body");
-    return Response.json({ status: 500, message: "error" });
+    return Response.json({ message: "error" }, { status: 500 });
   }
 }

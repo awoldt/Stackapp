@@ -1,6 +1,9 @@
 import { Metadata } from "next";
 import SigninForm from "../../components/forms/Signin";
-import SideNav from "../../components/SideNav";
+import SideNav from "../../components/CustomNav";
+import { cookies } from "next/headers";
+import { IsValidAccountCookie } from "@/functions";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Login | Stack",
@@ -11,11 +14,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Page() {
+export default async function Page() {
+  const cookieStore = cookies();
+  const account = await IsValidAccountCookie(cookieStore.get("a_id"));
+
+  if (account !== false) {
+    redirect("/profile");
+  }
   return (
     <>
       <section>
-        <SideNav />
+        <SideNav isSignedIn={account === false ? false : true} />
       </section>
       <SigninForm />
     </>
