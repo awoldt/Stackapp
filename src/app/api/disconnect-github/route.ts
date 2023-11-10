@@ -1,37 +1,30 @@
 "use server";
 
-import { accountsCollection } from "@/services/mongodb";
+import { IsValidAccountCookie } from "@/functions";
+import { accountsCollection, stacksCollection } from "@/services/mongodb";
 import { ObjectId } from "mongodb";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-export async function GET(request: Request) {
+export async function POST() {
   const cookieStore = cookies();
+  const account = await IsValidAccountCookie(cookieStore.get("a_id"));
+
+  console.log(account);
+
+  if (!account) {
+    return Response.json(
+      {
+        message: "Bad request",
+      },
+      { status: 400 }
+    );
+  }
 
   try {
     if (
-      cookieStore.get("a_id") === undefined ||
-      !ObjectId.isValid(cookieStore.get("a_id")!.value)
-    ) {
-      return Response.json(
-        { message: "Invalid account cookie" },
-        { status: 400 }
-      );
-    }
-
-    const account = await accountsCollection.findOne({
-      _id: new ObjectId(cookieStore.get("a_id")!.value),
-    });
-
-    if (account === null) {
-      return Response.json(
-        { message: "Account does not exist" },
-        { status: 400 }
-      );
-    }
-    if (
-      account.github_access_token !== null ||
-      account.github_account_id !== null
+      account.github_access_token === null ||
+      account.github_account_id === null
     ) {
       return Response.json(
         {
@@ -41,8 +34,19 @@ export async function GET(request: Request) {
       );
     }
 
+    // remove the github_repo_id associated with every stack user has attached
+    await stacksCollection.updateMany(
+      { github_repo_id: { $ne: null }, aid: String(account._id) },
+      {
+        $set: {
+          github_repo_id: null,
+        },
+      }
+    );
+
+    // remove github association with stack account
     await accountsCollection.updateOne(
-      { _id: new ObjectId(cookieStore.get("a_id")!.value) },
+      { _id: new ObjectId(account._id) },
       {
         $set: {
           github_account_id: null,
@@ -51,10 +55,13 @@ export async function GET(request: Request) {
       }
     );
 
-    redirect("/profile/edit");
+    return Response.json(
+      { message: "Successfully disconnected GitHub account" },
+      { status: 200 }
+    );
   } catch (err) {
     console.log(err);
-    console.log("There was an error while parsing the request body");
+
     return Response.json({ message: "error" }, { status: 500 });
   }
 }

@@ -107,8 +107,24 @@ export default function Form({ user }: { user: UserProfile }) {
       {user.github_account_id !== null && (
         <>
           <p>You currently have your GitHub account connected</p>
-          <button>
-            <a href="/api/disconnect-github">Disconnect GitHub Account</a>
+          <button
+            type="button"
+            onClick={async () => {
+              try {
+                const req = await fetch("/api/disconnect-github", {
+                  method: "POST",
+                });
+                const res = await req.json();
+                alert(res.message);
+                if (req.ok) {
+                  window.location.href = "/profile/edit";
+                }
+              } catch (err) {
+                alert("Error while disconnecting GitHub account");
+              }
+            }}
+          >
+            Disconnect GitHub Account
           </button>
         </>
       )}
