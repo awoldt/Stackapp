@@ -16,10 +16,10 @@ export default function Form({
   repoSelectList,
 }: {
   repoSelectList:
-    | RepoSelectList[]
-    | null
-    | "must_connect_github_account"
-    | "error";
+  | RepoSelectList[]
+  | null
+  | "must_connect_github_account"
+  | "error";
 }) {
   // stack submission is used only when there is an error with creating new stack
   // if successful, redirect page to /stack/${stackId}
@@ -83,16 +83,19 @@ export default function Form({
               type="text"
               id="app_title"
               name="app_name"
-              placeholder="* Title"
+              placeholder="*Title"
               required
               maxLength={100}
             />
 
-            <div style={{ textAlign: "right" }}>
+            <div>
               <textarea
                 name="app_description"
-                placeholder="* App description"
+                placeholder="*Description"
+                cols="44"
+                rows="10"
                 maxLength={2000}
+                style={{ marginBottom: "0rem" }}
                 required
               />
             </div>
@@ -100,7 +103,7 @@ export default function Form({
             <label
               className="subtitle"
               htmlFor="app_icon_input"
-              style={{ marginBottom: "0px", paddingBottom: "0px" }}
+              style={{ marginBottom: ".4rem", paddingBottom: "0px" }}
             >
               *Icon
             </label>
@@ -127,7 +130,7 @@ export default function Form({
             <label
               className="subtitle"
               htmlFor="app_thumbnail_input"
-              style={{ marginBottom: "0px", paddingBottom: "0px" }}
+              style={{ marginBottom: ".4rem", paddingBottom: "0px" }}
             >
               *Thumbnail
             </label>
@@ -152,13 +155,14 @@ export default function Form({
               }}
             />
 
-            {}
+            { }
 
             <input
               type="url"
               id="website_url"
               name="website_url"
               placeholder="URL"
+              style={{ marginTop: "20px" }}
             />
 
             <RepoSelect repoData={repoSelectList} />
@@ -171,7 +175,7 @@ export default function Form({
                   Create Stack
                 </button>
               )}
-              {loading && <div>CREATING STACK OK!......</div>}
+              {loading && <div>Stacking...</div>}
             </div>
           </div>
         </div>

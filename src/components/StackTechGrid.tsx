@@ -7,9 +7,10 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
       <div className="card-container" style={{ paddingBottom: "40px" }}>
         <div className="card">
           <div className="container">
-            <h3>
-              Languages
-            </h3>
+            <p style={{ opacity: "0.4" }}>
+              LANGUAGES
+            </p>
+            <hr />
             <div className="grid-container">
               <div className="grid-container">
                 {stackDetails.languages_used.map((x: string, index: number) => {
@@ -17,9 +18,6 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
                     <div
                       className="grid-item"
                       key={index}
-                      style={{
-                        marginBottom: "40px",
-                      }}
                     >
                       <img src={`/imgs/tech/${x}.svg`} alt={`${x} logo`} />
                       <span>
@@ -41,9 +39,10 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
 
           {stackDetails.databases_used !== null && (
             <div className="container">
-              <h3>
-                Databases
-              </h3>
+              <p style={{ opacity: "0.4" }}>
+                DATABASES
+              </p>
+              <hr />
               <div className="grid-container">
                 <div
                   className="grid-container"
@@ -54,9 +53,6 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
                         <div
                           className="grid-item"
                           key={index}
-                          style={{
-                            marginBottom: "40px",
-                          }}
                         >
                           <img src={`/imgs/tech/${x}.svg`} alt={`${x} logo`} />
                           <span>
@@ -80,9 +76,10 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
 
           {stackDetails.apis_used !== null && (
             <div className="container">
-              <h3>
+              <p style={{ opacity: "0.4" }}>
                 APIs
-              </h3>
+              </p>
+              <hr />
               <div className="grid-container">
                 <div
                   className="grid-container"
@@ -92,9 +89,6 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
                       <div
                         className="grid-item"
                         key={index}
-                        style={{
-                          marginBottom: "40px",
-                        }}
                       >
                         <img src={`/imgs/tech/${x}.svg`} alt={`${x} logo`} />
                         <span>
@@ -117,9 +111,10 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
 
           {stackDetails.frameworks_used !== null && (
             <div className="container">
-              <h3>
-                Frameworks
-              </h3>
+              <p style={{ opacity: "0.4" }}>
+                FRAMEWORKS
+              </p>
+              <hr />
               <div className="grid-container">
                 <div
                   className="grid-container"
@@ -130,9 +125,6 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
                         <div
                           className="grid-item"
                           key={index}
-                          style={{
-                            marginBottom: "40px",
-                          }}
                         >
                           <img src={`/imgs/tech/${x}.svg`} alt={`${x} logo`} />
                           <span>
@@ -156,9 +148,10 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
 
           {stackDetails.clouds_used !== null && (
             <div className="container">
-              <h3>
-                Clouds
-              </h3>
+              <p style={{ opacity: "0.4" }}>
+                CLOUDS
+              </p>
+              <hr />
               <div className="grid-container">
                 <div
                   className="grid-container"
@@ -168,9 +161,6 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
                       <div
                         className="grid-item"
                         key={index}
-                        style={{
-                          marginBottom: "40px",
-                        }}
                       >
                         <img src={`/imgs/tech/${x}.svg`} alt={`${x} logo`} />
                         <span>

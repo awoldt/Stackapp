@@ -12,12 +12,12 @@ export default function Tech() {
           height={15}
           style={{ display: "inline" }}
         />
-        <p
+        <h5
           className="subtitle"
           style={{ display: "inline", marginTop: "10px" }}
         >
           Select all Languages used in your tech stack.
-        </p>
+        </h5>
         {TechOffered.languages.map((x) => {
           return (
             <>
@@ -39,9 +39,9 @@ export default function Tech() {
           height={15}
           style={{ display: "inline" }}
         />
-        <p className="subtitle" style={{ display: "inline" }}>
+        <h5 className="subtitle" style={{ display: "inline" }}>
           Select all Databases used in your tech stack.
-        </p>
+        </h5>
         {TechOffered.databases!.map((x) => {
           return (
             <>
@@ -63,9 +63,9 @@ export default function Tech() {
           height={15}
           style={{ display: "inline" }}
         />
-        <p className="subtitle" style={{ display: "inline" }}>
+        <h5 className="subtitle" style={{ display: "inline" }}>
           Select all APIs used in your tech stack.
-        </p>
+        </h5>
         {TechOffered.apis!.map((x) => {
           return (
             <>
@@ -87,9 +87,9 @@ export default function Tech() {
           height={15}
           style={{ display: "inline" }}
         />
-        <p className="subtitle" style={{ display: "inline" }}>
+        <h5 className="subtitle" style={{ display: "inline" }}>
           Select all Cloud Deployment Services used in your tech stack.
-        </p>
+        </h5>
         {TechOffered.clouds!.map((x) => {
           return (
             <>
@@ -111,9 +111,9 @@ export default function Tech() {
           height={15}
           style={{ display: "inline" }}
         />
-        <p className="subtitle" style={{ display: "inline" }}>
+        <h5 className="subtitle" style={{ display: "inline" }}>
           Select all Frameworks used in your tech stack.
-        </p>
+        </h5>
         {TechOffered.frameworks!.map((x) => {
           return (
             <>

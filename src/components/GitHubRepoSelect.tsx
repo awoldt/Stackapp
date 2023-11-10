@@ -6,17 +6,17 @@ export default function Select({
   repoData: RepoSelectList[] | null | "must_connect_github_account" | "error";
 }) {
   return (
-    <div style={{ marginTop: "25px", marginBottom: "25px" }}>
+    <div style={{ marginTop: "0px", marginBottom: "20px" }}>
       {repoData === "must_connect_github_account" && (
         <p>
-          Connect your GitHub account in profile settings to showcase commit
-          logs from your repositories on this Stack
+          <b>Connect your GitHub account in profile settings to showcase commit
+            logs from your repositories.</b>
         </p>
       )}
       {repoData === "error" && (
-        <p>There was an error while fetching GitHub repo data</p>
+        <p><b>There was an error while fetching GitHub repo data.</b></p>
       )}
-      {repoData === null && <p>There is no repo data to show</p>}
+      {repoData === null && <p><b>No repo data available.</b></p>}
       {Array.isArray(repoData) && repoData.length > 0 && (
         <select name="github_repo_id">
           <option value="none">Select GitHub Repo</option>

@@ -65,8 +65,8 @@ export default async function Page({ params }: { params: any }) {
     cookieStore.get("a_id") === undefined
       ? false
       : cookieStore.get("a_id")!.value !== stackDetails.aid
-      ? false
-      : true;
+        ? false
+        : true;
 
   return (
     <>
@@ -112,8 +112,8 @@ export default async function Page({ params }: { params: any }) {
                 </p>
 
                 <a
+                  className="profile-container"
                   href={creatorDetails?.username}
-                  style={{ margin: "0px", padding: "0px", display: "flex" }}
                 >
                   <img
                     src={
@@ -125,14 +125,9 @@ export default async function Page({ params }: { params: any }) {
                     alt={"img"}
                   />
 
-                  <span
-                    style={{
-                      paddingLeft: "8px",
-                      paddingTop: "6px",
-                    }}
-                  >
+                  <span>
                     <h5>
-                      {creatorDetails?.first_name} {creatorDetails?.last_name}
+                      <b>{creatorDetails?.first_name} {creatorDetails?.last_name}</b>
                     </h5>
                     <p
                       style={{
@@ -185,6 +180,10 @@ export default async function Page({ params }: { params: any }) {
       <section>
         <div className="card-container">
           <div className="card">
+            <p style={{ opacity: "0.4" }}>
+              DESCRIPTION
+            </p>
+            <hr />
             <p>{stackDetails.description}</p>
           </div>
         </div>

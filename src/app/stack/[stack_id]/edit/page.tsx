@@ -53,28 +53,19 @@ export default async function Edit({ params }: { params: any }) {
       <section>
         <CustomNav isSignedIn={true} />
       </section>
-      <section>
-        <div className="background">
-          <img
-            src={"/imgs/background.avif"}
-            alt="background design"
-            className="background-image"
-          ></img>
+
+      <div className="card-container" style={{ paddingTop: "4rem" }}>
+        <div className="card-empty">
+          <h1>Edit Stack</h1>
+          {/* <p>Change the details of your profile.</p> */}
         </div>
-        <div className="card-container-title">
-          <div className="card-empty">
-            <h1>Edit Stack</h1>
-            <p className="subtitle">
-              Edit or change your Stack&apos;s current details.
-            </p>
-            <EditStackForm
-              stackDetails={stackDetails}
-              stackID={String(stackDetails._id)}
-              repoSelectData={repoSelect}
-            />
-          </div>
-        </div>
-      </section>
+      </div>
+
+      <EditStackForm
+        stackDetails={stackDetails}
+        stackID={String(stackDetails._id)}
+        repoSelectData={repoSelect}
+      />
     </>
   );
 }

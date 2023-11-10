@@ -42,7 +42,7 @@ export default function Form({ user }: { user: UserProfile }) {
       }}
     >
       <img src={profileImgSrc} className="profile-img" alt="Proflie picture" />
-      <div style={{ marginBottom: "25px" }}>
+      {/* <div style={{ marginBottom: "25px" }}>
         <div>
           <span>
             {firstName} {lastName}
@@ -54,7 +54,7 @@ export default function Form({ user }: { user: UserProfile }) {
         <div style={{ marginTop: "5px" }}>
           <span>{bio}</span>
         </div>
-      </div>
+      </div> */}
 
       <input
         type="file"
@@ -79,6 +79,8 @@ export default function Form({ user }: { user: UserProfile }) {
         type="text"
         defaultValue={user.first_name}
         name="fname"
+        placeholder="*First Name"
+        required
         onChange={(e) => {
           setFirstName(e.target.value);
         }}
@@ -88,6 +90,8 @@ export default function Form({ user }: { user: UserProfile }) {
         type="text"
         defaultValue={user.last_name}
         name="lname"
+        placeholder="*Last Name"
+        required
         onChange={(e) => {
           setLastName(e.target.value);
         }}
@@ -96,6 +100,7 @@ export default function Form({ user }: { user: UserProfile }) {
       <div>
         <textarea
           defaultValue={user.bio === null ? "" : user.bio}
+          placeholder="Bio"
           onChange={(e) => {
             setBio(e.target.value);
           }}
@@ -139,90 +144,68 @@ export default function Form({ user }: { user: UserProfile }) {
       )}
 
       <br />
-
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          width: "100%",
+      <br />
+      <button
+        className="btn"
+        type="button"
+        onClick={() => {
+          document.cookie =
+            "a_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+          window.location.assign("/");
         }}
       >
-        <button className="btn" type="submit">
-          Update
-        </button>
-      </div>
-
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          width: "100%",
-        }}
-      >
-        <button
-          className="btn"
-          type="button"
-          onClick={() => {
-            document.cookie =
-              "a_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            window.location.assign("/");
-          }}
-        >
-          Sign Out
-        </button>
-      </div>
+        Sign Out
+      </button>
 
       <br />
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          width: "100%",
-        }}
-      >
-        <button
-          className="btn"
-          type="button"
-          onClick={async () => {
-            const c1 = confirm(
-              "Are you sure you want to delete your Stack account?"
+      <br />
+      <button
+        className="btn"
+        type="button"
+        onClick={async () => {
+          const c1 = confirm(
+            "Are you sure you want to delete your Stack account?"
+          );
+          if (c1) {
+            const c2 = confirm(
+              "This action is irreversible. Would you like to continue?"
             );
-            if (c1) {
-              const c2 = confirm(
-                "This action is irreversible. Would you like to continue?"
+            if (c2) {
+              const c3 = confirm(
+                "Account deletion is permanant. In order to use Stack again you will need to create a new account. I understand, delete my account."
               );
-              if (c2) {
-                const c3 = confirm(
-                  "Account deletion is permanant. In order to use Stack again you will need to create a new account. I understand, delete my account."
-                );
 
-                if (c3) {
-                  try {
-                    const req = await fetch("/api/delete-account");
-                    if (req.ok) {
-                      alert(
-                        "Account and all associated stacks have been successfully deleted."
-                      );
-
-                      //this expression will remove cookie from browser
-                      document.cookie =
-                        "a_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                      window.location.assign("/");
-                    }
-                  } catch (e) {
-                    console.log(e);
+              if (c3) {
+                try {
+                  const req = await fetch("/api/delete-account");
+                  if (req.ok) {
                     alert(
-                      "An error occurred while attempting to delete your account."
+                      "Account and all associated stacks have been successfully deleted."
                     );
+
+                    //this expression will remove cookie from browser
+                    document.cookie =
+                      "a_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                    window.location.assign("/");
                   }
+                } catch (e) {
+                  console.log(e);
+                  alert(
+                    "An error occurred while attempting to delete your account."
+                  );
                 }
               }
             }
-          }}
-        >
-          Delete Account
-        </button>
-      </div>
+          }
+        }}
+      >
+        Delete Account
+      </button>
+      <br />
+      <br />
+      <button className="btn" type="submit">
+        Update Profile
+      </button>
     </form>
   );
 }

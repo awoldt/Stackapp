@@ -35,7 +35,7 @@ export default async function Page() {
           <SideNav isSignedIn={true} />
         </section>
 
-        <div className="card-container-title">
+        <div className="card-container" style={{ paddingTop: "4rem" }}>
           <div className="card-empty">
             <h1>Create Stack</h1>
             {/* <p>Change the details of your profile.</p> */}
