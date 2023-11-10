@@ -222,11 +222,10 @@ export async function UploadImage(img: Blob | null) {
 
 export async function GetGitHubRepoSelectData(
   githubAccessToken: string | null,
-  userStackId: string
+  userAccountID: string
 ): Promise<RepoSelectList[] | null | "must_connect_github_account" | "error"> {
-  // returns all the public repo's a user has
-  // filter out any repos that are already attached to another stack
-  // returns data to be rendered inside the select tag on the create stack page (option tags)
+  // returns all repos that belong to current user and are not already attached to any other stacks
+  // repos must be public
 
   if (githubAccessToken === null) {
     return "must_connect_github_account";
@@ -280,7 +279,7 @@ export async function GetGitHubRepoSelectData(
     // return only the github_repo_id
     const githubReposIDsInUse = (
       await stacksCollection
-        .find({ aid: userStackId, github_repo_id: { $ne: null } })
+        .find({ aid: userAccountID, github_repo_id: { $ne: null } })
         .toArray()
     ).map((x) => {
       return x.github_repo_id;
@@ -375,7 +374,7 @@ export async function IsValidAccountCookie(
     const a = await accountsCollection.findOne({
       _id: new ObjectId(accountCookie.value),
     });
-    if (!a) {
+    if (a === null) {
       return false;
     }
 

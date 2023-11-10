@@ -34,7 +34,7 @@ export default async function Page({ params }: { params: any }) {
   const stackDetails = await stacksCollection.findOne({
     _id: new ObjectId(params.stack_id),
   });
-  if (!stackDetails) {
+  if (stackDetails === null) {
     notFound();
   }
 
@@ -67,8 +67,6 @@ export default async function Page({ params }: { params: any }) {
       : cookieStore.get("a_id")!.value !== stackDetails.aid
       ? false
       : true;
-
-  console.log(stackDetails);
 
   return (
     <>

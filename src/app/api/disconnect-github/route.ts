@@ -23,7 +23,7 @@ export async function GET(request: Request) {
       _id: new ObjectId(cookieStore.get("a_id")!.value),
     });
 
-    if (!account) {
+    if (account === null) {
       return Response.json(
         { message: "Account does not exist" },
         { status: 400 }

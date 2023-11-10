@@ -1,4 +1,5 @@
 import { z } from "zod";
+
 export type Stack = z.infer<typeof StackModel>;
 
 export const StackModel = z.object({
@@ -17,5 +18,5 @@ export const StackModel = z.object({
   name: z.string().trim(),
   thumbnail_filename: z.string().trim(),
   thumbnail_url: z.string().trim(),
-  website_url: z.string().trim().nullable(),
+  website_url: z.string().url().trim().nullable(),
 });

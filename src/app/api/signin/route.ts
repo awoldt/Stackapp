@@ -24,7 +24,7 @@ export async function POST(request: Request) {
       ],
     });
 
-    if (!account) {
+    if (account === null) {
       return Response.json(
         {
           message: "Account does not exist",
@@ -88,7 +88,7 @@ export async function GET(request: Request) {
       _id: new ObjectId(id),
     });
 
-    if (!account) {
+    if (account === null) {
       return Response.json({ data: "bad request" }, { status: 400 });
     }
 

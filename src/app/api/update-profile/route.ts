@@ -27,7 +27,7 @@ export async function POST(request: Request) {
   const lastName = form.get("lname");
   const profileImg: any = form.get("profile_icon");
 
-  // if first name or last name is changed, must not be empty
+  // if first name or last name cannot be empty
   if (firstName === "" || lastName === "") {
     return Response.json(
       { message: "First and lastname cannot be empty" },
@@ -67,11 +67,11 @@ export async function POST(request: Request) {
     }
   }
 
-  const accountObj = UpdateProfileModel.parse(updateObject);
+  const FINAL_UPDATE_OBJ = UpdateProfileModel.parse(updateObject);
 
   await accountsCollection.updateOne(
     { _id: new ObjectId(cookieStore.get("a_id")?.value) },
-    { $set: accountObj }
+    { $set: FINAL_UPDATE_OBJ }
   );
 
   return Response.json(

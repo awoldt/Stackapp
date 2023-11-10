@@ -4,6 +4,8 @@ import { IsValidAccountCookie } from "@/functions";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import SideNav from "../../components/CustomNav";
+import { stacksCollection } from "@/services/mongodb";
+import { Stack } from "@/models/stacks";
 
 export const metadata: Metadata = {
   title: "@profile | Stack",
@@ -17,7 +19,11 @@ export const metadata: Metadata = {
 export default async function Page() {
   const cookieStore = cookies();
 
-  const account = await IsValidAccountCookie(cookieStore.get("a_id"));
+  const account: any = await IsValidAccountCookie(cookieStore.get("a_id"));
+  const userStacks = await stacksCollection
+    .find({ aid: String(account._id) })
+    .sort({ created_on: -1 })
+    .toArray();
 
   if (account === false) {
     redirect("/signup");
@@ -90,6 +96,80 @@ export default async function Page() {
                 </div>
               </div>
             </main>
+          </section>
+
+          <section>
+            {userStacks.length === 0 && (
+              <>
+                <div
+                  className="card-container"
+                  style={{
+                    paddingTop: "0px",
+                    paddingBottom: "40px",
+                  }}
+                >
+                  <div
+                    className="card"
+                    style={{
+                      textAlign: "center",
+                      paddingBottom: "80px",
+                    }}
+                  >
+                    <h2>Stacks</h2>
+                    <span className="subtitle">
+                      0 Stacks
+                      <br />
+                      <br />
+                    </span>
+                    <a href={"/create"} className="btn-create">
+                      Create Stack
+                    </a>
+                  </div>
+                </div>
+              </>
+            )}
+            {userStacks.length > 0 && (
+              <div
+                className="card-container"
+                style={{
+                  paddingTop: "0px",
+                  paddingBottom: "80px",
+                }}
+              >
+                <div className="card" style={{ textAlign: "center" }}>
+                  <h2>
+                    {/* <img
+                          src="/icons/stack.svg"
+                          alt="globe icon"
+                          width={25}
+                          height={25}
+                        />{" "} */}
+                    Stacks
+                  </h2>
+                  <span className="subtitle">
+                    {userStacks.length} Stacks
+                    <br />
+                  </span>
+
+                  {userStacks.map((x: any, index: number) => {
+                    return (
+                      <a href={`/stack/${x._id}`} key={index}>
+                        <div className="card-container">
+                          <div className="card-thumbnail">
+                            <img
+                              src={x.thumbnail_url!}
+                              style={{ cursor: "pointer" }}
+                              alt={`${x.name} thumbnail`}
+                            />
+                          </div>
+                        </div>
+                        <span className="bold">{x.name}</span>
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
           </section>
         </div>
       </>
