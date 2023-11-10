@@ -14,10 +14,10 @@ export default function Edit({
   stackDetails: Stack;
   stackID: string;
   repoSelectData:
-    | "error"
-    | RepoSelectList[]
-    | "must_connect_github_account"
-    | null;
+  | "error"
+  | RepoSelectList[]
+  | "must_connect_github_account"
+  | null;
 }) {
   const [iconImgSrc, setIconImgSrc] = useState(stackDetails.icon_url);
   const [thumbnailImgSrc, setThumbnailImgSrc] = useState(
@@ -52,7 +52,7 @@ export default function Edit({
     >
       <div className="card-container">
         <div className="create-content">
-          <label htmlFor="app_title" style={{ width: "100%" }}>
+          <label htmlFor="app_title" style={{ width: "100%", marginBottom: "20px", padding: "0" }}>
             <input
               type="text"
               id="app_title"
@@ -64,14 +64,19 @@ export default function Edit({
             />
           </label>
 
-          <label htmlFor="app_description" style={{ width: "100%" }}>
+          <label htmlFor="app_description" style={{ width: "100%", padding: "0" }}>
             <textarea
               name="stack_description"
+              placeholder="*Description"
+              cols="44"
+              rows="10"
+              style={{ marginBottom: "0" }}
+              required
               defaultValue={stackDetails.description}
             />
           </label>
 
-          <p className="subtitle">*Icon</p>
+          <p>*Icon</p>
           <img
             src={iconImgSrc}
             style={{
@@ -99,22 +104,25 @@ export default function Edit({
             }}
           />
 
-          <p className="subtitle">*Thumbnail</p>
+          <p>*Thumbnail</p>
           <img
             src={thumbnailImgSrc}
             style={{
               width: "100%",
               display: "block",
-              marginBottom: "20px",
+              marginBottom: ".4rem",
+              paddingBottom: "0px",
               borderRadius: "4px",
-              boxShadow: "0px 2px 10px 2px rgba(0, 0, 0, 0.025)",
-              border: "1px solid rgba(0, 0, 0, 0.095)",
+              boxShadow: "0px 2px 10px 2px rgba(0, 0, 0, 0.025)"
             }}
           />
           <input
             type="file"
             name="stack_thumbnail"
             accept="image/*"
+            style={{
+              marginBottom: "1rem"
+            }}
             onChange={async (e) => {
               const fileInput = e.target;
               if (fileInput.files && fileInput.files[0]) {
@@ -152,12 +160,11 @@ export default function Edit({
 
           <button
             type="button"
-            className="btn-delete"
+            className="btn"
             id="delete_stack_btn"
             style={{
-              marginTop: "10px",
-              marginBottom: "0px",
-              width: "100%",
+              marginTop: "0",
+              marginBottom: "1rem",
             }}
             onClick={async () => {
               try {
@@ -190,13 +197,11 @@ export default function Edit({
             }}
           >
             <button
-              className="btn-edit"
+              className="btn"
               type="submit"
               style={{
                 width: "100%",
                 marginBottom: "0px",
-                backgroundColor: "grey",
-                cursor: "default",
               }}
             >
               {/* <img

@@ -41,6 +41,10 @@ export default async function Home() {
               </a>
             </div>
 
+            <h5 style={{ textAlign: "center", marginBottom: "14rem" }}>
+              Scroll to Explore Stack's Features.
+            </h5>
+
             <div className="btn-container" style={{ marginBottom: "2rem" }}>
               <span>
                 <i className="fa-brands fa-github fa-2xl"></i> GitHub
@@ -70,7 +74,7 @@ export default async function Home() {
 
             <div
               className="home-container"
-              style={{ marginTop: "8rem", marginBottom: "10rem" }}
+              style={{ marginTop: "8rem", marginBottom: "4rem" }}
             >
               <div className="card">
                 <h2>The Future of Tech Stack Presentation.</h2>
@@ -120,6 +124,145 @@ export default async function Home() {
                   engaging presentation of your tech stack. Your long-awaited
                   showcase is finally here – embrace it with Stack and let your
                   technology shine!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div className="card-container" style={{ marginTop: "0rem" }}>
+          <div className="card-empty" style={{ width: "100%", marginTop: "0rem", textAlign: "left" }}>
+            <h2 style={{ textAlign: "center" }}>
+              Showcase your Applications through Elegant Stacks.
+            </h2>
+            <div className="header-container" style={{ paddingTop: "2rem" }}>
+              <div className="title-container-header">
+                <div className="title-header">
+                  <div className="header">
+                    <img src="imgs/splash/logo.png" className="profile-img" alt="stack-img" />
+                    <h1>
+                      Code Tracker
+                    </h1>
+                    <h5>
+                      <a className="nav-element" style={{ padding: "10px" }}>
+                        www.codetracker.com
+                      </a>
+                    </h5>
+                    <div className="profile-container" style={{ marginTop: "10px;" }}>
+                      <img src="imgs/splash/profile.PNG" className="user-profile-img" alt="user-profile-img" />
+                      <p>
+                        <b>Test Developer</b>
+                        <br />
+                        @testdev
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="card-container" style={{ paddingBottom: "0px" }}>
+                  <div className="thumbnail">
+                    <img src="imgs/splash/image.png" alt="stack-thumbnail" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div className="card-container">
+              <div className="card">
+                <p style={{ opacity: "0.4" }}>
+                  DESCRIPTION
+                </p>
+                <hr />
+                <p>
+                  Introducing CodeTracker, a powerful application designed to streamline your development workflow and
+                  effortlessly track the essential details of your GitHub commits and projects. With CodeTracker, you can
+                  effortlessly organize and store information about APIs, frameworks, and coding languages used in each
+                  individual project, ensuring easy access to crucial project details whenever you need them.
+                  CodeTracker empowers developers to maintain a comprehensive record of their coding endeavors, fostering
+                  better
+                  project management, collaboration, and knowledge sharing. With its intuitive interface, robust features, and
+                  powerful integrations, CodeTracker is the must-have companion for any developer looking to stay organized
+                  and
+                  efficient in their coding journey.
+                </p>
+              </div>
+            </div>
+
+            <div className="card-container">
+              <div className="card">
+                <div className="container">
+
+                  <p style={{ opacity: "0.4" }}>
+                    LANGUAGES
+                  </p>
+                  <hr />
+                  <div className="grid-container">
+                    <div className="grid-item">
+                      <img src="imgs/splash/stackicons/logo-javascript.svg" alt="language-logo" />
+                    </div>
+                    <div className="grid-item">
+                      <img src="imgs/tech/Python.svg" alt="language-logo" />
+                    </div>
+                  </div>
+
+                  <p style={{ opacity: "0.4" }}>
+                    DATABASES
+                  </p>
+                  <hr />
+                  <div className="grid-container">
+                    <div className="grid-item">
+                      <img src="imgs/splash/stackicons/mongodb.svg" alt="database-logo" />
+                    </div>
+                  </div>
+
+                  <p style={{ opacity: "0.4" }}>
+                    CLOUD SERVICES
+                  </p>
+                  <hr />
+                  <div className="grid-container">
+                    <div className="grid-item">
+                      <img src="imgs/splash/stackicons/aws.png" alt="cloud-logo" />
+                    </div>
+                    <div className="grid-item">
+                      <img src="imgs/tech/Google Cloud Platform.svg" alt="cloud-logo" />
+                    </div>
+                  </div>
+
+                  <p style={{ opacity: "0.4" }}>
+                    APIs
+                  </p>
+                  <hr />
+                  <div className="grid-container">
+                    <div className="grid-item">
+                      <img src="imgs/tech/Postgres.svg" alt="api-logo" />
+                    </div>
+                  </div>
+
+                  <p style={{ opacity: "0.4" }}>
+                    FRAMEWORKS
+                  </p>
+                  <hr />
+                  <div className="grid-container">
+                    <div className="grid-item">
+                      <img src="imgs/tech/Nextjs.svg" alt="language-logo" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="card-container">
+              <div className="card">
+                <p style={{ opacity: "0.4" }}>
+                  GITHUB
+                </p>
+                <hr />
+                <p>
+                  Repo pushed [Month] [Day], [Year].
                 </p>
               </div>
             </div>
