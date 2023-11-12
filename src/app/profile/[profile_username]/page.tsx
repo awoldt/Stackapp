@@ -28,7 +28,10 @@ export default async function ProfilePage({ params }: { params: any }) {
       </section>
       <section>
         <div className="header-container">
-          <div className="profile-container-header">
+          <div
+            className="profile-container-header"
+            style={{ marginTop: "100px" }}
+          >
             <div className="profile-header">
               <div className="header">
                 {profile.profile_pic === null && (

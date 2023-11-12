@@ -1,5 +1,5 @@
 import { ProfileModel } from "@/models/profile";
-import { SendEmail } from "@/services/aws-ses";
+import { SendEmail } from "@/services/aws";
 
 import {
   accountsCollection,

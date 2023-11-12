@@ -5,7 +5,9 @@ import path from "path";
 import fs from "fs/promises";
 import { uid } from "uid";
 import sharp from "sharp";
-import { storageBucket } from "./services/google-storage";
+import { TechOffered } from "./techOffered";
+import { s3Client } from "./services/aws";
+import { HeadObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
 
 export interface RepoSelectList {
   name: string;
@@ -17,6 +19,37 @@ export interface RepoCommitLogs {
   url: string;
   sha: string;
   date_commited: string;
+}
+
+export interface EditStackTechCheckboxs {
+  // languages must always have at least 1 selected (cant be null)
+  languages: {
+    selected: string[];
+    notSelected: string[];
+  };
+  databases: {
+    selected: string[] | null;
+    notSelected: string[];
+  };
+  apis: {
+    selected: string[] | null;
+    notSelected: string[];
+  };
+  clouds: {
+    selected: string[] | null;
+    notSelected: string[];
+  };
+  frameworks: {
+    selected: string[] | null;
+    notSelected: string[];
+  };
+}
+export interface UserSelectedTech {
+  languages: string[];
+  databases: string[] | null;
+  apis: string[] | null;
+  clouds: string[] | null;
+  frameworks: string[] | null;
 }
 
 export async function AuthenticateGithubAccount(
@@ -123,19 +156,21 @@ export async function UploadImage(img: Blob | null) {
     const buffer = Buffer.from(await img!.arrayBuffer());
 
     // generate random name for image
-    // make sure not already stored in google bucket
+    // make sure not already stored in aws bucket
     let randomFileName = uid(25);
     while (true) {
-      if (
-        !(
-          await storageBucket
-            .file(`imgs/${randomFileName}.${imgExtension}`)
-            .exists()
-        )[0]
-      ) {
+      try {
+        await s3Client.send(
+          new HeadObjectCommand({
+            Bucket: "stackapp-bucket",
+            Key: `uploads/${randomFileName}.${imgExtension}`,
+          })
+        );
+        randomFileName = uid(25);
+      } catch (err) {
+        // if catch is thrown here, means file does not exist (what we want)
         break;
       }
-      randomFileName = uid(25);
     }
 
     // compress the image
@@ -196,15 +231,16 @@ export async function UploadImage(img: Blob | null) {
         break;
     }
 
-    // upload img file to google cloud storage
-    await storageBucket.upload(
-      path.join(
-        process.cwd(),
-
-        "tmp",
-        `${randomFileName}.${imgExtension}`
-      ),
-      { destination: `uploads/${randomFileName}.${imgExtension}` }
+    // upload img file to aws s3
+    await s3Client.send(
+      new PutObjectCommand({
+        Bucket: "stackapp-bucket",
+        Key: `uploads/${randomFileName}.${imgExtension}`,
+        Body: await fs.readFile(
+          path.join(process.cwd(), "tmp", `${randomFileName}.${imgExtension}`)
+        ),
+        ContentType: `image/${imgExtension}`,
+      })
     );
 
     // delete file from tmp folder
@@ -383,4 +419,74 @@ export async function IsValidAccountCookie(
     console.log(e);
     return false;
   }
+}
+
+export function GenerateEditStackTechCheckboxs(
+  stackTech: UserSelectedTech
+): EditStackTechCheckboxs {
+  // gets all the tech checkboxs to render on edit stack page
+  // includes all tech selected, and tech not selected
+  // will have tech already selected have checked=true on render
+
+  const allLanguages = [...TechOffered.languages];
+  const allDatabases = [...TechOffered.databases];
+  const allApis = [...TechOffered.apis];
+  const allClouds = [...TechOffered.clouds];
+  const allFrameworks = [...TechOffered.frameworks];
+
+  // languages
+  for (let i = 0; i < stackTech.languages.length; i++) {
+    allLanguages.splice(allLanguages.indexOf(stackTech.languages[i]), 1);
+  }
+
+  // databases
+  if (stackTech.databases !== null) {
+    for (let i = 0; i < stackTech.databases.length; i++) {
+      allDatabases.splice(allDatabases.indexOf(stackTech.databases[i]), 1);
+    }
+  }
+
+  // apis
+  if (stackTech.apis !== null) {
+    for (let i = 0; i < stackTech.apis.length; i++) {
+      allApis.splice(allApis.indexOf(stackTech.apis[i]), 1);
+    }
+  }
+
+  // clouds
+  if (stackTech.clouds !== null) {
+    for (let i = 0; i < stackTech.clouds.length; i++) {
+      allClouds.splice(allClouds.indexOf(stackTech.clouds[i]), 1);
+    }
+  }
+
+  // frameworks
+  if (stackTech.frameworks !== null) {
+    for (let i = 0; i < stackTech.frameworks.length; i++) {
+      allFrameworks.splice(allFrameworks.indexOf(stackTech.frameworks[i]), 1);
+    }
+  }
+
+  return {
+    languages: {
+      selected: stackTech.languages,
+      notSelected: allLanguages,
+    },
+    databases: {
+      selected: stackTech.databases,
+      notSelected: allDatabases,
+    },
+    apis: {
+      selected: stackTech.apis,
+      notSelected: allApis,
+    },
+    clouds: {
+      selected: stackTech.clouds,
+      notSelected: allClouds,
+    },
+    frameworks: {
+      selected: stackTech.frameworks,
+      notSelected: allFrameworks,
+    },
+  };
 }

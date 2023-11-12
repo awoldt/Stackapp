@@ -5,17 +5,18 @@ import { FormEvent, useRef, useState } from "react";
 export default function Form() {
   const [formSubmission, setFormSubmission] = useState<
     | {
-      status: "success";
-      msg: string;
-    }
+        status: "success";
+        msg: string;
+      }
     | {
-      status: "error";
-      msg: string;
-    }
+        status: "error";
+        msg: string;
+      }
     | null
   >(null);
 
   const [formDisabled, setFormDisabled] = useState<boolean>(false);
+  const [loading, setLoading] = useState(false);
 
   const emailRef = useRef<HTMLInputElement>(null);
   const usernameRef = useRef<HTMLInputElement>(null);
@@ -31,6 +32,7 @@ export default function Form() {
   ) {
     event.preventDefault();
     setFormDisabled(true);
+    setLoading(true);
     try {
       const req = await fetch("/api/create-account", {
         method: "POST",
@@ -58,21 +60,29 @@ export default function Form() {
         setFormSubmission({ status: "error", msg: data.message });
       }
       setFormDisabled(false);
+      setLoading(false);
     } catch (err) {
       alert(err);
       setFormDisabled(false);
+      setLoading(false);
     }
   }
 
   return (
     <>
-      <div className="card-container" style={{ height: "100vh", alignItems: "center", flexDirection: "column" }}>
+      <div
+        className="card-container"
+        style={{
+          height: "100vh",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
         <h1 className="splash" style={{ marginTop: "0", marginBottom: "1rem" }}>
           Stack
         </h1>
 
         <div className="card-registration">
-
           {formSubmission !== null && (
             <>
               {formSubmission.status === "success" && (
@@ -134,11 +144,18 @@ export default function Form() {
                 required
               />
 
-              <div className="btn-container" style={{ margin: "auto" }}>
-                <button className="btn" type="submit" disabled={formDisabled}>
-                  Sign Up
-                </button>
-              </div>
+              {!loading && (
+                <div className="btn-container" style={{ margin: "auto" }}>
+                  <button className="btn" type="submit" disabled={formDisabled}>
+                    Sign Up
+                  </button>
+                </div>
+              )}
+              {loading && (
+                <div className="btn-container" style={{ margin: "auto" }}>
+                  <div className="lds-dual-ring"></div>
+                </div>
+              )}
             </form>
           )}
         </div>

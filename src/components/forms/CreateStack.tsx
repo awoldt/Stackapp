@@ -16,10 +16,10 @@ export default function Form({
   repoSelectList,
 }: {
   repoSelectList:
-  | RepoSelectList[]
-  | null
-  | "must_connect_github_account"
-  | "error";
+    | RepoSelectList[]
+    | null
+    | "must_connect_github_account"
+    | "error";
 }) {
   // stack submission is used only when there is an error with creating new stack
   // if successful, redirect page to /stack/${stackId}
@@ -79,91 +79,97 @@ export default function Form({
       >
         <div className="card-container">
           <div className="create-content">
-            <input
-              type="text"
-              id="app_title"
-              name="app_name"
-              placeholder="*Title"
-              required
-              maxLength={100}
-            />
+            <div style={{ marginBottom: "10px" }}>
+              <label htmlFor="app_title">App name</label>
+              <input
+                type="text"
+                id="app_title"
+                name="app_name"
+                required
+                maxLength={100}
+              />
+            </div>
 
-            <div>
+            <div style={{ marginBottom: "25px" }}>
+              <label htmlFor="app_description_input">App description</label>
               <textarea
                 name="app_description"
-                placeholder="*Description"
-                cols="44"
-                rows="10"
+                id="app_description_input"
+                cols={44}
+                rows={10}
                 maxLength={2000}
                 style={{ marginBottom: "0rem" }}
                 required
               />
             </div>
 
-            <label
-              className="subtitle"
-              htmlFor="app_icon_input"
-              style={{ marginBottom: ".4rem", paddingBottom: "0px" }}
-            >
-              *Icon
-            </label>
+            <div style={{ marginBottom: "25px" }}>
+              <label
+                className="subtitle"
+                htmlFor="app_icon_input"
+                style={{ marginBottom: ".4rem", paddingBottom: "0px" }}
+              >
+                Icon
+              </label>
 
-            <input
-              type="file"
-              name="stack_icon"
-              accept="image/png, image/jpeg, image/webp, image/avif, image/tiff"
-              required
-              onChange={async (e) => {
-                const fileInput = e.target;
-                if (fileInput.files && fileInput.files[0]) {
-                  const reader = new FileReader();
+              <input
+                id="app_icon_input"
+                type="file"
+                name="stack_icon"
+                accept="image/png, image/jpeg, image/webp, image/avif, image/tiff"
+                required
+                onChange={async (e) => {
+                  const fileInput = e.target;
+                  if (fileInput.files && fileInput.files[0]) {
+                    const reader = new FileReader();
 
-                  reader.onload = (r) => {
-                    console.log(r);
-                  };
+                    reader.onload = (r) => {
+                      console.log(r);
+                    };
 
-                  reader.readAsDataURL(fileInput.files[0]);
-                }
-              }}
-            />
+                    reader.readAsDataURL(fileInput.files[0]);
+                  }
+                }}
+              />
 
-            <label
-              className="subtitle"
-              htmlFor="app_thumbnail_input"
-              style={{ marginBottom: ".4rem", paddingBottom: "0px" }}
-            >
-              *Thumbnail
-            </label>
+              <label
+                className="subtitle"
+                htmlFor="app_thumbnail_input"
+                style={{ marginBottom: ".4rem", paddingBottom: "0px" }}
+              >
+                Thumbnail
+              </label>
 
-            <input
-              type="file"
-              name="stack_thumbnail"
-              accept="image/png, image/jpeg, image/webp, image/avif, image/tiff"
-              id="app_thumbnail_input"
-              required
-              onChange={async (e) => {
-                const fileInput = e.target;
-                if (fileInput.files && fileInput.files[0]) {
-                  const reader = new FileReader();
+              <input
+                type="file"
+                name="stack_thumbnail"
+                accept="image/png, image/jpeg, image/webp, image/avif, image/tiff"
+                id="app_thumbnail_input"
+                required
+                onChange={async (e) => {
+                  const fileInput = e.target;
+                  if (fileInput.files && fileInput.files[0]) {
+                    const reader = new FileReader();
 
-                  reader.onload = (r) => {
-                    console.log(r);
-                  };
+                    reader.onload = (r) => {
+                      console.log(r);
+                    };
 
-                  reader.readAsDataURL(fileInput.files[0]);
-                }
-              }}
-            />
+                    reader.readAsDataURL(fileInput.files[0]);
+                  }
+                }}
+              />
+            </div>
 
-            { }
-
-            <input
-              type="url"
-              id="website_url"
-              name="website_url"
-              placeholder="URL"
-              style={{ marginTop: "20px" }}
-            />
+            <div style={{ marginBottom: "10px" }}>
+              <label htmlFor="website_url">App URL</label>
+              <input
+                type="url"
+                id="website_url"
+                name="website_url"
+                placeholder="https://----.com"
+              />
+            </div>
 
             <RepoSelect repoData={repoSelectList} />
 
@@ -175,7 +181,7 @@ export default function Form({
                   Create Stack
                 </button>
               )}
-              {loading && <div>Stacking...</div>}
+              {loading && <div className="lds-dual-ring"></div>}
             </div>
           </div>
         </div>

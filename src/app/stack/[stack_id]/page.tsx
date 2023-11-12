@@ -65,8 +65,8 @@ export default async function Page({ params }: { params: any }) {
     cookieStore.get("a_id") === undefined
       ? false
       : cookieStore.get("a_id")!.value !== stackDetails.aid
-        ? false
-        : true;
+      ? false
+      : true;
 
   return (
     <>
@@ -113,7 +113,7 @@ export default async function Page({ params }: { params: any }) {
 
                 <a
                   className="profile-container"
-                  href={creatorDetails?.username}
+                  href={`/profile/${creatorDetails?.username}`}
                 >
                   <img
                     src={
@@ -127,7 +127,9 @@ export default async function Page({ params }: { params: any }) {
 
                   <span>
                     <h5>
-                      <b>{creatorDetails?.first_name} {creatorDetails?.last_name}</b>
+                      <b>
+                        {creatorDetails?.first_name} {creatorDetails?.last_name}
+                      </b>
                     </h5>
                     <p
                       style={{
@@ -180,9 +182,7 @@ export default async function Page({ params }: { params: any }) {
       <section>
         <div className="card-container">
           <div className="card">
-            <p style={{ opacity: "0.4" }}>
-              DESCRIPTION
-            </p>
+            <p style={{ opacity: "0.4" }}>DESCRIPTION</p>
             <hr />
             <p>{stackDetails.description}</p>
           </div>
@@ -190,7 +190,10 @@ export default async function Page({ params }: { params: any }) {
       </section>
 
       <StackTechGrid stackDetails={stackDetails} />
-      <StackCommitLogs commitLogs={commitLogs} />
+      <StackCommitLogs
+        commitLogs={commitLogs}
+        repoName={stackDetails.github_repo_name}
+      />
     </>
   );
 }

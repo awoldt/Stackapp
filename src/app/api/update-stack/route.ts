@@ -2,12 +2,10 @@ import { IsValidAccountCookie, UploadImage } from "@/functions";
 import { accountsCollection, stacksCollection } from "@/services/mongodb";
 import { ObjectId } from "mongodb";
 import { cookies } from "next/headers";
-import {
-  UpdateProfileModel,
-  UserUpdateProfile,
-} from "../../../models/udpateProfile";
-import { storageBucket } from "../../../services/google-storage";
-import { UpadateStackModel, UpdatedStack } from "@/models/updateStack";
+
+import { UpadateStackModel, UpdatedStack } from "@/models/stacks";
+import { s3Client } from "@/services/aws";
+import { DeleteObjectCommand } from "@aws-sdk/client-s3";
 
 export async function POST(request: Request) {
   const cookieStore = cookies();
@@ -35,7 +33,7 @@ export async function POST(request: Request) {
     const stackName = form.get("stack_name");
     const stackDescription = form.get("stack_description");
     const websiteUrl = form.get("website_url");
-    const githubRepoID = form.get("github_repo_id");
+    const githubRepoData = form.get("github_repo_id");
     const stackIcon: any = form.get("stack_icon");
     const stackThumbnail: any = form.get("stack_thumbnail");
 
@@ -62,31 +60,38 @@ export async function POST(request: Request) {
         updateObj.website_url = String(websiteUrl);
       }
     }
-    if (githubRepoID !== null && githubRepoID !== "none") {
-      updateObj.github_repo_id = Number(githubRepoID);
+    if (githubRepoData !== null && githubRepoData !== "none") {
+      updateObj.github_repo_id = Number(String(githubRepoData).split(":")[0]);
+      updateObj.github_repo_name = String(githubRepoData).split(":")[1];
     }
     if (stackIcon.size !== 0) {
       const i = await UploadImage(stackIcon);
       if (i !== null) {
         updateObj.icon_filename = i;
-        updateObj.icon_url = `https://storage.googleapis.com/stackapp/uploads/${i}`;
+        updateObj.icon_url = `https://stackapp-bucket.s3.amazonaws.com/uploads/${i}`;
 
         // delete the old stack icon
-        await storageBucket
-          .file(`uploads/${stackDetails.icon_filename!}`)
-          .delete();
+        await s3Client.send(
+          new DeleteObjectCommand({
+            Bucket: "stackapp-bucket",
+            Key: `uploads/${stackDetails.icon_filename}`,
+          })
+        );
       }
     }
     if (stackThumbnail.size !== 0) {
       const i = await UploadImage(stackThumbnail);
       if (i !== null) {
         updateObj.thumbnail_filename = i;
-        updateObj.thumbnail_url = `https://storage.googleapis.com/stackapp/uploads/${i}`;
+        updateObj.thumbnail_url = `https://stackapp-bucket.s3.amazonaws.com/uploads/${i}`;
 
         // delete the old stack thumbnail
-        await storageBucket
-          .file(`uploads/${stackDetails.thumbnail_filename!}`)
-          .delete();
+        await s3Client.send(
+          new DeleteObjectCommand({
+            Bucket: "stackapp-bucket",
+            Key: `uploads/${stackDetails.thumbnail_filename}`,
+          })
+        );
       }
     }
 

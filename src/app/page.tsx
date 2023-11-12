@@ -42,7 +42,7 @@ export default async function Home() {
             </div>
 
             <h5 style={{ textAlign: "center", marginBottom: "14rem" }}>
-              Scroll to Explore Stack's Features.
+              Scroll to Explore Stack&apos;s Features.
             </h5>
 
             <div className="btn-container" style={{ marginBottom: "2rem" }}>

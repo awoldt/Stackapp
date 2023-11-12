@@ -62,7 +62,8 @@ export async function POST(request: Request) {
       );
     }
 
-    const githubRepoId = form.get("github_repo_id");
+    const githubRepoData = form.get("github_repo_id"); // contains name of repo AND id (split string at ':')
+    const websiteUrl = form.get("website_url");
 
     // construct stack model object
     const stackObj = StackModel.parse({
@@ -74,17 +75,21 @@ export async function POST(request: Request) {
       description: form.get("app_description"),
       frameworks_used: frameworksUsed.length === 0 ? null : frameworksUsed,
       github_repo_id:
-        githubRepoId === null || githubRepoId === "none"
+        githubRepoData === null || githubRepoData === "none"
           ? null
-          : Number(githubRepoId),
+          : Number(String(githubRepoData).split(":")[0]),
+      github_repo_name:
+        githubRepoData === null || githubRepoData === "none"
+          ? null
+          : String(githubRepoData).split(":")[1],
       icon_filename: uploadedIcon,
-      icon_url: `https://storage.googleapis.com/stackapp/uploads/${uploadedIcon}`,
+      icon_url: `https://stackapp-bucket.s3.amazonaws.com/uploads/${uploadedIcon}`,
       languages_used: languagesUsed,
       likes: 0,
       name: form.get("app_name"),
       thumbnail_filename: uploadedThumbnail,
-      thumbnail_url: `https://storage.googleapis.com/stackapp/uploads/${uploadedThumbnail}`,
-      website_url: null,
+      thumbnail_url: `https://stackapp-bucket.s3.amazonaws.com/uploads/${uploadedThumbnail}`,
+      website_url: websiteUrl === "" ? null : websiteUrl,
     });
 
     const doc = await stacksCollection.insertOne(stackObj);

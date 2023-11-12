@@ -8,6 +8,7 @@ const TechModel = z.object({
   frameworks: z.array(z.string().trim()),
 });
 
+// ALL TECH USER CAN SHOWCASE FOR THEIR STACKS
 export const TechOffered = TechModel.parse({
   languages: [
     "JavaScript",

@@ -15,3 +15,11 @@ export const ProfileModel = z.object({
   profile_pic_filename: z.string().trim().nullable(),
   username: z.string().trim(),
 });
+
+export type UserUpdateProfile = z.infer<typeof UpdateProfileModel>;
+
+export const UpdateProfileModel = z.object({
+  bio: z.optional(z.string().trim().nullable()),
+  profile_pic: z.optional(z.string().trim().nullable()),
+  profile_pic_filename: z.optional(z.string().trim().nullable()),
+});

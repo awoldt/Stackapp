@@ -1,8 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import {
+  GenerateEditStackTechCheckboxs,
   GetGitHubRepoSelectData,
   IsValidAccountCookie,
   RepoSelectList,
+  UserSelectedTech,
 } from "@/functions";
 import { notFound, redirect } from "next/navigation";
 import { cookies } from "next/headers";
@@ -33,6 +35,8 @@ export default async function Edit({ params }: { params: any }) {
     notFound();
   }
 
+  console.log(stackDetails);
+
   // make sure signed in user actually owns stack
   if (stackDetails.aid !== String(account._id)) {
     redirect(`/stack/${stackID}`);
@@ -47,6 +51,14 @@ export default async function Edit({ params }: { params: any }) {
       String(account._id)
     );
   }
+
+  const stackCheckboxs = GenerateEditStackTechCheckboxs({
+    languages: stackDetails.languages_used,
+    databases: stackDetails.databases_used,
+    apis: stackDetails.apis_used,
+    clouds: stackDetails.clouds_used,
+    frameworks: stackDetails.frameworks_used,
+  });
 
   return (
     <>
@@ -65,6 +77,7 @@ export default async function Edit({ params }: { params: any }) {
         stackDetails={stackDetails}
         stackID={String(stackDetails._id)}
         repoSelectData={repoSelect}
+        editStackCheckboxs={stackCheckboxs}
       />
     </>
   );

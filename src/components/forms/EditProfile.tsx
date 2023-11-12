@@ -5,22 +5,19 @@ import { UserProfile } from "@/models/profile";
 import { FormEvent, useRef, useState } from "react";
 
 export default function Form({ user }: { user: UserProfile }) {
-  const [firstName, setFirstName] = useState<string>(user.first_name);
-  const [lastName, setLastName] = useState<string>(user.last_name);
-  const [bio, setBio] = useState<string>(
-    user.bio === null ? "No bio yet" : user.bio
-  );
   const [profileImgSrc, setProfileImgSrc] = useState(
     user.profile_pic_filename === null
       ? "/imgs/icons/noprofile.png"
       : user.profile_pic_filename
   );
+  const [loading, setLoading] = useState(false);
 
   const formRef = useRef<HTMLFormElement>(null);
 
   async function FormSubmit(e: FormEvent<HTMLFormElement>) {
     try {
       e.preventDefault();
+      setLoading(true);
 
       const req = await fetch("/api/update-profile", {
         method: "POST",
@@ -28,9 +25,11 @@ export default function Form({ user }: { user: UserProfile }) {
       });
       if (req.ok) {
         alert("Profile successfully updated");
+        setLoading(false);
       }
     } catch (e) {
       alert("Error while submitting form");
+      setLoading(false);
     }
   }
 
@@ -75,36 +74,13 @@ export default function Form({ user }: { user: UserProfile }) {
         }}
       />
 
-      <input
-        type="text"
-        defaultValue={user.first_name}
-        name="fname"
-        placeholder="*First Name"
-        required
-        onChange={(e) => {
-          setFirstName(e.target.value);
-        }}
-      />
-
-      <input
-        type="text"
-        defaultValue={user.last_name}
-        name="lname"
-        placeholder="*Last Name"
-        required
-        onChange={(e) => {
-          setLastName(e.target.value);
-        }}
-      />
-
       <div>
+        <label htmlFor="user_bio">Bio</label>
         <textarea
           defaultValue={user.bio === null ? "" : user.bio}
           placeholder="Bio"
-          onChange={(e) => {
-            setBio(e.target.value);
-          }}
           name="bio_input"
+          id="user_bio"
         />
       </div>
 
@@ -145,6 +121,22 @@ export default function Form({ user }: { user: UserProfile }) {
 
       <br />
       <br />
+
+      <br />
+      <br />
+
+      {!loading && (
+        <button className="btn" type="submit">
+          Update Profile
+        </button>
+      )}
+      {loading && <div className="lds-dual-ring"></div>}
+
+      <br />
+      <br />
+      <br />
+      <br />
+
       <button
         className="btn"
         type="button"
@@ -156,9 +148,9 @@ export default function Form({ user }: { user: UserProfile }) {
       >
         Sign Out
       </button>
+      <br />
+      <br />
 
-      <br />
-      <br />
       <button
         className="btn"
         type="button"
@@ -199,12 +191,14 @@ export default function Form({ user }: { user: UserProfile }) {
           }
         }}
       >
+        <img
+          src="/imgs/icons/delete.svg"
+          className="white-svg"
+          alt="delete icon"
+          width={15}
+          height={15}
+        />{" "}
         Delete Account
-      </button>
-      <br />
-      <br />
-      <button className="btn" type="submit">
-        Update Profile
       </button>
     </form>
   );

@@ -1,6 +1,7 @@
 import { IsValidAccountCookie } from "@/functions";
-import { storageBucket } from "@/services/google-storage";
+import { s3Client } from "@/services/aws";
 import { accountsCollection, stacksCollection } from "@/services/mongodb";
+import { DeleteObjectCommand } from "@aws-sdk/client-s3";
 import { ObjectId } from "mongodb";
 import { cookies } from "next/headers";
 
@@ -23,13 +24,19 @@ export async function GET(request: Request) {
     if (userStacks.length > 0) {
       for (let i = 0; i < userStacks.length; i++) {
         // delete stack icon
-        await storageBucket
-          .file(`uploads/${userStacks[i].icon_filename}`)
-          .delete();
+        await s3Client.send(
+          new DeleteObjectCommand({
+            Bucket: "stackapp-bucket",
+            Key: `uploads/${userStacks[i].icon_filename}`,
+          })
+        );
         // delete stack thumbnail
-        await storageBucket
-          .file(`uploads/${userStacks[i].thumbnail_filename}`)
-          .delete();
+        await s3Client.send(
+          new DeleteObjectCommand({
+            Bucket: "stackapp-bucket",
+            Key: `uploads/${userStacks[i].thumbnail_filename}`,
+          })
+        );
 
         // now delete stack
         await stacksCollection.deleteOne({
@@ -39,7 +46,12 @@ export async function GET(request: Request) {
     }
 
     // now delete account along with profile img
-    await storageBucket.file(`uploads/${account.profile_pic}`).delete();
+    await s3Client.send(
+      new DeleteObjectCommand({
+        Bucket: "stackapp-bucket",
+        Key: `uploads/${account.profile_pic}`,
+      })
+    );
     await accountsCollection.deleteOne({ _id: new ObjectId(account._id) });
 
     return Response.json(

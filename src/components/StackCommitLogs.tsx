@@ -2,8 +2,10 @@ import { RepoCommitLogs } from "@/functions";
 
 export default function CommitLogs({
   commitLogs,
+  repoName,
 }: {
   commitLogs: null | "error" | RepoCommitLogs[] | "too_many_requests";
+  repoName: string | null;
 }) {
   return (
     <>
@@ -18,6 +20,11 @@ export default function CommitLogs({
               >
                 Commit history towards the development of this tech Stack.
               </p>
+              <span style={{ fontSize: "50px" }}>
+                <b>
+                  <i>{repoName}</i>
+                </b>
+              </span>
               {commitLogs.map((x: RepoCommitLogs) => {
                 return (
                   <>
