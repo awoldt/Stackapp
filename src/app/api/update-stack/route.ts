@@ -95,6 +95,54 @@ export async function POST(request: Request) {
       }
     }
 
+    // languages
+    const languagesUsed: any[] = [];
+    for (const x of form) {
+      if (x[0] === "languages_used") {
+        languagesUsed.push(x[1]);
+      }
+    }
+
+    updateObj.languages_used = languagesUsed;
+
+    // databases
+    const databasesUsed: any[] = [];
+    for (const x of form) {
+      if (x[0] === "databases_used") {
+        databasesUsed.push(x[1]);
+      }
+    }
+    updateObj.databases_used =
+      databasesUsed.length === 0 ? null : databasesUsed;
+
+    // apis
+    const apisUsed: any[] = [];
+    for (const x of form) {
+      if (x[0] === "apis_used") {
+        apisUsed.push(x[1]);
+      }
+    }
+    updateObj.apis_used = apisUsed.length === 0 ? null : apisUsed;
+
+    // clouds
+    const cloudsUsed: any[] = [];
+    for (const x of form) {
+      if (x[0] === "clouds_used") {
+        cloudsUsed.push(x[1]);
+      }
+    }
+    updateObj.apis_used = apisUsed.length === 0 ? null : cloudsUsed;
+
+    // frameworks
+    const frameworksUsed: any[] = [];
+    for (const x of form) {
+      if (x[0] === "frameworks_used") {
+        frameworksUsed.push(x[1]);
+      }
+    }
+    updateObj.frameworks_used =
+      frameworksUsed.length === 0 ? null : frameworksUsed;
+
     const FINAL_UPDATE_OBJ = UpadateStackModel.parse(updateObj);
     await stacksCollection.updateOne(
       { _id: new ObjectId(String(stackID)) },
