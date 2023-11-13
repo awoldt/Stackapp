@@ -10,8 +10,6 @@ export async function POST() {
   const cookieStore = cookies();
   const account = await IsValidAccountCookie(cookieStore.get("a_id"));
 
-  console.log(account);
-
   if (!account) {
     return Response.json(
       {

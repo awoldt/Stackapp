@@ -35,8 +35,6 @@ export default async function Edit({ params }: { params: any }) {
     notFound();
   }
 
-  console.log(stackDetails);
-
   // make sure signed in user actually owns stack
   if (stackDetails.aid !== String(account._id)) {
     redirect(`/stack/${stackID}`);

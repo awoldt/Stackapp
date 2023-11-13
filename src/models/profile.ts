@@ -19,6 +19,11 @@ export const ProfileModel = z.object({
 
 export type UserUpdateProfile = z.infer<typeof UpdateProfileModel>;
 
+// this object represents the object that is used to update the profile data in database
+// this is serperate from regular profile obj as some of the fields are not included when user upadates profile
+// for example, created_on is only required when account is created, it is not needed for updating profile
+// using the old profile model would throw error if user attempted to update profile cause some properties would not be present
+
 export const UpdateProfileModel = z.object({
   bio: z.optional(z.string().trim().nullable()),
   profile_pic: z.optional(z.string().trim().nullable()),

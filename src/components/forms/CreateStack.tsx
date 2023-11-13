@@ -123,9 +123,7 @@ export default function Form({
                   if (fileInput.files && fileInput.files[0]) {
                     const reader = new FileReader();
 
-                    reader.onload = (r) => {
-                      console.log(r);
-                    };
+                    reader.onload = (r) => {};
 
                     reader.readAsDataURL(fileInput.files[0]);
                   }
@@ -151,9 +149,7 @@ export default function Form({
                   if (fileInput.files && fileInput.files[0]) {
                     const reader = new FileReader();
 
-                    reader.onload = (r) => {
-                      console.log(r);
-                    };
+                    reader.onload = (r) => {};
 
                     reader.readAsDataURL(fileInput.files[0]);
                   }

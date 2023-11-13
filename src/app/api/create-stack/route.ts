@@ -13,8 +13,6 @@ export async function POST(request: Request) {
   try {
     const form = await request.formData();
 
-    console.log(form);
-
     const icon = form.get("stack_icon") as Blob | null;
     const thumbnail = form.get("stack_thumbnail") as Blob | null;
     const uploadedIcon = await UploadImage(icon);
@@ -103,7 +101,6 @@ export async function POST(request: Request) {
     );
   } catch (err) {
     console.log(err);
-    console.log("There was an error while parsing the request body");
     return Response.json(
       {
         message: "There was an error while creating a Stack. Try again later.",

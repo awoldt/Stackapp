@@ -16,7 +16,6 @@ export async function POST(request: Request) {
   }
 
   const form = await request.formData();
-  console.log(form);
 
   let bio = form.get("bio_input");
   if (bio === "") {

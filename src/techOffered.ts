@@ -19,8 +19,8 @@ export const TechOffered = TechModel.parse({
     "Rust",
     "Python",
   ].sort(),
-  databases: ["MongoDB", "Postgres"].sort(),
-  apis: ["Spotify", "Stripe"].sort(),
+  databases: ["MongoDB", "Postgres", "Mysql"].sort(),
+  apis: ["Spotify", "Stripe", "Notion", "Slack"].sort(),
   clouds: ["Google Cloud Platform", "AWS"].sort(),
   frameworks: ["Nextjs", "Larvel"].sort(),
 });

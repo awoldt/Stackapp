@@ -13,8 +13,6 @@ export async function POST(request: Request) {
     reqBody.username_lowercase = reqBody.username; // zod will auto lowercase this string
     const body = ProfileModel.parse(reqBody);
 
-    console.log(body);
-
     // 1. make sure email and username are not already in use
     const accountsInUse = await accountsCollection.findOne({
       $or: [
@@ -77,7 +75,6 @@ export async function POST(request: Request) {
     );
   } catch (err) {
     console.log(err);
-    console.log("There was an error while parsing the request body");
     return Response.json(
       { message: "There was an error while parsing the request body" },
       { status: 500 }

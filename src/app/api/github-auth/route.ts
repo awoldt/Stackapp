@@ -82,7 +82,6 @@ export async function GET(request: Request) {
     }
   } catch (err) {
     console.log(err);
-    console.log("There was an error while authenticating github account");
     return Response.json({ message: "error" }, { status: 500 });
   }
 }

@@ -17,7 +17,6 @@ export async function POST(request: Request) {
     }
 
     const form = await request.formData();
-    console.log(form);
 
     const stackID = form.get("stack_id");
 

@@ -1,8 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import { accountsCollection, stacksCollection } from "@/services/mongodb";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import CustomNav from "../../../components/CustomNav";
 import { Metadata } from "next";
+import { IsValidAccountCookie } from "@/functions";
+import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
   title: "Create a Stack",
@@ -27,12 +29,20 @@ export const metadata: Metadata = {
 };
 
 export default async function ProfilePage({ params }: { params: any }) {
-  console.log(params);
-
   const username = params.profile_username;
+  const cookieStore = cookies();
 
   // see if username exists
-  const profile = await accountsCollection.findOne({ username: username });
+  const profile = await accountsCollection.findOne({
+    username_lowercase: username.toLowerCase(),
+  });
+
+  // if profile is currently signed in user, redirect
+  const account = await IsValidAccountCookie(cookieStore.get("a_id"));
+  if (account !== false && String(account._id) === String(profile?._id)) {
+    redirect("/profile");
+  }
+
   // get users stacks
   const userStacks = await stacksCollection
     .find({ aid: String(profile?._id) })

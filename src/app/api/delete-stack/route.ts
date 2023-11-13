@@ -69,7 +69,6 @@ export async function GET(request: Request) {
     );
   } catch (err) {
     console.log(err);
-    console.log("There was an error while parsing the request body");
     return Response.json(
       { message: "There was an error while deleting account" },
       { status: 500 }
