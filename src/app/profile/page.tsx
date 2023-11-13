@@ -5,7 +5,6 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import SideNav from "../../components/CustomNav";
 import { stacksCollection } from "@/services/mongodb";
-import { Stack } from "@/models/stacks";
 
 export const metadata: Metadata = {
   title: null,
@@ -21,6 +20,7 @@ export default async function Page() {
   const account: any = await IsValidAccountCookie(cookieStore.get("a_id"));
   const userStacks = await stacksCollection
     .find({ aid: String(account._id) })
+    .limit(10)
     .sort({ created_on: -1 })
     .toArray();
 
@@ -148,7 +148,12 @@ export default async function Page() {
                     Stacks
                   </h2>
                   <span className="subtitle">
-                    {userStacks.length} Stacks
+                    {userStacks.length !== 10 && (
+                      <>{userStacks.length} Stacks</>
+                    )}
+                    {userStacks.length === 10 && (
+                      <>Showing the 10 most recent stacks</>
+                    )}
                     <br />
                   </span>
 
