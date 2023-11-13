@@ -6,12 +6,21 @@ import {
   RepoSelectList,
   UserSelectedTech,
 } from "@/functions";
+import { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { stacksCollection } from "@/services/mongodb";
 import { ObjectId } from "mongodb";
 import CustomNav from "../../../../components/CustomNav";
 import EditStackForm from "../../../../components/forms/EditStack";
+
+export const metadata: Metadata = {
+  title: "Edit Stack | Stack",
+  description: "Edit your stack by selecting the programming language you used to make your app. You can select others features such as Databases, APIs, Frameworks, and more.",
+  alternates: {
+    canonical: "https://stackapp.xyz/signup",
+  },
+};
 
 export default async function Edit({ params }: { params: any }) {
   const cookieStore = cookies();

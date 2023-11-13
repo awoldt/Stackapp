@@ -6,7 +6,7 @@ export default function Select({
   repoData: RepoSelectList[] | null | "must_connect_github_account" | "error";
 }) {
   return (
-    <div style={{ marginTop: "0px", marginBottom: "20px" }}>
+    <div>
       {repoData === "must_connect_github_account" && (
         <p>
           <b>
@@ -22,17 +22,18 @@ export default function Select({
       )}
       {repoData === null && (
         <p>
-          <b>No repo data available.</b>
+          <b>No repo data available or all repos are associated with other Stacks.</b>
+          <br />
+          <br />
         </p>
       )}
       {Array.isArray(repoData) && repoData.length > 0 && (
         <>
-          <label style={{ marginBottom: "0px" }} htmlFor="github_repo_select">
-            <img src="/imgs/icons/github.svg" alt="github icon" />
-            <span style={{ marginLeft: "5px" }}>Select GitHub repository</span>
+          <label style={{ padding: "0" }} htmlFor="github_repo_select">
+            <span> GitHub Repository</span>
           </label>
           <select name="github_repo_id" id="github_repo_select">
-            <option value="none"></option>
+            <option value="">Select a Repo</option>
             {repoData.map((x: RepoSelectList, index: number) => {
               return (
                 <option key={index} value={`${x.id}:${x.name}`}>

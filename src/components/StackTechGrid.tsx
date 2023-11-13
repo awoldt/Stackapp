@@ -23,8 +23,8 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
                       <span>
                         <p
                           style={{
-                            paddingTop: "14px",
                             textAlign: "center",
+                            fontSize: "14px"
                           }}
                         >
                           {x}
@@ -58,8 +58,8 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
                           <span>
                             <p
                               style={{
-                                paddingTop: "14px",
                                 textAlign: "center",
+                                fontSize: "14px"
                               }}
                             >
                               {x}
@@ -94,8 +94,8 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
                         <span>
                           <p
                             style={{
-                              paddingTop: "14px",
                               textAlign: "center",
+                              fontSize: "14px"
                             }}
                           >
                             {x}
@@ -130,8 +130,8 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
                           <span>
                             <p
                               style={{
-                                paddingTop: "14px",
                                 textAlign: "center",
+                                fontSize: "14px"
                               }}
                             >
                               {x}
@@ -166,8 +166,8 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
                         <span>
                           <p
                             style={{
-                              paddingTop: "14px",
                               textAlign: "center",
+                              fontSize: "14px"
                             }}
                           >
                             {x}

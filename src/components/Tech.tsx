@@ -13,7 +13,6 @@ export default function Tech() {
           style={{ display: "inline" }}
         />
         <h5
-          className="subtitle"
           style={{ display: "inline", marginTop: "10px" }}
         >
           Select all Languages used in your tech stack.
@@ -39,7 +38,7 @@ export default function Tech() {
           height={15}
           style={{ display: "inline" }}
         />
-        <h5 className="subtitle" style={{ display: "inline" }}>
+        <h5 style={{ display: "inline" }}>
           Select all Databases used in your tech stack.
         </h5>
         {TechOffered.databases!.map((x) => {
@@ -63,7 +62,7 @@ export default function Tech() {
           height={15}
           style={{ display: "inline" }}
         />
-        <h5 className="subtitle" style={{ display: "inline" }}>
+        <h5 style={{ display: "inline" }}>
           Select all APIs used in your tech stack.
         </h5>
         {TechOffered.apis!.map((x) => {
@@ -87,7 +86,7 @@ export default function Tech() {
           height={15}
           style={{ display: "inline" }}
         />
-        <h5 className="subtitle" style={{ display: "inline" }}>
+        <h5 style={{ display: "inline" }}>
           Select all Cloud Deployment Services used in your tech stack.
         </h5>
         {TechOffered.clouds!.map((x) => {
@@ -111,7 +110,7 @@ export default function Tech() {
           height={15}
           style={{ display: "inline" }}
         />
-        <h5 className="subtitle" style={{ display: "inline" }}>
+        <h5 style={{ display: "inline" }}>
           Select all Frameworks used in your tech stack.
         </h5>
         {TechOffered.frameworks!.map((x) => {
