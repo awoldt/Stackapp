@@ -16,10 +16,10 @@ export default function Edit({
   stackDetails: Stack;
   stackID: string;
   repoSelectData:
-    | "error"
-    | RepoSelectList[]
-    | "must_connect_github_account"
-    | null;
+  | "error"
+  | RepoSelectList[]
+  | "must_connect_github_account"
+  | null;
   editStackCheckboxs: EditStackTechCheckboxs;
 }) {
   const [iconImgSrc, setIconImgSrc] = useState(stackDetails.icon_url);
@@ -61,42 +61,38 @@ export default function Edit({
     >
       <div className="card-container">
         <div className="create-content">
-          <div style={{ marginBottom: "20px" }}>
-            <label htmlFor="app_title" style={{ width: "100%", padding: "0" }}>
-              App name
+          <div>
+            <label htmlFor="app_title" style={{ padding: "0" }}>
+              *App Name
             </label>
             <input
               type="text"
               id="app_title"
               name="stack_name"
-              style={{ marginBottom: "0px" }}
               defaultValue={stackDetails.name}
-              placeholder="*Title"
               required
             />
           </div>
 
-          <div style={{ marginBottom: "20px" }}>
+          <div>
             <label
               htmlFor="app_description"
-              style={{ width: "100%", padding: "0" }}
+              style={{ padding: "0" }}
             >
-              App description
+              *App Description
             </label>
             <textarea
               name="stack_description"
-              placeholder="*Description"
               cols={44}
               rows={10}
-              style={{ marginBottom: "0" }}
               required
               defaultValue={stackDetails.description}
               id="app_description"
             />
           </div>
 
-          <div style={{ marginBottom: "50px" }}>
-            <label htmlFor="stack_icon_input">Icon</label>
+          <div style={{ marginBottom: "20px" }}>
+            <label style={{ padding: "0" }} htmlFor="stack_icon_input">*Icon</label>
             <img
               src={iconImgSrc}
               style={{
@@ -126,14 +122,14 @@ export default function Edit({
             />
           </div>
 
-          <div style={{ marginBottom: "50px" }}>
-            <label htmlFor="stack_thumbnail_input">Thumbnail</label>
+          <div style={{ marginBottom: "10px" }}>
+            <label style={{ padding: "0" }} htmlFor="stack_thumbnail_input">*Thumbnail</label>
             <img
               src={thumbnailImgSrc}
               style={{
                 width: "100%",
                 display: "block",
-                marginBottom: ".4rem",
+                marginBottom: "20px",
                 paddingBottom: "0px",
                 borderRadius: "4px",
                 boxShadow: "0px 2px 10px 2px rgba(0, 0, 0, 0.025)",
@@ -162,15 +158,8 @@ export default function Edit({
             />
           </div>
 
-          {stackDetails.github_repo_name !== null && (
-            <span>
-              Currently have <i>{stackDetails.github_repo_name}</i> selected
-            </span>
-          )}
-          <RepoSelect repoData={repoSelectData} />
-
-          <div style={{ marginBottom: "20px" }}>
-            <label htmlFor="website_url">App URL</label>
+          <div>
+            <label style={{ padding: "0" }} htmlFor="website_url">App URL</label>
             <input
               type="url"
               id="website_url"
@@ -180,58 +169,14 @@ export default function Edit({
             />
           </div>
 
+          {stackDetails.github_repo_name !== null && (
+            <span>
+              <i>{stackDetails.github_repo_name}</i> is currently associated with this Stack.
+            </span>
+          )}
+          <RepoSelect repoData={repoSelectData} />
+
           <StackCheckboxs stackData={editStackCheckboxs} />
-
-          {/* <p className="subtitle">
-          <br />
-          <img
-            src="/icons/delete.svg"
-            alt="delete logo"
-            width={20}
-            height={15}
-          />
-          This action is irreversible, Stacks are not recoverable.
-        </p> */}
-
-          {!loading && (
-            <div
-              className="card-container"
-              style={{
-                paddingBottom: "0px",
-                marginBottom: "0px",
-              }}
-            >
-              <button
-                className="btn"
-                type="submit"
-                style={{
-                  width: "100%",
-                  marginBottom: "0px",
-                }}
-              >
-                {/* <img
-                        src="/icons/update.svg"
-                        className="white-svg"
-                        alt="update logo"
-                        width={15}
-                        height={15}
-                      />{" "} */}
-                Update Stack
-              </button>
-            </div>
-          )}
-
-          {loading && (
-            <div
-              className="card-container"
-              style={{
-                paddingBottom: "0px",
-                marginBottom: "0px",
-              }}
-            >
-              <div className="lds-dual-ring"></div>
-            </div>
-          )}
 
           {!deleteStackLoading && (
             <button
@@ -239,8 +184,7 @@ export default function Edit({
               className="btn"
               id="delete_stack_btn"
               style={{
-                marginTop: "50px",
-                marginBottom: "1rem",
+                marginBottom: "40px",
               }}
               onClick={async () => {
                 try {
@@ -260,17 +204,42 @@ export default function Edit({
                 }
               }}
             >
-              <img
-                src="/imgs/icons/delete.svg"
-                className="white-svg"
-                alt="delete icon"
-                width={15}
-                height={15}
-              />{" "}
               Delete Stack
             </button>
           )}
           {deleteStackLoading && <div className="lds-dual-ring"></div>}
+
+          {!loading && (
+            <div
+              className="card-container"
+              style={{
+                paddingBottom: "0px",
+                marginBottom: "0px",
+              }}
+            >
+              <button
+                className="btn"
+                type="submit"
+                style={{
+                  marginBottom: "0px",
+                }}
+              >
+                Update Stack
+              </button>
+            </div>
+          )}
+
+          {loading && (
+            <div
+              className="card-container"
+              style={{
+                paddingBottom: "0px",
+                marginBottom: "0px",
+              }}
+            >
+              <div className="lds-dual-ring"></div>
+            </div>
+          )}
         </div>
       </div>
     </form>

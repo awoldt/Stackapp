@@ -5,9 +5,9 @@ import { GetGitHubRepoSelectData, IsValidAccountCookie } from "@/functions";
 import SideNav from "../../components/CustomNav";
 
 export const metadata: Metadata = {
-  title: "Create a Stack",
+  title: "Create a Stack | Stack",
   description:
-    "Create you first stack by choosing the programming language you used to make the app. Then you can select others features such as databases, apis, frameworks, and more.",
+    "Create you first stack by selecting the programming language you used to make your app. You can select others features such as Databases, APIs, Frameworks, and more.",
   alternates: {
     canonical: "https://stackapp.xyz/create",
   },
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     url: "https://stackapp.xyz/create",
     title: "Create a Tech Stack Visualization",
     description:
-      "Showcase how you built your app and the technology that went into building it",
+      "Showcase how you built your app and the technology that went into building it.",
     siteName: "Stack",
     images: [
       {
@@ -32,7 +32,7 @@ export default async function Page() {
   const account = await IsValidAccountCookie(cookieStore.get("a_id"));
 
   if (account === false) {
-    return <p>You must be signed in to create a stack</p>;
+    return <p>You must be signed in to create Stacks.</p>;
   } else {
     // if github access token is not null
     // fetch repo select data

@@ -79,8 +79,8 @@ export default function Form({
       >
         <div className="card-container">
           <div className="create-content">
-            <div style={{ marginBottom: "10px" }}>
-              <label htmlFor="app_title">App name</label>
+            <div>
+              <label style={{ padding: "0"}} htmlFor="app_title">*App Name</label>
               <input
                 type="text"
                 id="app_title"
@@ -90,8 +90,8 @@ export default function Form({
               />
             </div>
 
-            <div style={{ marginBottom: "25px" }}>
-              <label htmlFor="app_description_input">App description</label>
+            <div style={{ marginBottom: "10px" }}>
+              <label style={{ padding: "0"}} htmlFor="app_description_input">*App Description</label>
               <textarea
                 name="app_description"
                 id="app_description_input"
@@ -103,13 +103,12 @@ export default function Form({
               />
             </div>
 
-            <div style={{ marginBottom: "25px" }}>
+            <div style={{ marginBottom: "20px" }}>
               <label
-                className="subtitle"
                 htmlFor="app_icon_input"
-                style={{ marginBottom: ".4rem", paddingBottom: "0px" }}
+                style={{ padding: "0"}}
               >
-                Icon
+                *Icon
               </label>
 
               <input
@@ -117,6 +116,7 @@ export default function Form({
                 type="file"
                 name="stack_icon"
                 accept="image/png, image/jpeg, image/webp, image/avif, image/tiff"
+                style={{ marginBottom: "20px", paddingBottom: "0px" }}
                 required
                 onChange={async (e) => {
                   const fileInput = e.target;
@@ -133,11 +133,10 @@ export default function Form({
               />
 
               <label
-                className="subtitle"
                 htmlFor="app_thumbnail_input"
-                style={{ marginBottom: ".4rem", paddingBottom: "0px" }}
+                style={{ padding: "0"}}
               >
-                Thumbnail
+                *Thumbnail
               </label>
 
               <input
@@ -161,13 +160,13 @@ export default function Form({
               />
             </div>
 
-            <div style={{ marginBottom: "10px" }}>
-              <label htmlFor="website_url">App URL</label>
+            <div>
+              <label style={{ padding: "0"}} htmlFor="website_url">App URL</label>
               <input
                 type="url"
                 id="website_url"
                 name="website_url"
-                placeholder="https://----.com"
+                placeholder="https://example.com"
               />
             </div>
 

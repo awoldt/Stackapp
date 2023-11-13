@@ -24,7 +24,7 @@ export default async function Page() {
     .sort({ created_on: -1 })
     .toArray();
 
-  metadata.title = `@${account.username} | Profile`;
+  metadata.title = `@${account.username} | Stack`;
 
   if (account === false) {
     redirect("/signup");
@@ -81,7 +81,7 @@ export default async function Page() {
                       <div
                         style={{
                           marginTop: "40px",
-                          marginBottom: "20px",
+                          marginBottom: "40px",
                         }}
                       >
                         <a
@@ -105,7 +105,7 @@ export default async function Page() {
                 <div
                   className="card-container"
                   style={{
-                    paddingTop: "0px",
+                    paddingTop: "10px",
                     paddingBottom: "40px",
                   }}
                 >
@@ -117,12 +117,13 @@ export default async function Page() {
                     }}
                   >
                     <h2>Stacks</h2>
-                    <span className="subtitle">
+                    <span>
                       0 Stacks
                       <br />
                       <br />
                     </span>
-                    <a href={"/create"} className="btn-create">
+                    <br />
+                    <a href={"/create"} className="btn">
                       Create Stack
                     </a>
                   </div>
@@ -139,20 +140,14 @@ export default async function Page() {
               >
                 <div className="card" style={{ textAlign: "center" }}>
                   <h2>
-                    {/* <img
-                          src="/icons/stack.svg"
-                          alt="globe icon"
-                          width={25}
-                          height={25}
-                        />{" "} */}
                     Stacks
                   </h2>
                   <span className="subtitle">
                     {userStacks.length !== 10 && (
-                      <>{userStacks.length} Stacks</>
+                      <><>{userStacks.length} Stacks</><br /></>
                     )}
                     {userStacks.length === 10 && (
-                      <>Showing the 10 most recent stacks</>
+                      <><>Showing your 10 most recent Stacks</><br /></>
                     )}
                     <br />
                   </span>
@@ -169,7 +164,7 @@ export default async function Page() {
                             />
                           </div>
                         </div>
-                        <span className="bold">{x.name}</span>
+                        <h4><b>{x.name}</b></h4>
                       </a>
                     );
                   })}

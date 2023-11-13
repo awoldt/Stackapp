@@ -79,8 +79,8 @@ export default async function Page({ params }: { params: any }) {
     cookieStore.get("a_id") === undefined
       ? false
       : cookieStore.get("a_id")!.value !== stackDetails.aid
-      ? false
-      : true;
+        ? false
+        : true;
 
   metadata.title = `${stackDetails.name} Tech Stack Visualized | Stack`;
   metadata.description = `See the technology that went into building ${stackDetails.name}, including programming languages, databases, frameworks, and more`;
@@ -119,12 +119,11 @@ export default async function Page({ params }: { params: any }) {
                 <h1>{`${stackDetails.name}`}</h1>
 
                 {stackDetails.website_url !== null && (
-                  <div style={{ marginBottom: "10px" }}>
+                  <div style={{ marginTop: "10px", marginBottom: "20px" }}>
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
                       href={stackDetails.website_url}
-                      className="subtitle"
                       style={{ padding: "0px" }}
                     >
                       {new URL(stackDetails.website_url).hostname}
@@ -132,15 +131,15 @@ export default async function Page({ params }: { params: any }) {
                   </div>
                 )}
 
-                <p
+                {/* <p
                   style={{
-                    fontSize: "16px",
-                    opacity: "0.85",
+                    fontSize: "14px",
+                    opacity: "0.8",
                     marginBottom: "1rem",
                   }}
                 >
                   {stackDetails.created_on.toDateString()}
-                </p>
+                </p> */}
 
                 <a
                   className="profile-container"
@@ -157,15 +156,12 @@ export default async function Page({ params }: { params: any }) {
                   />
 
                   <span>
-                    <h5>
-                      <b>
-                        {creatorDetails?.first_name} {creatorDetails?.last_name}
-                      </b>
+                    <h5 style={{ fontWeight: 800 }}>
+                      {creatorDetails?.first_name} {creatorDetails?.last_name}
                     </h5>
                     <p
                       style={{
-                        fontSize: "16px",
-                        opacity: "0.85",
+                        opacity: "0.8",
                       }}
                     >
                       @{creatorDetails?.username}

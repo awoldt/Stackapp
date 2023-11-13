@@ -6,8 +6,8 @@ import { IsValidAccountCookie } from "@/functions";
 import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
-  title: "Sign in",
-  description: "Sign into your Stack Account",
+  title: "Sign In | Stack",
+  description: "Sign In to your Stack Account.",
   alternates: {
     canonical: "https://stackapp.xyz/signin",
   },
