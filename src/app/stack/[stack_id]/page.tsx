@@ -14,14 +14,28 @@ import StackCommitLogs from "../../../components/StackCommitLogs";
 import SideNav from "../../../components/CustomNav";
 
 export const metadata: Metadata = {
-  title: "[STACKNAME] | Stack",
-  description: " ",
-
+  title: null,
+  description: null,
   alternates: {
-    canonical: " ",
+    canonical: null,
+  },
+  openGraph: {
+    type: "website",
+    url: "",
+    title: "",
+    description: "",
+    siteName: "Stack",
+    images: [
+      {
+        url: "",
+      },
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
-
 export default async function Page({ params }: { params: any }) {
   const cookieStore = cookies();
 
@@ -67,6 +81,23 @@ export default async function Page({ params }: { params: any }) {
       : cookieStore.get("a_id")!.value !== stackDetails.aid
       ? false
       : true;
+
+  metadata.title = `${stackDetails.name} Tech Stack Visualized | Stack`;
+  metadata.description = `See the technology that went into building ${stackDetails.name}, including programming languages, databases, frameworks, and more`;
+  metadata.alternates!.canonical = `https://stackapp.xyz/stack/${String(
+    stackDetails._id
+  )}`;
+  metadata.openGraph!.title = `${stackDetails.name} Tech Stack Visualized`;
+  metadata.openGraph!.description = `See the technology that went into building ${stackDetails.name}, including programming languages, databases, frameworks, and more`;
+  metadata.openGraph!.url = `https://stackapp.xyz/stack/${String(
+    stackDetails._id
+  )}`;
+  metadata.openGraph!.siteName = `Stack`;
+
+  const i: {
+    url: string;
+  }[] = [{ url: `${stackDetails.thumbnail_url}` }];
+  metadata.openGraph!.images = i;
 
   return (
     <>

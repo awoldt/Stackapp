@@ -2,7 +2,29 @@
 import { accountsCollection, stacksCollection } from "@/services/mongodb";
 import { notFound } from "next/navigation";
 import CustomNav from "../../../components/CustomNav";
-import { Stack } from "@/models/stacks";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Create a Stack",
+  description:
+    "Create you first stack by choosing the programming language you used to make the app. Then you can select others features such as databases, apis, frameworks, and more.",
+  alternates: {
+    canonical: "https://stackapp.xyz/create",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://stackapp.xyz/create",
+    title: "Create a Tech Stack Visualization",
+    description:
+      "Showcase how you built your app and the technology that went into building it",
+    siteName: "Stack",
+    images: [
+      {
+        url: "https://stackapp.xyz/imgs/splash/image.png",
+      },
+    ],
+  },
+};
 
 export default async function ProfilePage({ params }: { params: any }) {
   console.log(params);
@@ -20,6 +42,17 @@ export default async function ProfilePage({ params }: { params: any }) {
   if (profile === null) {
     notFound();
   }
+
+  metadata.title = `@${profile.username} Profile | Stack`;
+  metadata.alternates!.canonical = `https://stackapp.xyz/profile/${profile.username}`;
+  metadata.openGraph!.title = `@${profile.username} Profile | Stack`;
+  metadata.openGraph!.url = `https://stackapp.xyz/profile/${profile.username}`;
+  metadata.openGraph!.siteName = `Stack`;
+
+  const i: {
+    url: string;
+  }[] = [{ url: `${profile.profile_pic_filename}` }];
+  metadata.openGraph!.images = i;
 
   return (
     <>

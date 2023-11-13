@@ -8,11 +8,10 @@ import { stacksCollection } from "@/services/mongodb";
 import { Stack } from "@/models/stacks";
 
 export const metadata: Metadata = {
-  title: "@profile | Stack",
-  description: " ",
-
-  alternates: {
-    canonical: " ",
+  title: null,
+  robots: {
+    index: false,
+    follow: false,
   },
 };
 
@@ -24,6 +23,8 @@ export default async function Page() {
     .find({ aid: String(account._id) })
     .sort({ created_on: -1 })
     .toArray();
+
+  metadata.title = `@${account.username} | Profile`;
 
   if (account === false) {
     redirect("/signup");

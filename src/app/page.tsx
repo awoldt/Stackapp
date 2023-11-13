@@ -6,11 +6,24 @@ import { IsValidAccountCookie } from "@/functions";
 import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
-  title: "Stack",
+  title: "Modern Tech Stack Visualization | Stack",
   description:
-    "Stack is a platform that empowers developers to create beautifully designed web pages showcasing the most important details of their tech stacks. Include things such as coding languages, databases, frameworks, and more.",
+    "Stack offers developers a robust platform, enabling them to craft visually stunning web pages that highlight crucial details about their technological infrastructure. This includes information on coding languages, databases, frameworks, and various other components integral to their development environment.",
   alternates: {
     canonical: "https://stackapp.xyz",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://stackapp.xyz",
+    title: "Stack - Tech Stack Visualization",
+    description:
+      "Stack is a platform that empowers developers to create beautifully designed web pages showcasing the most important details of their tech stacks. Include things such as coding languages, databases, frameworks, and more.",
+    siteName: "Stack",
+    images: [
+      {
+        url: "https://stackapp.xyz/imgs/splash/image.png",
+      },
+    ],
   },
 };
 
@@ -130,10 +143,11 @@ export default async function Home() {
           </div>
         </div>
 
-
-
         <div className="card-container" style={{ marginTop: "0rem" }}>
-          <div className="card-empty" style={{ width: "100%", marginTop: "0rem", textAlign: "left" }}>
+          <div
+            className="card-empty"
+            style={{ width: "100%", marginTop: "0rem", textAlign: "left" }}
+          >
             <h2 style={{ textAlign: "center" }}>
               Showcase your Applications through Elegant Stacks.
             </h2>
@@ -141,17 +155,26 @@ export default async function Home() {
               <div className="title-container-header">
                 <div className="title-header">
                   <div className="header">
-                    <img src="imgs/splash/logo.png" className="profile-img" alt="stack-img" />
-                    <h1>
-                      Code Tracker
-                    </h1>
+                    <img
+                      src="imgs/splash/logo.png"
+                      className="profile-img"
+                      alt="stack-img"
+                    />
+                    <h1>Code Tracker</h1>
                     <h5>
                       <a className="nav-element" style={{ padding: "10px" }}>
                         www.codetracker.com
                       </a>
                     </h5>
-                    <div className="profile-container" style={{ marginTop: "10px;" }}>
-                      <img src="imgs/splash/profile.PNG" className="user-profile-img" alt="user-profile-img" />
+                    <div
+                      className="profile-container"
+                      style={{ marginTop: "10px;" }}
+                    >
+                      <img
+                        src="imgs/splash/profile.PNG"
+                        className="user-profile-img"
+                        alt="user-profile-img"
+                      />
                       <p>
                         <b>Test Developer</b>
                         <br />
@@ -161,7 +184,10 @@ export default async function Home() {
                   </div>
                 </div>
 
-                <div className="card-container" style={{ paddingBottom: "0px" }}>
+                <div
+                  className="card-container"
+                  style={{ paddingBottom: "0px" }}
+                >
                   <div className="thumbnail">
                     <img src="imgs/splash/image.png" alt="stack-thumbnail" />
                   </div>
@@ -169,25 +195,24 @@ export default async function Home() {
               </div>
             </div>
 
-
-
             <div className="card-container">
               <div className="card">
-                <p style={{ opacity: "0.4" }}>
-                  DESCRIPTION
-                </p>
+                <p style={{ opacity: "0.4" }}>DESCRIPTION</p>
                 <hr />
                 <p>
-                  Introducing CodeTracker, a powerful application designed to streamline your development workflow and
-                  effortlessly track the essential details of your GitHub commits and projects. With CodeTracker, you can
-                  effortlessly organize and store information about APIs, frameworks, and coding languages used in each
-                  individual project, ensuring easy access to crucial project details whenever you need them.
-                  CodeTracker empowers developers to maintain a comprehensive record of their coding endeavors, fostering
-                  better
-                  project management, collaboration, and knowledge sharing. With its intuitive interface, robust features, and
-                  powerful integrations, CodeTracker is the must-have companion for any developer looking to stay organized
-                  and
-                  efficient in their coding journey.
+                  Introducing CodeTracker, a powerful application designed to
+                  streamline your development workflow and effortlessly track
+                  the essential details of your GitHub commits and projects.
+                  With CodeTracker, you can effortlessly organize and store
+                  information about APIs, frameworks, and coding languages used
+                  in each individual project, ensuring easy access to crucial
+                  project details whenever you need them. CodeTracker empowers
+                  developers to maintain a comprehensive record of their coding
+                  endeavors, fostering better project management, collaboration,
+                  and knowledge sharing. With its intuitive interface, robust
+                  features, and powerful integrations, CodeTracker is the
+                  must-have companion for any developer looking to stay
+                  organized and efficient in their coding journey.
                 </p>
               </div>
             </div>
@@ -195,46 +220,49 @@ export default async function Home() {
             <div className="card-container">
               <div className="card">
                 <div className="container">
-
-                  <p style={{ opacity: "0.4" }}>
-                    LANGUAGES
-                  </p>
+                  <p style={{ opacity: "0.4" }}>LANGUAGES</p>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
-                      <img src="imgs/splash/stackicons/logo-javascript.svg" alt="language-logo" />
+                      <img
+                        src="imgs/splash/stackicons/logo-javascript.svg"
+                        alt="language-logo"
+                      />
                     </div>
                     <div className="grid-item">
                       <img src="imgs/tech/Python.svg" alt="language-logo" />
                     </div>
                   </div>
 
-                  <p style={{ opacity: "0.4" }}>
-                    DATABASES
-                  </p>
+                  <p style={{ opacity: "0.4" }}>DATABASES</p>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
-                      <img src="imgs/splash/stackicons/mongodb.svg" alt="database-logo" />
+                      <img
+                        src="imgs/splash/stackicons/mongodb.svg"
+                        alt="database-logo"
+                      />
                     </div>
                   </div>
 
-                  <p style={{ opacity: "0.4" }}>
-                    CLOUD SERVICES
-                  </p>
+                  <p style={{ opacity: "0.4" }}>CLOUD SERVICES</p>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
-                      <img src="imgs/splash/stackicons/aws.png" alt="cloud-logo" />
+                      <img
+                        src="imgs/splash/stackicons/aws.png"
+                        alt="cloud-logo"
+                      />
                     </div>
                     <div className="grid-item">
-                      <img src="imgs/tech/Google Cloud Platform.svg" alt="cloud-logo" />
+                      <img
+                        src="imgs/tech/Google Cloud Platform.svg"
+                        alt="cloud-logo"
+                      />
                     </div>
                   </div>
 
-                  <p style={{ opacity: "0.4" }}>
-                    APIs
-                  </p>
+                  <p style={{ opacity: "0.4" }}>APIs</p>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
@@ -242,9 +270,7 @@ export default async function Home() {
                     </div>
                   </div>
 
-                  <p style={{ opacity: "0.4" }}>
-                    FRAMEWORKS
-                  </p>
+                  <p style={{ opacity: "0.4" }}>FRAMEWORKS</p>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
@@ -257,13 +283,9 @@ export default async function Home() {
 
             <div className="card-container">
               <div className="card">
-                <p style={{ opacity: "0.4" }}>
-                  GITHUB
-                </p>
+                <p style={{ opacity: "0.4" }}>GITHUB</p>
                 <hr />
-                <p>
-                  Repo pushed [Month] [Day], [Year].
-                </p>
+                <p>Repo pushed [Month] [Day], [Year].</p>
               </div>
             </div>
           </div>

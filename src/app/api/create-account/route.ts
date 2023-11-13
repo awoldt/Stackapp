@@ -9,16 +9,21 @@ import {
 export async function POST(request: Request) {
   try {
     const reqBody = await request.json();
+
+    reqBody.username_lowercase = reqBody.username; // zod will auto lowercase this string
     const body = ProfileModel.parse(reqBody);
 
-    // 1. make sure email and username are not already in use
-    const accountsInUse = await accountsCollection
-      .find({
-        $or: [{ email: body.email }, { username: body.username }],
-      })
-      .toArray();
+    console.log(body);
 
-    if (accountsInUse.length > 0) {
+    // 1. make sure email and username are not already in use
+    const accountsInUse = await accountsCollection.findOne({
+      $or: [
+        { email: body.email },
+        { username_lowercase: body.username.toLowerCase() },
+      ],
+    });
+
+    if (accountsInUse !== null) {
       return Response.json(
         { message: "Account already in use" },
         { status: 400 }

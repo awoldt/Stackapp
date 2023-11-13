@@ -14,6 +14,7 @@ export const ProfileModel = z.object({
   profile_pic: z.string().trim().nullable(),
   profile_pic_filename: z.string().trim().nullable(),
   username: z.string().trim(),
+  username_lowercase: z.string().toLowerCase(), // used to keep track of unqiue usernames (ex: AWOLDT === awoldt)
 });
 
 export type UserUpdateProfile = z.infer<typeof UpdateProfileModel>;

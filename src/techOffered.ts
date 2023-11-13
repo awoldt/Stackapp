@@ -12,10 +12,10 @@ const TechModel = z.object({
 export const TechOffered = TechModel.parse({
   languages: [
     "JavaScript",
-    "C#",
+    "CSharp",
     "Go",
     "Java",
-    "Switft",
+    "Swift",
     "Rust",
     "Python",
   ].sort(),

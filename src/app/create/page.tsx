@@ -5,11 +5,24 @@ import { GetGitHubRepoSelectData, IsValidAccountCookie } from "@/functions";
 import SideNav from "../../components/CustomNav";
 
 export const metadata: Metadata = {
-  title: "Create Stack | Stack",
-  description: " ",
-
+  title: "Create a Stack",
+  description:
+    "Create you first stack by choosing the programming language you used to make the app. Then you can select others features such as databases, apis, frameworks, and more.",
   alternates: {
-    canonical: " ",
+    canonical: "https://stackapp.xyz/create",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://stackapp.xyz/create",
+    title: "Create a Tech Stack Visualization",
+    description:
+      "Showcase how you built your app and the technology that went into building it",
+    siteName: "Stack",
+    images: [
+      {
+        url: "https://stackapp.xyz/imgs/splash/image.png",
+      },
+    ],
   },
 };
 
