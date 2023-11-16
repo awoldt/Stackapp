@@ -10,6 +10,11 @@ export default function Nav({ isSignedIn }: { isSignedIn: boolean }) {
                 Stack
               </a>
             </li>
+            <li>
+              <a href="/explore" className="nav-element">
+                Explore
+              </a>
+            </li>
 
             {isSignedIn && (
               <>

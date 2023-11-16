@@ -8,7 +8,7 @@ const emailClient = new SESClient({
   },
 });
 
-import { accountsCollection } from "@/services/mongodb";
+import { accountsCollection, signInLinksCollection } from "@/services/mongodb";
 import { ObjectId } from "mongodb";
 import { cookies } from "next/headers";
 
@@ -33,7 +33,13 @@ export async function POST(request: Request) {
       );
     }
 
-    // 2. send verification link to email
+    // 2. create a sign in link
+    const signInLinkDoc = await signInLinksCollection.insertOne({
+      aid: String(account._id),
+      expires: new Date().getTime() + 300000, // 5 mins before link expires
+    });
+
+    // 3. send verification link to email
     const emailInput = {
       Source: "stackbot@stackapp.xyz",
       Destination: {
@@ -48,7 +54,9 @@ export async function POST(request: Request) {
           Html: {
             Data:
               "Click the following link to sign into your Stack account - " +
-              `${process.env.EMAIL_VERIFICATION_HOST}/api/signin?id=${account._id}`,
+              `${process.env.EMAIL_VERIFICATION_HOST}/api/signin?id=${String(
+                signInLinkDoc.insertedId
+              )}`,
             Charset: "utf-8",
           },
         },
@@ -75,6 +83,8 @@ export async function GET(request: Request) {
   try {
     // 1. check if id query is valid
     const id = new URLSearchParams(new URL(request.url).search).get("id");
+    console.log(id);
+
     if (id === null) {
       return Response.json({ data: "bad request" }, { status: 400 });
     }
@@ -82,24 +92,45 @@ export async function GET(request: Request) {
       return Response.json({ data: "bad request" }, { status: 400 });
     }
 
-    // 2. check to see if document with id query exists
-    const account = await accountsCollection.findOne({
+    console.log(id);
+
+    // 2. check to see if sign in document exists
+    const account = await signInLinksCollection.findOne({
       _id: new ObjectId(id),
     });
 
     if (account === null) {
-      return Response.json({ data: "bad request" }, { status: 400 });
+      return Response.json(
+        { data: "link expired or invalid" },
+        { status: 400 }
+      );
+    }
+    // make sure still valid
+    if (account.expires < new Date().getTime()) {
+      await signInLinksCollection.deleteOne({
+        _id: new ObjectId(id),
+      });
+
+      return Response.json(
+        { data: "link expired or invalid" },
+        { status: 400 }
+      );
     }
 
     // 3. set cookie
     // a_id -> "account id"
-    cookies().set("a_id", id, {
+    cookies().set("a_id", String(account.aid), {
       expires: new Date(
         new Date().getFullYear(),
         new Date().getMonth() + 3,
         new Date().getDate()
       ),
       secure: true,
+    });
+
+    // 4. delete sign in doc
+    await signInLinksCollection.deleteOne({
+      _id: new ObjectId(id),
     });
 
     return new Response(
