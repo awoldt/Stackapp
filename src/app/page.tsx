@@ -49,8 +49,8 @@ export default async function Home() {
             </h4>
 
             <div className="btn-container">
-              <a href="/signup" className="btn" style={{ fontSize: "24px" }}>
-                Get Started
+              <a href="/signup" className="btn-landing" style={{ textAlign: "center" }}>
+                Start Stacking
               </a>
             </div>
 
@@ -162,7 +162,7 @@ export default async function Home() {
                     />
                     <h1>Code Tracker</h1>
                     <h5>
-                      <a className="nav-element" style={{ padding: "10px" }}>
+                      <a style={{ padding: "10px" }}>
                         www.codetracker.com
                       </a>
                     </h5>

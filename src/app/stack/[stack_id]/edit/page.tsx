@@ -73,10 +73,10 @@ export default async function Edit({ params }: { params: any }) {
         <CustomNav isSignedIn={true} />
       </section>
 
-      <div className="card-container" style={{ paddingTop: "4rem" }}>
+      <div className="card-container-title">
         <div className="card-empty">
           <h1>Edit Stack</h1>
-          {/* <p>Change the details of your profile.</p> */}
+          <p>Edit your Stack to best showcase your application.</p>
         </div>
       </div>
 

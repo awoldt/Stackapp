@@ -172,7 +172,7 @@ export default function Form({
 
             <div className="card-container">
               {!loading && (
-                <button id="create_stack_btn" type="submit" className="btn">
+                <button id="create_stack_btn" type="submit" className="btn-confirm">
                   Create Stack
                 </button>
               )}

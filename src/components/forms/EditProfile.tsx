@@ -189,7 +189,7 @@ export default function Form({ user }: { user: UserProfile }) {
 
       <div className="card-container">
         {!loading && (
-          <button className="btn" type="submit">
+          <button className="btn-confirm" type="submit">
             Update Profile
           </button>
         )}

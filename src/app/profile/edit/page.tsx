@@ -32,9 +32,9 @@ export default async function Page() {
 
         <section>
           <div className="card-container-title">
-            <div className="card-empty" style={{ marginTop: "75px" }}>
+            <div className="card-empty">
               <h1>Edit Profile</h1>
-              {/* <p>Change the details of your profile.</p> */}
+              <p>Update your settings to best describe you.</p>
             </div>
           </div>
 

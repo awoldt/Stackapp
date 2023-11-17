@@ -119,12 +119,13 @@ export default async function Page({ params }: { params: any }) {
                 <h1>{`${stackDetails.name}`}</h1>
 
                 {stackDetails.website_url !== null && (
-                  <div style={{ marginTop: "10px", marginBottom: "20px" }}>
+                  <div>
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
                       href={stackDetails.website_url}
-                      style={{ padding: "0px" }}
+                      className="nav-element"
+                      style={{ padding: "0px"}}
                     >
                       {new URL(stackDetails.website_url).hostname}
                     </a>

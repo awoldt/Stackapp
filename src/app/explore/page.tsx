@@ -46,7 +46,7 @@ export default async function Page() {
       </section>
 
       <div className="card-container-title">
-        <div className="card-empty-splash">
+        <div className="card-empty-wide">
           <h1>Explore Stacks</h1>
           <p>Explore recently created Stacks from other Stack members.</p>
         </div>
@@ -79,8 +79,7 @@ export default async function Page() {
                       <p
                         style={{
                           opacity: 0.4,
-                          fontSize: "14px",
-                          marginTop: ".4rem",
+                          fontSize: "14px"
                         }}
                       >
                         {x.stackInfo.created_on.toDateString()}
@@ -93,7 +92,7 @@ export default async function Page() {
                           style={{ cursor: "pointer" }}
                         />
                         <p style={{ cursor: "pointer" }}>
-                          <b>Test Developer</b>
+                          <b>FIRSTNAME LASTNAME</b>
                           <br />@{x.userInfo?.username}
                         </p>
                       </div>

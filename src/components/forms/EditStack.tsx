@@ -218,7 +218,7 @@ export default function Edit({
               }}
             >
               <button
-                className="btn"
+                className="btn-confirm"
                 type="submit"
                 style={{
                   marginBottom: "0px",
