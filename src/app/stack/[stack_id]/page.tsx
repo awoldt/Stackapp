@@ -79,8 +79,8 @@ export default async function Page({ params }: { params: any }) {
     cookieStore.get("a_id") === undefined
       ? false
       : cookieStore.get("a_id")!.value !== stackDetails.aid
-        ? false
-        : true;
+      ? false
+      : true;
 
   metadata.title = `${stackDetails.name} | Stack`;
   metadata.description = `See the technology that went into building ${stackDetails.name}, including programming languages, databases, frameworks, and more`;
@@ -143,7 +143,7 @@ export default async function Page({ params }: { params: any }) {
                 </p> */}
 
                 <a
-                style={{ marginTop: "10px" }}
+                  style={{ marginTop: "10px" }}
                   className="profile-container"
                   href={`/profile/${creatorDetails?.username}`}
                 >
@@ -208,6 +208,8 @@ export default async function Page({ params }: { params: any }) {
         </div>
       </section>
 
+    
+
       <section>
         <div className="card-container">
           <div className="card">
@@ -218,13 +220,12 @@ export default async function Page({ params }: { params: any }) {
         </div>
       </section>
 
+      <StackTechGrid stackDetails={stackDetails} />
+
       <StackCommitLogs
         commitLogs={commitLogs}
         repoName={stackDetails.github_repo_name}
       />
-
-      <StackTechGrid stackDetails={stackDetails} />
-
     </>
   );
 }
