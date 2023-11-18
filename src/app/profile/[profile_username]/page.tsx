@@ -70,10 +70,10 @@ export default async function ProfilePage({ params }: { params: any }) {
         <CustomNav isSignedIn={true} />
       </section>
       <section>
-        <div className="header-container">
+        <div className="header-container" style={{ paddingBottom: "0px" }}>
           <div
             className="profile-container-header"
-            style={{ marginTop: "100px" }}
+            style={{ marginTop: "4rem" }}
           >
             <div className="profile-header">
               <div className="header">
@@ -101,10 +101,10 @@ export default async function ProfilePage({ params }: { params: any }) {
                 </span>
 
                 {profile.bio !== null && (
-                  <p style={{ marginTop: "20px" }}>{profile.bio}</p>
+                  <p style={{ marginTop: "20px", marginBottom: "20px" }}>{profile.bio}</p>
                 )}
                 {profile.bio === null && (
-                  <p style={{ marginTop: "20px" }}>
+                  <p style={{ marginTop: "20px", marginBottom: "20px" }}>
                     This user has not yet set up their bio.
                   </p>
                 )}
@@ -116,6 +116,8 @@ export default async function ProfilePage({ params }: { params: any }) {
       <div className="card-container" id="yourStacks">
         <div className="card" style={{ textAlign: "left" }}>
           <section>
+            <h5 style={{ opacity: "0.4" }}>STACKS</h5>
+            <hr />
             {userStacks.map((x: any, index) => {
               return (
                 <div key={index}>

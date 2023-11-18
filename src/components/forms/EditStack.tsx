@@ -131,7 +131,7 @@ export default function Edit({
                 display: "block",
                 marginBottom: "20px",
                 paddingBottom: "0px",
-                borderRadius: "4px",
+                borderRadius: "12px",
                 boxShadow: "0px 2px 10px 2px rgba(0, 0, 0, 0.025)",
               }}
             />

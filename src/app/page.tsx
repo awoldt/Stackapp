@@ -221,7 +221,50 @@ export default async function Home() {
               <div className="card">
                 <p style={{ opacity: "0.4" }}>GITHUB</p>
                 <hr />
-                <p>Repo pushed [Month] [Day], [Year].</p>
+                <p style={{ opacity: "0.4", fontSize: "14px" }}>
+                  Fri Jan 27 2023
+                </p>
+                <p>
+                  <b>bug fixes and improvements</b>
+                  <br />
+                  [Commit Hash]: ca4fd2346764670efceb49e197a607e7246db36b
+                </p>
+                <br />
+                <p style={{ opacity: "0.4", fontSize: "14px" }}>
+                  Thu Jan 26 2023
+                </p>
+                <p>
+                  <b>stable</b>
+                  <br />
+                  [Commit Hash]: 93e7691f4b5f5cd2b8fd371cf084e09c61b1cb71
+                </p>
+                {/* <br />
+                <p style={{ opacity: "0.4", fontSize: "14px" }}>
+                  Tue Nov 29 2022
+                </p>
+                <p>
+                  <b>stable</b>
+                  <br />
+                  [Commit Hash]: 8bbe7dd29a264403721df92a3a0c4399a9e3a330
+                </p>
+                <br />
+                <p style={{ opacity: "0.4", fontSize: "14px" }}>
+                  Thu Nov 03 2022
+                </p>
+                <p>
+                  <b>bug fixes and improvements</b>
+                  <br />
+                  [Commit Hash]: 7d7d097634e9a5b88b3d122ae026788a29021d15
+                </p>
+                <br />
+                <p style={{ opacity: "0.4", fontSize: "14px" }}>
+                  Fri Aug 26 2022
+                </p>
+                <p>
+                  <b>stable</b>
+                  <br />
+                  [Commit Hash]: 977a4bf62bf195c0d8ff77a97de2d11c0253b11c
+                </p> */}
               </div>
             </div>
 
@@ -236,13 +279,19 @@ export default async function Home() {
                         src="imgs/splash/stackicons/logo-javascript.svg"
                         alt="language-logo"
                       />
+                      <p style={{ textAlign: "center", fontSize: "14px" }}>
+                        JavaScript
+                      </p>
                     </div>
                     <div className="grid-item">
                       <img src="imgs/tech/Python.svg" alt="language-logo" />
+                      <p style={{ textAlign: "center", fontSize: "14px" }}>
+                        Python
+                      </p>
                     </div>
                   </div>
 
-                  <p style={{ opacity: "0.4" }}>DATABASES</p>
+                  <p style={{ opacity: "0.4", marginTop: "20px" }}>DATABASES</p>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
@@ -250,10 +299,35 @@ export default async function Home() {
                         src="imgs/splash/stackicons/mongodb.svg"
                         alt="database-logo"
                       />
+                      <p style={{ textAlign: "center", fontSize: "14px" }}>
+                        MongoDB
+                      </p>
                     </div>
                   </div>
 
-                  <p style={{ opacity: "0.4" }}>CLOUD SERVICES</p>
+                  <p style={{ opacity: "0.4", marginTop: "20px" }}>APIs</p>
+                  <hr />
+                  <div className="grid-container">
+                    <div className="grid-item">
+                      <img src="imgs/tech/Postgres.svg" alt="api-logo" />
+                      <p style={{ textAlign: "center", fontSize: "14px" }}>
+                        Postgres
+                      </p>
+                    </div>
+                  </div>
+
+                  <p style={{ opacity: "0.4", marginTop: "20px" }}>FRAMEWORKS</p>
+                  <hr />
+                  <div className="grid-container">
+                    <div className="grid-item">
+                      <img src="imgs/tech/Nextjs.svg" alt="language-logo" />
+                      <p style={{ textAlign: "center", fontSize: "14px" }}>
+                        Nextjs
+                      </p>
+                    </div>
+                  </div>
+
+                  <p style={{ opacity: "0.4", marginTop: "20px" }}>CLOUDS</p>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
@@ -261,28 +335,19 @@ export default async function Home() {
                         src="imgs/splash/stackicons/aws.png"
                         alt="cloud-logo"
                       />
+                      <p style={{ textAlign: "center", fontSize: "14px" }}>
+                        AWS
+                      </p>
                     </div>
+
                     <div className="grid-item">
                       <img
                         src="imgs/tech/Google Cloud Platform.svg"
                         alt="cloud-logo"
                       />
-                    </div>
-                  </div>
-
-                  <p style={{ opacity: "0.4" }}>APIs</p>
-                  <hr />
-                  <div className="grid-container">
-                    <div className="grid-item">
-                      <img src="imgs/tech/Postgres.svg" alt="api-logo" />
-                    </div>
-                  </div>
-
-                  <p style={{ opacity: "0.4" }}>FRAMEWORKS</p>
-                  <hr />
-                  <div className="grid-container">
-                    <div className="grid-item">
-                      <img src="imgs/tech/Nextjs.svg" alt="language-logo" />
+                      <p style={{ textAlign: "center", fontSize: "14px" }}>
+                        Google Cloud
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -291,6 +356,6 @@ export default async function Home() {
           </div>
         </div>
       </section>
-    </main>
+    </main >
   );
 }

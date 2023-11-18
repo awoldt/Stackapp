@@ -119,7 +119,7 @@ export default async function Page({ params }: { params: any }) {
                 <h1>{`${stackDetails.name}`}</h1>
 
                 {stackDetails.website_url !== null && (
-                  <div style={{ marginBottom: "10px" }}>
+                  <div>
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
@@ -143,6 +143,7 @@ export default async function Page({ params }: { params: any }) {
                 </p> */}
 
                 <a
+                style={{ marginTop: "10px" }}
                   className="profile-container"
                   href={`/profile/${creatorDetails?.username}`}
                 >

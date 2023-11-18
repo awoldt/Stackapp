@@ -13,35 +13,29 @@ export default function CommitLogs({
         <section>
           <div className="card-container">
             <div className="card">
-            <p style={{ opacity: "0.4" }}>GITHUB</p>
-                <hr />
-                <p>Repo pushed [Month] [Day], [Year].</p>
-              {/* <span style={{ fontSize: "50px" }}>
-                <b>
-                  <i>{repoName}</i>
-                </b>
-              </span> */}
+              <p style={{ opacity: "0.4" }}>GITHUB</p>
+              <hr />
               {commitLogs.map((x: RepoCommitLogs) => {
                 return (
                   <>
                     <p
                       style={{
-                        marginTop: "20px",
-                        fontSize: "16px",
-                        opacity: "0.85",
+                        fontSize: "14px",
+                        opacity: "0.4",
                       }}
                     >
                       {x.date_commited}
                     </p>
                     <p>
-                      <b>MSG: {x.message} </b>
+                      <b>{x.message} </b>
                     </p>
                     <p>
-                      Github Commit SHA:{" "}
+                      {"["}Commit Hash{"]"}:{" "}
                       <em>
-                        <a href={x.url}>{x.sha}</a>
+                        <a className="nav-element" style={{ lineHeight: "1" }} href={x.url}>{x.sha}</a>
                       </em>
                     </p>
+                    <hr />
                   </>
                 );
               })}
