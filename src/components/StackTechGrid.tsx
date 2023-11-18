@@ -4,7 +4,7 @@ import { Stack } from "@/models/stacks";
 export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
   return (
     <section>
-      <div className="card-container" style={{ paddingBottom: "40px" }}>
+      <div className="card-container">
         <div className="card">
           <div className="container">
             <p style={{ opacity: "0.4" }}>

@@ -208,8 +208,6 @@ export default async function Page({ params }: { params: any }) {
         </div>
       </section>
 
-    
-
       <section>
         <div className="card-container">
           <div className="card">
