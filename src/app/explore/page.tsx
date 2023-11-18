@@ -14,7 +14,7 @@ interface ExploreStackDiv {
 }
 
 export const metadata: Metadata = {
-  title: "Explore Stacks",
+  title: "Explore Stacks | Stack",
   description:
     "Explore diverse tech stacks. Uncover databases, languages, APIs, frameworks, and construction insights from fellow stack creators.",
   alternates: {

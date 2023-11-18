@@ -74,6 +74,7 @@ export default function Form() {
         className="card-container"
         style={{
           height: "100vh",
+          marginBottom: "0rem",
           alignItems: "center",
           flexDirection: "column",
         }}
@@ -83,21 +84,6 @@ export default function Form() {
         </h1>
 
         <div className="card-registration">
-          {formSubmission !== null && (
-            <>
-              {formSubmission.status === "success" && (
-                <div>
-                  <p style={{ color: "green" }}>{formSubmission.msg}</p>
-                </div>
-              )}
-              {formSubmission.status === "error" && (
-                <div>
-                  <p style={{ color: "red" }}>{formSubmission.msg}</p>
-                </div>
-              )}
-            </>
-          )}
-
           {formSubmission?.status !== "success" && (
             <form
               onSubmit={(e) => {
@@ -157,6 +143,20 @@ export default function Form() {
                 </div>
               )}
             </form>
+          )}
+                    {formSubmission !== null && (
+            <>
+              {formSubmission.status === "success" && (
+                <div>
+                  <p style={{ color: "red", marginTop: "20px", textAlign: "center" }}>{formSubmission.msg}</p>
+                </div>
+              )}
+              {formSubmission.status === "error" && (
+                <div>
+                  <p style={{ color: "red", marginTop: "20px", textAlign: "center" }}>{formSubmission.msg}</p>
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>

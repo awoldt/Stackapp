@@ -40,152 +40,80 @@ export default function Form({ user }: { user: UserProfile }) {
         await FormSubmit(e);
       }}
     >
-      <img src={profileImgSrc} style={{ marginTop: "0" }} className="profile-img" alt="Proflie picture" />
-      {/* <div style={{ marginBottom: "25px" }}>
-        <div>
-          <span>
-            {firstName} {lastName}
-          </span>
-        </div>
-        <div>
-          <span>@{user.username}</span>
-        </div>
-        <div style={{ marginTop: "5px" }}>
-          <span>{bio}</span>
-        </div>
-      </div> */}
-      <br />
-      <br />
+      <div className="card-container">
+        <img src={profileImgSrc} style={{ marginTop: "0" }} className="profile-img" alt="Proflie picture" />
+      </div>
+      <div className="card-container">
+        <input
+          type="file"
+          name="profile_icon"
+          accept="image/png, image/jpeg, image/webp, image/avif, image/tiff"
+          style={{ marginTop: "10px", marginBottom: "10px" }}
+          onChange={async (e) => {
+            const fileInput = e.target;
+            if (fileInput.files && fileInput.files[0]) {
+              const reader = new FileReader();
 
-      <input
-        type="file"
-        name="profile_icon"
-        accept="image/png, image/jpeg, image/webp, image/avif, image/tiff"
-        style={{ marginBottom: "20px" }}
-        onChange={async (e) => {
-          const fileInput = e.target;
-          if (fileInput.files && fileInput.files[0]) {
-            const reader = new FileReader();
+              reader.onload = (r) => {
+                setProfileImgSrc(r.target?.result?.toString()!);
+              };
 
-            reader.onload = (r) => {
-              setProfileImgSrc(r.target?.result?.toString()!);
-            };
-
-            reader.readAsDataURL(fileInput.files[0]);
-          }
-        }}
-      />
-
+              reader.readAsDataURL(fileInput.files[0]);
+            }
+          }}
+        />
+      </div>
       <div>
         <label style={{ padding: 0 }} htmlFor="user_bio">Bio</label>
         <textarea
           defaultValue={user.bio === null ? "" : user.bio}
           name="bio_input"
           id="user_bio"
+          cols={44}
+          rows={10}
+          maxLength={500}
           style={{ marginBottom: "20px" }}
         />
       </div>
 
 
-
-      {/* HAS GITHUB CONNECTED */}
-      {user.github_account_id !== null && (
-        <>
-          <p><b>Your GitHub Account is Connected.</b></p>
-          <button
-            type="button"
-            className="btn"
-            onClick={async () => {
-              try {
-                const req = await fetch("/api/disconnect-github", {
-                  method: "POST",
-                });
-                const res = await req.json();
-                alert(res.message);
-                if (req.ok) {
-                  window.location.href = "/profile/edit";
-                }
-              } catch (err) {
-                alert("Error while disconnecting GitHub account");
-              }
-            }}
-          >
-            Disconnect
-          </button>
-        </>
-      )}
-      {/* DOES NOT HAVE GITHUB CONNECTED */}
-      {user.github_account_id === null && (
-        <a
-          href={`https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}`}
-          title="Authorize Stack to connect to your GitHub Account"
-          className="btn"
-        >
-          Connect Github
-          <br />
-        </a>
-      )}
-      <br />
-      <br />
-
-      <button
-        className="btn"
-        type="button"
-        style={{ marginBottom: "20px" }}
-        onClick={() => {
-          document.cookie =
-            "a_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-          window.location.assign("/");
-        }}
-      >
-        Sign Out
-      </button>
-      <br />
-
-      <button
-        className="btn"
-        type="button"
-        style={{ marginBottom: "20px" }}
-        onClick={async () => {
-          const c1 = confirm(
-            "Are you sure you want to delete your Stack account?"
-          );
-          if (c1) {
-            const c2 = confirm(
-              "This action is irreversible. Would you like to continue?"
-            );
-            if (c2) {
-              const c3 = confirm(
-                "Account deletion is permanant. In order to use Stack again you will need to create a new account. I understand, delete my account."
-              );
-
-              if (c3) {
+      <div className="card-container" style={{ marginBottom: "10px" }}>
+        {/* HAS GITHUB CONNECTED */}
+        {user.github_account_id !== null && (
+          <>
+            <button
+              type="button"
+              className="btn"
+              onClick={async () => {
                 try {
-                  const req = await fetch("/api/delete-account");
+                  const req = await fetch("/api/disconnect-github", {
+                    method: "POST",
+                  });
+                  const res = await req.json();
+                  alert(res.message);
                   if (req.ok) {
-                    alert(
-                      "Account and all associated stacks have been successfully deleted."
-                    );
-
-                    //this expression will remove cookie from browser
-                    document.cookie =
-                      "a_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                    window.location.assign("/");
+                    window.location.href = "/profile/edit";
                   }
-                } catch (e) {
-                  console.log(e);
-                  alert(
-                    "An error occurred while attempting to delete your account."
-                  );
+                } catch (err) {
+                  alert("Error while disconnecting GitHub account");
                 }
-              }
-            }
-          }
-        }}
-      >
-        Delete Account
-      </button>
-      <br />
+              }}
+            >
+              Disconnect GitHub
+            </button>
+          </>
+        )}
+        {/* DOES NOT HAVE GITHUB CONNECTED */}
+        {user.github_account_id === null && (
+          <a
+            href={`https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}`}
+            title="Authorize Stack to connect to your GitHub Account"
+            className="btn"
+          >
+            Connect Github
+          </a>
+        )}
+      </div>
 
       <div className="card-container">
         {!loading && (
@@ -194,6 +122,70 @@ export default function Form({ user }: { user: UserProfile }) {
           </button>
         )}
         {loading && <div className="lds-dual-ring"></div>}
+      </div>
+
+      <div className="card-container" style={{ marginTop: "30px", paddingBottom: "0px", flexDirection: "column", width: "100%" }}>
+        <div className="card-container" style={{ margin: "0px", marginBottom: "10px" }}>
+          <button
+            className="btn-link"
+            type="button"
+            style={{ width: "fit-content" }}
+            onClick={() => {
+              document.cookie =
+                "a_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+              window.location.assign("/");
+            }}
+          >
+            Sign Out
+          </button>
+        </div>
+
+        <div className="card-container" style={{ margin: "0px" }}>
+          <button
+            className="btn-link"
+            type="button"
+            style={{ width: "fit-content" }}
+            onClick={async () => {
+              const c1 = confirm(
+                "Are you sure you want to delete your Stack account?"
+              );
+              if (c1) {
+                const c2 = confirm(
+                  "This action is irreversible. Would you like to continue?"
+                );
+                if (c2) {
+                  const c3 = confirm(
+                    "Account deletion is permanant. In order to use Stack again you will need to create a new account. I understand, delete my account."
+                  );
+
+                  if (c3) {
+                    try {
+                      const req = await fetch("/api/delete-account");
+                      if (req.ok) {
+                        alert(
+                          "Account and all associated stacks have been successfully deleted."
+                        );
+
+                        //this expression will remove cookie from browser
+                        document.cookie =
+                          "a_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                        window.location.assign("/");
+                      }
+                    } catch (e) {
+                      console.log(e);
+                      alert(
+                        "An error occurred while attempting to delete your account."
+                      );
+                    }
+                  }
+                }
+              }
+            }}
+          >
+            Delete Account
+            <p style={{ fontSize: "12px", marginTop: ".2rem" }}><em>Account deletion is irreversible.</em></p>
+          </button>
+        </div>
       </div>
     </form>
   );

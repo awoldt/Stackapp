@@ -82,7 +82,7 @@ export default async function Page({ params }: { params: any }) {
         ? false
         : true;
 
-  metadata.title = `${stackDetails.name} Tech Stack Visualized | Stack`;
+  metadata.title = `${stackDetails.name} | Stack`;
   metadata.description = `See the technology that went into building ${stackDetails.name}, including programming languages, databases, frameworks, and more`;
   metadata.alternates!.canonical = `https://stackapp.xyz/stack/${String(
     stackDetails._id

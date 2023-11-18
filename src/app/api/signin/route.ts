@@ -27,7 +27,7 @@ export async function POST(request: Request) {
     if (account === null) {
       return Response.json(
         {
-          message: "Account does not exist",
+          message: "Account does not exist.",
         },
         { status: 400 }
       );
@@ -47,13 +47,13 @@ export async function POST(request: Request) {
       },
       Message: {
         Subject: {
-          Data: "Sign into your Stack account",
+          Data: "Sign into your Stack Account.",
           Charset: "utf-8",
         },
         Body: {
           Html: {
             Data:
-              "Click the following link to sign into your Stack account - " +
+              "Click the following link to Login into your Stack Account. - " +
               `${process.env.EMAIL_VERIFICATION_HOST}/api/signin?id=${String(
                 signInLinkDoc.insertedId
               )}`,
@@ -69,7 +69,7 @@ export async function POST(request: Request) {
 
     return Response.json(
       {
-        message: "Check your inbox for the sign in link",
+        message: "A login link has been sent to your email.",
       },
       { status: 200 }
     );

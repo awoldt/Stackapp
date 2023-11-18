@@ -7,13 +7,13 @@ export default function Form() {
 
   const [formSubmission, setFormSubmission] = useState<
     | {
-        status: "success";
-        msg: string;
-      }
+      status: "success";
+      msg: string;
+    }
     | {
-        status: "error";
-        msg: string;
-      }
+      status: "error";
+      msg: string;
+    }
     | null
   >(null);
 
@@ -67,20 +67,6 @@ export default function Form() {
         </h1>
 
         <div className="card-registration">
-          {formSubmission !== null && (
-            <>
-              {formSubmission.status === "success" && (
-                <div>
-                  <p style={{ color: "green" }}>{formSubmission.msg}</p>
-                </div>
-              )}
-              {formSubmission.status === "error" && (
-                <div>
-                  <p style={{ color: "red" }}>{formSubmission.msg}</p>
-                </div>
-              )}
-            </>
-          )}
           {formSubmission?.status !== "success" && (
             <>
               <form
@@ -114,6 +100,20 @@ export default function Form() {
                   </div>
                 )}
               </form>
+            </>
+          )}
+          {formSubmission !== null && (
+            <>
+              {formSubmission.status === "success" && (
+                <div>
+                  <p style={{ color: "red", marginTop: "20px", textAlign: "center" }}>{formSubmission.msg}</p>
+                </div>
+              )}
+              {formSubmission.status === "error" && (
+                <div>
+                  <p style={{ color: "red", marginTop: "20px", textAlign: "center" }}>{formSubmission.msg}</p>
+                </div>
+              )}
             </>
           )}
         </div>

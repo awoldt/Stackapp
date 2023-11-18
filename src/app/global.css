@@ -847,6 +847,20 @@
         }
     }
 
+    .btn-link {
+        background: none;
+        border: 0px;
+        font-size: 14px;
+        font-family: 'Inter', sans-serif;
+        transition: 250ms ease-in-out;
+        cursor: pointer;
+    }
+
+    .btn-link:hover {
+        color: rgba(0, 0, 0, 0.185);
+        transition: 250ms ease-in-out;
+    }
+
     .btn,
     .btn-confirm,
     .btn-landing,
@@ -1027,8 +1041,8 @@
 
 .lds-dual-ring {
     display: inline-block;
-    width: 80px;
-    height: 80px;
+    width: 50px;
+    height: 50px;
 }
 
 .lds-dual-ring:after {

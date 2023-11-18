@@ -23,7 +23,7 @@ export async function POST(request: Request) {
 
     if (accountsInUse !== null) {
       return Response.json(
-        { message: "Account already in use" },
+        { message: "Account is already in use." },
         { status: 400 }
       );
     }
@@ -39,15 +39,14 @@ export async function POST(request: Request) {
       },
       Message: {
         Subject: {
-          Data: "Verify your Stack account",
+          Data: "Verify your Stack Account",
           Charset: "utf-8",
         },
         Body: {
           Html: {
             Data:
-              "Click the following link to verify your account - " +
-              `${
-                process.env.EMAIL_VERIFICATION_HOST
+              "Click the following link to verify your Account. - " +
+              `${process.env.EMAIL_VERIFICATION_HOST
               }/api/verifyemail?id=${newAccount.insertedId.toString()}`,
             Charset: "utf-8",
           },
@@ -69,7 +68,7 @@ export async function POST(request: Request) {
 
     return Response.json(
       {
-        message: "Check your inbox for the verification link",
+        message: "A confirmation link has been sent to your email.",
       },
       { status: 200 }
     );

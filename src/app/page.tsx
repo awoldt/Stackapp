@@ -6,7 +6,7 @@ import { IsValidAccountCookie } from "@/functions";
 import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
-  title: "Modern Tech Stack Visualization | Stack",
+  title: "A Platform for Modern Tech Stack Visualization | Stack",
   description:
     "Stack offers developers a robust platform, enabling them to craft visually stunning web pages that highlight crucial details about their technological infrastructure. This includes information on coding languages, databases, frameworks, and various other components integral to their development environment.",
   alternates: {
@@ -238,7 +238,7 @@ export default async function Home() {
                   <br />
                   [Commit Hash]: 93e7691f4b5f5cd2b8fd371cf084e09c61b1cb71
                 </p>
-                {/* <br />
+                <br />
                 <p style={{ opacity: "0.4", fontSize: "14px" }}>
                   Tue Nov 29 2022
                 </p>
@@ -264,7 +264,7 @@ export default async function Home() {
                   <b>stable</b>
                   <br />
                   [Commit Hash]: 977a4bf62bf195c0d8ff77a97de2d11c0253b11c
-                </p> */}
+                </p>
               </div>
             </div>
 
