@@ -154,55 +154,6 @@ export default function Checkboxs({
 
       <div className="tech-select-div">
         <img
-          src="/imgs/icons/cloud-fill.svg"
-          alt="cloud"
-          width={20}
-          height={15}
-          style={{ display: "inline" }}
-        />
-        <h5 style={{ display: "inline" }}>
-          Select all Cloud Deployment Services used in your tech stack.
-        </h5>
-        {stackData.clouds.selected !== null && (
-          <>
-            {stackData.clouds.selected.map((x, index) => {
-              return (
-                <label htmlFor={x} key={index}>
-                  <input
-                    type="checkbox"
-                    id={x}
-                    name="clouds_used"
-                    value={x}
-                    className="cloud-checkboxs"
-                    defaultChecked={true}
-                  />
-                  <span className="checkmark"></span>
-                  {x}
-                </label>
-              );
-            })}
-          </>
-        )}
-        {stackData.clouds.notSelected.map((x, index) => {
-          return (
-            <label htmlFor={x} key={index}>
-              <input
-                type="checkbox"
-                id={x}
-                name="clouds_used"
-                value={x}
-                className="cloud-checkboxs"
-                defaultChecked={false}
-              />
-              <span className="checkmark"></span>
-              {x}
-            </label>
-          );
-        })}
-      </div>
-
-      <div className="tech-select-div">
-        <img
           src="/imgs/icons/framework.svg"
           alt="api"
           width={20}
@@ -241,6 +192,55 @@ export default function Checkboxs({
                 name="frameworks_used"
                 value={x}
                 className="frameworks-checkboxs"
+                defaultChecked={false}
+              />
+              <span className="checkmark"></span>
+              {x}
+            </label>
+          );
+        })}
+      </div>
+
+      <div className="tech-select-div">
+        <img
+          src="/imgs/icons/cloud-fill.svg"
+          alt="cloud"
+          width={20}
+          height={15}
+          style={{ display: "inline" }}
+        />
+        <h5 style={{ display: "inline" }}>
+          Select all Cloud Deployment Services used in your tech stack.
+        </h5>
+        {stackData.clouds.selected !== null && (
+          <>
+            {stackData.clouds.selected.map((x, index) => {
+              return (
+                <label htmlFor={x} key={index}>
+                  <input
+                    type="checkbox"
+                    id={x}
+                    name="clouds_used"
+                    value={x}
+                    className="cloud-checkboxs"
+                    defaultChecked={true}
+                  />
+                  <span className="checkmark"></span>
+                  {x}
+                </label>
+              );
+            })}
+          </>
+        )}
+        {stackData.clouds.notSelected.map((x, index) => {
+          return (
+            <label htmlFor={x} key={index}>
+              <input
+                type="checkbox"
+                id={x}
+                name="clouds_used"
+                value={x}
+                className="cloud-checkboxs"
                 defaultChecked={false}
               />
               <span className="checkmark"></span>

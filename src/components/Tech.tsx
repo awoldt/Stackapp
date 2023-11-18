@@ -80,30 +80,6 @@ export default function Tech() {
 
       <div className="tech-select-div">
         <img
-          src="/imgs/icons/cloud-fill.svg"
-          alt="cloud"
-          width={20}
-          height={15}
-          style={{ display: "inline" }}
-        />
-        <h5 style={{ display: "inline" }}>
-          Select all Cloud Deployment Services used in your tech stack.
-        </h5>
-        {TechOffered.clouds!.map((x) => {
-          return (
-            <>
-              <label>
-                <input type="checkbox" name="clouds_used" value={x} />
-                <span className="checkmark"></span>
-                {x}
-              </label>
-            </>
-          );
-        })}
-      </div>
-
-      <div className="tech-select-div">
-        <img
           src="/imgs/icons/framework.svg"
           alt="api"
           width={20}
@@ -118,6 +94,30 @@ export default function Tech() {
             <>
               <label>
                 <input type="checkbox" name="frameworks_used" value={x} />
+                <span className="checkmark"></span>
+                {x}
+              </label>
+            </>
+          );
+        })}
+      </div>
+
+      <div className="tech-select-div">
+        <img
+          src="/imgs/icons/cloud-fill.svg"
+          alt="cloud"
+          width={20}
+          height={15}
+          style={{ display: "inline" }}
+        />
+        <h5 style={{ display: "inline" }}>
+          Select all Cloud Deployment Services used in your tech stack.
+        </h5>
+        {TechOffered.clouds!.map((x) => {
+          return (
+            <>
+              <label>
+                <input type="checkbox" name="clouds_used" value={x} />
                 <span className="checkmark"></span>
                 {x}
               </label>

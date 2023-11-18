@@ -219,57 +219,6 @@ export default async function Home() {
 
             <div className="card-container">
               <div className="card">
-                <p style={{ opacity: "0.4" }}>GITHUB</p>
-                <hr />
-                <p style={{ opacity: "0.4", fontSize: "14px" }}>
-                  Fri Jan 27 2023
-                </p>
-                <p>
-                  <b>bug fixes and improvements</b>
-                  <br />
-                  [Commit Hash]: ca4fd2346764670efceb49e197a607e7246db36b
-                </p>
-                <br />
-                <p style={{ opacity: "0.4", fontSize: "14px" }}>
-                  Thu Jan 26 2023
-                </p>
-                <p>
-                  <b>stable</b>
-                  <br />
-                  [Commit Hash]: 93e7691f4b5f5cd2b8fd371cf084e09c61b1cb71
-                </p>
-                <br />
-                <p style={{ opacity: "0.4", fontSize: "14px" }}>
-                  Tue Nov 29 2022
-                </p>
-                <p>
-                  <b>stable</b>
-                  <br />
-                  [Commit Hash]: 8bbe7dd29a264403721df92a3a0c4399a9e3a330
-                </p>
-                <br />
-                <p style={{ opacity: "0.4", fontSize: "14px" }}>
-                  Thu Nov 03 2022
-                </p>
-                <p>
-                  <b>bug fixes and improvements</b>
-                  <br />
-                  [Commit Hash]: 7d7d097634e9a5b88b3d122ae026788a29021d15
-                </p>
-                <br />
-                <p style={{ opacity: "0.4", fontSize: "14px" }}>
-                  Fri Aug 26 2022
-                </p>
-                <p>
-                  <b>stable</b>
-                  <br />
-                  [Commit Hash]: 977a4bf62bf195c0d8ff77a97de2d11c0253b11c
-                </p>
-              </div>
-            </div>
-
-            <div className="card-container">
-              <div className="card">
                 <div className="container">
                   <p style={{ opacity: "0.4" }}>LANGUAGES</p>
                   <hr />
@@ -351,6 +300,57 @@ export default async function Home() {
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            <div className="card-container">
+              <div className="card">
+                <p style={{ opacity: "0.4" }}>GITHUB</p>
+                <hr />
+                <p style={{ opacity: "0.4", fontSize: "14px" }}>
+                  Fri Jan 27 2023
+                </p>
+                <p>
+                  <b>bug fixes and improvements</b>
+                  <br />
+                  [Commit Hash]: ca4fd2346764670efceb49e197a607e7246db36b
+                </p>
+                <br />
+                <p style={{ opacity: "0.4", fontSize: "14px" }}>
+                  Thu Jan 26 2023
+                </p>
+                <p>
+                  <b>stable</b>
+                  <br />
+                  [Commit Hash]: 93e7691f4b5f5cd2b8fd371cf084e09c61b1cb71
+                </p>
+                <br />
+                <p style={{ opacity: "0.4", fontSize: "14px" }}>
+                  Tue Nov 29 2022
+                </p>
+                <p>
+                  <b>stable</b>
+                  <br />
+                  [Commit Hash]: 8bbe7dd29a264403721df92a3a0c4399a9e3a330
+                </p>
+                <br />
+                <p style={{ opacity: "0.4", fontSize: "14px" }}>
+                  Thu Nov 03 2022
+                </p>
+                <p>
+                  <b>bug fixes and improvements</b>
+                  <br />
+                  [Commit Hash]: 7d7d097634e9a5b88b3d122ae026788a29021d15
+                </p>
+                <br />
+                <p style={{ opacity: "0.4", fontSize: "14px" }}>
+                  Fri Aug 26 2022
+                </p>
+                <p>
+                  <b>stable</b>
+                  <br />
+                  [Commit Hash]: 977a4bf62bf195c0d8ff77a97de2d11c0253b11c
+                </p>
               </div>
             </div>
           </div>
