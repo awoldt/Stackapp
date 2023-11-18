@@ -128,20 +128,6 @@ export default async function Page() {
                             >
                               {x.created_on.toDateString()}
                             </p>
-                            <div className="profile-explore-container">
-                              <img
-                                src={x.profile_pic_filename!}
-                                className="user-profile-img"
-                                alt="user-profile-img"
-                                style={{ cursor: "pointer" }}
-                              />
-                              <p style={{ cursor: "pointer" }}>
-                                <b>
-                                  {x.first_name} {x.last_name}
-                                </b>
-                                <br />@{x.username}
-                              </p>
-                            </div>
                           </div>
                           <div className="explore-stack-icons-container">
                             <img
