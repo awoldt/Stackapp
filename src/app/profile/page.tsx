@@ -39,7 +39,7 @@ export default async function Page() {
           {/* USER PROFILE */}
           <section>
             <main>
-              <div className="header-container">
+              <div className="header-container" style={{ paddingBottom: "0px" }}>
                 <div
                   className="profile-container-header"
                   style={{ marginTop: "4rem" }}
@@ -102,6 +102,8 @@ export default async function Page() {
           <div className="card-container" id="yourStacks">
             <div className="card" style={{ textAlign: "left" }}>
               <section>
+                <h5 style={{ opacity: "0.4" }}>YOUR STACKS</h5>
+                <hr />
                 {userStacks.map((x: any, index) => {
                   return (
                     <div key={index}>

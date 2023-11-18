@@ -119,13 +119,13 @@ export default async function Page({ params }: { params: any }) {
                 <h1>{`${stackDetails.name}`}</h1>
 
                 {stackDetails.website_url !== null && (
-                  <div>
+                  <div style={{ marginBottom: "10px" }}>
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
                       href={stackDetails.website_url}
                       className="nav-element"
-                      style={{ padding: "0px"}}
+                      style={{ padding: "0px" }}
                     >
                       {new URL(stackDetails.website_url).hostname}
                     </a>
@@ -217,11 +217,13 @@ export default async function Page({ params }: { params: any }) {
         </div>
       </section>
 
-      <StackTechGrid stackDetails={stackDetails} />
       <StackCommitLogs
         commitLogs={commitLogs}
         repoName={stackDetails.github_repo_name}
       />
+
+      <StackTechGrid stackDetails={stackDetails} />
+
     </>
   );
 }

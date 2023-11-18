@@ -13,6 +13,8 @@ export default function Select({
             Connect your GitHub account in profile settings to showcase commit
             logs from your repositories.
           </b>
+          <br />
+          <br />
         </p>
       )}
       {repoData === "error" && (

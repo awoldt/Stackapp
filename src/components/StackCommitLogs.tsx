@@ -13,18 +13,14 @@ export default function CommitLogs({
         <section>
           <div className="card-container">
             <div className="card">
-              <h2 style={{ textAlign: "center" }}>Github</h2>
-              <p
-                className="subtitle"
-                style={{ textAlign: "center", marginBottom: "20px" }}
-              >
-                Commit history towards the development of this tech Stack.
-              </p>
-              <span style={{ fontSize: "50px" }}>
+            <p style={{ opacity: "0.4" }}>GITHUB</p>
+                <hr />
+                <p>Repo pushed [Month] [Day], [Year].</p>
+              {/* <span style={{ fontSize: "50px" }}>
                 <b>
                   <i>{repoName}</i>
                 </b>
-              </span>
+              </span> */}
               {commitLogs.map((x: RepoCommitLogs) => {
                 return (
                   <>

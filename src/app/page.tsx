@@ -162,7 +162,7 @@ export default async function Home() {
                     />
                     <h1>Code Tracker</h1>
                     <h5>
-                      <a style={{ padding: "10px" }}>
+                      <a style={{ padding: "10px", paddingLeft: "0" }}>
                         www.codetracker.com
                       </a>
                     </h5>
@@ -214,6 +214,14 @@ export default async function Home() {
                   must-have companion for any developer looking to stay
                   organized and efficient in their coding journey.
                 </p>
+              </div>
+            </div>
+
+            <div className="card-container">
+              <div className="card">
+                <p style={{ opacity: "0.4" }}>GITHUB</p>
+                <hr />
+                <p>Repo pushed [Month] [Day], [Year].</p>
               </div>
             </div>
 
@@ -278,14 +286,6 @@ export default async function Home() {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div className="card-container">
-              <div className="card">
-                <p style={{ opacity: "0.4" }}>GITHUB</p>
-                <hr />
-                <p>Repo pushed [Month] [Day], [Year].</p>
               </div>
             </div>
           </div>
