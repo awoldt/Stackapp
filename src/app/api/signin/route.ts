@@ -19,8 +19,8 @@ export async function POST(request: Request) {
     // 1. make sure account with either email or username exists
     const account = await accountsCollection.findOne({
       $or: [
-        { email: reqBody.email_username_input },
-        { username: reqBody.email_username_input },
+        { email: reqBody.email_username_input.trim() },
+        { username: reqBody.email_username_input.trim() },
       ],
     });
 
