@@ -6,11 +6,34 @@ import { accountsCollection, stacksCollection } from "@/services/mongodb";
 import { Stack } from "@/models/stacks";
 import { UserProfile } from "@/models/profile";
 import { ObjectId } from "mongodb";
+import { Metadata } from "next";
 
 interface ExploreStackDiv {
   stackInfo: Stack;
   userInfo: UserProfile | null;
 }
+
+export const metadata: Metadata = {
+  title: "Explore Stacks",
+  description:
+    "Explore diverse tech stacks. Uncover databases, languages, APIs, frameworks, and construction insights from fellow stack creators.",
+  alternates: {
+    canonical: "https://stackapp.xyz/explore",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://stackapp.xyz/explore",
+    title: "Explore Application's Tech Stacks from Other Developers",
+    description:
+      "Showcase how you built your app and the technology that went into making it. Impress others in the developer community!",
+    siteName: "Stack",
+    images: [
+      {
+        url: "https://stackapp.xyz/imgs/splash/image.png",
+      },
+    ],
+  },
+};
 
 export default async function Page() {
   const cookieStore = cookies();
@@ -79,7 +102,7 @@ export default async function Page() {
                       <p
                         style={{
                           opacity: 0.4,
-                          fontSize: "14px"
+                          fontSize: "14px",
                         }}
                       >
                         {x.stackInfo.created_on.toDateString()}
@@ -92,7 +115,9 @@ export default async function Page() {
                           style={{ cursor: "pointer" }}
                         />
                         <p style={{ cursor: "pointer" }}>
-                          <b>FIRSTNAME LASTNAME</b>
+                          <b>
+                            {x.userInfo.first_name} {x.userInfo.last_name}
+                          </b>
                           <br />@{x.userInfo?.username}
                         </p>
                       </div>

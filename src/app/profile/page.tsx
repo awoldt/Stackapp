@@ -99,79 +99,96 @@ export default async function Page() {
             </main>
           </section>
 
-          <section>
-            {userStacks.length === 0 && (
-              <>
-                <div
-                  className="card-container"
-                  style={{
-                    paddingTop: "10px",
-                    paddingBottom: "40px",
-                  }}
-                >
-                  <div
-                    className="card"
-                    style={{
-                      textAlign: "center",
-                      paddingBottom: "80px",
-                    }}
-                  >
-                    <h2>Stacks</h2>
-                    <span>
-                      0 Stacks
-                      <br />
-                      <br />
-                    </span>
-                    <br />
-                    <a href={"/create"} className="btn">
-                      Create Stack
-                    </a>
-                  </div>
-                </div>
-              </>
-            )}
-            {userStacks.length > 0 && (
-              <div
-                className="card-container"
-                style={{
-                  paddingTop: "0px",
-                  paddingBottom: "80px",
-                }}
-              >
-                <div className="card" style={{ textAlign: "center" }}>
-                  <h2>
-                    Stacks
-                  </h2>
-                  <span className="subtitle">
-                    {userStacks.length !== 10 && (
-                      <><>{userStacks.length} Stacks</><br /></>
-                    )}
-                    {userStacks.length === 10 && (
-                      <><>Showing your 10 most recent Stacks</><br /></>
-                    )}
-                    <br />
-                  </span>
-
-                  {userStacks.map((x: any, index: number) => {
-                    return (
-                      <a href={`/stack/${x._id}`} key={index}>
-                        <div className="card-container">
+          <div className="card-container" id="yourStacks">
+            <div className="card" style={{ textAlign: "left" }}>
+              <section>
+                {userStacks.map((x: any, index) => {
+                  return (
+                    <div key={index}>
+                      <a href={`/stack/${String(x._id)}`}>
+                        <div className="profile-stack-container">
                           <div className="card-thumbnail">
+                            <img src={x.thumbnail_url} />
+                          </div>
+
+                          <img
+                            src={x.icon_url}
+                            className="explore-stack-img"
+                            alt="stack-img"
+                          />
+
+                          <div className="stack-description">
+                            <h2>{x.name}</h2>
+
+                            <p
+                              style={{
+                                opacity: 0.4,
+                                fontSize: "14px",
+                              }}
+                            >
+                              {x.created_on.toDateString()}
+                            </p>
+                            <div className="profile-explore-container">
+                              <img
+                                src={x.profile_pic_filename!}
+                                className="user-profile-img"
+                                alt="user-profile-img"
+                                style={{ cursor: "pointer" }}
+                              />
+                              <p style={{ cursor: "pointer" }}>
+                                <b>
+                                  {x.first_name} {x.last_name}
+                                </b>
+                                <br />@{x.username}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="explore-stack-icons-container">
                             <img
-                              src={x.thumbnail_url!}
-                              style={{ cursor: "pointer" }}
-                              alt={`${x.name} thumbnail`}
+                              src={`/imgs/tech/${x.languages_used[0]}.svg`}
+                              className="explore-stack-icons"
+                              alt="language-logo"
                             />
+                            {x.databases_used !== null && (
+                              <img
+                                src={`/imgs/tech/${x.databases_used[0]}.svg`}
+                                className="explore-stack-icons"
+                                alt="database-logo"
+                              />
+                            )}
+
+                            {x.clouds_used !== null && (
+                              <img
+                                src={`/imgs/tech/${x.clouds_used[0]}.svg`}
+                                className="explore-stack-icons"
+                                alt="cloud-logo"
+                              />
+                            )}
+
+                            {x.apis_used !== null && (
+                              <img
+                                src={`/imgs/tech/${x.apis_used[0]}.svg`}
+                                className="explore-stack-icons"
+                                alt="api-logo"
+                              />
+                            )}
+
+                            {x.frameworks_used !== null && (
+                              <img
+                                src={`/imgs/tech/${x.frameworks_used[0]}.svg`}
+                                className="explore-stack-icons"
+                                alt="framework-logo"
+                              />
+                            )}
                           </div>
                         </div>
-                        <h4><b>{x.name}</b></h4>
                       </a>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-          </section>
+                    </div>
+                  );
+                })}
+              </section>
+            </div>
+          </div>
         </div>
       </>
     );

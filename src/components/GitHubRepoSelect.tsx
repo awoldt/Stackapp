@@ -22,7 +22,10 @@ export default function Select({
       )}
       {repoData === null && (
         <p>
-          <b>No repo data available or all repos are associated with other Stacks.</b>
+          <b>
+            No repo data available or all repos are associated with other
+            Stacks.
+          </b>
           <br />
           <br />
         </p>
@@ -33,7 +36,7 @@ export default function Select({
             <span> GitHub Repository</span>
           </label>
           <select name="github_repo_id" id="github_repo_select">
-            <option value="">Select a Repo</option>
+            <option value="none">Select a Repo</option>
             {repoData.map((x: RepoSelectList, index: number) => {
               return (
                 <option key={index} value={`${x.id}:${x.name}`}>
