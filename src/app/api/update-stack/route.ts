@@ -130,7 +130,7 @@ export async function POST(request: Request) {
         cloudsUsed.push(x[1]);
       }
     }
-    updateObj.apis_used = apisUsed.length === 0 ? null : cloudsUsed;
+    updateObj.clouds_used = cloudsUsed.length === 0 ? null : cloudsUsed;
 
     // frameworks
     const frameworksUsed: any[] = [];

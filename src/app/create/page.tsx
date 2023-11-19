@@ -32,7 +32,35 @@ export default async function Page() {
   const account = await IsValidAccountCookie(cookieStore.get("a_id"));
 
   if (account === false) {
-    return <p>You must be signed in to create Stacks.</p>;
+    return (
+      <>
+        <section>
+          <SideNav isSignedIn={false} />
+        </section>
+
+        <div className="card-container-title">
+          <div className="card-empty">
+            <h1>Create Stack</h1>
+            <p>
+              <a href="/signin" title="Sign into your Stack account">
+                Sign into your Stack account
+              </a>{" "}
+              and start showcasing your application&apos;s tech stack such as
+              programming languages, database, frameworks, and more.
+            </p>
+            <p>
+              <br></br>
+              Don&apos;t have an account?{" "}
+              <a href="/signup" title="Create a Stack account">
+                Create one
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <CreateStackForm repoSelectList={null} signedIn={false} />
+      </>
+    );
   } else {
     // if github access token is not null
     // fetch repo select data
@@ -55,7 +83,7 @@ export default async function Page() {
           </div>
         </div>
 
-        <CreateStackForm repoSelectList={repoSelectList} />
+        <CreateStackForm repoSelectList={repoSelectList} signedIn={true} />
       </>
     );
   }

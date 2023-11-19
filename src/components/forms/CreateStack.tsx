@@ -14,12 +14,14 @@ interface FormResponse {
 
 export default function Form({
   repoSelectList,
+  signedIn,
 }: {
   repoSelectList:
     | RepoSelectList[]
     | null
     | "must_connect_github_account"
     | "error";
+  signedIn: boolean;
 }) {
   // stack submission is used only when there is an error with creating new stack
   // if successful, redirect page to /stack/${stackId}
@@ -61,6 +63,7 @@ export default function Form({
       setLoading(false);
     }
   }
+
   return (
     <>
       {stackSubmission !== null && !loading && (
@@ -74,13 +77,19 @@ export default function Form({
         ref={formRef}
         encType="multipart/form-data"
         onSubmit={async (e) => {
-          await FormSubmit(e, formRef.current!);
+          if (signedIn) {
+            await FormSubmit(e, formRef.current!);
+          } else {
+            alert("You must be signed in to create a Stack");
+          }
         }}
       >
         <div className="card-container">
           <div className="create-content">
             <div>
-              <label style={{ padding: "0"}} htmlFor="app_title">*App Name</label>
+              <label style={{ padding: "0" }} htmlFor="app_title">
+                *App Name
+              </label>
               <input
                 type="text"
                 id="app_title"
@@ -91,7 +100,9 @@ export default function Form({
             </div>
 
             <div style={{ marginBottom: "10px" }}>
-              <label style={{ padding: "0"}} htmlFor="app_description_input">*App Description</label>
+              <label style={{ padding: "0" }} htmlFor="app_description_input">
+                *App Description
+              </label>
               <textarea
                 name="app_description"
                 id="app_description_input"
@@ -104,10 +115,7 @@ export default function Form({
             </div>
 
             <div style={{ marginBottom: "20px" }}>
-              <label
-                htmlFor="app_icon_input"
-                style={{ padding: "0"}}
-              >
+              <label htmlFor="app_icon_input" style={{ padding: "0" }}>
                 *Icon
               </label>
 
@@ -130,10 +138,7 @@ export default function Form({
                 }}
               />
 
-              <label
-                htmlFor="app_thumbnail_input"
-                style={{ padding: "0"}}
-              >
+              <label htmlFor="app_thumbnail_input" style={{ padding: "0" }}>
                 *Thumbnail
               </label>
 
@@ -157,7 +162,9 @@ export default function Form({
             </div>
 
             <div>
-              <label style={{ padding: "0"}} htmlFor="website_url">App URL</label>
+              <label style={{ padding: "0" }} htmlFor="website_url">
+                App URL
+              </label>
               <input
                 type="url"
                 id="website_url"
@@ -166,18 +173,40 @@ export default function Form({
               />
             </div>
 
-            <RepoSelect repoData={repoSelectList} />
+            {signedIn && <RepoSelect repoData={repoSelectList} />}
+            {!signedIn && (
+              <div
+                style={{
+                  margin: "25px",
+                  padding: "10px",
+                  border: "3px solid black",
+                  borderRadius: "10px",
+                }}
+              >
+                <img src="/imgs/icons/github.svg" />
+                <p>
+                  Connect your GitHub account with your Stack account and
+                  showcase your app&apos;s commit history as you push code
+                </p>
+              </div>
+            )}
 
             <Tech />
 
-            <div className="card-container">
-              {!loading && (
-                <button id="create_stack_btn" type="submit" className="btn-confirm">
-                  Create Stack
-                </button>
-              )}
-              {loading && <div className="lds-dual-ring"></div>}
-            </div>
+            {signedIn && (
+              <div className="card-container">
+                {!loading && (
+                  <button
+                    id="create_stack_btn"
+                    type="submit"
+                    className="btn-confirm"
+                  >
+                    Create Stack
+                  </button>
+                )}
+                {loading && <div className="lds-dual-ring"></div>}
+              </div>
+            )}
           </div>
         </div>
       </form>
