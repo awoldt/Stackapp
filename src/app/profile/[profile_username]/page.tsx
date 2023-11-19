@@ -67,7 +67,7 @@ export default async function ProfilePage({ params }: { params: any }) {
   return (
     <>
       <section>
-        <CustomNav isSignedIn={true} />
+        <CustomNav isSignedIn={account === false ? false : true} />
       </section>
       <section>
         <div className="header-container" style={{ paddingBottom: "0px" }}>
@@ -101,7 +101,9 @@ export default async function ProfilePage({ params }: { params: any }) {
                 </span>
 
                 {profile.bio !== null && (
-                  <p style={{ marginTop: "20px", marginBottom: "20px" }}>{profile.bio}</p>
+                  <p style={{ marginTop: "20px", marginBottom: "20px" }}>
+                    {profile.bio}
+                  </p>
                 )}
                 {profile.bio === null && (
                   <p style={{ marginTop: "20px", marginBottom: "20px" }}>
