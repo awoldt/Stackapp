@@ -146,6 +146,7 @@ export default async function ProfilePage({ params }: { params: any }) {
                         >
                           {x.created_on.toDateString()}
                         </p>
+                        <p style={{marginTop: '10px'}}>{x.description}</p>
                       </div>
                       <div className="explore-stack-icons-container">
                         <img
