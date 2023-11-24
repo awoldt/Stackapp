@@ -125,79 +125,83 @@ export default async function Page() {
                     </div>
                   </>
                 )}
-                {userStacks.map((x: any, index) => {
-                  return (
-                    <>
-                      <h2 style={{ opacity: "0.4" }}>YOUR STACKS</h2>
-                      <div key={index}>
-                        <a href={`/stack/${String(x._id)}`}>
-                          <div className="profile-stack-container">
-                            <div className="card-thumbnail">
-                              <img src={x.thumbnail_url} />
-                            </div>
+                {userStacks.length > 0 && (
+                  <>
+                    <h2 style={{ opacity: "0.4" }}>YOUR STACKS</h2>
+                    {userStacks.map((x: any, index) => {
+                      return (
+                        <>
+                          <div key={index}>
+                            <a href={`/stack/${String(x._id)}`}>
+                              <div className="profile-stack-container">
+                                <div className="card-thumbnail">
+                                  <img src={x.thumbnail_url} />
+                                </div>
 
-                            <img
-                              src={x.icon_url}
-                              className="explore-stack-img"
-                              alt="stack-img"
-                            />
-
-                            <div className="stack-description">
-                              <h3>{x.name}</h3>
-
-                              <p
-                                style={{
-                                  opacity: 0.4,
-                                  fontSize: "14px",
-                                }}
-                              >
-                                {x.created_on.toDateString()}
-                              </p>
-                            </div>
-                            <div className="explore-stack-icons-container">
-                              <img
-                                src={`/imgs/tech/${x.languages_used[0]}.svg`}
-                                className="explore-stack-icons"
-                                alt="language-logo"
-                              />
-                              {x.databases_used !== null && (
                                 <img
-                                  src={`/imgs/tech/${x.databases_used[0]}.svg`}
-                                  className="explore-stack-icons"
-                                  alt="database-logo"
+                                  src={x.icon_url}
+                                  className="explore-stack-img"
+                                  alt="stack-img"
                                 />
-                              )}
 
-                              {x.clouds_used !== null && (
-                                <img
-                                  src={`/imgs/tech/${x.clouds_used[0]}.svg`}
-                                  className="explore-stack-icons"
-                                  alt="cloud-logo"
-                                />
-                              )}
+                                <div className="stack-description">
+                                  <h3>{x.name}</h3>
 
-                              {x.apis_used !== null && (
-                                <img
-                                  src={`/imgs/tech/${x.apis_used[0]}.svg`}
-                                  className="explore-stack-icons"
-                                  alt="api-logo"
-                                />
-                              )}
+                                  <p
+                                    style={{
+                                      opacity: 0.4,
+                                      fontSize: "14px",
+                                    }}
+                                  >
+                                    {x.created_on.toDateString()}
+                                  </p>
+                                </div>
+                                <div className="explore-stack-icons-container">
+                                  <img
+                                    src={`/imgs/tech/${x.languages_used[0]}.svg`}
+                                    className="explore-stack-icons"
+                                    alt="language-logo"
+                                  />
+                                  {x.databases_used !== null && (
+                                    <img
+                                      src={`/imgs/tech/${x.databases_used[0]}.svg`}
+                                      className="explore-stack-icons"
+                                      alt="database-logo"
+                                    />
+                                  )}
 
-                              {x.frameworks_used !== null && (
-                                <img
-                                  src={`/imgs/tech/${x.frameworks_used[0]}.svg`}
-                                  className="explore-stack-icons"
-                                  alt="framework-logo"
-                                />
-                              )}
-                            </div>
+                                  {x.clouds_used !== null && (
+                                    <img
+                                      src={`/imgs/tech/${x.clouds_used[0]}.svg`}
+                                      className="explore-stack-icons"
+                                      alt="cloud-logo"
+                                    />
+                                  )}
+
+                                  {x.apis_used !== null && (
+                                    <img
+                                      src={`/imgs/tech/${x.apis_used[0]}.svg`}
+                                      className="explore-stack-icons"
+                                      alt="api-logo"
+                                    />
+                                  )}
+
+                                  {x.frameworks_used !== null && (
+                                    <img
+                                      src={`/imgs/tech/${x.frameworks_used[0]}.svg`}
+                                      className="explore-stack-icons"
+                                      alt="framework-logo"
+                                    />
+                                  )}
+                                </div>
+                              </div>
+                            </a>
                           </div>
-                        </a>
-                      </div>
-                    </>
-                  );
-                })}
+                        </>
+                      );
+                    })}
+                  </>
+                )}
               </section>
             </div>
           </div>
