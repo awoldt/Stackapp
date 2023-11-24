@@ -39,7 +39,10 @@ export default async function Page() {
           {/* USER PROFILE */}
           <section>
             <main>
-              <div className="header-container" style={{ paddingBottom: "0px" }}>
+              <div
+                className="header-container"
+                style={{ paddingBottom: "0px" }}
+              >
                 <div
                   className="profile-container-header"
                   style={{ marginTop: "4rem" }}
@@ -102,76 +105,97 @@ export default async function Page() {
           <div className="card-container" id="yourStacks">
             <div className="card" style={{ textAlign: "left" }}>
               <section>
-                <h5 style={{ opacity: "0.4" }}>YOUR STACKS</h5>
                 <hr />
-                {userStacks.map((x: any, index) => {
-                  return (
-                    <div key={index}>
-                      <a href={`/stack/${String(x._id)}`}>
-                        <div className="profile-stack-container">
-                          <div className="card-thumbnail">
-                            <img src={x.thumbnail_url} />
-                          </div>
-
-                          <img
-                            src={x.icon_url}
-                            className="explore-stack-img"
-                            alt="stack-img"
-                          />
-
-                          <div className="stack-description">
-                            <h2>{x.name}</h2>
-
-                            <p
-                              style={{
-                                opacity: 0.4,
-                                fontSize: "14px",
-                              }}
-                            >
-                              {x.created_on.toDateString()}
-                            </p>
-                          </div>
-                          <div className="explore-stack-icons-container">
-                            <img
-                              src={`/imgs/tech/${x.languages_used[0]}.svg`}
-                              className="explore-stack-icons"
-                              alt="language-logo"
-                            />
-                            {x.databases_used !== null && (
-                              <img
-                                src={`/imgs/tech/${x.databases_used[0]}.svg`}
-                                className="explore-stack-icons"
-                                alt="database-logo"
-                              />
-                            )}
-
-                            {x.clouds_used !== null && (
-                              <img
-                                src={`/imgs/tech/${x.clouds_used[0]}.svg`}
-                                className="explore-stack-icons"
-                                alt="cloud-logo"
-                              />
-                            )}
-
-                            {x.apis_used !== null && (
-                              <img
-                                src={`/imgs/tech/${x.apis_used[0]}.svg`}
-                                className="explore-stack-icons"
-                                alt="api-logo"
-                              />
-                            )}
-
-                            {x.frameworks_used !== null && (
-                              <img
-                                src={`/imgs/tech/${x.frameworks_used[0]}.svg`}
-                                className="explore-stack-icons"
-                                alt="framework-logo"
-                              />
-                            )}
-                          </div>
-                        </div>
+                {userStacks.length === 0 && (
+                  <>
+                    <h2 style={{ opacity: "0.4" }}>NO STACKS</h2>
+                    <div
+                      style={{
+                        marginTop: "40px",
+                        marginBottom: "40px",
+                      }}
+                    >
+                      <a
+                        href={"/create"}
+                        title="Create your first Stack"
+                        className="btn"
+                      >
+                        Create Your First Stack
                       </a>
                     </div>
+                  </>
+                )}
+                {userStacks.map((x: any, index) => {
+                  return (
+                    <>
+                      <h2 style={{ opacity: "0.4" }}>YOUR STACKS</h2>
+                      <div key={index}>
+                        <a href={`/stack/${String(x._id)}`}>
+                          <div className="profile-stack-container">
+                            <div className="card-thumbnail">
+                              <img src={x.thumbnail_url} />
+                            </div>
+
+                            <img
+                              src={x.icon_url}
+                              className="explore-stack-img"
+                              alt="stack-img"
+                            />
+
+                            <div className="stack-description">
+                              <h3>{x.name}</h3>
+
+                              <p
+                                style={{
+                                  opacity: 0.4,
+                                  fontSize: "14px",
+                                }}
+                              >
+                                {x.created_on.toDateString()}
+                              </p>
+                            </div>
+                            <div className="explore-stack-icons-container">
+                              <img
+                                src={`/imgs/tech/${x.languages_used[0]}.svg`}
+                                className="explore-stack-icons"
+                                alt="language-logo"
+                              />
+                              {x.databases_used !== null && (
+                                <img
+                                  src={`/imgs/tech/${x.databases_used[0]}.svg`}
+                                  className="explore-stack-icons"
+                                  alt="database-logo"
+                                />
+                              )}
+
+                              {x.clouds_used !== null && (
+                                <img
+                                  src={`/imgs/tech/${x.clouds_used[0]}.svg`}
+                                  className="explore-stack-icons"
+                                  alt="cloud-logo"
+                                />
+                              )}
+
+                              {x.apis_used !== null && (
+                                <img
+                                  src={`/imgs/tech/${x.apis_used[0]}.svg`}
+                                  className="explore-stack-icons"
+                                  alt="api-logo"
+                                />
+                              )}
+
+                              {x.frameworks_used !== null && (
+                                <img
+                                  src={`/imgs/tech/${x.frameworks_used[0]}.svg`}
+                                  className="explore-stack-icons"
+                                  alt="framework-logo"
+                                />
+                              )}
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                    </>
                   );
                 })}
               </section>
