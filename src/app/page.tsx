@@ -49,7 +49,11 @@ export default async function Home() {
             </h4>
 
             <div className="btn-container">
-              <a href="/signup" className="btn-landing" style={{ textAlign: "center" }}>
+              <a
+                href="/signup"
+                className="btn-landing"
+                style={{ textAlign: "center" }}
+              >
                 Start Stacking
               </a>
             </div>
@@ -265,7 +269,9 @@ export default async function Home() {
                     </div>
                   </div>
 
-                  <p style={{ opacity: "0.4", marginTop: "20px" }}>FRAMEWORKS</p>
+                  <p style={{ opacity: "0.4", marginTop: "20px" }}>
+                    FRAMEWORKS
+                  </p>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
@@ -356,6 +362,6 @@ export default async function Home() {
           </div>
         </div>
       </section>
-    </main >
+    </main>
   );
 }
