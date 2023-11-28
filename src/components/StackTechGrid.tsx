@@ -7,7 +7,7 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
       <div className="card-container">
         <div className="card">
           <div className="container">
-            <p style={{ opacity: "0.4" }}>
+            <p style={{ opacity: "0.4", textAlign: "center" }}>
               LANGUAGES
             </p>
             <hr />
@@ -39,7 +39,7 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
 
           {stackDetails.databases_used !== null && (
             <div className="container">
-              <p style={{ opacity: "0.4" }}>
+              <p style={{ opacity: "0.4", textAlign: "center", marginTop: "20px" }}>
                 DATABASES
               </p>
               <hr />
@@ -76,7 +76,7 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
 
           {stackDetails.apis_used !== null && (
             <div className="container">
-              <p style={{ opacity: "0.4" }}>
+              <p style={{ opacity: "0.4", textAlign: "center", marginTop: "20px" }}>
                 APIs
               </p>
               <hr />
@@ -111,7 +111,7 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
 
           {stackDetails.frameworks_used !== null && (
             <div className="container">
-              <p style={{ opacity: "0.4" }}>
+              <p style={{ opacity: "0.4", textAlign: "center", marginTop: "20px" }}>
                 FRAMEWORKS
               </p>
               <hr />
@@ -148,7 +148,7 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
 
           {stackDetails.clouds_used !== null && (
             <div className="container">
-              <p style={{ opacity: "0.4" }}>
+              <p style={{ opacity: "0.4", textAlign: "center", marginTop: "20px" }}>
                 CLOUDS
               </p>
               <hr />

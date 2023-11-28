@@ -63,17 +63,19 @@ export default function Form({ user }: { user: UserProfile }) {
           }}
         />
       </div>
-      <div>
-        <label style={{ padding: 0 }} htmlFor="user_bio">Bio</label>
+
+      <div className="input-group">
         <textarea
+          className="input"
           defaultValue={user.bio === null ? "" : user.bio}
           name="bio_input"
           id="user_bio"
           cols={44}
-          rows={10}
-          maxLength={500}
+          rows={4}
+          maxLength={120}
           style={{ marginBottom: "20px" }}
         />
+        <label className="label" htmlFor="user_bio">Bio</label>
       </div>
 
 
@@ -124,12 +126,12 @@ export default function Form({ user }: { user: UserProfile }) {
         {loading && <div className="lds-dual-ring"></div>}
       </div>
 
-      <div className="card-container" style={{ marginTop: "30px", paddingBottom: "0px", flexDirection: "column", width: "100%" }}>
-        <div className="card-container" style={{ margin: "0px", marginBottom: "10px" }}>
+      <div className="card-container" style={{ marginTop: "10px", paddingBottom: "0px", flexDirection: "column", width: "100%" }}>
+        <div className="card-container" style={{ margin: "0px", marginBottom: "0px" }}>
           <button
-            className="btn-link"
+            className="nav-element"
             type="button"
-            style={{ width: "fit-content" }}
+            style={{ width: "fit-content", background: "none", border: "0px", fontSize: "14px", cursor: "pointer", fontFamily: "inter" }}
             onClick={() => {
               document.cookie =
                 "a_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -142,9 +144,9 @@ export default function Form({ user }: { user: UserProfile }) {
 
         <div className="card-container" style={{ margin: "0px" }}>
           <button
-            className="btn-link"
+            className="nav-element"
             type="button"
-            style={{ width: "fit-content" }}
+            style={{ width: "fit-content", background: "none", border: "0px", fontSize: "14px", cursor: "pointer", fontFamily: "inter" }}
             onClick={async () => {
               const c1 = confirm(
                 "Are you sure you want to delete your Stack account?"
@@ -183,7 +185,7 @@ export default function Form({ user }: { user: UserProfile }) {
             }}
           >
             Delete Account
-            <p style={{ fontSize: "12px", marginTop: ".2rem" }}><em>Account deletion is irreversible.</em></p>
+            <p style={{ fontSize: "12px", lineHeight: "1" }}>Account deletion is irreversible.</p>
           </button>
         </div>
       </div>

@@ -61,27 +61,24 @@ export default function Edit({
     >
       <div className="card-container">
         <div className="create-content">
-          <div>
-            <label htmlFor="app_title" style={{ padding: "0" }}>
-              *App Name
-            </label>
+
+          <div className="input-group">
             <input
+              className="input"
               type="text"
               id="app_title"
               name="stack_name"
               defaultValue={stackDetails.name}
               required
             />
+            <label className="label" htmlFor="app_title">
+              *Title
+            </label>
           </div>
 
-          <div>
-            <label
-              htmlFor="app_description"
-              style={{ padding: "0" }}
-            >
-              *App Description
-            </label>
+          <div className="input-group">
             <textarea
+              className="input"
               name="stack_description"
               cols={44}
               rows={10}
@@ -89,6 +86,12 @@ export default function Edit({
               defaultValue={stackDetails.description}
               id="app_description"
             />
+            <label
+              className="label"
+              htmlFor="app_description"
+            >
+              *Description
+            </label>
           </div>
 
           <div style={{ marginBottom: "20px" }}>
@@ -131,7 +134,7 @@ export default function Edit({
                 display: "block",
                 marginBottom: "20px",
                 paddingBottom: "0px",
-                borderRadius: "12px",
+                borderRadius: "8px",
                 boxShadow: "0px 2px 10px 2px rgba(0, 0, 0, 0.025)",
               }}
             />
@@ -158,15 +161,16 @@ export default function Edit({
             />
           </div>
 
-          <div>
-            <label style={{ padding: "0" }} htmlFor="website_url">App URL</label>
+
+          <div className="input-group">
             <input
+              className="input"
               type="url"
               id="website_url"
               name="website_url"
-              placeholder="https://----.com"
               defaultValue={stackDetails.website_url!}
             />
+            <label className="label" htmlFor="website_url">URL</label>
           </div>
 
           {stackDetails.github_repo_name !== null && (
@@ -181,7 +185,7 @@ export default function Edit({
           {!deleteStackLoading && (
             <button
               type="button"
-              className="btn"
+              className="btn-delete"
               id="delete_stack_btn"
               style={{
                 marginBottom: "40px",

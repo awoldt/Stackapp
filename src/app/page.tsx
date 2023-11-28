@@ -41,11 +41,11 @@ export default async function Home() {
         <div className="card-container" id="landing">
           <div className="card-empty-splash">
             <h1 className="splash" id="splash">
-              Visualize your Tech Stacks with Impact.
+              Visualize your Tech Stacks with Impact
             </h1>
             <h4 style={{ textAlign: "center", marginTop: "2rem" }}>
               Stack&trade; is a platform designed to help developers and
-              designers showcase their tech stacks.
+              designers showcase their tech stacks
             </h4>
 
             <div className="btn-container">
@@ -55,7 +55,7 @@ export default async function Home() {
             </div>
 
             <h5 style={{ textAlign: "center", marginBottom: "14rem" }}>
-              Scroll to Explore Stack&apos;s Features.
+              Scroll to Explore Stack&apos;s Features
             </h5>
 
             <div className="btn-container" style={{ marginBottom: "2rem" }}>
@@ -90,7 +90,7 @@ export default async function Home() {
               style={{ marginTop: "8rem", marginBottom: "4rem" }}
             >
               <div className="card">
-                <h2>The Future of Tech Stack Presentation.</h2>
+                <h2>The Future of Tech Stack Presentation</h2>
                 <br />
                 <p>
                   Step into a new era of showcasing the intricate web of
@@ -107,7 +107,7 @@ export default async function Home() {
               </div>
 
               <div className="card">
-                <h2>Unleash the Power Behind your Apps.</h2>
+                <h2>Unleash the Power Behind your Apps</h2>
                 <br />
                 <p>
                   Dive into the heart of your application&apos;s inner workings
@@ -124,7 +124,7 @@ export default async function Home() {
               </div>
 
               <div className="card">
-                <h2>Your Custom Tech Stack Showcase.</h2>
+                <h2>Your Custom Tech Stack Showcase</h2>
                 <br />
                 <p>
                   Stack provides the ideal platform to present your tech stack
@@ -149,10 +149,10 @@ export default async function Home() {
             style={{ width: "100%", marginTop: "0rem", textAlign: "left" }}
           >
             <h2 style={{ textAlign: "center" }}>
-              Showcase your Applications through Elegant Stacks.
+              Showcase your Applications through Elegant Stacks
             </h2>
-            <div className="header-container" style={{ paddingTop: "2rem" }}>
-              <div className="title-container-header">
+            <div className="header-container" style={{ paddingTop: "0rem" }}>
+              <div className="title-container-header" style={{ marginTop: "2rem" }}>
                 <div className="title-header">
                   <div className="header">
                     <img
@@ -197,8 +197,8 @@ export default async function Home() {
 
             <div className="card-container">
               <div className="card">
-                <p style={{ opacity: "0.4" }}>DESCRIPTION</p>
-                <hr />
+                {/* <p style={{ opacity: "0.4" }}>DESCRIPTION</p>
+                <hr /> */}
                 <p>
                   Introducing CodeTracker, a powerful application designed to
                   streamline your development workflow and effortlessly track
@@ -220,7 +220,7 @@ export default async function Home() {
             <div className="card-container">
               <div className="card">
                 <div className="container">
-                  <p style={{ opacity: "0.4" }}>LANGUAGES</p>
+                  <p style={{ opacity: "0.4", textAlign: "center" }}>LANGUAGES</p>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
@@ -240,7 +240,7 @@ export default async function Home() {
                     </div>
                   </div>
 
-                  <p style={{ opacity: "0.4", marginTop: "20px" }}>DATABASES</p>
+                  <p style={{ opacity: "0.4", marginTop: "40px", textAlign: "center" }}>DATABASES</p>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
@@ -254,7 +254,7 @@ export default async function Home() {
                     </div>
                   </div>
 
-                  <p style={{ opacity: "0.4", marginTop: "20px" }}>APIs</p>
+                  <p style={{ opacity: "0.4", marginTop: "40px", textAlign: "center" }}>APIs</p>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
@@ -265,7 +265,7 @@ export default async function Home() {
                     </div>
                   </div>
 
-                  <p style={{ opacity: "0.4", marginTop: "20px" }}>FRAMEWORKS</p>
+                  <p style={{ opacity: "0.4", marginTop: "40px", textAlign: "center" }}>FRAMEWORKS</p>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
@@ -276,7 +276,7 @@ export default async function Home() {
                     </div>
                   </div>
 
-                  <p style={{ opacity: "0.4", marginTop: "20px" }}>CLOUDS</p>
+                  <p style={{ opacity: "0.4", marginTop: "40px", textAlign: "center" }}>CLOUDS</p>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
@@ -303,54 +303,91 @@ export default async function Home() {
               </div>
             </div>
 
+
             <div className="card-container">
               <div className="card">
-                <p style={{ opacity: "0.4" }}>GITHUB</p>
                 <hr />
-                <p style={{ opacity: "0.4", fontSize: "14px" }}>
-                  Fri Jan 27 2023
-                </p>
-                <p>
-                  <b>bug fixes and improvements</b>
-                  <br />
-                  [Commit Hash]: ca4fd2346764670efceb49e197a607e7246db36b
-                </p>
-                <br />
-                <p style={{ opacity: "0.4", fontSize: "14px" }}>
-                  Thu Jan 26 2023
-                </p>
-                <p>
-                  <b>stable</b>
-                  <br />
-                  [Commit Hash]: 93e7691f4b5f5cd2b8fd371cf084e09c61b1cb71
-                </p>
-                <br />
-                <p style={{ opacity: "0.4", fontSize: "14px" }}>
-                  Tue Nov 29 2022
-                </p>
-                <p>
-                  <b>stable</b>
-                  <br />
-                  [Commit Hash]: 8bbe7dd29a264403721df92a3a0c4399a9e3a330
-                </p>
-                <br />
-                <p style={{ opacity: "0.4", fontSize: "14px" }}>
-                  Thu Nov 03 2022
-                </p>
-                <p>
-                  <b>bug fixes and improvements</b>
-                  <br />
-                  [Commit Hash]: 7d7d097634e9a5b88b3d122ae026788a29021d15
-                </p>
-                <br />
-                <p style={{ opacity: "0.4", fontSize: "14px" }}>
-                  Fri Aug 26 2022
-                </p>
-                <p>
-                  <b>stable</b>
-                  <br />
-                  [Commit Hash]: 977a4bf62bf195c0d8ff77a97de2d11c0253b11c
-                </p>
+                <hr />
+
+                <div className="github-container">
+                  <div style={{ display: "flex", width: "50%", flexDirection: "column" }}>
+                    <p>
+                      <b>stable</b>
+                    </p>
+                    <p style={{ fontSize: "14px", opacity: "0.65" }}>
+                      Repo pushed [Month] [Day], [Year]
+                    </p>
+                  </div>
+                  <div style={{ display: "flex", width: "50%", justifyContent: "right" }}>
+                    <button className="btn">
+                      <i className="fa-brands fa-github fa-xl"></i> Commit Sha
+                    </button>
+                  </div>
+                </div>
+
+                <div className="github-container">
+                  <div style={{ display: "flex", width: "50%", flexDirection: "column" }}>
+                    <p>
+                      <b>stable</b>
+                    </p>
+                    <p style={{ fontSize: "14px", opacity: "0.65" }}>
+                      Repo pushed [Month] [Day], [Year]
+                    </p>
+                  </div>
+                  <div style={{ display: "flex", width: "50%", justifyContent: "right" }}>
+                    <button className="btn">
+                      <i className="fa-brands fa-github fa-xl"></i> Commit Sha
+                    </button>
+                  </div>
+                </div>
+
+                <div className="github-container">
+                  <div style={{ display: "flex", width: "50%", flexDirection: "column" }}>
+                    <p>
+                      <b>stable</b>
+                    </p>
+                    <p style={{ fontSize: "14px", opacity: "0.65" }}>
+                      Repo pushed [Month] [Day], [Year]
+                    </p>
+                  </div>
+                  <div style={{ display: "flex", width: "50%", justifyContent: "right" }}>
+                    <button className="btn">
+                      <i className="fa-brands fa-github fa-xl"></i> Commit Sha
+                    </button>
+                  </div>
+                </div>
+
+                <div className="github-container">
+                  <div style={{ display: "flex", width: "50%", flexDirection: "column" }}>
+                    <p>
+                      <b>stable</b>
+                    </p>
+                    <p style={{ fontSize: "14px", opacity: "0.65" }}>
+                      Repo pushed [Month] [Day], [Year]
+                    </p>
+                  </div>
+                  <div style={{ display: "flex", width: "50%", justifyContent: "right" }}>
+                    <button className="btn">
+                      <i className="fa-brands fa-github fa-xl"></i> Commit Sha
+                    </button>
+                  </div>
+                </div>
+
+                <div className="github-container">
+                  <div style={{ display: "flex", width: "50%", flexDirection: "column" }}>
+                    <p>
+                      <b>stable</b>
+                    </p>
+                    <p style={{ fontSize: "14px", opacity: "0.65" }}>
+                      Repo pushed [Month] [Day], [Year]
+                    </p>
+                  </div>
+                  <div style={{ display: "flex", width: "50%", justifyContent: "right" }}>
+                    <button className="btn">
+                      <i className="fa-brands fa-github fa-xl"></i> Commit Sha
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

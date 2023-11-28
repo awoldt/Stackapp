@@ -105,29 +105,33 @@ export default async function Page() {
           <div className="card-container" id="yourStacks">
             <div className="card" style={{ textAlign: "left" }}>
               <section>
-                <hr />
                 {userStacks.length === 0 && (
                   <>
-                    <h2 style={{ opacity: "0.4" }}>NO STACKS</h2>
-                    <div
+                    <h5 style={{ opacity: "0.4" }}>YOUR STACKS</h5>
+                    <hr />
+
+
+                    <div className="btn-container"
                       style={{
-                        marginTop: "40px",
-                        marginBottom: "40px",
+                        textAlign: "center",
+                        marginTop: "20px",
+                        marginBottom: "20px",
                       }}
                     >
                       <a
                         href={"/create"}
                         title="Create your first Stack"
-                        className="btn"
+                        className="btn-landing"
                       >
-                        Create Your First Stack
+                        Create Stack
                       </a>
                     </div>
                   </>
                 )}
                 {userStacks.length > 0 && (
                   <>
-                    <h2 style={{ opacity: "0.4" }}>YOUR STACKS</h2>
+                    <h5 style={{ opacity: "0.4" }}>YOUR STACKS</h5>
+                    <hr />
                     {userStacks.map((x: any, index) => {
                       return (
                         <>

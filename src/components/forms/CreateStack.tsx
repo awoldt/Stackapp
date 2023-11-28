@@ -17,10 +17,10 @@ export default function Form({
   signedIn,
 }: {
   repoSelectList:
-    | RepoSelectList[]
-    | null
-    | "must_connect_github_account"
-    | "error";
+  | RepoSelectList[]
+  | null
+  | "must_connect_github_account"
+  | "error";
   signedIn: boolean;
 }) {
   // stack submission is used only when there is an error with creating new stack
@@ -86,32 +86,34 @@ export default function Form({
       >
         <div className="card-container">
           <div className="create-content">
-            <div>
-              <label style={{ padding: "0" }} htmlFor="app_title">
-                *App Name
-              </label>
+            <div className="input-group">
               <input
+                className="input"
                 type="text"
                 id="app_title"
                 name="app_name"
                 required
                 maxLength={100}
               />
+              <label className="label" htmlFor="app_title">
+                *Title
+              </label>
             </div>
 
-            <div style={{ marginBottom: "10px" }}>
-              <label style={{ padding: "0" }} htmlFor="app_description_input">
-                *App Description
-              </label>
+            <div className="input-group">
               <textarea
+                className="input"
                 name="app_description"
                 id="app_description_input"
                 cols={44}
                 rows={10}
                 maxLength={2000}
-                style={{ marginBottom: "0rem" }}
+                style={{ marginBottom: "10px" }}
                 required
               />
+              <label className="label" htmlFor="app_description_input">
+                *Description
+              </label>
             </div>
 
             <div style={{ marginBottom: "20px" }}>
@@ -131,7 +133,7 @@ export default function Form({
                   if (fileInput.files && fileInput.files[0]) {
                     const reader = new FileReader();
 
-                    reader.onload = (r) => {};
+                    reader.onload = (r) => { };
 
                     reader.readAsDataURL(fileInput.files[0]);
                   }
@@ -153,7 +155,7 @@ export default function Form({
                   if (fileInput.files && fileInput.files[0]) {
                     const reader = new FileReader();
 
-                    reader.onload = (r) => {};
+                    reader.onload = (r) => { };
 
                     reader.readAsDataURL(fileInput.files[0]);
                   }
@@ -161,11 +163,9 @@ export default function Form({
               />
             </div>
 
-            <div>
-              <label style={{ padding: "0" }} htmlFor="website_url">
-                App URL
-              </label>
+            <div className="input-group">
               <input
+                className="input"
                 type="url"
                 id="website_url"
                 name="website_url"
