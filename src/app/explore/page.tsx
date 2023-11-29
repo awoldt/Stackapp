@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { IsValidAccountCookie } from "@/functions";
 import { cookies } from "next/headers";
-import SideNav from "../../components/CustomNav";
 import { accountsCollection, stacksCollection } from "@/services/mongodb";
 import { Stack } from "@/models/stacks";
 import { UserProfile } from "@/models/profile";
@@ -64,10 +63,6 @@ export default async function Page() {
 
   return (
     <>
-      <section>
-        <SideNav isSignedIn={account === false ? false : true} />
-      </section>
-
       <div className="card-container-title">
         <div className="card-empty-wide">
           <h1>Explore Stacks</h1>

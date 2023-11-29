@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { accountsCollection, stacksCollection } from "@/services/mongodb";
 import { notFound, redirect } from "next/navigation";
-import CustomNav from "../../../components/CustomNav";
 import { Metadata } from "next";
 import { IsValidAccountCookie } from "@/functions";
 import { cookies } from "next/headers";
@@ -66,9 +65,6 @@ export default async function ProfilePage({ params }: { params: any }) {
 
   return (
     <>
-      <section>
-        <CustomNav isSignedIn={account === false ? false : true} />
-      </section>
       <section>
         <div className="header-container" style={{ paddingBottom: "0px" }}>
           <div
@@ -146,7 +142,7 @@ export default async function ProfilePage({ params }: { params: any }) {
                         >
                           {x.created_on.toDateString()}
                         </p>
-                        <p style={{marginTop: '10px'}}>{x.description}</p>
+                        <p style={{ marginTop: "10px" }}>{x.description}</p>
                       </div>
                       <div className="explore-stack-icons-container">
                         <img

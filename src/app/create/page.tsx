@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import { cookies } from "next/headers";
 import CreateStackForm from "../../components/forms/CreateStack";
 import { GetGitHubRepoSelectData, IsValidAccountCookie } from "@/functions";
-import SideNav from "../../components/CustomNav";
 
 export const metadata: Metadata = {
   title: "Create a Stack | Stack",
@@ -34,10 +33,6 @@ export default async function Page() {
   if (account === false) {
     return (
       <>
-        <section>
-          <SideNav isSignedIn={false} />
-        </section>
-
         <div className="card-container-title">
           <div className="card-empty">
             <h1>Create Stack</h1>
@@ -72,10 +67,6 @@ export default async function Page() {
 
     return (
       <>
-        <section>
-          <SideNav isSignedIn={true} />
-        </section>
-
         <div className="card-container-title">
           <div className="card-empty">
             <h1>Create Stack</h1>

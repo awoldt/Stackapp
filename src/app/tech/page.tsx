@@ -7,7 +7,6 @@ import {
 import { Tech, stacksCollection, techCollection } from "@/services/mongodb";
 import { Metadata } from "next";
 import { cookies } from "next/headers";
-import Nav from "../../components/CustomNav";
 import { Stack } from "@/models/stacks";
 
 export const metadata: Metadata = {

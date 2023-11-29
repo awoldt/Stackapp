@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import CreateAccountForm from "../../components/forms/CreateAccount";
-import SideNav from "../../components/CustomNav";
 import { cookies } from "next/headers";
 import { IsValidAccountCookie } from "@/functions";
 import { redirect } from "next/navigation";
@@ -23,9 +22,6 @@ export default async function Page() {
 
   return (
     <>
-      <section>
-        <SideNav isSignedIn={account === false ? false : true} />
-      </section>
       <CreateAccountForm />
     </>
   );

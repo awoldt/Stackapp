@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { Metadata } from "next";
-import SideNav from "../components/CustomNav";
 import { IsValidAccountCookie } from "@/functions";
 import { cookies } from "next/headers";
 
@@ -33,10 +32,6 @@ export default async function Home() {
 
   return (
     <main>
-      <section>
-        <SideNav isSignedIn={account === false ? false : true} />
-      </section>
-
       <section>
         <div className="card-container" id="landing">
           <div className="card-empty-splash">
@@ -156,7 +151,10 @@ export default async function Home() {
               Showcase your Applications through Elegant Stacks
             </h2>
             <div className="header-container" style={{ paddingTop: "0rem" }}>
-              <div className="title-container-header" style={{ marginTop: "2rem" }}>
+              <div
+                className="title-container-header"
+                style={{ marginTop: "2rem" }}
+              >
                 <div className="title-header">
                   <div className="header">
                     <img
@@ -224,7 +222,9 @@ export default async function Home() {
             <div className="card-container">
               <div className="card">
                 <div className="container">
-                  <p style={{ opacity: "0.4", textAlign: "center" }}>LANGUAGES</p>
+                  <p style={{ opacity: "0.4", textAlign: "center" }}>
+                    LANGUAGES
+                  </p>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
@@ -244,7 +244,15 @@ export default async function Home() {
                     </div>
                   </div>
 
-                  <p style={{ opacity: "0.4", marginTop: "40px", textAlign: "center" }}>DATABASES</p>
+                  <p
+                    style={{
+                      opacity: "0.4",
+                      marginTop: "40px",
+                      textAlign: "center",
+                    }}
+                  >
+                    DATABASES
+                  </p>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
@@ -258,7 +266,15 @@ export default async function Home() {
                     </div>
                   </div>
 
-                  <p style={{ opacity: "0.4", marginTop: "40px", textAlign: "center" }}>APIs</p>
+                  <p
+                    style={{
+                      opacity: "0.4",
+                      marginTop: "40px",
+                      textAlign: "center",
+                    }}
+                  >
+                    APIs
+                  </p>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
@@ -269,7 +285,15 @@ export default async function Home() {
                     </div>
                   </div>
 
-                  <p style={{ opacity: "0.4", marginTop: "40px", textAlign: "center" }}>FRAMEWORKS</p>
+                  <p
+                    style={{
+                      opacity: "0.4",
+                      marginTop: "40px",
+                      textAlign: "center",
+                    }}
+                  >
+                    FRAMEWORKS
+                  </p>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
@@ -280,7 +304,15 @@ export default async function Home() {
                     </div>
                   </div>
 
-                  <p style={{ opacity: "0.4", marginTop: "40px", textAlign: "center" }}>CLOUDS</p>
+                  <p
+                    style={{
+                      opacity: "0.4",
+                      marginTop: "40px",
+                      textAlign: "center",
+                    }}
+                  >
+                    CLOUDS
+                  </p>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
@@ -307,14 +339,19 @@ export default async function Home() {
               </div>
             </div>
 
-
             <div className="card-container">
               <div className="card">
                 <hr />
                 <hr />
 
                 <div className="github-container">
-                  <div style={{ display: "flex", width: "50%", flexDirection: "column" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      width: "50%",
+                      flexDirection: "column",
+                    }}
+                  >
                     <p>
                       <b>stable</b>
                     </p>
@@ -322,7 +359,13 @@ export default async function Home() {
                       Repo pushed [Month] [Day], [Year]
                     </p>
                   </div>
-                  <div style={{ display: "flex", width: "50%", justifyContent: "right" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      width: "50%",
+                      justifyContent: "right",
+                    }}
+                  >
                     <button className="btn">
                       <i className="fa-brands fa-github fa-xl"></i> Commit Sha
                     </button>
@@ -330,7 +373,13 @@ export default async function Home() {
                 </div>
 
                 <div className="github-container">
-                  <div style={{ display: "flex", width: "50%", flexDirection: "column" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      width: "50%",
+                      flexDirection: "column",
+                    }}
+                  >
                     <p>
                       <b>stable</b>
                     </p>
@@ -338,7 +387,13 @@ export default async function Home() {
                       Repo pushed [Month] [Day], [Year]
                     </p>
                   </div>
-                  <div style={{ display: "flex", width: "50%", justifyContent: "right" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      width: "50%",
+                      justifyContent: "right",
+                    }}
+                  >
                     <button className="btn">
                       <i className="fa-brands fa-github fa-xl"></i> Commit Sha
                     </button>
@@ -346,7 +401,13 @@ export default async function Home() {
                 </div>
 
                 <div className="github-container">
-                  <div style={{ display: "flex", width: "50%", flexDirection: "column" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      width: "50%",
+                      flexDirection: "column",
+                    }}
+                  >
                     <p>
                       <b>stable</b>
                     </p>
@@ -354,7 +415,13 @@ export default async function Home() {
                       Repo pushed [Month] [Day], [Year]
                     </p>
                   </div>
-                  <div style={{ display: "flex", width: "50%", justifyContent: "right" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      width: "50%",
+                      justifyContent: "right",
+                    }}
+                  >
                     <button className="btn">
                       <i className="fa-brands fa-github fa-xl"></i> Commit Sha
                     </button>
@@ -362,7 +429,13 @@ export default async function Home() {
                 </div>
 
                 <div className="github-container">
-                  <div style={{ display: "flex", width: "50%", flexDirection: "column" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      width: "50%",
+                      flexDirection: "column",
+                    }}
+                  >
                     <p>
                       <b>stable</b>
                     </p>
@@ -370,7 +443,13 @@ export default async function Home() {
                       Repo pushed [Month] [Day], [Year]
                     </p>
                   </div>
-                  <div style={{ display: "flex", width: "50%", justifyContent: "right" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      width: "50%",
+                      justifyContent: "right",
+                    }}
+                  >
                     <button className="btn">
                       <i className="fa-brands fa-github fa-xl"></i> Commit Sha
                     </button>
@@ -378,7 +457,13 @@ export default async function Home() {
                 </div>
 
                 <div className="github-container">
-                  <div style={{ display: "flex", width: "50%", flexDirection: "column" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      width: "50%",
+                      flexDirection: "column",
+                    }}
+                  >
                     <p>
                       <b>stable</b>
                     </p>
@@ -386,7 +471,13 @@ export default async function Home() {
                       Repo pushed [Month] [Day], [Year]
                     </p>
                   </div>
-                  <div style={{ display: "flex", width: "50%", justifyContent: "right" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      width: "50%",
+                      justifyContent: "right",
+                    }}
+                  >
                     <button className="btn">
                       <i className="fa-brands fa-github fa-xl"></i> Commit Sha
                     </button>

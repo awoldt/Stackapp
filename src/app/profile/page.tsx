@@ -3,7 +3,6 @@ import { Metadata } from "next";
 import { IsValidAccountCookie } from "@/functions";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import SideNav from "../../components/CustomNav";
 import { stacksCollection } from "@/services/mongodb";
 
 export const metadata: Metadata = {
@@ -32,10 +31,6 @@ export default async function Page() {
     return (
       <>
         <div>
-          <section>
-            <SideNav isSignedIn={true} />
-          </section>
-
           {/* USER PROFILE */}
           <section>
             <main>
@@ -110,8 +105,8 @@ export default async function Page() {
                     <h5 style={{ opacity: "0.4" }}>YOUR STACKS</h5>
                     <hr />
 
-
-                    <div className="btn-container"
+                    <div
+                      className="btn-container"
                       style={{
                         textAlign: "center",
                         marginTop: "20px",

@@ -4,7 +4,6 @@ import { IsValidAccountCookie } from "@/functions";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import EditProfileForm from "../../../components/forms/EditProfile";
-import SideNav from "../../../components/CustomNav";
 
 export const metadata: Metadata = {
   title: "Edit Profile | Stack",
@@ -26,10 +25,6 @@ export default async function Page() {
   return (
     <>
       <>
-        <section>
-          <SideNav isSignedIn={true} />
-        </section>
-
         <section>
           <div className="card-container-title">
             <div className="card-empty">

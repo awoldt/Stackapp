@@ -11,7 +11,6 @@ import {
   RepoCommitLogs,
 } from "@/functions";
 import StackCommitLogs from "../../../components/StackCommitLogs";
-import SideNav from "../../../components/CustomNav";
 
 export const metadata: Metadata = {
   title: null,
@@ -101,10 +100,6 @@ export default async function Page({ params }: { params: any }) {
 
   return (
     <>
-      <section>
-        <SideNav isSignedIn={account === false ? false : true} />
-      </section>
-
       <section>
         <div className="header-container">
           <div className="title-container-header" style={{ marginTop: "4rem" }}>
