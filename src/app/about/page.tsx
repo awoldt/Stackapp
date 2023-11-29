@@ -10,30 +10,35 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <><div className="card-container-title">
-      <div className="card-empty-wide">
-        <h1>About Stack</h1>
-        <h5>Learn more about Stack.</h5>
+    <>
+      <div className="card-container-title">
+        <div className="card-empty-wide">
+          <h1>About Stack</h1>
+          <h2>Learn more about Stack.</h2>
+        </div>
       </div>
-    </div><div className="card-container">
+      <div className="card-container">
         <div className="card">
           <p>
-            Stack was developed to provide developers with a straightforward tool
-            for highlighting the technologies incorporated into their tech stack,
-            offering an accessible way to showcase their technical expertise to a
-            wider audience
+            Stack was developed to provide developers with a straightforward
+            tool for highlighting the technologies incorporated into their tech
+            stack, offering an accessible way to showcase their technical
+            expertise to a wider audience
           </p>
 
-          <h5 style={{ opacity: "0.4" }}>CREATORS</h5>
-          <hr/>
-          <div>
-            <a href="https://awoldt.dev/">Alex Breckwoldt</a>
-          </div>
+          <h3 style={{ opacity: "0.4", marginTop: "20px" }}>CREATORS</h3>
+          <hr />
 
-          <div>
-            <a>Justin Davenport</a>
-          </div>
+          <ul>
+            <li>
+              <a href="https://awoldt.dev/">Alex Breckwoldt</a>
+            </li>
+            <li>
+              <a>Justin Davenport</a>
+            </li>
+          </ul>
         </div>
-      </div></>
+      </div>
+    </>
   );
 }

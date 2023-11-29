@@ -57,7 +57,11 @@ export default async function Page() {
       <div className="card-container-title">
         <div className="card-empty-wide">
           <h1>Technologies</h1>
-          <h5>At Stack, we offer a diverse range of more than {totalTech} technologies, all accessible for demonstrating the construction of your application.</h5>
+          <p>
+            At Stack, we offer a diverse range of more than {totalTech}{" "}
+            technologies, all accessible for demonstrating the construction of
+            your application.
+          </p>
         </div>
       </div>
 
@@ -68,9 +72,9 @@ export default async function Page() {
               <>
                 {x._id === "language" && (
                   <>
-                    <h5 style={{ opacity: "0.4", textAlign: "center" }}>
+                    <h2 style={{ opacity: "0.4", textAlign: "center" }}>
                       LANGUAGES
-                    </h5>
+                    </h2>
 
                     {/* <p>
                         Programming languages are the building block for any
@@ -80,27 +84,45 @@ export default async function Page() {
 
                     {x.tech.map((x, index) => {
                       return (
-                        <div key={index} className="card" style={{ width: "100%", marginBottom: "1rem" }}>
-                          <div style={{ display: "flex", alignItems: "center" }}>
+                        <div
+                          key={index}
+                          className="card"
+                          style={{ width: "100%", marginBottom: "1rem" }}
+                        >
+                          <div
+                            style={{ display: "flex", alignItems: "center" }}
+                          >
                             <img
                               src={`/imgs/tech/${x.name}.svg`}
                               width={60}
                               alt={`${x.name} logo`}
                               style={{ borderRadius: "4px" }}
                             />
-                            <div style={{ display: "flex", flexDirection: "column" }}>
-                              <h4>
+                            <div
+                              style={{
+                                display: "flex",
+                                flexDirection: "column",
+                              }}
+                            >
+                              <h3>
                                 &nbsp;<b>{x.name}</b>&nbsp;
-                              </h4>
+                              </h3>
                               <span style={{ color: "#2667ff" }}>
-                                &nbsp;&nbsp;Used in over {x.numOfOccurences} Stacks!
+                                &nbsp;&nbsp;Used in over {x.numOfOccurences}{" "}
+                                Stacks!
                               </span>
                             </div>
                           </div>
                           <hr />
-                          <p>
-                            {x.description}
-                          </p>
+                          <p>{x.description}</p>
+
+                          <a
+                            href={x.site}
+                            target="_blank"
+                            style={{ display: "block", marginTop: "25px" }}
+                          >
+                            Learn more
+                          </a>
                         </div>
                       );
                     })}
@@ -108,9 +130,9 @@ export default async function Page() {
                 )}
                 {x._id === "database" && (
                   <>
-                    <h5 style={{ opacity: "0.4", textAlign: "center" }}>
+                    <h2 style={{ opacity: "0.4", textAlign: "center" }}>
                       DATABASES
-                    </h5>
+                    </h2>
 
                     {/* <p>
                       Every appliaction needs data to showcase on the frontend.
@@ -120,27 +142,45 @@ export default async function Page() {
 
                     {x.tech.map((x, index) => {
                       return (
-                        <div key={index} className="card" style={{ width: "100%", marginBottom: "1rem" }}>
-                          <div style={{ display: "flex", alignItems: "center" }}>
+                        <div
+                          key={index}
+                          className="card"
+                          style={{ width: "100%", marginBottom: "1rem" }}
+                        >
+                          <div
+                            style={{ display: "flex", alignItems: "center" }}
+                          >
                             <img
                               src={`/imgs/tech/${x.name}.svg`}
                               width={60}
                               alt={`${x.name} logo`}
                               style={{ borderRadius: "4px" }}
                             />
-                            <div style={{ display: "flex", flexDirection: "column" }}>
-                              <h4>
+                            <div
+                              style={{
+                                display: "flex",
+                                flexDirection: "column",
+                              }}
+                            >
+                              <h3>
                                 &nbsp;<b>{x.name}</b>&nbsp;
-                              </h4>
+                              </h3>
                               <span style={{ color: "#2667ff" }}>
-                                &nbsp;&nbsp;Used in over {x.numOfOccurences} Stacks!
+                                &nbsp;&nbsp;Used in over {x.numOfOccurences}{" "}
+                                Stacks!
                               </span>
                             </div>
                           </div>
                           <hr />
-                          <p>
-                            {x.description}
-                          </p>
+                          <p>{x.description}</p>
+
+                          <a
+                            href={x.site}
+                            target="_blank"
+                            style={{ display: "block", marginTop: "25px" }}
+                          >
+                            Learn more
+                          </a>
                         </div>
                       );
                     })}
@@ -148,9 +188,9 @@ export default async function Page() {
                 )}
                 {x._id === "api" && (
                   <>
-                    <h5 style={{ opacity: "0.4", textAlign: "center" }}>
+                    <h2 style={{ opacity: "0.4", textAlign: "center" }}>
                       APIs
-                    </h5>
+                    </h2>
 
                     {/* <p>
                       APIs help get data from other companies to use for your
@@ -160,27 +200,45 @@ export default async function Page() {
 
                     {x.tech.map((x, index) => {
                       return (
-                        <div key={index} className="card" style={{ width: "100%", marginBottom: "1rem" }}>
-                          <div style={{ display: "flex", alignItems: "center" }}>
+                        <div
+                          key={index}
+                          className="card"
+                          style={{ width: "100%", marginBottom: "1rem" }}
+                        >
+                          <div
+                            style={{ display: "flex", alignItems: "center" }}
+                          >
                             <img
                               src={`/imgs/tech/${x.name}.svg`}
                               width={60}
                               alt={`${x.name} logo`}
                               style={{ borderRadius: "4px" }}
                             />
-                            <div style={{ display: "flex", flexDirection: "column" }}>
-                              <h4>
+                            <div
+                              style={{
+                                display: "flex",
+                                flexDirection: "column",
+                              }}
+                            >
+                              <h3>
                                 &nbsp;<b>{x.name}</b>&nbsp;
-                              </h4>
+                              </h3>
                               <span style={{ color: "#2667ff" }}>
-                                &nbsp;&nbsp;Used in over {x.numOfOccurences} Stacks!
+                                &nbsp;&nbsp;Used in over {x.numOfOccurences}{" "}
+                                Stacks!
                               </span>
                             </div>
                           </div>
                           <hr />
-                          <p>
-                            {x.description}
-                          </p>
+                          <p>{x.description}</p>
+
+                          <a
+                            href={x.site}
+                            target="_blank"
+                            style={{ display: "block", marginTop: "25px" }}
+                          >
+                            Learn more
+                          </a>
                         </div>
                       );
                     })}
@@ -188,9 +246,9 @@ export default async function Page() {
                 )}
                 {x._id === "cloud" && (
                   <>
-                    <h5 style={{ opacity: "0.4", textAlign: "center" }}>
+                    <h2 style={{ opacity: "0.4", textAlign: "center" }}>
                       CLOUDS
-                    </h5>
+                    </h2>
 
                     {/* <p>
                       Tapping into other companies compute can power your
@@ -200,27 +258,45 @@ export default async function Page() {
 
                     {x.tech.map((x, index) => {
                       return (
-                        <div key={index} className="card" style={{ width: "100%", marginBottom: "1rem" }}>
-                          <div style={{ display: "flex", alignItems: "center" }}>
+                        <div
+                          key={index}
+                          className="card"
+                          style={{ width: "100%", marginBottom: "1rem" }}
+                        >
+                          <div
+                            style={{ display: "flex", alignItems: "center" }}
+                          >
                             <img
                               src={`/imgs/tech/${x.name}.svg`}
                               width={60}
                               alt={`${x.name} logo`}
                               style={{ borderRadius: "4px" }}
                             />
-                            <div style={{ display: "flex", flexDirection: "column" }}>
-                              <h4>
+                            <div
+                              style={{
+                                display: "flex",
+                                flexDirection: "column",
+                              }}
+                            >
+                              <h3>
                                 &nbsp;<b>{x.name}</b>&nbsp;
-                              </h4>
+                              </h3>
                               <span style={{ color: "#2667ff" }}>
-                                &nbsp;&nbsp;Used in over {x.numOfOccurences} Stacks!
+                                &nbsp;&nbsp;Used in over {x.numOfOccurences}{" "}
+                                Stacks!
                               </span>
                             </div>
                           </div>
                           <hr />
-                          <p>
-                            {x.description}
-                          </p>
+                          <p>{x.description}</p>
+
+                          <a
+                            href={x.site}
+                            target="_blank"
+                            style={{ display: "block", marginTop: "25px" }}
+                          >
+                            Learn more
+                          </a>
                         </div>
                       );
                     })}
@@ -228,9 +304,9 @@ export default async function Page() {
                 )}
                 {x._id === "framework" && (
                   <>
-                    <h5 style={{ opacity: "0.4", textAlign: "center" }}>
+                    <h2 style={{ opacity: "0.4", textAlign: "center" }}>
                       FRAMEWORKS
-                    </h5>
+                    </h2>
 
                     {/* <p>
                       Frameworks take boilerplate code out of the equation and
@@ -240,27 +316,45 @@ export default async function Page() {
 
                     {x.tech.map((x, index) => {
                       return (
-                        <div key={index} className="card" style={{ width: "100%", marginBottom: "1rem" }}>
-                          <div style={{ display: "flex", alignItems: "center" }}>
+                        <div
+                          key={index}
+                          className="card"
+                          style={{ width: "100%", marginBottom: "1rem" }}
+                        >
+                          <div
+                            style={{ display: "flex", alignItems: "center" }}
+                          >
                             <img
                               src={`/imgs/tech/${x.name}.svg`}
                               width={60}
                               alt={`${x.name} logo`}
                               style={{ borderRadius: "4px" }}
                             />
-                            <div style={{ display: "flex", flexDirection: "column" }}>
-                              <h4>
+                            <div
+                              style={{
+                                display: "flex",
+                                flexDirection: "column",
+                              }}
+                            >
+                              <h3>
                                 &nbsp;<b>{x.name}</b>&nbsp;
-                              </h4>
+                              </h3>
                               <span style={{ color: "#2667ff" }}>
-                                &nbsp;&nbsp;Used in over {x.numOfOccurences} Stacks!
+                                &nbsp;&nbsp;Used in over {x.numOfOccurences}{" "}
+                                Stacks!
                               </span>
                             </div>
                           </div>
                           <hr />
-                          <p>
-                            {x.description}
-                          </p>
+                          <p>{x.description}</p>
+
+                          <a
+                            href={x.site}
+                            target="_blank"
+                            style={{ display: "block", marginTop: "25px" }}
+                          >
+                            Learn more
+                          </a>
                         </div>
                       );
                     })}
