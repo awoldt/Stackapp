@@ -83,7 +83,6 @@ export async function GET(request: Request) {
   try {
     // 1. check if id query is valid
     const id = new URLSearchParams(new URL(request.url).search).get("id");
-    console.log(id);
 
     if (id === null) {
       return Response.json({ data: "bad request" }, { status: 400 });
@@ -91,8 +90,6 @@ export async function GET(request: Request) {
     if (!ObjectId.isValid(id)) {
       return Response.json({ data: "bad request" }, { status: 400 });
     }
-
-    console.log(id);
 
     // 2. check to see if sign in document exists
     const account = await signInLinksCollection.findOne({

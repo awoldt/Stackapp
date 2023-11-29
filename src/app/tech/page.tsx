@@ -72,14 +72,22 @@ export default async function Page() {
               <>
                 {x._id === "language" && (
                   <>
-                    <h2 className="subheading" style={{ opacity: "0.6", textAlign: "center", fontWeight: "500" }}>
+                    <h2
+                      className="subheading"
+                      style={{
+                        opacity: "0.6",
+                        textAlign: "center",
+                        fontWeight: "500",
+                      }}
+                    >
                       <img
                         src="/imgs/icons/code.svg"
                         alt="language"
                         width={20}
                         height={14}
                         style={{ display: "inline" }}
-                      />LANGUAGES
+                      />
+                      LANGUAGES
                     </h2>
                     <hr />
 
@@ -108,10 +116,19 @@ export default async function Page() {
                               <h3>
                                 &nbsp;<b>{x.name}</b>&nbsp;
                               </h3>
-                              <span style={{ color: "#2667ff" }}>
-                                &nbsp;&nbsp;Used in over {x.numOfOccurences}{" "}
-                                Stacks!
-                              </span>
+                              {x.numOfOccurences! > 0 && (
+                                <span style={{ color: "#2667ff" }}>
+                                  {x.numOfOccurences === 1 && (
+                                    <>&nbsp;&nbsp;Used in 1 Stack!</>
+                                  )}
+                                  {x.numOfOccurences! > 1 && (
+                                    <>
+                                      &nbsp;&nbsp;Used in over{" "}
+                                      {x.numOfOccurences} Stacks!
+                                    </>
+                                  )}
+                                </span>
+                              )}
                             </div>
                           </div>
                           <hr />
@@ -120,9 +137,14 @@ export default async function Page() {
                             className="nav-element"
                             href={x.site}
                             target="_blank"
-                            style={{ display: "block", marginTop: "10px", fontWeight: "600", maxWidth: "fit-content" }}
+                            style={{
+                              display: "block",
+                              marginTop: "10px",
+                              fontWeight: "600",
+                              maxWidth: "fit-content",
+                            }}
                           >
-                            Learn More.
+                            Learn More
                           </a>
                         </div>
                       );
@@ -131,14 +153,23 @@ export default async function Page() {
                 )}
                 {x._id === "database" && (
                   <>
-                    <h2 className="subheading" style={{ opacity: "0.6", marginTop: "40px", textAlign: "center", fontWeight: "500" }}>
+                    <h2
+                      className="subheading"
+                      style={{
+                        opacity: "0.6",
+                        marginTop: "40px",
+                        textAlign: "center",
+                        fontWeight: "500",
+                      }}
+                    >
                       <img
                         src="/imgs/icons/database-fill.svg"
                         alt="database"
                         width={20}
                         height={14}
                         style={{ display: "inline" }}
-                      />DATABASES
+                      />
+                      DATABASES
                     </h2>
                     <hr />
 
@@ -167,10 +198,19 @@ export default async function Page() {
                               <h3>
                                 &nbsp;<b>{x.name}</b>&nbsp;
                               </h3>
-                              <span style={{ color: "#2667ff" }}>
-                                &nbsp;&nbsp;Used in over {x.numOfOccurences}{" "}
-                                Stacks!
-                              </span>
+                              {x.numOfOccurences! > 0 && (
+                                <span style={{ color: "#2667ff" }}>
+                                  {x.numOfOccurences === 1 && (
+                                    <>&nbsp;&nbsp;Used in 1 Stack!</>
+                                  )}
+                                  {x.numOfOccurences! > 1 && (
+                                    <>
+                                      &nbsp;&nbsp;Used in over{" "}
+                                      {x.numOfOccurences} Stacks!
+                                    </>
+                                  )}
+                                </span>
+                              )}
                             </div>
                           </div>
                           <hr />
@@ -179,9 +219,14 @@ export default async function Page() {
                             className="nav-element"
                             href={x.site}
                             target="_blank"
-                            style={{ display: "block", marginTop: "10px", fontWeight: "600", maxWidth: "fit-content" }}
+                            style={{
+                              display: "block",
+                              marginTop: "10px",
+                              fontWeight: "600",
+                              maxWidth: "fit-content",
+                            }}
                           >
-                            Learn More.
+                            Learn More
                           </a>
                         </div>
                       );
@@ -190,14 +235,23 @@ export default async function Page() {
                 )}
                 {x._id === "api" && (
                   <>
-                    <h2 className="subheading" style={{ opacity: "0.6", marginTop: "40px", textAlign: "center", fontWeight: "500" }}>
+                    <h2
+                      className="subheading"
+                      style={{
+                        opacity: "0.6",
+                        marginTop: "40px",
+                        textAlign: "center",
+                        fontWeight: "500",
+                      }}
+                    >
                       <img
                         src="/imgs/icons/api.svg"
                         alt="api"
                         width={20}
                         height={14}
                         style={{ display: "inline" }}
-                      />APIs
+                      />
+                      APIs
                     </h2>
                     <hr />
 
@@ -226,10 +280,19 @@ export default async function Page() {
                               <h3>
                                 &nbsp;<b>{x.name}</b>&nbsp;
                               </h3>
-                              <span style={{ color: "#2667ff" }}>
-                                &nbsp;&nbsp;Used in over {x.numOfOccurences}{" "}
-                                Stacks!
-                              </span>
+                              {x.numOfOccurences! > 0 && (
+                                <span style={{ color: "#2667ff" }}>
+                                  {x.numOfOccurences === 1 && (
+                                    <>&nbsp;&nbsp;Used in 1 Stack!</>
+                                  )}
+                                  {x.numOfOccurences! > 1 && (
+                                    <>
+                                      &nbsp;&nbsp;Used in over{" "}
+                                      {x.numOfOccurences} Stacks!
+                                    </>
+                                  )}
+                                </span>
+                              )}
                             </div>
                           </div>
                           <hr />
@@ -238,9 +301,14 @@ export default async function Page() {
                             className="nav-element"
                             href={x.site}
                             target="_blank"
-                            style={{ display: "block", marginTop: "10px", fontWeight: "600", maxWidth: "fit-content" }}
+                            style={{
+                              display: "block",
+                              marginTop: "10px",
+                              fontWeight: "600",
+                              maxWidth: "fit-content",
+                            }}
                           >
-                            Learn More.
+                            Learn More
                           </a>
                         </div>
                       );
@@ -249,14 +317,23 @@ export default async function Page() {
                 )}
                 {x._id === "framework" && (
                   <>
-                    <h2 className="subheading" style={{ opacity: "0.6", marginTop: "40px", textAlign: "center", fontWeight: "500" }}>
+                    <h2
+                      className="subheading"
+                      style={{
+                        opacity: "0.6",
+                        marginTop: "40px",
+                        textAlign: "center",
+                        fontWeight: "500",
+                      }}
+                    >
                       <img
                         src="/imgs/icons/framework.svg"
                         alt="api"
                         width={20}
                         height={14}
                         style={{ display: "inline" }}
-                      />FRAMEWORKS
+                      />
+                      FRAMEWORKS
                     </h2>
                     <hr />
 
@@ -285,10 +362,19 @@ export default async function Page() {
                               <h3>
                                 &nbsp;<b>{x.name}</b>&nbsp;
                               </h3>
-                              <span style={{ color: "#2667ff" }}>
-                                &nbsp;&nbsp;Used in over {x.numOfOccurences}{" "}
-                                Stacks!
-                              </span>
+                              {x.numOfOccurences! > 0 && (
+                                <span style={{ color: "#2667ff" }}>
+                                  {x.numOfOccurences === 1 && (
+                                    <>&nbsp;&nbsp;Used in 1 Stack!</>
+                                  )}
+                                  {x.numOfOccurences! > 1 && (
+                                    <>
+                                      &nbsp;&nbsp;Used in over{" "}
+                                      {x.numOfOccurences} Stacks!
+                                    </>
+                                  )}
+                                </span>
+                              )}
                             </div>
                           </div>
                           <hr />
@@ -297,9 +383,14 @@ export default async function Page() {
                             className="nav-element"
                             href={x.site}
                             target="_blank"
-                            style={{ display: "block", marginTop: "10px", fontWeight: "600", maxWidth: "fit-content" }}
+                            style={{
+                              display: "block",
+                              marginTop: "10px",
+                              fontWeight: "600",
+                              maxWidth: "fit-content",
+                            }}
                           >
-                            Learn More.
+                            Learn More
                           </a>
                         </div>
                       );
@@ -308,14 +399,23 @@ export default async function Page() {
                 )}
                 {x._id === "cloud" && (
                   <>
-                    <h2 className="subheading" style={{ opacity: "0.6", marginTop: "40px", textAlign: "center", fontWeight: "500" }}>
+                    <h2
+                      className="subheading"
+                      style={{
+                        opacity: "0.6",
+                        marginTop: "40px",
+                        textAlign: "center",
+                        fontWeight: "500",
+                      }}
+                    >
                       <img
                         src="/imgs/icons/cloud-fill.svg"
                         alt="cloud"
                         width={20}
                         height={14}
                         style={{ display: "inline" }}
-                      />CLOUDS
+                      />
+                      CLOUDS
                     </h2>
 
                     {/* <p>
@@ -349,10 +449,19 @@ export default async function Page() {
                               <h3>
                                 &nbsp;<b>{x.name}</b>&nbsp;
                               </h3>
-                              <span style={{ color: "#2667ff" }}>
-                                &nbsp;&nbsp;Used in over {x.numOfOccurences}{" "}
-                                Stacks!
-                              </span>
+                              {x.numOfOccurences! > 0 && (
+                                <span style={{ color: "#2667ff" }}>
+                                  {x.numOfOccurences === 1 && (
+                                    <>&nbsp;&nbsp;Used in 1 Stack!</>
+                                  )}
+                                  {x.numOfOccurences! > 1 && (
+                                    <>
+                                      &nbsp;&nbsp;Used in over{" "}
+                                      {x.numOfOccurences} Stacks!
+                                    </>
+                                  )}
+                                </span>
+                              )}
                             </div>
                           </div>
                           <hr />
@@ -361,9 +470,14 @@ export default async function Page() {
                             className="nav-element"
                             href={x.site}
                             target="_blank"
-                            style={{ display: "block", marginTop: "10px", fontWeight: "600", maxWidth: "fit-content" }}
+                            style={{
+                              display: "block",
+                              marginTop: "10px",
+                              fontWeight: "600",
+                              maxWidth: "fit-content",
+                            }}
                           >
-                            Learn More.
+                            Learn More
                           </a>
                         </div>
                       );

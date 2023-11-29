@@ -35,10 +35,21 @@ export default async function Page() {
       <>
         <div className="card-container-title">
           <div className="card-empty">
-            <h1 style={{ display: "flex", alignItems: "center", marginBottom: "0", marginTop: "0" }}><img src="/imgs/icons/create2.svg" />&nbsp;Create Stack</h1>
-            <h5>
-              Login to your account to create custom Stacks that showcase your applications.
-            </h5>
+            <h1
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginBottom: "0",
+                marginTop: "0",
+              }}
+            >
+              <img src="/imgs/icons/create2.svg" />
+              &nbsp;Create Stack
+            </h1>
+            <p>
+              Login to your account to create custom Stacks that showcase your
+              applications.
+            </p>
             {/* <p>
               Don&apos;t have an account?{" "}
               <a href="/signup" title="Create a Stack account">
@@ -64,8 +75,18 @@ export default async function Page() {
       <>
         <div className="card-container-title">
           <div className="card-empty">
-            <h1 style={{ display: "flex", alignItems: "center", marginBottom: "0", marginTop: "0" }}><img src="/imgs/icons/create2.svg" />&nbsp;Create Stack</h1>
-            <h5>Create custom Stacks that showcase your applications.</h5>
+            <h1
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginBottom: "0",
+                marginTop: "0",
+              }}
+            >
+              <img src="/imgs/icons/create2.svg" />
+              &nbsp;Create Stack
+            </h1>
+            <p>Create custom Stacks that showcase your applications.</p>
           </div>
         </div>
 

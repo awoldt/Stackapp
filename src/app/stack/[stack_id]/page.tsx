@@ -153,9 +153,9 @@ export default async function Page({ params }: { params: any }) {
                   />
 
                   <span>
-                    <h5 style={{ fontWeight: 800 }}>
+                    <span style={{ fontWeight: 800 }}>
                       {creatorDetails?.first_name} {creatorDetails?.last_name}
-                    </h5>
+                    </span>
                     <p
                       style={{
                         opacity: "0.8",

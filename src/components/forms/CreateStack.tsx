@@ -17,10 +17,10 @@ export default function Form({
   signedIn,
 }: {
   repoSelectList:
-  | RepoSelectList[]
-  | null
-  | "must_connect_github_account"
-  | "error";
+    | RepoSelectList[]
+    | null
+    | "must_connect_github_account"
+    | "error";
   signedIn: boolean;
 }) {
   // stack submission is used only when there is an error with creating new stack
@@ -69,7 +69,7 @@ export default function Form({
       {stackSubmission !== null && !loading && (
         <>
           <div className="card-container">
-            <p style={{ color: "red" }}>{stackSubmission?.msg}</p>
+            <p style={{ color: "#2667ff" }}>{stackSubmission?.msg}</p>
           </div>
         </>
       )}
@@ -133,7 +133,7 @@ export default function Form({
                   if (fileInput.files && fileInput.files[0]) {
                     const reader = new FileReader();
 
-                    reader.onload = (r) => { };
+                    reader.onload = (r) => {};
 
                     reader.readAsDataURL(fileInput.files[0]);
                   }
@@ -155,7 +155,7 @@ export default function Form({
                   if (fileInput.files && fileInput.files[0]) {
                     const reader = new FileReader();
 
-                    reader.onload = (r) => { };
+                    reader.onload = (r) => {};
 
                     reader.readAsDataURL(fileInput.files[0]);
                   }
@@ -182,8 +182,9 @@ export default function Form({
               <div>
                 <p>
                   <b>
-                    <img src="/imgs/icons/github.svg" /> Connect your GitHub account in profile settings to showcase commit
-                    logs from your repositories.
+                    <img src="/imgs/icons/github.svg" /> Connect your GitHub
+                    account in profile settings to showcase commit logs from
+                    your repositories.
                   </b>
                   <br />
                   <br />

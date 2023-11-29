@@ -38,10 +38,10 @@ export default async function Home() {
             <h1 className="splash" id="splash">
               Visualize your Tech Stacks with Impact
             </h1>
-            <h4 style={{ textAlign: "center", marginTop: "2rem" }}>
+            <p style={{ textAlign: "center", marginTop: "2rem" }}>
               Stack&trade; is a platform designed to help developers and
               designers showcase their tech stacks
-            </h4>
+            </p>
 
             <div className="btn-container">
               <a
@@ -53,9 +53,9 @@ export default async function Home() {
               </a>
             </div>
 
-            <h5 style={{ textAlign: "center", marginBottom: "14rem" }}>
+            <p style={{ textAlign: "center", marginBottom: "14rem" }}>
               Scroll to Explore Stack&apos;s Features
-            </h5>
+            </p>
 
             <div className="btn-container" style={{ marginBottom: "2rem" }}>
               <span>
@@ -67,7 +67,7 @@ export default async function Home() {
                 Next.js
               </span>
               <span>
-                <i className="fa-solid fa-server fa-2xl"></i> Built with MongoDB
+                <i className="fa-solid fa-server fa-2xl"></i> Stored on MongoDB
               </span>
               <span style={{ marginBottom: "0rem" }}>
                 <i className="fa-solid fa-shield fa-2xl"></i> Modern Security
@@ -89,8 +89,10 @@ export default async function Home() {
               style={{ marginTop: "8rem", marginBottom: "4rem" }}
             >
               <div className="card">
-                <h2>The Future of Tech Stack Presentation</h2>
-                <br />
+                <h2 style={{ marginBottom: "20px" }}>
+                  The Future of Tech Stack Presentation
+                </h2>
+
                 <p>
                   Step into a new era of showcasing the intricate web of
                   technologies that drive modern applications. Stack is your
@@ -106,8 +108,10 @@ export default async function Home() {
               </div>
 
               <div className="card">
-                <h2>Unleash the Power Behind your Apps</h2>
-                <br />
+                <h2 style={{ marginBottom: "20px" }}>
+                  Unleash the Power Behind your Apps
+                </h2>
+
                 <p>
                   Dive into the heart of your application&apos;s inner workings
                   and witness the magic that powers it. Our platform is your key
@@ -123,8 +127,10 @@ export default async function Home() {
               </div>
 
               <div className="card">
-                <h2>Your Custom Tech Stack Showcase</h2>
-                <br />
+                <h2 style={{ marginBottom: "20px" }}>
+                  Your Custom Tech Stack Showcase
+                </h2>
+
                 <p>
                   Stack provides the ideal platform to present your tech stack
                   with style and finesse. It&apos;s your opportunity to tell the
@@ -147,9 +153,9 @@ export default async function Home() {
             className="card-empty"
             style={{ width: "100%", marginTop: "0rem", textAlign: "left" }}
           >
-            <h2 style={{ textAlign: "center" }}>
-              Showcase your Applications through Elegant Stacks
-            </h2>
+            <h3 style={{ textAlign: "center" }}>
+              <b>Showcase your Applications through Elegant Stacks</b>
+            </h3>
             <div className="header-container" style={{ paddingTop: "0rem" }}>
               <div
                 className="title-container-header"
@@ -162,12 +168,14 @@ export default async function Home() {
                       className="profile-img"
                       alt="stack-img"
                     />
-                    <h1>Code Tracker</h1>
-                    <h5>
-                      <a style={{ padding: "10px", paddingLeft: "0" }}>
-                        www.codetracker.com
-                      </a>
-                    </h5>
+                    <p>
+                      <b>Code Tracker</b>
+                    </p>
+
+                    <a style={{ padding: "10px", paddingLeft: "0" }}>
+                      www.codetracker.com
+                    </a>
+
                     <div
                       className="profile-container"
                       style={{ marginTop: "10px;" }}
@@ -197,6 +205,13 @@ export default async function Home() {
               </div>
             </div>
 
+            <h3 style={{ textAlign: "center", margin: "25px 0px 25px 0px" }}>
+              <b>
+                {" "}
+                Provide Detailed Descriptions of How Your Application Operates
+              </b>
+            </h3>
+
             <div className="card-container">
               <div className="card">
                 {/* <p style={{ opacity: "0.4" }}>DESCRIPTION</p>
@@ -219,18 +234,30 @@ export default async function Home() {
               </div>
             </div>
 
+            <h3 style={{ textAlign: "center", margin: "25px 0px 25px 0px" }}>
+              <b>Visualize What Technologies Went Into Your Tech Stack</b>
+            </h3>
+
             <div className="card-container">
               <div className="card">
                 <div className="container">
-                  <h2 className="subheading" style={{ opacity: "0.6", textAlign: "center", fontWeight: "500" }}>
+                  <p
+                    className="subheading"
+                    style={{
+                      opacity: "0.6",
+                      textAlign: "center",
+                      fontWeight: "500",
+                    }}
+                  >
                     <img
                       src="/imgs/icons/code.svg"
                       alt="language"
                       width={20}
                       height={14}
                       style={{ display: "inline" }}
-                    />LANGUAGES
-                  </h2>
+                    />
+                    LANGUAGES
+                  </p>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
@@ -238,27 +265,48 @@ export default async function Home() {
                         src="imgs/splash/stackicons/logo-javascript.svg"
                         alt="language-logo"
                       />
-                      <p style={{ textAlign: "center", fontSize: "12px", fontWeight: "800" }}>
+                      <p
+                        style={{
+                          textAlign: "center",
+                          fontSize: "12px",
+                          fontWeight: "800",
+                        }}
+                      >
                         JavaScript
                       </p>
                     </div>
                     <div className="grid-item">
                       <img src="imgs/tech/Python.svg" alt="language-logo" />
-                      <p style={{ textAlign: "center", fontSize: "12px", fontWeight: "800" }}>
+                      <p
+                        style={{
+                          textAlign: "center",
+                          fontSize: "12px",
+                          fontWeight: "800",
+                        }}
+                      >
                         Python
                       </p>
                     </div>
                   </div>
 
-                  <h2 className="subheading" style={{ opacity: "0.6", marginTop: "40px", textAlign: "center", fontWeight: "500" }}>
+                  <p
+                    className="subheading"
+                    style={{
+                      opacity: "0.6",
+                      marginTop: "40px",
+                      textAlign: "center",
+                      fontWeight: "500",
+                    }}
+                  >
                     <img
                       src="/imgs/icons/database-fill.svg"
                       alt="database"
                       width={20}
                       height={14}
                       style={{ display: "inline" }}
-                    />DATABASES
-                  </h2>
+                    />
+                    DATABASES
+                  </p>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
@@ -266,59 +314,104 @@ export default async function Home() {
                         src="imgs/splash/stackicons/mongodb.svg"
                         alt="database-logo"
                       />
-                      <p style={{ textAlign: "center", fontSize: "12px", fontWeight: "800" }}>
+                      <p
+                        style={{
+                          textAlign: "center",
+                          fontSize: "12px",
+                          fontWeight: "800",
+                        }}
+                      >
                         MongoDB
                       </p>
                     </div>
                   </div>
 
-                  <h2 className="subheading" style={{ opacity: "0.6", marginTop: "40px", textAlign: "center", fontWeight: "500" }}>
+                  <p
+                    className="subheading"
+                    style={{
+                      opacity: "0.6",
+                      marginTop: "40px",
+                      textAlign: "center",
+                      fontWeight: "500",
+                    }}
+                  >
                     <img
                       src="/imgs/icons/api.svg"
                       alt="api"
                       width={20}
                       height={14}
                       style={{ display: "inline" }}
-                    />APIs
-                  </h2>
+                    />
+                    APIs
+                  </p>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
                       <img src="imgs/tech/Postgres.svg" alt="api-logo" />
-                      <p style={{ textAlign: "center", fontSize: "12px", fontWeight: "800" }}>
+                      <p
+                        style={{
+                          textAlign: "center",
+                          fontSize: "12px",
+                          fontWeight: "800",
+                        }}
+                      >
                         Postgres
                       </p>
                     </div>
                   </div>
 
-                  <h2 className="subheading" style={{ opacity: "0.6", marginTop: "40px", textAlign: "center", fontWeight: "500" }}>
+                  <p
+                    className="subheading"
+                    style={{
+                      opacity: "0.6",
+                      marginTop: "40px",
+                      textAlign: "center",
+                      fontWeight: "500",
+                    }}
+                  >
                     <img
                       src="/imgs/icons/framework.svg"
                       alt="api"
                       width={20}
                       height={14}
                       style={{ display: "inline" }}
-                    />FRAMEWORKS
-                  </h2>
+                    />
+                    FRAMEWORKS
+                  </p>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
                       <img src="imgs/tech/Nextjs.svg" alt="language-logo" />
-                      <p style={{ textAlign: "center", fontSize: "12px", fontWeight: "800" }}>
+                      <p
+                        style={{
+                          textAlign: "center",
+                          fontSize: "12px",
+                          fontWeight: "800",
+                        }}
+                      >
                         Nextjs
                       </p>
                     </div>
                   </div>
 
-                  <h2 className="subheading" style={{ opacity: "0.6", marginTop: "40px", textAlign: "center", fontWeight: "500" }}>
+                  <p
+                    className="subheading"
+                    style={{
+                      opacity: "0.6",
+                      marginTop: "40px",
+                      textAlign: "center",
+                      fontWeight: "500",
+                    }}
+                  >
                     <img
                       src="/imgs/icons/cloud-fill.svg"
                       alt="cloud"
                       width={20}
                       height={14}
                       style={{ display: "inline" }}
-                    />CLOUDS
-                  </h2>
+                    />
+                    CLOUDS
+                  </p>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
@@ -326,7 +419,13 @@ export default async function Home() {
                         src="imgs/splash/stackicons/aws.png"
                         alt="cloud-logo"
                       />
-                      <p style={{ textAlign: "center", fontSize: "12px", fontWeight: "800" }}>
+                      <p
+                        style={{
+                          textAlign: "center",
+                          fontSize: "12px",
+                          fontWeight: "800",
+                        }}
+                      >
                         AWS
                       </p>
                     </div>
@@ -336,7 +435,13 @@ export default async function Home() {
                         src="imgs/tech/Google Cloud Platform.svg"
                         alt="cloud-logo"
                       />
-                      <p style={{ textAlign: "center", fontSize: "12px", fontWeight: "800" }}>
+                      <p
+                        style={{
+                          textAlign: "center",
+                          fontSize: "12px",
+                          fontWeight: "800",
+                        }}
+                      >
                         Google Cloud
                       </p>
                     </div>
@@ -344,6 +449,12 @@ export default async function Home() {
                 </div>
               </div>
             </div>
+
+            <h3 style={{ textAlign: "center", margin: "25px 0px 25px 0px" }}>
+              <b>
+                Integrate with GitHub to Display the Latest Commits Made to Repo
+              </b>
+            </h3>
 
             <div className="card-container">
               <div className="card">
@@ -361,7 +472,13 @@ export default async function Home() {
                     <p>
                       <b>stable</b>
                     </p>
-                    <p style={{ fontSize: "12px", fontWeight: "800", opacity: "0.4" }}>
+                    <p
+                      style={{
+                        fontSize: "12px",
+                        fontWeight: "800",
+                        opacity: "0.4",
+                      }}
+                    >
                       Pushed [Month] [Day], [Year]
                     </p>
                   </div>
@@ -389,7 +506,13 @@ export default async function Home() {
                     <p>
                       <b>stable</b>
                     </p>
-                    <p style={{ fontSize: "12px", fontWeight: "800", opacity: "0.4" }}>
+                    <p
+                      style={{
+                        fontSize: "12px",
+                        fontWeight: "800",
+                        opacity: "0.4",
+                      }}
+                    >
                       Pushed [Month] [Day], [Year]
                     </p>
                   </div>
@@ -417,7 +540,13 @@ export default async function Home() {
                     <p>
                       <b>stable</b>
                     </p>
-                    <p style={{ fontSize: "12px", fontWeight: "800", opacity: "0.4" }}>
+                    <p
+                      style={{
+                        fontSize: "12px",
+                        fontWeight: "800",
+                        opacity: "0.4",
+                      }}
+                    >
                       Pushed [Month] [Day], [Year]
                     </p>
                   </div>
@@ -445,7 +574,13 @@ export default async function Home() {
                     <p>
                       <b>stable</b>
                     </p>
-                    <p style={{ fontSize: "12px", fontWeight: "800", opacity: "0.4" }}>
+                    <p
+                      style={{
+                        fontSize: "12px",
+                        fontWeight: "800",
+                        opacity: "0.4",
+                      }}
+                    >
                       Pushed [Month] [Day], [Year]
                     </p>
                   </div>
@@ -473,7 +608,13 @@ export default async function Home() {
                     <p>
                       <b>stable</b>
                     </p>
-                    <p style={{ fontSize: "12px", fontWeight: "800", opacity: "0.4" }}>
+                    <p
+                      style={{
+                        fontSize: "12px",
+                        fontWeight: "800",
+                        opacity: "0.4",
+                      }}
+                    >
                       Pushed [Month] [Day], [Year]
                     </p>
                   </div>

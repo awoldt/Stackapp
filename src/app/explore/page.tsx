@@ -66,7 +66,7 @@ export default async function Page() {
       <div className="card-container-title">
         <div className="card-empty-wide">
           <h1 style={{ display: "flex", alignItems: "center", marginBottom: "0", marginTop: "0" }}><img src="/imgs/icons/explore.svg" />&nbsp;Explore Stacks</h1>
-          <h5>Explore recently created Stacks from other Stack members.</h5>
+          <p>Explore recently created Stacks from other Stack members.</p>
         </div>
       </div>
 
