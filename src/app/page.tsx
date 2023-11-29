@@ -222,9 +222,15 @@ export default async function Home() {
             <div className="card-container">
               <div className="card">
                 <div className="container">
-                  <h5 style={{ opacity: "0.4", textAlign: "center" }}>
-                    LANGUAGES
-                  </h5>
+                  <h2 className="subheading" style={{ opacity: "0.6", textAlign: "center", fontWeight: "500" }}>
+                    <img
+                      src="/imgs/icons/code.svg"
+                      alt="language"
+                      width={20}
+                      height={14}
+                      style={{ display: "inline" }}
+                    />LANGUAGES
+                  </h2>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
@@ -244,15 +250,15 @@ export default async function Home() {
                     </div>
                   </div>
 
-                  <h5
-                    style={{
-                      opacity: "0.4",
-                      marginTop: "40px",
-                      textAlign: "center",
-                    }}
-                  >
-                    DATABASES
-                  </h5>
+                  <h2 className="subheading" style={{ opacity: "0.6", marginTop: "40px", textAlign: "center", fontWeight: "500" }}>
+                    <img
+                      src="/imgs/icons/database-fill.svg"
+                      alt="database"
+                      width={20}
+                      height={14}
+                      style={{ display: "inline" }}
+                    />DATABASES
+                  </h2>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
@@ -266,15 +272,15 @@ export default async function Home() {
                     </div>
                   </div>
 
-                  <h5
-                    style={{
-                      opacity: "0.4",
-                      marginTop: "40px",
-                      textAlign: "center",
-                    }}
-                  >
-                    APIs
-                  </h5>
+                  <h2 className="subheading" style={{ opacity: "0.6", marginTop: "40px", textAlign: "center", fontWeight: "500" }}>
+                    <img
+                      src="/imgs/icons/api.svg"
+                      alt="api"
+                      width={20}
+                      height={14}
+                      style={{ display: "inline" }}
+                    />APIs
+                  </h2>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
@@ -285,15 +291,15 @@ export default async function Home() {
                     </div>
                   </div>
 
-                  <h5
-                    style={{
-                      opacity: "0.4",
-                      marginTop: "40px",
-                      textAlign: "center",
-                    }}
-                  >
-                    FRAMEWORKS
-                  </h5>
+                  <h2 className="subheading" style={{ opacity: "0.6", marginTop: "40px", textAlign: "center", fontWeight: "500" }}>
+                    <img
+                      src="/imgs/icons/framework.svg"
+                      alt="api"
+                      width={20}
+                      height={14}
+                      style={{ display: "inline" }}
+                    />FRAMEWORKS
+                  </h2>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
@@ -304,15 +310,15 @@ export default async function Home() {
                     </div>
                   </div>
 
-                  <h5
-                    style={{
-                      opacity: "0.4",
-                      marginTop: "40px",
-                      textAlign: "center",
-                    }}
-                  >
-                    CLOUDS
-                  </h5>
+                  <h2 className="subheading" style={{ opacity: "0.6", marginTop: "40px", textAlign: "center", fontWeight: "500" }}>
+                    <img
+                      src="/imgs/icons/cloud-fill.svg"
+                      alt="cloud"
+                      width={20}
+                      height={14}
+                      style={{ display: "inline" }}
+                    />CLOUDS
+                  </h2>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">

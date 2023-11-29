@@ -35,21 +35,16 @@ export default async function Page() {
       <>
         <div className="card-container-title">
           <div className="card-empty">
-            <h1>Create Stack</h1>
+            <h1 style={{ display: "flex", alignItems: "center", marginBottom: "0", marginTop: "0" }}><img src="/imgs/icons/create2.svg" />&nbsp;Create Stack</h1>
             <h5>
-              <a href="/signin" title="Sign into your Stack account">
-                Sign into your Stack account
-              </a>{" "}
-              and start showcasing your application&apos;s tech stack such as
-              programming languages, database, frameworks, and more.
+              Login to your account to create custom Stacks that showcase your applications.
             </h5>
-            <p>
-              <br></br>
+            {/* <p>
               Don&apos;t have an account?{" "}
               <a href="/signup" title="Create a Stack account">
                 Create one
               </a>
-            </p>
+            </p> */}
           </div>
         </div>
 
@@ -69,7 +64,7 @@ export default async function Page() {
       <>
         <div className="card-container-title">
           <div className="card-empty">
-            <h1>Create Stack</h1>
+            <h1 style={{ display: "flex", alignItems: "center", marginBottom: "0", marginTop: "0" }}><img src="/imgs/icons/create2.svg" />&nbsp;Create Stack</h1>
             <h5>Create custom Stacks that showcase your applications.</h5>
           </div>
         </div>

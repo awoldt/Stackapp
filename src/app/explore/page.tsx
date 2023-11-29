@@ -65,17 +65,13 @@ export default async function Page() {
     <>
       <div className="card-container-title">
         <div className="card-empty-wide">
-          <h1>Explore Stacks</h1>
+          <h1 style={{ display: "flex", alignItems: "center", marginBottom: "0", marginTop: "0" }}><img src="/imgs/icons/explore.svg" />&nbsp;Explore Stacks</h1>
           <h5>Explore recently created Stacks from other Stack members.</h5>
         </div>
       </div>
 
       <div className="card-container" id="yourStacks">
-        <div className="card" style={{ textAlign: "left" }}>
-          <h5 style={{ opacity: "0.4" }}>RECENT STACKS</h5>
-
-          <hr />
-
+        <div className="card">
           {featuredStacks.map((x: any, index) => {
             return (
               <div key={index}>

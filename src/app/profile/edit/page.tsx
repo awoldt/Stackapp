@@ -28,7 +28,7 @@ export default async function Page() {
         <section>
           <div className="card-container-title">
             <div className="card-empty">
-              <h1>Edit Profile</h1>
+              <h1 style={{ display: "flex", alignItems: "center", marginBottom: "0", marginTop: "0" }}><img src="/imgs/icons/profile2.svg" />&nbsp;Edit Profile</h1>
               <h5>Update your settings to best describe you.</h5>
             </div>
           </div>

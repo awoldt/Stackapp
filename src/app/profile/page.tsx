@@ -102,8 +102,8 @@ export default async function Page() {
               <section>
                 {userStacks.length === 0 && (
                   <>
-                    <h5 style={{ opacity: "0.4" }}>YOUR STACKS</h5>
-                    <hr />
+                    {/* <h5 style={{ opacity: "0.4" }}>YOUR STACKS</h5>
+                    <hr /> */}
 
                     <div
                       className="btn-container"
@@ -125,8 +125,8 @@ export default async function Page() {
                 )}
                 {userStacks.length > 0 && (
                   <>
-                    <h5 style={{ opacity: "0.4" }}>YOUR STACKS</h5>
-                    <hr />
+                    {/* <h5 style={{ opacity: "0.4" }}>YOUR STACKS</h5>
+                    <hr /> */}
                     {userStacks.map((x: any, index) => {
                       return (
                         <>

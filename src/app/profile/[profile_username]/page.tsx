@@ -114,8 +114,8 @@ export default async function ProfilePage({ params }: { params: any }) {
       <div className="card-container" id="yourStacks">
         <div className="card" style={{ textAlign: "left" }}>
           <section>
-            <h5 style={{ opacity: "0.4" }}>STACKS</h5>
-            <hr />
+            {/* <h5 style={{ opacity: "0.4" }}>STACKS</h5>
+            <hr /> */}
             {userStacks.map((x: any, index) => {
               return (
                 <div key={index}>

@@ -71,7 +71,7 @@ export default async function Edit({ params }: { params: any }) {
     <>
       <div className="card-container-title">
         <div className="card-empty">
-          <h1>Edit Stack</h1>
+          <h1 style={{ display: "flex", alignItems: "center", marginBottom: "0", marginTop: "0" }}><img src="/imgs/icons/edit2.svg" />&nbsp;Edit Stack</h1>
           <h5>Edit your Stack to best showcase your application.</h5>
         </div>
       </div>

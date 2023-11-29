@@ -85,7 +85,8 @@
         }
     }
 
-    h5 {
+    h5,
+    .subheading {
         color: #2a2b2a;
         font-family: 'Inter', sans-serif;
         font-size: 18px;
@@ -94,7 +95,9 @@
     }
 
     @media (max-width: 800px) {
-        h5 {
+
+        h5,
+        .subheading {
             font-size: 14px;
         }
     }
@@ -216,9 +219,10 @@
     }
 
     .nav-element {
-        line-height: 2.6;
+        line-height: 2.4;
         transition: 250ms ease-in-out;
         font-size: 16px;
+        font-weight: 500;
     }
 
     .nav-element:hover {

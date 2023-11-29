@@ -11,21 +11,21 @@ export default function Nav({ isSignedIn }: { isSignedIn: boolean }) {
               </a>
             </li>
             <li>
-              <a href="/explore" className="nav-element">
-                Explore
+            <a href="/explore" className="nav-element" style={{ display: "flex", alignItems: "center", marginBottom: "0", marginTop: "0"}}>
+                <img src="/imgs/icons/globe.svg" />&nbsp;Explore
               </a>
             </li>
 
             {isSignedIn && (
               <>
                 <li>
-                  <a href="/create" className="nav-element">
-                    Create
+                  <a href="/create" className="nav-element" style={{ display: "flex", alignItems: "center", marginBottom: "0", marginTop: "0"}}>
+                  <img src="/imgs/icons/create.svg" />&nbsp;Create
                   </a>
                 </li>
                 <li>
-                  <a href="/profile" className="nav-element">
-                    Profile
+                  <a href="/profile" className="nav-element" style={{ display: "flex", alignItems: "center", marginBottom: "0", marginTop: "0"}}>
+                  <img src="/imgs/icons/profile.svg" />&nbsp;Profile
                   </a>
                 </li>
               </>
@@ -37,12 +37,12 @@ export default function Nav({ isSignedIn }: { isSignedIn: boolean }) {
             <ul>
               <li>
                 <a href="/signup" className="nav-signup">
-                  Sign Up
+                Sign Up
                 </a>
               </li>
               <li>
-                <a href="/signin" className="nav-element">
-                  Login
+                <a href="/signin" className="nav-element" style={{ display: "flex", alignItems: "center", marginBottom: "0", marginTop: "0"}}>
+                  <img src="/imgs/icons/signup.svg" />&nbsp;Login
                 </a>
               </li>
             </ul>

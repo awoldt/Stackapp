@@ -169,24 +169,24 @@ export default function Form({
                 type="url"
                 id="website_url"
                 name="website_url"
-                placeholder="https://example.com"
+                // placeholder="https://example.com"
+                required
               />
+              <label className="label" htmlFor="website_url">
+                *URL
+              </label>
             </div>
 
             {signedIn && <RepoSelect repoData={repoSelectList} />}
             {!signedIn && (
-              <div
-                style={{
-                  margin: "25px",
-                  padding: "10px",
-                  border: "3px solid black",
-                  borderRadius: "10px",
-                }}
-              >
-                <img src="/imgs/icons/github.svg" />
+              <div>
                 <p>
-                  Connect your GitHub account with your Stack account and
-                  showcase your app&apos;s commit history as you push code
+                  <b>
+                    <img src="/imgs/icons/github.svg" /> Connect your GitHub account in profile settings to showcase commit
+                    logs from your repositories.
+                  </b>
+                  <br />
+                  <br />
                 </p>
               </div>
             )}

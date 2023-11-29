@@ -10,7 +10,7 @@ export default function Select({
       {repoData === "must_connect_github_account" && (
         <p>
           <b>
-            Connect your GitHub account in profile settings to showcase commit
+          <img src="/imgs/icons/github.svg" /> Connect your GitHub account in profile settings to showcase commit
             logs from your repositories.
           </b>
           <br />

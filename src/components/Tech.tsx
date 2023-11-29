@@ -9,7 +9,7 @@ export default function Tech() {
           src="/imgs/icons/code.svg"
           alt="language"
           width={20}
-          height={15}
+          height={14}
           style={{ display: "inline" }}
         />
         <h5
@@ -35,7 +35,7 @@ export default function Tech() {
           src="/imgs/icons/database-fill.svg"
           alt="database"
           width={20}
-          height={15}
+          height={14}
           style={{ display: "inline" }}
         />
         <h5 style={{ display: "inline" }}>
@@ -59,7 +59,7 @@ export default function Tech() {
           src="/imgs/icons/api.svg"
           alt="api"
           width={20}
-          height={15}
+          height={14}
           style={{ display: "inline" }}
         />
         <h5 style={{ display: "inline" }}>
@@ -83,7 +83,7 @@ export default function Tech() {
           src="/imgs/icons/framework.svg"
           alt="api"
           width={20}
-          height={15}
+          height={14}
           style={{ display: "inline" }}
         />
         <h5 style={{ display: "inline" }}>
@@ -107,7 +107,7 @@ export default function Tech() {
           src="/imgs/icons/cloud-fill.svg"
           alt="cloud"
           width={20}
-          height={15}
+          height={14}
           style={{ display: "inline" }}
         />
         <h5 style={{ display: "inline" }}>
