@@ -7,9 +7,9 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
       <div className="card-container">
         <div className="card">
           <div className="container">
-            <p style={{ opacity: "0.4", textAlign: "center" }}>
+            <h5 style={{ opacity: "0.4", textAlign: "center" }}>
               LANGUAGES
-            </p>
+            </h5>
             <hr />
             <div className="grid-container">
               <div className="grid-container">
@@ -24,7 +24,8 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
                         <p
                           style={{
                             textAlign: "center",
-                            fontSize: "14px"
+                            fontSize: "12px",
+                            fontWeight: "800"
                           }}
                         >
                           {x}
@@ -39,9 +40,9 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
 
           {stackDetails.databases_used !== null && (
             <div className="container">
-              <p style={{ opacity: "0.4", textAlign: "center", marginTop: "20px" }}>
+              <h5 style={{ opacity: "0.4", textAlign: "center", marginTop: "20px" }}>
                 DATABASES
-              </p>
+              </h5>
               <hr />
               <div className="grid-container">
                 <div
@@ -59,7 +60,8 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
                             <p
                               style={{
                                 textAlign: "center",
-                                fontSize: "14px"
+                                fontSize: "12px",
+                                fontWeight: "800"
                               }}
                             >
                               {x}
@@ -76,9 +78,9 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
 
           {stackDetails.apis_used !== null && (
             <div className="container">
-              <p style={{ opacity: "0.4", textAlign: "center", marginTop: "20px" }}>
+              <h5 style={{ opacity: "0.4", textAlign: "center", marginTop: "20px" }}>
                 APIs
-              </p>
+              </h5>
               <hr />
               <div className="grid-container">
                 <div
@@ -95,7 +97,8 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
                           <p
                             style={{
                               textAlign: "center",
-                              fontSize: "14px"
+                              fontSize: "12px",
+                              fontWeight: "800"
                             }}
                           >
                             {x}
@@ -111,9 +114,9 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
 
           {stackDetails.frameworks_used !== null && (
             <div className="container">
-              <p style={{ opacity: "0.4", textAlign: "center", marginTop: "20px" }}>
+              <h5 style={{ opacity: "0.4", textAlign: "center", marginTop: "20px" }}>
                 FRAMEWORKS
-              </p>
+              </h5>
               <hr />
               <div className="grid-container">
                 <div
@@ -131,7 +134,8 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
                             <p
                               style={{
                                 textAlign: "center",
-                                fontSize: "14px"
+                                fontSize: "12px",
+                                fontWeight: "800"
                               }}
                             >
                               {x}
@@ -148,9 +152,9 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
 
           {stackDetails.clouds_used !== null && (
             <div className="container">
-              <p style={{ opacity: "0.4", textAlign: "center", marginTop: "20px" }}>
+              <h5 style={{ opacity: "0.4", textAlign: "center", marginTop: "20px" }}>
                 CLOUDS
-              </p>
+              </h5>
               <hr />
               <div className="grid-container">
                 <div
@@ -167,7 +171,8 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
                           <p
                             style={{
                               textAlign: "center",
-                              fontSize: "14px"
+                              fontSize: "12px",
+                              fontWeight: "800"
                             }}
                           >
                             {x}

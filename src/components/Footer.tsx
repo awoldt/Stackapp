@@ -3,7 +3,7 @@ export default function Footer() {
     paddingLeft: "1rem",
     paddingRight: "1rem",
     cursor: "pointer",
-    fontSize: "14px",
+    fontSize: "16px",
     opacity: 1,
   };
 

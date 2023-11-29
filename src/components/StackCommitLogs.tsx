@@ -21,16 +21,17 @@ export default function CommitLogs({
                     <div className="github-container">
                       <div style={{ display: "flex", width: "50%", flexDirection: "column" }}>
                         <p>
-                          <b>{x.message} </b>
+                          <b>{x.message}</b>
                         </p>
-                        <p style={{ fontSize: "14px", opacity: "0.65" }}>
-                          {x.date_commited}
+                        <p style={{ fontSize: "12px", fontWeight: "800", opacity: "0.4" }}>
+                          Pushed {x.date_commited}
                         </p>
                       </div>
                       <div style={{ display: "flex", width: "50%", justifyContent: "right" }}>
                         <a href={x.url} className="btn">
-                          <i className="fa-brands fa-github fa-xl"></i>{x.sha} Commit Sha
+                          <i className="fa-brands fa-github fa-xl"></i> Commit Sha
                         </a>
+                        {/* {x.sha} */}
                       </div>
                     </div>
                   </>

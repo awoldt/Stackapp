@@ -36,13 +36,13 @@ export default async function Page() {
         <div className="card-container-title">
           <div className="card-empty">
             <h1>Create Stack</h1>
-            <p>
+            <h5>
               <a href="/signin" title="Sign into your Stack account">
                 Sign into your Stack account
               </a>{" "}
               and start showcasing your application&apos;s tech stack such as
               programming languages, database, frameworks, and more.
-            </p>
+            </h5>
             <p>
               <br></br>
               Don&apos;t have an account?{" "}
@@ -70,7 +70,7 @@ export default async function Page() {
         <div className="card-container-title">
           <div className="card-empty">
             <h1>Create Stack</h1>
-            <p>Create custom Stacks that showcase your applications.</p>
+            <h5>Create custom Stacks that showcase your applications.</h5>
           </div>
         </div>
 

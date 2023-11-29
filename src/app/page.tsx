@@ -222,9 +222,9 @@ export default async function Home() {
             <div className="card-container">
               <div className="card">
                 <div className="container">
-                  <p style={{ opacity: "0.4", textAlign: "center" }}>
+                  <h5 style={{ opacity: "0.4", textAlign: "center" }}>
                     LANGUAGES
-                  </p>
+                  </h5>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
@@ -232,19 +232,19 @@ export default async function Home() {
                         src="imgs/splash/stackicons/logo-javascript.svg"
                         alt="language-logo"
                       />
-                      <p style={{ textAlign: "center", fontSize: "14px" }}>
+                      <p style={{ textAlign: "center", fontSize: "12px", fontWeight: "800" }}>
                         JavaScript
                       </p>
                     </div>
                     <div className="grid-item">
                       <img src="imgs/tech/Python.svg" alt="language-logo" />
-                      <p style={{ textAlign: "center", fontSize: "14px" }}>
+                      <p style={{ textAlign: "center", fontSize: "12px", fontWeight: "800" }}>
                         Python
                       </p>
                     </div>
                   </div>
 
-                  <p
+                  <h5
                     style={{
                       opacity: "0.4",
                       marginTop: "40px",
@@ -252,7 +252,7 @@ export default async function Home() {
                     }}
                   >
                     DATABASES
-                  </p>
+                  </h5>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
@@ -260,13 +260,13 @@ export default async function Home() {
                         src="imgs/splash/stackicons/mongodb.svg"
                         alt="database-logo"
                       />
-                      <p style={{ textAlign: "center", fontSize: "14px" }}>
+                      <p style={{ textAlign: "center", fontSize: "12px", fontWeight: "800" }}>
                         MongoDB
                       </p>
                     </div>
                   </div>
 
-                  <p
+                  <h5
                     style={{
                       opacity: "0.4",
                       marginTop: "40px",
@@ -274,18 +274,18 @@ export default async function Home() {
                     }}
                   >
                     APIs
-                  </p>
+                  </h5>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
                       <img src="imgs/tech/Postgres.svg" alt="api-logo" />
-                      <p style={{ textAlign: "center", fontSize: "14px" }}>
+                      <p style={{ textAlign: "center", fontSize: "12px", fontWeight: "800" }}>
                         Postgres
                       </p>
                     </div>
                   </div>
 
-                  <p
+                  <h5
                     style={{
                       opacity: "0.4",
                       marginTop: "40px",
@@ -293,18 +293,18 @@ export default async function Home() {
                     }}
                   >
                     FRAMEWORKS
-                  </p>
+                  </h5>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
                       <img src="imgs/tech/Nextjs.svg" alt="language-logo" />
-                      <p style={{ textAlign: "center", fontSize: "14px" }}>
+                      <p style={{ textAlign: "center", fontSize: "12px", fontWeight: "800" }}>
                         Nextjs
                       </p>
                     </div>
                   </div>
 
-                  <p
+                  <h5
                     style={{
                       opacity: "0.4",
                       marginTop: "40px",
@@ -312,7 +312,7 @@ export default async function Home() {
                     }}
                   >
                     CLOUDS
-                  </p>
+                  </h5>
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
@@ -320,7 +320,7 @@ export default async function Home() {
                         src="imgs/splash/stackicons/aws.png"
                         alt="cloud-logo"
                       />
-                      <p style={{ textAlign: "center", fontSize: "14px" }}>
+                      <p style={{ textAlign: "center", fontSize: "12px", fontWeight: "800" }}>
                         AWS
                       </p>
                     </div>
@@ -330,7 +330,7 @@ export default async function Home() {
                         src="imgs/tech/Google Cloud Platform.svg"
                         alt="cloud-logo"
                       />
-                      <p style={{ textAlign: "center", fontSize: "14px" }}>
+                      <p style={{ textAlign: "center", fontSize: "12px", fontWeight: "800" }}>
                         Google Cloud
                       </p>
                     </div>
@@ -355,8 +355,8 @@ export default async function Home() {
                     <p>
                       <b>stable</b>
                     </p>
-                    <p style={{ fontSize: "14px", opacity: "0.65" }}>
-                      Repo pushed [Month] [Day], [Year]
+                    <p style={{ fontSize: "12px", fontWeight: "800", opacity: "0.4" }}>
+                      Pushed [Month] [Day], [Year]
                     </p>
                   </div>
                   <div
@@ -383,8 +383,8 @@ export default async function Home() {
                     <p>
                       <b>stable</b>
                     </p>
-                    <p style={{ fontSize: "14px", opacity: "0.65" }}>
-                      Repo pushed [Month] [Day], [Year]
+                    <p style={{ fontSize: "12px", fontWeight: "800", opacity: "0.4" }}>
+                      Pushed [Month] [Day], [Year]
                     </p>
                   </div>
                   <div
@@ -411,8 +411,8 @@ export default async function Home() {
                     <p>
                       <b>stable</b>
                     </p>
-                    <p style={{ fontSize: "14px", opacity: "0.65" }}>
-                      Repo pushed [Month] [Day], [Year]
+                    <p style={{ fontSize: "12px", fontWeight: "800", opacity: "0.4" }}>
+                      Pushed [Month] [Day], [Year]
                     </p>
                   </div>
                   <div
@@ -439,8 +439,8 @@ export default async function Home() {
                     <p>
                       <b>stable</b>
                     </p>
-                    <p style={{ fontSize: "14px", opacity: "0.65" }}>
-                      Repo pushed [Month] [Day], [Year]
+                    <p style={{ fontSize: "12px", fontWeight: "800", opacity: "0.4" }}>
+                      Pushed [Month] [Day], [Year]
                     </p>
                   </div>
                   <div
@@ -467,8 +467,8 @@ export default async function Home() {
                     <p>
                       <b>stable</b>
                     </p>
-                    <p style={{ fontSize: "14px", opacity: "0.65" }}>
-                      Repo pushed [Month] [Day], [Year]
+                    <p style={{ fontSize: "12px", fontWeight: "800", opacity: "0.4" }}>
+                      Pushed [Month] [Day], [Year]
                     </p>
                   </div>
                   <div

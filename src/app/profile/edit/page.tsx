@@ -29,7 +29,7 @@ export default async function Page() {
           <div className="card-container-title">
             <div className="card-empty">
               <h1>Edit Profile</h1>
-              <p>Update your settings to best describe you.</p>
+              <h5>Update your settings to best describe you.</h5>
             </div>
           </div>
 

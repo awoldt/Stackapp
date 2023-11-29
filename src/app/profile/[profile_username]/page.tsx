@@ -136,8 +136,9 @@ export default async function ProfilePage({ params }: { params: any }) {
 
                         <p
                           style={{
-                            opacity: 0.4,
-                            fontSize: "14px",
+                            fontSize: "12px",
+                            fontWeight: "800",
+                            opacity: "0.4"
                           }}
                         >
                           {x.created_on.toDateString()}

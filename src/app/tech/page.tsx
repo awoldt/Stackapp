@@ -54,185 +54,223 @@ export default async function Page() {
 
   return (
     <>
-      <main>
-        <h1>Technology that Represents Your Stacks</h1>
-        <p>
-          At Stack, there are over {totalTech} technogies available to showcase
-          how your application was built.
-        </p>
+      <div className="card-container-title">
+        <div className="card-empty-wide">
+          <h1>Technologies</h1>
+          <h5>At Stack, we offer a diverse range of more than {totalTech} technologies, all accessible for demonstrating the construction of your application.</h5>
+        </div>
+      </div>
 
-        {sortedTechList.map((x) => {
-          return (
-            <>
-              {x._id === "language" && (
-                <>
-                  <div className="tech-type-div">
-                    <h2
-                      style={{ display: "inline-block", marginRight: "10px" }}
-                    >
-                      Languages
-                    </h2>
+      <div className="card-container">
+        <div className="card">
+          {sortedTechList.map((x) => {
+            return (
+              <>
+                {x._id === "language" && (
+                  <>
+                    <h5 style={{ opacity: "0.4", textAlign: "center" }}>
+                      LANGUAGES
+                    </h5>
 
-                    <p>
-                      Programming languages are the building block for any
-                      application.
-                    </p>
+                    {/* <p>
+                        Programming languages are the building block for any
+                        application.
+                      </p> */}
+                    <hr />
 
                     {x.tech.map((x, index) => {
                       return (
-                        <div key={index}>
-                          <span style={{ color: "red" }}>
-                            Used in {x.numOfOccurences} stacks
-                          </span>
-                          <img
-                            src={`/imgs/tech/${x.name}.svg`}
-                            width={50}
-                            alt={`${x.name} logo`}
-                          />
-                          <h3>{x.name}</h3>
-                          <p>{x.description}</p>
+                        <div key={index} className="card" style={{ width: "100%", marginBottom: "1rem" }}>
+                          <div style={{ display: "flex", alignItems: "center" }}>
+                            <img
+                              src={`/imgs/tech/${x.name}.svg`}
+                              width={60}
+                              alt={`${x.name} logo`}
+                              style={{ borderRadius: "4px" }}
+                            />
+                            <div style={{ display: "flex", flexDirection: "column" }}>
+                              <h4>
+                                &nbsp;<b>{x.name}</b>&nbsp;
+                              </h4>
+                              <span style={{ color: "#2667ff" }}>
+                                &nbsp;&nbsp;Used in over {x.numOfOccurences} Stacks!
+                              </span>
+                            </div>
+                          </div>
+                          <hr />
+                          <p>
+                            {x.description}
+                          </p>
                         </div>
                       );
                     })}
-                  </div>
-                </>
-              )}
-              {x._id === "database" && (
-                <>
-                  <div className="tech-type-div">
-                    <h2
-                      style={{ display: "inline-block", marginRight: "10px" }}
-                    >
-                      Databases
-                    </h2>
+                  </>
+                )}
+                {x._id === "database" && (
+                  <>
+                    <h5 style={{ opacity: "0.4", textAlign: "center" }}>
+                      DATABASES
+                    </h5>
 
-                    <p>
+                    {/* <p>
                       Every appliaction needs data to showcase on the frontend.
                       There are many different choices when picking a database.
-                    </p>
+                    </p> */}
+                    <hr />
 
                     {x.tech.map((x, index) => {
                       return (
-                        <div key={index}>
-                          <span style={{ color: "red" }}>
-                            Used in {x.numOfOccurences} stacks
-                          </span>
-                          <img
-                            src={`/imgs/tech/${x.name}.svg`}
-                            width={50}
-                            alt={`${x.name} logo`}
-                          />
-                          <h3>{x.name}</h3>
-                          <p>{x.description}</p>
+                        <div key={index} className="card" style={{ width: "100%", marginBottom: "1rem" }}>
+                          <div style={{ display: "flex", alignItems: "center" }}>
+                            <img
+                              src={`/imgs/tech/${x.name}.svg`}
+                              width={60}
+                              alt={`${x.name} logo`}
+                              style={{ borderRadius: "4px" }}
+                            />
+                            <div style={{ display: "flex", flexDirection: "column" }}>
+                              <h4>
+                                &nbsp;<b>{x.name}</b>&nbsp;
+                              </h4>
+                              <span style={{ color: "#2667ff" }}>
+                                &nbsp;&nbsp;Used in over {x.numOfOccurences} Stacks!
+                              </span>
+                            </div>
+                          </div>
+                          <hr />
+                          <p>
+                            {x.description}
+                          </p>
                         </div>
                       );
                     })}
-                  </div>
-                </>
-              )}
-              {x._id === "api" && (
-                <>
-                  <div className="tech-type-div">
-                    <h2
-                      style={{ display: "inline-block", marginRight: "10px" }}
-                    >
+                  </>
+                )}
+                {x._id === "api" && (
+                  <>
+                    <h5 style={{ opacity: "0.4", textAlign: "center" }}>
                       APIs
-                    </h2>
+                    </h5>
 
-                    <p>
+                    {/* <p>
                       APIs help get data from other companies to use for your
-                      application
-                    </p>
+                      application.
+                    </p> */}
+                    <hr />
 
                     {x.tech.map((x, index) => {
                       return (
-                        <div key={index}>
-                          <span style={{ color: "red" }}>
-                            Used in {x.numOfOccurences} stacks
-                          </span>
-                          <img
-                            src={`/imgs/tech/${x.name}.svg`}
-                            width={50}
-                            alt={`${x.name} logo`}
-                          />
-                          <h3>{x.name}</h3>
-                          <p>{x.description}</p>
+                        <div key={index} className="card" style={{ width: "100%", marginBottom: "1rem" }}>
+                          <div style={{ display: "flex", alignItems: "center" }}>
+                            <img
+                              src={`/imgs/tech/${x.name}.svg`}
+                              width={60}
+                              alt={`${x.name} logo`}
+                              style={{ borderRadius: "4px" }}
+                            />
+                            <div style={{ display: "flex", flexDirection: "column" }}>
+                              <h4>
+                                &nbsp;<b>{x.name}</b>&nbsp;
+                              </h4>
+                              <span style={{ color: "#2667ff" }}>
+                                &nbsp;&nbsp;Used in over {x.numOfOccurences} Stacks!
+                              </span>
+                            </div>
+                          </div>
+                          <hr />
+                          <p>
+                            {x.description}
+                          </p>
                         </div>
                       );
                     })}
-                  </div>
-                </>
-              )}
-              {x._id === "cloud" && (
-                <>
-                  <div className="tech-type-div">
-                    <h2
-                      style={{ display: "inline-block", marginRight: "10px" }}
-                    >
-                      Clouds
-                    </h2>
+                  </>
+                )}
+                {x._id === "cloud" && (
+                  <>
+                    <h5 style={{ opacity: "0.4", textAlign: "center" }}>
+                      CLOUDS
+                    </h5>
 
-                    <p>
+                    {/* <p>
                       Tapping into other companies compute can power your
                       application and take it to the next level
-                    </p>
+                    </p> */}
+                    <hr />
 
                     {x.tech.map((x, index) => {
                       return (
-                        <div key={index}>
-                          <span style={{ color: "red" }}>
-                            Used in {x.numOfOccurences} stacks
-                          </span>
-                          <img
-                            src={`/imgs/tech/${x.name}.svg`}
-                            width={50}
-                            alt={`${x.name} logo`}
-                          />
-                          <h3>{x.name}</h3>
-                          <p>{x.description}</p>
+                        <div key={index} className="card" style={{ width: "100%", marginBottom: "1rem" }}>
+                          <div style={{ display: "flex", alignItems: "center" }}>
+                            <img
+                              src={`/imgs/tech/${x.name}.svg`}
+                              width={60}
+                              alt={`${x.name} logo`}
+                              style={{ borderRadius: "4px" }}
+                            />
+                            <div style={{ display: "flex", flexDirection: "column" }}>
+                              <h4>
+                                &nbsp;<b>{x.name}</b>&nbsp;
+                              </h4>
+                              <span style={{ color: "#2667ff" }}>
+                                &nbsp;&nbsp;Used in over {x.numOfOccurences} Stacks!
+                              </span>
+                            </div>
+                          </div>
+                          <hr />
+                          <p>
+                            {x.description}
+                          </p>
                         </div>
                       );
                     })}
-                  </div>
-                </>
-              )}
-              {x._id === "framework" && (
-                <>
-                  <div className="tech-type-div">
-                    <h2
-                      style={{ display: "inline-block", marginRight: "10px" }}
-                    >
-                      Frameworks
-                    </h2>
+                  </>
+                )}
+                {x._id === "framework" && (
+                  <>
+                    <h5 style={{ opacity: "0.4", textAlign: "center" }}>
+                      FRAMEWORKS
+                    </h5>
 
-                    <p>
+                    {/* <p>
                       Frameworks take boilerplate code out of the equation and
                       can greatly simplify application development
-                    </p>
+                    </p> */}
+                    <hr />
 
                     {x.tech.map((x, index) => {
                       return (
-                        <div key={index}>
-                          <span style={{ color: "red" }}>
-                            Used in {x.numOfOccurences} stacks
-                          </span>
-                          <img
-                            src={`/imgs/tech/${x.name}.svg`}
-                            width={50}
-                            alt={`${x.name} logo`}
-                          />
-                          <h3>{x.name}</h3>
-                          <p>{x.description}</p>
+                        <div key={index} className="card" style={{ width: "100%", marginBottom: "1rem" }}>
+                          <div style={{ display: "flex", alignItems: "center" }}>
+                            <img
+                              src={`/imgs/tech/${x.name}.svg`}
+                              width={60}
+                              alt={`${x.name} logo`}
+                              style={{ borderRadius: "4px" }}
+                            />
+                            <div style={{ display: "flex", flexDirection: "column" }}>
+                              <h4>
+                                &nbsp;<b>{x.name}</b>&nbsp;
+                              </h4>
+                              <span style={{ color: "#2667ff" }}>
+                                &nbsp;&nbsp;Used in over {x.numOfOccurences} Stacks!
+                              </span>
+                            </div>
+                          </div>
+                          <hr />
+                          <p>
+                            {x.description}
+                          </p>
                         </div>
                       );
                     })}
-                  </div>
-                </>
-              )}
-            </>
-          );
-        })}
-      </main>
+                  </>
+                )}
+              </>
+            );
+          })}
+        </div>
+      </div>
     </>
   );
 }

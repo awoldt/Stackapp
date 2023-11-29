@@ -144,15 +144,16 @@ export default async function Page() {
                                 />
 
                                 <div className="stack-description">
-                                  <h3>{x.name}</h3>
+                                  <h2>{x.name}</h2>
 
                                   <p
                                     style={{
-                                      opacity: 0.4,
-                                      fontSize: "14px",
+                                      fontSize: "12px",
+                                      fontWeight: "800",
+                                      opacity: "0.4"
                                     }}
                                   >
-                                    {x.created_on.toDateString()}
+                                    Stacked {x.created_on.toDateString()}
                                   </p>
                                 </div>
                                 <div className="explore-stack-icons-container">

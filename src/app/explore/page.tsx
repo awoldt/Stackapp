@@ -66,7 +66,7 @@ export default async function Page() {
       <div className="card-container-title">
         <div className="card-empty-wide">
           <h1>Explore Stacks</h1>
-          <p>Explore recently created Stacks from other Stack members.</p>
+          <h5>Explore recently created Stacks from other Stack members.</h5>
         </div>
       </div>
 
@@ -96,11 +96,12 @@ export default async function Page() {
 
                       <p
                         style={{
-                          opacity: 0.4,
-                          fontSize: "14px",
+                          fontSize: "12px",
+                          fontWeight: "800",
+                          opacity: "0.4"
                         }}
                       >
-                        {x.stackInfo.created_on.toDateString()}
+                        Stacked {x.stackInfo.created_on.toDateString()}
                       </p>
                       <div className="profile-explore-container">
                         <img

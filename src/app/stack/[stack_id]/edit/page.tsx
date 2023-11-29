@@ -72,7 +72,7 @@ export default async function Edit({ params }: { params: any }) {
       <div className="card-container-title">
         <div className="card-empty">
           <h1>Edit Stack</h1>
-          <p>Edit your Stack to best showcase your application.</p>
+          <h5>Edit your Stack to best showcase your application.</h5>
         </div>
       </div>
 
