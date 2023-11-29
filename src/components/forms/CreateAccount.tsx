@@ -5,13 +5,13 @@ import { FormEvent, useRef, useState } from "react";
 export default function Form() {
   const [formSubmission, setFormSubmission] = useState<
     | {
-        status: "success";
-        msg: string;
-      }
+      status: "success";
+      msg: string;
+    }
     | {
-        status: "error";
-        msg: string;
-      }
+      status: "error";
+      msg: string;
+    }
     | null
   >(null);
 
@@ -96,39 +96,61 @@ export default function Form() {
                 );
               }}
             >
-              <input
-                type="email"
-                placeholder="Email"
-                name="email_input"
-                ref={emailRef}
-                disabled={formDisabled}
-                required
-              />
-              <input
-                ref={usernameRef}
-                type="text"
-                placeholder="Username"
-                name="username_input"
-                disabled={formDisabled}
-                required
-              />
+              <div className="input-group">
+                <input
+                  className="input"
+                  type="email"
+                  name="email_input"
+                  ref={emailRef}
+                  disabled={formDisabled}
+                  required
+                />
+                <label className="label" htmlFor="email_input">
+                  Email
+                </label>
+              </div>
 
-              <input
-                ref={fnameRef}
-                type="text"
-                placeholder="First name"
-                name="fname_input"
-                disabled={formDisabled}
-                required
-              />
-              <input
-                ref={lnameref}
-                type="text"
-                placeholder="Last name"
-                name="lname_input"
-                disabled={formDisabled}
-                required
-              />
+              <div className="input-group">
+                <input
+                  className="input"
+                  ref={usernameRef}
+                  type="text"
+                  name="username_input"
+                  disabled={formDisabled}
+                  required
+                />
+                <label className="label" htmlFor="username_input">
+                  Username
+                </label>
+              </div>
+
+              <div className="input-group">
+                <input
+                  className="input"
+                  ref={fnameRef}
+                  type="text"
+                  name="fname_input"
+                  disabled={formDisabled}
+                  required
+                />
+                <label className="label" htmlFor="fname_input">
+                  First Name
+                </label>
+              </div>
+
+              <div className="input-group">
+                <input
+                  className="input"
+                  ref={lnameref}
+                  type="text"
+                  name="lname_input"
+                  disabled={formDisabled}
+                  required
+                />
+                <label className="label" htmlFor="lname_input">
+                  Last Name
+                </label>
+              </div>
 
               {!loading && (
                 <div className="btn-container" style={{ margin: "auto" }}>
@@ -144,7 +166,7 @@ export default function Form() {
               )}
             </form>
           )}
-                    {formSubmission !== null && (
+          {formSubmission !== null && (
             <>
               {formSubmission.status === "success" && (
                 <div>

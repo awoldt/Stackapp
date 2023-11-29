@@ -74,14 +74,19 @@ export default function Form() {
                   FormSubmit(e, emailUsernameRef.current!.value);
                 }}
               >
-                <input
-                  type="text"
-                  placeholder="Email or Username"
-                  name="email_username_input"
-                  ref={emailUsernameRef}
-                  required
-                  disabled={formDisabled}
-                />
+                <div className="input-group">
+                  <input
+                    className="input"
+                    type="text"
+                    name="email_username_input"
+                    ref={emailUsernameRef}
+                    required
+                    disabled={formDisabled}
+                  />
+                  <label className="label" htmlFor="email_username_input">
+                    Email or Username
+                  </label>
+                </div>
 
                 {!loading && (
                   <div className="btn-container" style={{ margin: "auto" }}>

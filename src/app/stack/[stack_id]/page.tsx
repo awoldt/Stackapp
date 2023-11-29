@@ -211,8 +211,8 @@ export default async function Page({ params }: { params: any }) {
       <section>
         <div className="card-container">
           <div className="card">
-            <p style={{ opacity: "0.4" }}>DESCRIPTION</p>
-            <hr />
+            {/* <p style={{ opacity: "0.4" }}>DESCRIPTION</p>
+            <hr /> */}
             <p>{stackDetails.description}</p>
           </div>
         </div>
