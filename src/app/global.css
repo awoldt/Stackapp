@@ -1036,6 +1036,18 @@
     margin-bottom: 20px;
 }
 
+.tech-type-div {
+    padding: 40px;
+}
+
+.tech-type-div div {
+    padding: 20px;
+}
+
+.tech-type-div div p {
+    max-width: 900px;
+}
+
 /* https://loading.io/css/ below */
 
 .lds-dual-ring {

@@ -7,6 +7,7 @@ export interface Tech {
   description: string;
   name: string;
   site?: string;
+  numOfOccurences?: number;
 }
 
 export const unverifiedAccountsColleciton = new MongoClient(

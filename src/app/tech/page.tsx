@@ -1,9 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
-import { IsValidAccountCookie } from "@/functions";
-import { techCollection } from "@/services/mongodb";
+import {
+  IsValidAccountCookie,
+  SortTechOfferedArray,
+  TechList,
+} from "@/functions";
+import { Tech, stacksCollection, techCollection } from "@/services/mongodb";
 import { Metadata } from "next";
 import { cookies } from "next/headers";
 import Nav from "../../components/CustomNav";
+import { Stack } from "@/models/stacks";
 
 export const metadata: Metadata = {
   title: "The Technology Powering Your Stacks",
@@ -28,169 +33,206 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const languages = [];
-  const databases = [];
-  const apis = [];
-  const clouds = [];
-  const frameworks = [];
+  const allStacks = (await stacksCollection.find({}).toArray()) as Stack[];
 
-  const tech = await techCollection.find().toArray();
+  const query = (await techCollection
+    .aggregate([
+      {
+        $group: {
+          _id: "$type",
+          tech: { $push: "$$ROOT" },
+        },
+      },
+    ])
+    .toArray()) as TechList[];
 
-  for (let i = 0; i < tech.length; i++) {
-    switch (tech[i].type) {
-      case "language":
-        languages.push(tech[i]);
-        break;
+  const totalTech = query.reduce(
+    (accumulator, currentValue) => accumulator + currentValue.tech.length,
+    0
+  );
 
-      case "database":
-        databases.push(tech[i]);
-        break;
-
-      case "api":
-        apis.push(tech[i]);
-        break;
-
-      case "cloud":
-        clouds.push(tech[i]);
-        break;
-
-      case "framework":
-        frameworks.push(tech[i]);
-        break;
-    }
-  }
-
-  const cookieStore = cookies();
-  const account = await IsValidAccountCookie(cookieStore.get("a_id"));
+  const sortedTechList = SortTechOfferedArray(query, allStacks);
 
   return (
     <>
       <main>
         <h1>Technology that Represents Your Stacks</h1>
         <p>
-          At Stack, there are over {tech.length} technogies available to
-          showcase how your application was built.
+          At Stack, there are over {totalTech} technogies available to showcase
+          how your application was built.
         </p>
 
-        <div>
-          <h2 style={{ display: "inline-block", marginRight: "10px" }}>
-            Languages
-          </h2>
-          <span>({languages.length})</span>
-          <p>
-            Programming languages are the building block for any application.
-          </p>
-          {languages.map((x, index) => {
-            return (
-              <div key={index}>
-                <img
-                  src={`/imgs/tech/${x.name}.svg`}
-                  width={50}
-                  alt={`${x.name} logo`}
-                />
-                <h3>{x.name}</h3>
-                <p>{x.description}</p>
-              </div>
-            );
-          })}
-        </div>
+        {sortedTechList.map((x) => {
+          return (
+            <>
+              {x._id === "language" && (
+                <>
+                  <div className="tech-type-div">
+                    <h2
+                      style={{ display: "inline-block", marginRight: "10px" }}
+                    >
+                      Languages
+                    </h2>
 
-        <div>
-          <h2 style={{ display: "inline-block", marginRight: "10px" }}>
-            Databases
-          </h2>
-          <span>({databases.length})</span>
-          <p>
-            Every appliaction needs data to showcase on the frontend. There are
-            many different choices when picking a database.
-          </p>
+                    <p>
+                      Programming languages are the building block for any
+                      application.
+                    </p>
 
-          {databases.map((x, index) => {
-            return (
-              <div key={index}>
-                <img
-                  src={`/imgs/tech/${x.name}.svg`}
-                  width={50}
-                  alt={`${x.name} logo`}
-                />
-                <h3>{x.name}</h3>
-                <p>{x.description}</p>
-              </div>
-            );
-          })}
-        </div>
+                    {x.tech.map((x, index) => {
+                      return (
+                        <div key={index}>
+                          <span style={{ color: "red" }}>
+                            Used in {x.numOfOccurences} stacks
+                          </span>
+                          <img
+                            src={`/imgs/tech/${x.name}.svg`}
+                            width={50}
+                            alt={`${x.name} logo`}
+                          />
+                          <h3>{x.name}</h3>
+                          <p>{x.description}</p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </>
+              )}
+              {x._id === "database" && (
+                <>
+                  <div className="tech-type-div">
+                    <h2
+                      style={{ display: "inline-block", marginRight: "10px" }}
+                    >
+                      Databases
+                    </h2>
 
-        <div>
-          <h2 style={{ display: "inline-block", marginRight: "10px" }}>APIs</h2>
-          <span>({apis.length})</span>
-          <p>
-            APIs help get data from other companies to use for your application
-          </p>
+                    <p>
+                      Every appliaction needs data to showcase on the frontend.
+                      There are many different choices when picking a database.
+                    </p>
 
-          {apis.map((x, index) => {
-            return (
-              <div key={index}>
-                <img
-                  src={`/imgs/tech/${x.name}.svg`}
-                  width={50}
-                  alt={`${x.name} logo`}
-                />
-                <h3>{x.name}</h3>
-                <p>{x.description}</p>
-              </div>
-            );
-          })}
-        </div>
+                    {x.tech.map((x, index) => {
+                      return (
+                        <div key={index}>
+                          <span style={{ color: "red" }}>
+                            Used in {x.numOfOccurences} stacks
+                          </span>
+                          <img
+                            src={`/imgs/tech/${x.name}.svg`}
+                            width={50}
+                            alt={`${x.name} logo`}
+                          />
+                          <h3>{x.name}</h3>
+                          <p>{x.description}</p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </>
+              )}
+              {x._id === "api" && (
+                <>
+                  <div className="tech-type-div">
+                    <h2
+                      style={{ display: "inline-block", marginRight: "10px" }}
+                    >
+                      APIs
+                    </h2>
 
-        <div>
-          <h2 style={{ display: "inline-block", marginRight: "10px" }}>
-            Clouds
-          </h2>
-          <span>({clouds.length})</span>
-          <p>
-            Tapping into other companies compute can power your application and
-            take it to the next level
-          </p>
+                    <p>
+                      APIs help get data from other companies to use for your
+                      application
+                    </p>
 
-          {clouds.map((x, index) => {
-            return (
-              <div key={index}>
-                <img
-                  src={`/imgs/tech/${x.name}.svg`}
-                  width={50}
-                  alt={`${x.name} logo`}
-                />
-                <h3>{x.name}</h3>
-                <p>{x.description}</p>
-              </div>
-            );
-          })}
-        </div>
+                    {x.tech.map((x, index) => {
+                      return (
+                        <div key={index}>
+                          <span style={{ color: "red" }}>
+                            Used in {x.numOfOccurences} stacks
+                          </span>
+                          <img
+                            src={`/imgs/tech/${x.name}.svg`}
+                            width={50}
+                            alt={`${x.name} logo`}
+                          />
+                          <h3>{x.name}</h3>
+                          <p>{x.description}</p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </>
+              )}
+              {x._id === "cloud" && (
+                <>
+                  <div className="tech-type-div">
+                    <h2
+                      style={{ display: "inline-block", marginRight: "10px" }}
+                    >
+                      Clouds
+                    </h2>
 
-        <div>
-          <h2 style={{ display: "inline-block", marginRight: "10px" }}>
-            Frameworks
-          </h2>
-          <span>({frameworks.length})</span>
-          <p>
-            Frameworks take boilerplate code out of the equation and can greatly
-            simplify application development
-          </p>
+                    <p>
+                      Tapping into other companies compute can power your
+                      application and take it to the next level
+                    </p>
 
-          {frameworks.map((x, index) => {
-            return (
-              <div key={index}>
-                <img
-                  src={`/imgs/tech/${x.name}.svg`}
-                  width={50}
-                  alt={`${x.name} logo`}
-                />
-                <h3>{x.name}</h3>
-                <p>{x.description}</p>
-              </div>
-            );
-          })}
-        </div>
+                    {x.tech.map((x, index) => {
+                      return (
+                        <div key={index}>
+                          <span style={{ color: "red" }}>
+                            Used in {x.numOfOccurences} stacks
+                          </span>
+                          <img
+                            src={`/imgs/tech/${x.name}.svg`}
+                            width={50}
+                            alt={`${x.name} logo`}
+                          />
+                          <h3>{x.name}</h3>
+                          <p>{x.description}</p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </>
+              )}
+              {x._id === "framework" && (
+                <>
+                  <div className="tech-type-div">
+                    <h2
+                      style={{ display: "inline-block", marginRight: "10px" }}
+                    >
+                      Frameworks
+                    </h2>
+
+                    <p>
+                      Frameworks take boilerplate code out of the equation and
+                      can greatly simplify application development
+                    </p>
+
+                    {x.tech.map((x, index) => {
+                      return (
+                        <div key={index}>
+                          <span style={{ color: "red" }}>
+                            Used in {x.numOfOccurences} stacks
+                          </span>
+                          <img
+                            src={`/imgs/tech/${x.name}.svg`}
+                            width={50}
+                            alt={`${x.name} logo`}
+                          />
+                          <h3>{x.name}</h3>
+                          <p>{x.description}</p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </>
+              )}
+            </>
+          );
+        })}
       </main>
     </>
   );

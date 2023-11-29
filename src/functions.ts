@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import { accountsCollection, stacksCollection } from "./services/mongodb";
+import { Tech, accountsCollection, stacksCollection } from "./services/mongodb";
 import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import path from "path";
 import fs from "fs/promises";
@@ -8,6 +8,7 @@ import sharp from "sharp";
 import { TechOffered } from "./techOffered";
 import { s3Client } from "./services/aws";
 import { HeadObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
+import { Stack } from "./models/stacks";
 
 export interface RepoSelectList {
   name: string;
@@ -50,6 +51,12 @@ export interface UserSelectedTech {
   apis: string[] | null;
   clouds: string[] | null;
   frameworks: string[] | null;
+}
+
+export interface TechList {
+  _id: "language" | "database" | "api" | "cloud" | "framework";
+  tech: Tech[];
+  usedInStackCount: number; // used to calculate how many technologies we offer
 }
 
 export async function AuthenticateGithubAccount(
@@ -489,4 +496,117 @@ export function GenerateEditStackTechCheckboxs(
       notSelected: allFrameworks,
     },
   };
+}
+
+export function SortTechOfferedArray(query: TechList[], allStacks: Stack[]) {
+  // returns stats for each tech offered on site
+  // such as name, descriptions, imgs, how many stacks use, etc...
+
+  // order the categories like shown below
+  // the aggregation query above could return tech types in any random order, we want specific order
+  const sortedTechList: TechList[] = [];
+  const techTypes = ["language", "database", "api", "cloud", "framework"]; // LIST HAS TO BE IN THIS ORDER, LANGUAGE MOST IMPORTANT FIRST
+  for (let i = 0; i < techTypes.length; i++) {
+    for (let j = 0; j < query.length; j++) {
+      if (query[j]._id === techTypes[i]) {
+        sortedTechList.push(query[j]);
+
+        break;
+      }
+    }
+  }
+
+  for (let i = 0; i < sortedTechList.length; i++) {
+    for (let j = 0; j < sortedTechList[i].tech.length; j++) {
+      let n = 0;
+
+      for (let t = 0; t < allStacks.length; t++) {
+        switch (sortedTechList[i].tech[j].type) {
+          case "language":
+            for (let k = 0; k < allStacks[t].languages_used.length; k++) {
+              if (
+                allStacks[t].languages_used[k] ===
+                sortedTechList[i].tech[j].name
+              ) {
+                n++;
+              }
+            }
+            sortedTechList[i].tech[j].numOfOccurences = n;
+            break;
+
+          case "database":
+            if (allStacks[t].databases_used !== null) {
+              for (let k = 0; k < allStacks[t].databases_used!.length; k++) {
+                if (
+                  allStacks[t].databases_used![k] ===
+                  sortedTechList[i].tech[j].name
+                ) {
+                  n++;
+                  break;
+                }
+              }
+              sortedTechList[i].tech[j].numOfOccurences = n;
+            } else {
+              sortedTechList[i].tech[j].numOfOccurences = n;
+            }
+            break;
+
+          case "api":
+            if (allStacks[t].apis_used !== null) {
+              for (let k = 0; k < allStacks[t].apis_used!.length; k++) {
+                if (
+                  allStacks[t].apis_used![k] === sortedTechList[i].tech[j].name
+                ) {
+                  n++;
+                  break;
+                }
+              }
+              sortedTechList[i].tech[j].numOfOccurences = n;
+            } else {
+              sortedTechList[i].tech[j].numOfOccurences = n;
+            }
+            break;
+
+          case "cloud":
+            if (allStacks[t].clouds_used !== null) {
+              for (let k = 0; k < allStacks[t].clouds_used!.length; k++) {
+                if (
+                  allStacks[t].clouds_used![k] ===
+                  sortedTechList[i].tech[j].name
+                ) {
+                  n++;
+                  break;
+                }
+              }
+              sortedTechList[i].tech[j].numOfOccurences = n;
+            } else {
+              sortedTechList[i].tech[j].numOfOccurences = n;
+            }
+            break;
+
+          case "framework":
+            if (allStacks[t].frameworks_used !== null) {
+              for (let k = 0; k < allStacks[t].frameworks_used!.length; k++) {
+                if (
+                  allStacks[t].frameworks_used![k] ===
+                  sortedTechList[i].tech[j].name
+                ) {
+                  n++;
+                  break;
+                }
+              }
+              sortedTechList[i].tech[j].numOfOccurences = n;
+            } else {
+              sortedTechList[i].tech[j].numOfOccurences = n;
+            }
+            break;
+
+          default:
+            break;
+        }
+      }
+    }
+  }
+
+  return sortedTechList;
 }
