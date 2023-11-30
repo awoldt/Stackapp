@@ -445,7 +445,7 @@ export default async function Home() {
             </div>
 
             <h3 style={{ textAlign: "center", fontSize: "32px", fontWeight: 800, margin: "40px 0px 20px 0px" }}>
-              Connect to GitHub to Display your Repo's Latest Commits
+              Connect to GitHub to Display your Repo&apos;s Latest Commits
             </h3>
 
             <div className="card-container">
