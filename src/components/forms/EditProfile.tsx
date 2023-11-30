@@ -26,6 +26,7 @@ export default function Form({ user }: { user: UserProfile }) {
       if (req.ok) {
         alert("Profile successfully updated");
         setLoading(false);
+        window.location.assign("/profile");
       }
     } catch (e) {
       alert("Error while submitting form");
@@ -41,7 +42,12 @@ export default function Form({ user }: { user: UserProfile }) {
       }}
     >
       <div className="card-container">
-        <img src={profileImgSrc} style={{ marginTop: "0" }} className="profile-img" alt="Proflie picture" />
+        <img
+          src={profileImgSrc}
+          style={{ marginTop: "0" }}
+          className="profile-img"
+          alt="Proflie picture"
+        />
       </div>
       <div className="card-container">
         <input
@@ -52,13 +58,17 @@ export default function Form({ user }: { user: UserProfile }) {
           onChange={async (e) => {
             const fileInput = e.target;
             if (fileInput.files && fileInput.files[0]) {
-              const reader = new FileReader();
+              if (fileInput.files[0].size > 5000000) {
+                alert("File too large");
+              } else {
+                const reader = new FileReader();
 
-              reader.onload = (r) => {
-                setProfileImgSrc(r.target?.result?.toString()!);
-              };
+                reader.onload = (r) => {
+                  setProfileImgSrc(r.target?.result?.toString()!);
+                };
 
-              reader.readAsDataURL(fileInput.files[0]);
+                reader.readAsDataURL(fileInput.files[0]);
+              }
             }
           }}
         />
@@ -75,9 +85,10 @@ export default function Form({ user }: { user: UserProfile }) {
           maxLength={120}
           style={{ marginBottom: "20px" }}
         />
-        <label className="label" htmlFor="user_bio">Bio</label>
+        <label className="label" htmlFor="user_bio">
+          Bio
+        </label>
       </div>
-
 
       <div className="card-container" style={{ marginBottom: "10px" }}>
         {/* HAS GITHUB CONNECTED */}
@@ -126,12 +137,30 @@ export default function Form({ user }: { user: UserProfile }) {
         {loading && <div className="lds-dual-ring"></div>}
       </div>
 
-      <div className="card-container" style={{ marginTop: "10px", paddingBottom: "0px", flexDirection: "column", width: "100%" }}>
-        <div className="card-container" style={{ margin: "0px", marginBottom: "0px" }}>
+      <div
+        className="card-container"
+        style={{
+          marginTop: "10px",
+          paddingBottom: "0px",
+          flexDirection: "column",
+          width: "100%",
+        }}
+      >
+        <div
+          className="card-container"
+          style={{ margin: "0px", marginBottom: "0px" }}
+        >
           <button
             className="nav-element"
             type="button"
-            style={{ width: "fit-content", background: "none", border: "0px", fontSize: "14px", cursor: "pointer", fontFamily: "inter" }}
+            style={{
+              width: "fit-content",
+              background: "none",
+              border: "0px",
+              fontSize: "14px",
+              cursor: "pointer",
+              fontFamily: "inter",
+            }}
             onClick={() => {
               document.cookie =
                 "a_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -146,7 +175,14 @@ export default function Form({ user }: { user: UserProfile }) {
           <button
             className="nav-element"
             type="button"
-            style={{ width: "fit-content", background: "none", border: "0px", fontSize: "14px", cursor: "pointer", fontFamily: "inter" }}
+            style={{
+              width: "fit-content",
+              background: "none",
+              border: "0px",
+              fontSize: "14px",
+              cursor: "pointer",
+              fontFamily: "inter",
+            }}
             onClick={async () => {
               const c1 = confirm(
                 "Are you sure you want to delete your Stack account?"
@@ -185,7 +221,9 @@ export default function Form({ user }: { user: UserProfile }) {
             }}
           >
             Delete Account
-            <p style={{ fontSize: "12px", lineHeight: "1" }}>Account deletion is irreversible.</p>
+            <p style={{ fontSize: "12px", lineHeight: "1" }}>
+              Account deletion is irreversible.
+            </p>
           </button>
         </div>
       </div>

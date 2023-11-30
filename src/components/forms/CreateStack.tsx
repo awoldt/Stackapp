@@ -66,13 +66,6 @@ export default function Form({
 
   return (
     <>
-      {stackSubmission !== null && !loading && (
-        <>
-          <div className="card-container">
-            <p style={{ color: "#2667ff" }}>{stackSubmission?.msg}</p>
-          </div>
-        </>
-      )}
       <form
         ref={formRef}
         encType="multipart/form-data"
@@ -121,6 +114,12 @@ export default function Form({
                 *Icon
               </label>
 
+              <img
+                id="uploaded_app_icon"
+                width={100}
+                style={{ marginRight: "15px" }}
+              />
+
               <input
                 id="app_icon_input"
                 type="file"
@@ -131,11 +130,19 @@ export default function Form({
                 onChange={async (e) => {
                   const fileInput = e.target;
                   if (fileInput.files && fileInput.files[0]) {
-                    const reader = new FileReader();
+                    if (fileInput.files[0].size > 5000000) {
+                      alert("File too large");
+                    } else {
+                      const reader = new FileReader();
 
-                    reader.onload = (r) => {};
+                      reader.readAsDataURL(fileInput.files[0]);
 
-                    reader.readAsDataURL(fileInput.files[0]);
+                      reader.onload = (r) => {
+                        document
+                          .getElementById("uploaded_app_icon")
+                          ?.setAttribute("src", String(r.target!.result));
+                      };
+                    }
                   }
                 }}
               />
@@ -143,6 +150,12 @@ export default function Form({
               <label htmlFor="app_thumbnail_input" style={{ padding: "0" }}>
                 *Thumbnail
               </label>
+
+              <img
+                id="uploaded_thumbnail_icon"
+                width={100}
+                style={{ marginRight: "15px" }}
+              />
 
               <input
                 type="file"
@@ -153,11 +166,19 @@ export default function Form({
                 onChange={async (e) => {
                   const fileInput = e.target;
                   if (fileInput.files && fileInput.files[0]) {
-                    const reader = new FileReader();
+                    if (fileInput.files[0].size > 5000000) {
+                      alert("File too large");
+                    } else {
+                      const reader = new FileReader();
 
-                    reader.onload = (r) => {};
+                      reader.readAsDataURL(fileInput.files[0]);
 
-                    reader.readAsDataURL(fileInput.files[0]);
+                      reader.onload = (r) => {
+                        document
+                          .getElementById("uploaded_thumbnail_icon")
+                          ?.setAttribute("src", String(r.target!.result));
+                      };
+                    }
                   }
                 }}
               />
@@ -193,6 +214,14 @@ export default function Form({
             )}
 
             <Tech />
+
+            {stackSubmission !== null && !loading && (
+              <>
+                <div className="card-container">
+                  <p style={{ color: "#2667ff" }}>{stackSubmission?.msg}</p>
+                </div>
+              </>
+            )}
 
             {signedIn && (
               <div className="card-container">

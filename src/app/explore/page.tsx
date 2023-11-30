@@ -35,9 +35,6 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const cookieStore = cookies();
-  const account = await IsValidAccountCookie(cookieStore.get("a_id"));
-
   const recentStacks = await stacksCollection
     .find()
     .sort({ created_on: -1 })
@@ -65,7 +62,17 @@ export default async function Page() {
     <>
       <div className="card-container-title">
         <div className="card-empty-wide">
-          <h1 style={{ display: "flex", alignItems: "center", marginBottom: "0", marginTop: "0" }}><img src="/imgs/icons/explore.svg" />&nbsp;Explore Stacks</h1>
+          <h1
+            style={{
+              display: "flex",
+              alignItems: "center",
+              marginBottom: "0",
+              marginTop: "0",
+            }}
+          >
+            <img src="/imgs/icons/explore.svg" />
+            &nbsp;Explore Stacks
+          </h1>
           <p>Explore recently created Stacks from other Stack members.</p>
         </div>
       </div>
@@ -94,7 +101,7 @@ export default async function Page() {
                         style={{
                           fontSize: "12px",
                           fontWeight: "800",
-                          opacity: "0.4"
+                          opacity: "0.4",
                         }}
                       >
                         Stacked {x.stackInfo.created_on.toDateString()}
