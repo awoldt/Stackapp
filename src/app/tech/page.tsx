@@ -55,9 +55,9 @@ export default async function Page() {
   return (
     <>
       <div className="card-container-title">
-        <div className="card-empty-wide">
+        <div className="card-empty-wide" style={{ textAlign: "center" }}>
           <h1>Technologies</h1>
-          <p>
+          <p className="subheading">
             At Stack, we offer a diverse range of more than {totalTech}{" "}
             technologies, all accessible for demonstrating the construction of
             your application.
@@ -66,31 +66,101 @@ export default async function Page() {
       </div>
 
       <div className="card-container">
-        <div className="card">
+        <div className="card-blank" style={{ display: "flex", justifyContent: "center", marginTop: "10px", marginBottom: "20px" }}>
+          <h2
+            className="btn"
+            style={{
+              marginLeft: ".2rem",
+              marginRight: ".2rem",
+            }}
+          >
+            {/* <img
+              className="svg-white"
+              src="/imgs/icons/code.svg"
+              alt="language"
+              width={20}
+              height={14}
+            /> */}
+            Languages
+          </h2>
+
+          <h2
+            className="btn"
+            style={{
+              marginLeft: ".2rem",
+              marginRight: ".2rem",
+            }}
+          >
+            {/* <img
+              className="svg-white"
+              src="/imgs/icons/database-fill.svg"
+              alt="database"
+              width={20}
+              height={14}
+            /> */}
+            Databases
+          </h2>
+
+          <h2
+            className="btn"
+            style={{
+              marginLeft: ".2rem",
+              marginRight: ".2rem",
+            }}
+          >
+            {/* <img
+              className="svg-white"
+              src="/imgs/icons/api.svg"
+              alt="api"
+              width={20}
+              height={14}
+            /> */}
+            APIs
+          </h2>
+
+          <h2
+            className="btn"
+            style={{
+              marginLeft: ".2rem",
+              marginRight: ".2rem",
+            }}
+          >
+            {/* <img
+              className="svg-white"
+              src="/imgs/icons/framework.svg"
+              alt="api"
+              width={20}
+              height={14}
+            /> */}
+            Frameworks
+          </h2>
+
+          <h2
+            className="btn"
+            style={{
+              marginLeft: ".2rem",
+              marginRight: ".2rem",
+            }}
+          >
+            {/* <img
+              className="svg-white"
+              src="/imgs/icons/cloud-fill.svg"
+              alt="cloud"
+              width={20}
+              height={14}
+            /> */}
+            Clouds
+          </h2>
+        </div>
+      </div>
+
+      <div className="card-container">
+        <div className="card-blank">
           {sortedTechList.map((x) => {
             return (
               <>
                 {x._id === "language" && (
                   <>
-                    <h2
-                      className="subheading"
-                      style={{
-                        opacity: "0.6",
-                        textAlign: "center",
-                        fontWeight: "500",
-                      }}
-                    >
-                      <img
-                        src="/imgs/icons/code.svg"
-                        alt="language"
-                        width={20}
-                        height={14}
-                        style={{ display: "inline" }}
-                      />
-                      LANGUAGES
-                    </h2>
-                    <hr />
-
                     {x.tech.map((x, index) => {
                       return (
                         <div
@@ -139,12 +209,12 @@ export default async function Page() {
                             target="_blank"
                             style={{
                               display: "block",
-                              marginTop: "10px",
+                              marginTop: "20px",
                               fontWeight: "600",
                               maxWidth: "fit-content",
                             }}
                           >
-                            Learn More
+                            Learn More...
                           </a>
                         </div>
                       );
@@ -153,26 +223,6 @@ export default async function Page() {
                 )}
                 {x._id === "database" && (
                   <>
-                    <h2
-                      className="subheading"
-                      style={{
-                        opacity: "0.6",
-                        marginTop: "40px",
-                        textAlign: "center",
-                        fontWeight: "500",
-                      }}
-                    >
-                      <img
-                        src="/imgs/icons/database-fill.svg"
-                        alt="database"
-                        width={20}
-                        height={14}
-                        style={{ display: "inline" }}
-                      />
-                      DATABASES
-                    </h2>
-                    <hr />
-
                     {x.tech.map((x, index) => {
                       return (
                         <div
@@ -221,12 +271,12 @@ export default async function Page() {
                             target="_blank"
                             style={{
                               display: "block",
-                              marginTop: "10px",
+                              marginTop: "20px",
                               fontWeight: "600",
                               maxWidth: "fit-content",
                             }}
                           >
-                            Learn More
+                            Learn More...
                           </a>
                         </div>
                       );
@@ -235,26 +285,6 @@ export default async function Page() {
                 )}
                 {x._id === "api" && (
                   <>
-                    <h2
-                      className="subheading"
-                      style={{
-                        opacity: "0.6",
-                        marginTop: "40px",
-                        textAlign: "center",
-                        fontWeight: "500",
-                      }}
-                    >
-                      <img
-                        src="/imgs/icons/api.svg"
-                        alt="api"
-                        width={20}
-                        height={14}
-                        style={{ display: "inline" }}
-                      />
-                      APIs
-                    </h2>
-                    <hr />
-
                     {x.tech.map((x, index) => {
                       return (
                         <div
@@ -303,12 +333,12 @@ export default async function Page() {
                             target="_blank"
                             style={{
                               display: "block",
-                              marginTop: "10px",
+                              marginTop: "20px",
                               fontWeight: "600",
                               maxWidth: "fit-content",
                             }}
                           >
-                            Learn More
+                            Learn More...
                           </a>
                         </div>
                       );
@@ -317,26 +347,6 @@ export default async function Page() {
                 )}
                 {x._id === "framework" && (
                   <>
-                    <h2
-                      className="subheading"
-                      style={{
-                        opacity: "0.6",
-                        marginTop: "40px",
-                        textAlign: "center",
-                        fontWeight: "500",
-                      }}
-                    >
-                      <img
-                        src="/imgs/icons/framework.svg"
-                        alt="api"
-                        width={20}
-                        height={14}
-                        style={{ display: "inline" }}
-                      />
-                      FRAMEWORKS
-                    </h2>
-                    <hr />
-
                     {x.tech.map((x, index) => {
                       return (
                         <div
@@ -385,12 +395,12 @@ export default async function Page() {
                             target="_blank"
                             style={{
                               display: "block",
-                              marginTop: "10px",
+                              marginTop: "20px",
                               fontWeight: "600",
                               maxWidth: "fit-content",
                             }}
                           >
-                            Learn More
+                            Learn More...
                           </a>
                         </div>
                       );
@@ -399,31 +409,6 @@ export default async function Page() {
                 )}
                 {x._id === "cloud" && (
                   <>
-                    <h2
-                      className="subheading"
-                      style={{
-                        opacity: "0.6",
-                        marginTop: "40px",
-                        textAlign: "center",
-                        fontWeight: "500",
-                      }}
-                    >
-                      <img
-                        src="/imgs/icons/cloud-fill.svg"
-                        alt="cloud"
-                        width={20}
-                        height={14}
-                        style={{ display: "inline" }}
-                      />
-                      CLOUDS
-                    </h2>
-
-                    {/* <p>
-                      Tapping into other companies compute can power your
-                      application and take it to the next level
-                    </p> */}
-                    <hr />
-
                     {x.tech.map((x, index) => {
                       return (
                         <div
@@ -472,12 +457,12 @@ export default async function Page() {
                             target="_blank"
                             style={{
                               display: "block",
-                              marginTop: "10px",
+                              marginTop: "20px",
                               fontWeight: "600",
                               maxWidth: "fit-content",
                             }}
                           >
-                            Learn More
+                            Learn More...
                           </a>
                         </div>
                       );

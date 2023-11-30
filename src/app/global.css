@@ -522,8 +522,18 @@
         word-wrap: break-word;
     }
 
+    .card-blank {
+        border-radius: 20px;
+        width: 70%;
+        height: auto;
+        padding: 0px;
+        word-wrap: break-word;
+    }
+
     @media (max-width: 1550px) {
-        .card {
+
+        .card,
+        .card-blank {
             width: 98%;
         }
 
@@ -533,7 +543,9 @@
     }
 
     @media (max-width: 800px) {
-        .card {
+
+        .card,
+        .card-blank {
             padding: 20px;
         }
     }
@@ -881,6 +893,7 @@
         border: 1px solid transparent;
         color: white;
         border-radius: 100px;
+        border-radius: 8px;
         padding: 10px;
         padding-left: 26px;
         padding-right: 26px;
@@ -1066,6 +1079,11 @@
         padding-left: .2rem;
         padding-right: .2rem;
         color: #2667ff;
+    }
+
+    .svg-white {
+        -webkit-filter: invert(1);
+        filter: invert(1);
     }
 }
 
