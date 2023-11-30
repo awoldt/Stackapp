@@ -138,12 +138,17 @@ export default async function ProfilePage({ params }: { params: any }) {
                           style={{
                             fontSize: "12px",
                             fontWeight: "800",
-                            opacity: "0.4"
+                            opacity: "0.4",
                           }}
                         >
                           {x.created_on.toDateString()}
                         </p>
-                        <p style={{ marginTop: "10px" }}>{x.description}</p>
+
+                        <p style={{ marginTop: "10px" }}>
+                          {x.description.length > 100
+                            ? x.description.slice(0, 100) + "..."
+                            : x.description}
+                        </p>
                       </div>
                       <div className="explore-stack-icons-container">
                         <img

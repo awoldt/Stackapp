@@ -58,6 +58,12 @@ export default async function Page() {
     }
   }
 
+  // NEED THIS FOR DOWN BELOW
+  // IF NOT
+  const STACKIDS = featuredStacks.map((x: any) => {
+    return x.stackInfo._id;
+  });
+
   return (
     <>
       <div className="card-container-title">
@@ -74,16 +80,18 @@ export default async function Page() {
             <img src="/imgs/icons/explore.svg" />
             &nbsp;Explore Stacks
           </h1>
-          <p className="subheading">Explore recently created Stacks from other Stack members.</p>
+          <p className="subheading">
+            Explore recently created Stacks from other Stack members.
+          </p>
         </div>
       </div>
 
       <div className="card-container" id="yourStacks">
         <div className="card-blank">
-          {featuredStacks.map((x: any, index) => {
+          {featuredStacks.map((x: ExploreStackDiv, index) => {
             return (
               <div key={index}>
-                <a href={`/stack/${String(x.stackInfo._id)}`}>
+                <a href={`/stack/${STACKIDS[index]}`}>
                   <div className="profile-stack-container">
                     <div className="card-thumbnail">
                       <img src={x.stackInfo.thumbnail_url} />
@@ -105,18 +113,28 @@ export default async function Page() {
                           opacity: "0.4",
                         }}
                       >
-                        Stacked {x.stackInfo.created_on.toDateString()}
+                        Created on {x.stackInfo.created_on.toDateString()}
+                      </p>
+
+                      <p>
+                        {x.stackInfo.description.length > 100
+                          ? x.stackInfo.description.slice(0, 100) + "..."
+                          : x.stackInfo.description}
                       </p>
                       <div className="profile-explore-container">
                         <img
-                          src={x.userInfo?.profile_pic_filename!}
+                          src={
+                            x.userInfo?.profile_pic_filename !== null
+                              ? x.userInfo?.profile_pic_filename!
+                              : "/imgs/icons/noprofile.png"
+                          }
                           className="user-profile-img"
                           alt="user-profile-img"
                           style={{ cursor: "pointer" }}
                         />
                         <p style={{ cursor: "pointer" }}>
                           <b>
-                            {x.userInfo.first_name} {x.userInfo.last_name}
+                            {x.userInfo!.first_name} {x.userInfo!.last_name}
                           </b>
                           <br />@{x.userInfo?.username}
                         </p>

@@ -100,7 +100,7 @@ export default function Form({
                 id="app_description_input"
                 cols={44}
                 rows={10}
-                maxLength={2000}
+                maxLength={2500}
                 style={{ marginBottom: "10px" }}
                 required
               />
