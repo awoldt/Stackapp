@@ -42,16 +42,16 @@ export default async function Home() {
 
             <div className="btn-container">
               <a
-                href="/signup"
+                href="/tech"
                 className="btn-landing"
                 style={{ textAlign: "center" }}
               >
-                Start Stacking
+                Explore Tech
               </a>
             </div>
 
             <p className="subheading" style={{ textAlign: "center", marginBottom: "14rem" }}>
-              Scroll to explore Stack&apos;s features.
+              Scroll to view Stack&apos;s features.
             </p>
 
             <div className="btn-container" style={{ marginBottom: "2rem" }}>
@@ -150,9 +150,9 @@ export default async function Home() {
             className="card-empty"
             style={{ width: "100%", marginTop: "0rem", textAlign: "left" }}
           >
-            <h3 style={{ textAlign: "center", fontWeight: 800, fontSize: "32px" }}>
+            <h2 style={{ textAlign: "center" }}>
               Showcase your Applications through Elegant Stacks
-            </h3>
+            </h2>
             <div className="header-container" style={{ paddingTop: "0rem" }}>
               <div
                 className="title-container-header"
@@ -202,9 +202,9 @@ export default async function Home() {
               </div>
             </div>
 
-            <h3 style={{ textAlign: "center", fontSize: "32px", fontWeight: 800, margin: "40px 0px 20px 0px" }}>
-              Create Detailed Descriptions of your Application
-            </h3>
+            <h2 style={{ textAlign: "center", margin: "40px 0px 20px 0px" }}>
+              Describe the Details of your Applications
+            </h2>
 
             <div className="card-container">
               <div className="card">
@@ -228,9 +228,9 @@ export default async function Home() {
               </div>
             </div>
 
-            <h3 style={{ textAlign: "center", fontSize: "32px", fontWeight: 800, margin: "40px 0px 20px 0px" }}>
+            <h2 style={{ textAlign: "center", margin: "40px 0px 20px 0px" }}>
               Visualize the Technologies your Tech Stacks are Built Upon
-            </h3>
+            </h2>
 
             <div className="card-container">
               <div className="card">
@@ -239,7 +239,7 @@ export default async function Home() {
                     className="subheading"
                     style={{
                       opacity: "0.6",
-                      textAlign: "center",
+                      textAlign: "left",
                       fontWeight: "500",
                     }}
                   >
@@ -288,7 +288,7 @@ export default async function Home() {
                     style={{
                       opacity: "0.6",
                       marginTop: "40px",
-                      textAlign: "center",
+                      textAlign: "left",
                       fontWeight: "500",
                     }}
                   >
@@ -325,7 +325,7 @@ export default async function Home() {
                     style={{
                       opacity: "0.6",
                       marginTop: "40px",
-                      textAlign: "center",
+                      textAlign: "left",
                       fontWeight: "500",
                     }}
                   >
@@ -359,7 +359,7 @@ export default async function Home() {
                     style={{
                       opacity: "0.6",
                       marginTop: "40px",
-                      textAlign: "center",
+                      textAlign: "left",
                       fontWeight: "500",
                     }}
                   >
@@ -393,7 +393,7 @@ export default async function Home() {
                     style={{
                       opacity: "0.6",
                       marginTop: "40px",
-                      textAlign: "center",
+                      textAlign: "left",
                       fontWeight: "500",
                     }}
                   >
@@ -444,9 +444,9 @@ export default async function Home() {
               </div>
             </div>
 
-            <h3 style={{ textAlign: "center", fontSize: "32px", fontWeight: 800, margin: "40px 0px 20px 0px" }}>
+            <h2 style={{ textAlign: "center", margin: "40px 0px 20px 0px" }}>
               Connect to GitHub to Display your Repo&apos;s Latest Commits
-            </h3>
+            </h2>
 
             <div className="card-container">
               <div className="card">

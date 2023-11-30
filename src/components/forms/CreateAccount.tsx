@@ -73,7 +73,7 @@ export default function Form() {
       <div
         className="card-container"
         style={{
-          height: "100vh",
+          height: "86vh",
           marginBottom: "0rem",
           alignItems: "center",
           flexDirection: "column",

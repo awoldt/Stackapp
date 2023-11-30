@@ -46,7 +46,7 @@
     h2 {
         color: #2a2b2a;
         font-family: 'Inter', sans-serif;
-        font-size: 32px;
+        font-size: 28px;
         font-weight: 800;
         line-height: 1.4;
     }
@@ -60,7 +60,7 @@
     h3 {
         color: #2a2b2a;
         font-family: 'Inter', sans-serif;
-        font-size: 20px;
+        font-size: 24px;
         font-weight: 400;
         line-height: 1.4;
     }
@@ -98,7 +98,7 @@
 
         h5,
         .subheading {
-            font-size: 14px;
+            font-size: 16px;
         }
     }
 
@@ -110,15 +110,6 @@
         font-size: 16px;
         font-weight: 400;
         line-height: 1.4;
-    }
-
-    @media (max-width: 800px) {
-
-        p,
-        label,
-        span {
-            font-size: 12px;
-        }
     }
 
     label {
@@ -205,8 +196,8 @@
 
     .nav-left ul li {
         float: left;
-        margin-left: .4rem;
-        margin-right: 1.2rem;
+        margin-left: .6rem;
+        margin-right: .6rem;
     }
 
     .nav-right ul li {
@@ -222,7 +213,21 @@
         line-height: 2.4;
         transition: 250ms ease-in-out;
         font-size: 16px;
-        font-weight: 500;
+        font-weight: 400;
+    }
+
+    @media (max-width: 800px) {
+
+        p,
+        label,
+        span,
+        .nav-element {
+            font-size: 14px;
+        }
+
+        .nav-element {
+            line-height: 2.8;
+        }
     }
 
     .nav-element:hover {
@@ -386,8 +391,14 @@
         flex-wrap: wrap;
         gap: 2rem;
         width: 100%;
-        justify-content: center;
+        justify-content: left;
         align-items: center;
+    }
+
+    @media (max-width: 800px) {
+        .grid-container {
+            justify-content: center;
+        }
     }
 
     .grid-item {
@@ -606,7 +617,7 @@
         display: flex;
         justify-content: left;
         align-items: center;
-        margin-bottom: 1rem;
+        margin-bottom: 10px;
         padding: 40px;
         cursor: pointer;
         border-radius: 20px;
@@ -904,7 +915,7 @@
         padding-right: 26px;
         font-size: 16px;
         font-family: 'Inter', sans-serif;
-        font-weight: 500;
+        font-weight: 600;
         transition: 250ms ease-in-out;
     }
 
@@ -967,7 +978,7 @@
     }
 
     .nav-signup {
-        line-height: 2.4;
+        line-height: 2.2;
         font-size: 16px;
         padding: 6px;
         padding-left: 22px;
@@ -1059,7 +1070,7 @@
         justify-content: center;
     }
 
-    @media (max-width: 800px) {
+    /* @media (max-width: 800px) {
         footer {
             bottom: -12rem;
         }
@@ -1068,7 +1079,7 @@
             flex-direction: column;
             text-align: center;
         }
-    }
+    } */
 
     .input-group {
         position: relative;

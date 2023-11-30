@@ -19,9 +19,11 @@ export default function TechList({
           className="card-blank"
           style={{
             display: "flex",
+            flexWrap: "wrap",
             justifyContent: "center",
             marginTop: "10px",
             marginBottom: "20px",
+            paddingBottom: "0px"
           }}
         >
           <span
@@ -29,6 +31,7 @@ export default function TechList({
             style={{
               marginLeft: ".2rem",
               marginRight: ".2rem",
+              marginBottom: ".4rem"
             }}
             onClick={() => {
               if (section !== "language") {
@@ -51,6 +54,7 @@ export default function TechList({
             style={{
               marginLeft: ".2rem",
               marginRight: ".2rem",
+              marginBottom: ".4rem"
             }}
             onClick={() => {
               if (section !== "database") {
@@ -73,6 +77,7 @@ export default function TechList({
             style={{
               marginLeft: ".2rem",
               marginRight: ".2rem",
+              marginBottom: ".4rem"
             }}
             onClick={() => {
               if (section !== "api") {
@@ -95,6 +100,7 @@ export default function TechList({
             style={{
               marginLeft: ".2rem",
               marginRight: ".2rem",
+              marginBottom: ".4rem"
             }}
             onClick={() => {
               if (section !== "framework") {
@@ -117,6 +123,7 @@ export default function TechList({
             style={{
               marginLeft: ".2rem",
               marginRight: ".2rem",
+              marginBottom: ".4rem"
             }}
             onClick={() => {
               if (section !== "cloud") {

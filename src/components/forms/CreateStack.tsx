@@ -126,7 +126,6 @@ export default function Form({
                   width: "12rem",
                   borderRadius: "50%",
                   overflow: "hidden",
-                  border: "1px solid rgba(0, 0, 0, 0.165)",
                   objectFit: "cover",
                   boxShadow: "0px 2px 10px 2px rgba(0, 0, 0, 0.025)"
                 }}
@@ -175,7 +174,6 @@ export default function Form({
                   marginBottom: "10px",
                   paddingBottom: "0px",
                   borderRadius: "20px",
-                  border: "1px solid rgba(0, 0, 0, 0.165)",
                   objectFit: "contain",
                   boxShadow: "0px 2px 10px 2px rgba(0, 0, 0, 0.025)",
                 }}
