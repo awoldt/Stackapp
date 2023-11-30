@@ -16,10 +16,10 @@ export default function Edit({
   stackDetails: Stack;
   stackID: string;
   repoSelectData:
-  | "error"
-  | RepoSelectList[]
-  | "must_connect_github_account"
-  | null;
+    | "error"
+    | RepoSelectList[]
+    | "must_connect_github_account"
+    | null;
   editStackCheckboxs: EditStackTechCheckboxs;
 }) {
   const [iconImgSrc, setIconImgSrc] = useState(stackDetails.icon_url);
@@ -61,7 +61,6 @@ export default function Edit({
     >
       <div className="card-container">
         <div className="create-content">
-
           <div className="input-group">
             <input
               className="input"
@@ -86,16 +85,15 @@ export default function Edit({
               defaultValue={stackDetails.description}
               id="app_description"
             />
-            <label
-              className="label"
-              htmlFor="app_description"
-            >
+            <label className="label" htmlFor="app_description">
               *Description
             </label>
           </div>
 
           <div style={{ marginBottom: "20px" }}>
-            <label style={{ padding: "0" }} htmlFor="stack_icon_input">*Icon</label>
+            <label style={{ padding: "0" }} htmlFor="stack_icon_input">
+              *Icon
+            </label>
             <img
               src={iconImgSrc}
               style={{
@@ -113,20 +111,26 @@ export default function Edit({
               onChange={async (e) => {
                 const fileInput = e.target;
                 if (fileInput.files && fileInput.files[0]) {
-                  const reader = new FileReader();
+                  if (fileInput.files[0].size > 5000000) {
+                    alert("File too large");
+                  } else {
+                    const reader = new FileReader();
 
-                  reader.onload = (r) => {
-                    setIconImgSrc(r.target?.result?.toString()!);
-                  };
+                    reader.onload = (r) => {
+                      setIconImgSrc(r.target?.result?.toString()!);
+                    };
 
-                  reader.readAsDataURL(fileInput.files[0]);
+                    reader.readAsDataURL(fileInput.files[0]);
+                  }
                 }
               }}
             />
           </div>
 
           <div style={{ marginBottom: "10px" }}>
-            <label style={{ padding: "0" }} htmlFor="stack_thumbnail_input">*Thumbnail</label>
+            <label style={{ padding: "0" }} htmlFor="stack_thumbnail_input">
+              *Thumbnail
+            </label>
             <img
               src={thumbnailImgSrc}
               style={{
@@ -149,18 +153,21 @@ export default function Edit({
               onChange={async (e) => {
                 const fileInput = e.target;
                 if (fileInput.files && fileInput.files[0]) {
-                  const reader = new FileReader();
+                  if (fileInput.files[0].size > 5000000) {
+                    alert("File too large");
+                  } else {
+                    const reader = new FileReader();
 
-                  reader.onload = (r) => {
-                    setThumbnailImgSrc(r.target?.result?.toString()!);
-                  };
+                    reader.onload = (r) => {
+                      setThumbnailImgSrc(r.target?.result?.toString()!);
+                    };
 
-                  reader.readAsDataURL(fileInput.files[0]);
+                    reader.readAsDataURL(fileInput.files[0]);
+                  }
                 }
               }}
             />
           </div>
-
 
           <div className="input-group">
             <input
@@ -170,12 +177,15 @@ export default function Edit({
               name="website_url"
               defaultValue={stackDetails.website_url!}
             />
-            <label className="label" htmlFor="website_url">URL</label>
+            <label className="label" htmlFor="website_url">
+              URL
+            </label>
           </div>
 
           {stackDetails.github_repo_name !== null && (
             <span>
-              <i>{stackDetails.github_repo_name}</i> is currently associated with this Stack.
+              <i>{stackDetails.github_repo_name}</i> is currently associated
+              with this Stack.
             </span>
           )}
           <RepoSelect repoData={repoSelectData} />

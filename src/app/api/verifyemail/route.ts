@@ -40,6 +40,7 @@ export async function GET(request: Request) {
       new Date().getDate()
     ),
     secure: true,
+    httpOnly: true,
   });
 
   return new Response(

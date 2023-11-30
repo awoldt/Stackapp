@@ -27,9 +27,6 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const cookieStore = cookies();
-  const account = await IsValidAccountCookie(cookieStore.get("a_id"));
-
   return (
     <main>
       <section>

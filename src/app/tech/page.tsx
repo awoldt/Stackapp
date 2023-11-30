@@ -278,7 +278,7 @@ export default async function Page() {
                               }}
                             >
                               <h3>
-                                &nbsp;<b>{x.name}</b>&nbsp;
+                                &nbsp;<b>{x.name} API</b>&nbsp;
                               </h3>
                               {x.numOfOccurences! > 0 && (
                                 <span style={{ color: "#2667ff" }}>
