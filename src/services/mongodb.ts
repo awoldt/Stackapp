@@ -29,5 +29,5 @@ export const signInLinksCollection = new MongoClient(process.env.MONGODB_KEY!)
   .collection<{ aid: string; expires: number }>("signin-links");
 
 export const techCollection = new MongoClient(process.env.MONGODB_KEY!)
-  .db(process.env.DB!)
+  .db("stackapp-PROD")
   .collection<Tech>("tech-offered");

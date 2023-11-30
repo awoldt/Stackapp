@@ -44,6 +44,15 @@ export const TechOffered = TechModel.parse({
     "Azure",
     "Heroku",
     "Oracle",
+    "Vercel",
   ].sort(),
-  frameworks: ["Nextjs", "Larvel", "Django", "Ruby on Rails", "Express", "Angular", "Spring Boot"].sort(),
+  frameworks: [
+    "Nextjs",
+    "Larvel",
+    "Django",
+    "Ruby on Rails",
+    "Express",
+    "Angular",
+    "Spring Boot",
+  ].sort(),
 });
