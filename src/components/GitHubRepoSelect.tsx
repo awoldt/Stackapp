@@ -10,7 +10,7 @@ export default function Select({
       {repoData === "must_connect_github_account" && (
         <p>
           <b>
-          <img src="/imgs/icons/github.svg" /> Connect your GitHub account in profile settings to showcase commit
+            Connect your GitHub account in profile settings to showcase commit
             logs from your repositories.
           </b>
           <br />
@@ -35,7 +35,7 @@ export default function Select({
       {Array.isArray(repoData) && repoData.length > 0 && (
         <>
           <label style={{ padding: "0" }} htmlFor="github_repo_select">
-            <span> GitHub Repository</span>
+            <p>Select a GitHub Repository.</p>
           </label>
           <select name="github_repo_id" id="github_repo_select">
             <option value="none">Select a Repo</option>

@@ -21,9 +21,9 @@ export default function Footer() {
         <a className="nav-element" style={myStyle} href={"/privacy"}>
           Privacy Policy
         </a>
-        <a className="nav-element" style={myStyle} href={"/about"}>
+        {/* <a className="nav-element" style={myStyle} href={"/about"}>
           About Stack
-        </a>
+        </a> */}
       </div>
       <hr />
       <div className="footer-container" style={{ marginBottom: "2rem" }}>

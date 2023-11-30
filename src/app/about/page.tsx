@@ -14,7 +14,7 @@ export default function Page() {
       <div className="card-container-title">
         <div className="card-empty-wide">
           <h1>About Stack</h1>
-          <h2>Learn more about Stack.</h2>
+          <p className="subheading">Learn more about the platform that is Stack.</p>
         </div>
       </div>
       <div className="card-container">

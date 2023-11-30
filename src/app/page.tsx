@@ -35,10 +35,10 @@ export default async function Home() {
             <h1 className="splash" id="splash">
               Visualize your Tech Stacks with Impact
             </h1>
-            <p style={{ textAlign: "center", marginTop: "2rem" }}>
+            <h2 style={{ textAlign: "center", marginTop: "2rem", fontWeight: 400, fontSize: 24 }}>
               Stack&trade; is a platform designed to help developers and
-              designers showcase their tech stacks
-            </p>
+              designers showcase their tech stacks.
+            </h2>
 
             <div className="btn-container">
               <a
@@ -50,8 +50,8 @@ export default async function Home() {
               </a>
             </div>
 
-            <p style={{ textAlign: "center", marginBottom: "14rem" }}>
-              Scroll to Explore Stack&apos;s Features
+            <p className="subheading" style={{ textAlign: "center", marginBottom: "14rem" }}>
+              Scroll to explore Stack&apos;s features.
             </p>
 
             <div className="btn-container" style={{ marginBottom: "2rem" }}>
@@ -150,8 +150,8 @@ export default async function Home() {
             className="card-empty"
             style={{ width: "100%", marginTop: "0rem", textAlign: "left" }}
           >
-            <h3 style={{ textAlign: "center" }}>
-              <b>Showcase your Applications through Elegant Stacks</b>
+            <h3 style={{ textAlign: "center", fontWeight: 800, fontSize: "32px" }}>
+              Showcase your Applications through Elegant Stacks
             </h3>
             <div className="header-container" style={{ paddingTop: "0rem" }}>
               <div
@@ -202,11 +202,8 @@ export default async function Home() {
               </div>
             </div>
 
-            <h3 style={{ textAlign: "center", margin: "25px 0px 25px 0px" }}>
-              <b>
-                {" "}
-                Provide Detailed Descriptions of How Your Application Operates
-              </b>
+            <h3 style={{ textAlign: "center", fontSize: "32px", fontWeight: 800, margin: "40px 0px 20px 0px" }}>
+              Create Detailed Descriptions of your Application
             </h3>
 
             <div className="card-container">
@@ -231,8 +228,8 @@ export default async function Home() {
               </div>
             </div>
 
-            <h3 style={{ textAlign: "center", margin: "25px 0px 25px 0px" }}>
-              <b>Visualize What Technologies Went Into Your Tech Stack</b>
+            <h3 style={{ textAlign: "center", fontSize: "32px", fontWeight: 800, margin: "40px 0px 20px 0px" }}>
+              Visualize the Technologies your Tech Stacks are Built Upon
             </h3>
 
             <div className="card-container">
@@ -447,10 +444,8 @@ export default async function Home() {
               </div>
             </div>
 
-            <h3 style={{ textAlign: "center", margin: "25px 0px 25px 0px" }}>
-              <b>
-                Integrate with GitHub to Display the Latest Commits Made to Repo
-              </b>
+            <h3 style={{ textAlign: "center", fontSize: "32px", fontWeight: 800, margin: "40px 0px 20px 0px" }}>
+              Connect to GitHub to Display your Repo's Latest Commits
             </h3>
 
             <div className="card-container">
@@ -487,7 +482,7 @@ export default async function Home() {
                     }}
                   >
                     <button className="btn">
-                      <i className="fa-brands fa-github fa-xl"></i> Commit Sha
+                      <i className="fa-brands fa-github fa-xl"></i> Commit
                     </button>
                   </div>
                 </div>
@@ -521,7 +516,7 @@ export default async function Home() {
                     }}
                   >
                     <button className="btn">
-                      <i className="fa-brands fa-github fa-xl"></i> Commit Sha
+                      <i className="fa-brands fa-github fa-xl"></i> Commit
                     </button>
                   </div>
                 </div>
@@ -555,7 +550,7 @@ export default async function Home() {
                     }}
                   >
                     <button className="btn">
-                      <i className="fa-brands fa-github fa-xl"></i> Commit Sha
+                      <i className="fa-brands fa-github fa-xl"></i> Commit
                     </button>
                   </div>
                 </div>
@@ -589,7 +584,7 @@ export default async function Home() {
                     }}
                   >
                     <button className="btn">
-                      <i className="fa-brands fa-github fa-xl"></i> Commit Sha
+                      <i className="fa-brands fa-github fa-xl"></i> Commit
                     </button>
                   </div>
                 </div>
@@ -623,7 +618,7 @@ export default async function Home() {
                     }}
                   >
                     <button className="btn">
-                      <i className="fa-brands fa-github fa-xl"></i> Commit Sha
+                      <i className="fa-brands fa-github fa-xl"></i> Commit
                     </button>
                   </div>
                 </div>

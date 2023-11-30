@@ -472,7 +472,7 @@
     .card-empty-wide,
     .card-empty-splash {
         border-radius: 20px;
-        text-align: left;
+        text-align: center;
         width: 40%;
         height: auto;
         word-wrap: break-word;
@@ -532,20 +532,24 @@
 
     @media (max-width: 1550px) {
 
-        .card,
-        .card-blank {
+        .card {
             width: 98%;
         }
 
+        .card-blank {
+            width: 100%;
+            padding: 20px;
+            padding-top: 0px;
+        }
+
         .card-empty-wide {
-            width: 98%;
+            width: 95%;
         }
     }
 
     @media (max-width: 800px) {
 
-        .card,
-        .card-blank {
+        .card {
             padding: 20px;
         }
     }
@@ -553,13 +557,12 @@
     @media (max-width: 1550px) {
         .card-empty {
             padding-top: 0px;
-            width: 60%;
+            width: 95%;
         }
     }
 
     @media (max-width: 800px) {
         .card-empty {
-            width: 98%;
             margin-top: 0rem;
         }
 
@@ -753,6 +756,8 @@
         background: transparent;
         border-radius: 8px;
         padding: 4px;
+        margin-left: .2rem;
+        margin-right: .2rem;
         overflow: hidden;
         object-fit: contain;
     }
@@ -885,6 +890,7 @@
     .btn-confirm,
     .btn-landing,
     .btn-delete,
+    .btn-selected,
     .nav-signup,
     input[type="file"]::file-selector-button {
         cursor: pointer;
@@ -893,7 +899,6 @@
         border: 1px solid transparent;
         color: white;
         border-radius: 100px;
-        border-radius: 8px;
         padding: 10px;
         padding-left: 26px;
         padding-right: 26px;
@@ -902,6 +907,21 @@
         font-weight: 500;
         transition: 250ms ease-in-out;
     }
+
+    .btn-selected {
+        border: 1px solid #2667ff;
+        color: #2667ff;
+        background: white;
+        cursor: auto;
+        transition: 250ms ease-in-out;
+    }
+
+    /* .btn-selected:hover {
+        background: #2667ff;
+        border: 1px solid transparent;
+        color: white;
+        transition: 250ms ease-in-out;
+    } */
 
     .btn-confirm {
         padding: 16px;

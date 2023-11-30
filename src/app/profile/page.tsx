@@ -98,7 +98,7 @@ export default async function Page() {
           </section>
 
           <div className="card-container" id="yourStacks">
-            <div className="card" style={{ textAlign: "left" }}>
+            <div className="card-blank" style={{ textAlign: "left" }}>
               <section>
                 {userStacks.length === 0 && (
                   <>

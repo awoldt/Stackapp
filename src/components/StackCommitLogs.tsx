@@ -29,7 +29,7 @@ export default function CommitLogs({
                       </div>
                       <div style={{ display: "flex", width: "50%", justifyContent: "right" }}>
                         <a href={x.url} className="btn">
-                          <i className="fa-brands fa-github fa-xl"></i> Commit Sha
+                          <i className="fa-brands fa-github fa-xl"></i> Commit
                         </a>
                         {/* {x.sha} */}
                       </div>

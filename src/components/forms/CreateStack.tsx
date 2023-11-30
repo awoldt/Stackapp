@@ -17,10 +17,10 @@ export default function Form({
   signedIn,
 }: {
   repoSelectList:
-    | RepoSelectList[]
-    | null
-    | "must_connect_github_account"
-    | "error";
+  | RepoSelectList[]
+  | null
+  | "must_connect_github_account"
+  | "error";
   signedIn: boolean;
 }) {
   // stack submission is used only when there is an error with creating new stack
@@ -115,9 +115,21 @@ export default function Form({
               </label>
 
               <img
+                src="imgs\splash\placeholder.png"
                 id="uploaded_app_icon"
                 width={100}
-                style={{ marginRight: "15px" }}
+                style={{
+                  display: "block",
+                  marginBottom: "10px",
+                  marginTop: "0px",
+                  height: "12rem",
+                  width: "12rem",
+                  borderRadius: "50%",
+                  overflow: "hidden",
+                  border: "1px solid rgba(0, 0, 0, 0.165)",
+                  objectFit: "cover",
+                  boxShadow: "0px 2px 10px 2px rgba(0, 0, 0, 0.025)"
+                }}
               />
 
               <input
@@ -152,9 +164,21 @@ export default function Form({
               </label>
 
               <img
+                src="imgs\splash\placeholder.png"
                 id="uploaded_thumbnail_icon"
                 width={100}
-                style={{ marginRight: "15px" }}
+                style={{
+                  width: "auto",
+                  maxWidth: "100%",
+                  height: "240px",
+                  display: "block",
+                  marginBottom: "10px",
+                  paddingBottom: "0px",
+                  borderRadius: "20px",
+                  border: "1px solid rgba(0, 0, 0, 0.165)",
+                  objectFit: "contain",
+                  boxShadow: "0px 2px 10px 2px rgba(0, 0, 0, 0.025)",
+                }}
               />
 
               <input
@@ -203,7 +227,7 @@ export default function Form({
               <div>
                 <p>
                   <b>
-                    <img src="/imgs/icons/github.svg" /> Connect your GitHub
+                    Connect your GitHub
                     account in profile settings to showcase commit logs from
                     your repositories.
                   </b>

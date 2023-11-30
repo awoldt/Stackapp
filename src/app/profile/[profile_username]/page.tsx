@@ -112,7 +112,7 @@ export default async function ProfilePage({ params }: { params: any }) {
         </div>
       </section>
       <div className="card-container" id="yourStacks">
-        <div className="card" style={{ textAlign: "left" }}>
+        <div className="card-blank" style={{ textAlign: "left" }}>
           <section>
             {/* <h5 style={{ opacity: "0.4" }}>STACKS</h5>
             <hr /> */}

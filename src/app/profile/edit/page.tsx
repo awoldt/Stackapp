@@ -31,6 +31,7 @@ export default async function Page() {
               <h1
                 style={{
                   display: "flex",
+                  justifyContent: "center",
                   alignItems: "center",
                   marginBottom: "0",
                   marginTop: "0",
@@ -39,7 +40,7 @@ export default async function Page() {
                 <img src="/imgs/icons/profile2.svg" />
                 &nbsp;Edit Profile
               </h1>
-              <p>Update your settings to best describe you.</p>
+              <p className="subheading">Update your settings to best describe you.</p>
             </div>
           </div>
 

@@ -16,10 +16,10 @@ export default function Edit({
   stackDetails: Stack;
   stackID: string;
   repoSelectData:
-    | "error"
-    | RepoSelectList[]
-    | "must_connect_github_account"
-    | null;
+  | "error"
+  | RepoSelectList[]
+  | "must_connect_github_account"
+  | null;
   editStackCheckboxs: EditStackTechCheckboxs;
 }) {
   const [iconImgSrc, setIconImgSrc] = useState(stackDetails.icon_url);
@@ -84,6 +84,7 @@ export default function Edit({
               required
               defaultValue={stackDetails.description}
               id="app_description"
+              style={{ marginBottom: "10px" }}
             />
             <label className="label" htmlFor="app_description">
               *Description
@@ -96,12 +97,19 @@ export default function Edit({
             </label>
             <img
               src={iconImgSrc}
+              width={100}
               style={{
                 display: "block",
-                marginBottom: "20px",
+                marginBottom: "10px",
                 marginTop: "0px",
+                height: "12rem",
+                width: "12rem",
+                borderRadius: "50%",
+                overflow: "hidden",
+                border: "1px solid rgba(0, 0, 0, 0.165)",
+                objectFit: "cover",
+                boxShadow: "0px 2px 10px 2px rgba(0, 0, 0, 0.025)"
               }}
-              className="profile-img"
             />
             <input
               id="stack_icon_input"
@@ -133,12 +141,17 @@ export default function Edit({
             </label>
             <img
               src={thumbnailImgSrc}
+              width={100}
               style={{
-                width: "100%",
+                width: "auto",
+                maxWidth: "100%",
+                height: "240px",
                 display: "block",
-                marginBottom: "20px",
+                marginBottom: "10px",
                 paddingBottom: "0px",
                 borderRadius: "20px",
+                border: "1px solid rgba(0, 0, 0, 0.165)",
+                objectFit: "contain",
                 boxShadow: "0px 2px 10px 2px rgba(0, 0, 0, 0.025)",
               }}
             />

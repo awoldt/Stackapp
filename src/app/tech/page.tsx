@@ -55,7 +55,7 @@ export default async function Page() {
   return (
     <>
       <div className="card-container-title">
-        <div className="card-empty-wide" style={{ textAlign: "center" }}>
+        <div className="card-empty-wide">
           <h1>Technologies</h1>
           <p className="subheading">
             At Stack, we offer a diverse range of more than {totalTech}{" "}
@@ -68,7 +68,7 @@ export default async function Page() {
       <div className="card-container">
         <div className="card-blank" style={{ display: "flex", justifyContent: "center", marginTop: "10px", marginBottom: "20px" }}>
           <h2
-            className="btn"
+            className="btn-selected"
             style={{
               marginLeft: ".2rem",
               marginRight: ".2rem",

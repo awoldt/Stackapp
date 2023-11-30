@@ -38,6 +38,7 @@ export default async function Page() {
             <h1
               style={{
                 display: "flex",
+                justifyContent: "center",
                 alignItems: "center",
                 marginBottom: "0",
                 marginTop: "0",
@@ -46,7 +47,7 @@ export default async function Page() {
               <img src="/imgs/icons/create2.svg" />
               &nbsp;Create Stack
             </h1>
-            <p>
+            <p className="subheading">
               Login to your account to create custom Stacks that showcase your
               applications.
             </p>
@@ -78,6 +79,7 @@ export default async function Page() {
             <h1
               style={{
                 display: "flex",
+                justifyContent: "center",
                 alignItems: "center",
                 marginBottom: "0",
                 marginTop: "0",
@@ -86,7 +88,7 @@ export default async function Page() {
               <img src="/imgs/icons/create2.svg" />
               &nbsp;Create Stack
             </h1>
-            <p>Create custom Stacks that showcase your applications.</p>
+            <p className="subheading">Create custom Stacks that showcase your applications.</p>
           </div>
         </div>
 
