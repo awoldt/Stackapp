@@ -8,7 +8,7 @@ export default function Select({
   return (
     <div>
       {repoData === "must_connect_github_account" && (
-        <p>
+        <p className="subheading">
           <b>
             Connect your GitHub account in profile settings to showcase commit
             logs from your repositories.
@@ -18,12 +18,12 @@ export default function Select({
         </p>
       )}
       {repoData === "error" && (
-        <p>
+        <p className="subheading">
           <b>There was an error while fetching GitHub repo data.</b>
         </p>
       )}
       {repoData === null && (
-        <p>
+        <p className="subheading">
           <b>
             No repo data available or all repos are associated with other
             Stacks.
@@ -35,7 +35,7 @@ export default function Select({
       {Array.isArray(repoData) && repoData.length > 0 && (
         <>
           <label style={{ padding: "0" }} htmlFor="github_repo_select">
-            <p>Select a GitHub Repository.</p>
+            <p className="subheading">Select a GitHub Repository.</p>
           </label>
           <select name="github_repo_id" id="github_repo_select">
             <option value="none">Select a Repo</option>

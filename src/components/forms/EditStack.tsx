@@ -92,7 +92,7 @@ export default function Edit({
           </div>
 
           <div style={{ marginBottom: "20px" }}>
-            <label style={{ padding: "0" }} htmlFor="stack_icon_input">
+            <label className="subheading" style={{ padding: "0" }} htmlFor="stack_icon_input">
               *Icon
             </label>
             <img
@@ -135,7 +135,7 @@ export default function Edit({
           </div>
 
           <div style={{ marginBottom: "10px" }}>
-            <label style={{ padding: "0" }} htmlFor="stack_thumbnail_input">
+            <label className="subheading" style={{ padding: "0" }} htmlFor="stack_thumbnail_input">
               *Thumbnail
             </label>
             <img
@@ -194,8 +194,8 @@ export default function Edit({
           </div>
 
           {stackDetails.github_repo_name !== null && (
-            <span>
-              <i>{stackDetails.github_repo_name}</i> is currently associated
+            <span className="subheading">
+              <b>{stackDetails.github_repo_name}</b> is currently associated
               with this Stack.
             </span>
           )}

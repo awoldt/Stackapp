@@ -238,9 +238,7 @@ export default async function Home() {
                   <p
                     className="subheading"
                     style={{
-                      opacity: "0.6",
-                      textAlign: "left",
-                      fontWeight: "500",
+                      opacity: "0.6", fontSize: "16px"
                     }}
                   >
                     <img
@@ -287,9 +285,7 @@ export default async function Home() {
                     className="subheading"
                     style={{
                       opacity: "0.6",
-                      marginTop: "40px",
-                      textAlign: "left",
-                      fontWeight: "500",
+                      marginTop: "40px", fontSize: "16px"
                     }}
                   >
                     <img
@@ -324,9 +320,7 @@ export default async function Home() {
                     className="subheading"
                     style={{
                       opacity: "0.6",
-                      marginTop: "40px",
-                      textAlign: "left",
-                      fontWeight: "500",
+                      marginTop: "40px", fontSize: "16px"
                     }}
                   >
                     <img
@@ -358,9 +352,7 @@ export default async function Home() {
                     className="subheading"
                     style={{
                       opacity: "0.6",
-                      marginTop: "40px",
-                      textAlign: "left",
-                      fontWeight: "500",
+                      marginTop: "40px", fontSize: "16px"
                     }}
                   >
                     <img
@@ -392,9 +384,7 @@ export default async function Home() {
                     className="subheading"
                     style={{
                       opacity: "0.6",
-                      marginTop: "40px",
-                      textAlign: "left",
-                      fontWeight: "500",
+                      marginTop: "40px", fontSize: "16px"
                     }}
                   >
                     <img

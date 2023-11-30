@@ -110,7 +110,7 @@ export default function Form({
             </div>
 
             <div style={{ marginBottom: "20px" }}>
-              <label htmlFor="app_icon_input" style={{ padding: "0" }}>
+              <label className="subheading" htmlFor="app_icon_input" style={{ padding: "0" }}>
                 *Icon
               </label>
 
@@ -158,7 +158,7 @@ export default function Form({
                 }}
               />
 
-              <label htmlFor="app_thumbnail_input" style={{ padding: "0" }}>
+              <label className="subheading" htmlFor="app_thumbnail_input" style={{ padding: "0" }}>
                 *Thumbnail
               </label>
 
@@ -223,7 +223,7 @@ export default function Form({
             {signedIn && <RepoSelect repoData={repoSelectList} />}
             {!signedIn && (
               <div>
-                <p>
+                <p className="subheading">
                   <b>
                     Connect your GitHub
                     account in profile settings to showcase commit logs from

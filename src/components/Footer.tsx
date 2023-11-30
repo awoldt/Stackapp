@@ -27,7 +27,7 @@ export default function Footer() {
       </div>
       <hr />
       <div className="footer-container" style={{ marginBottom: "2rem" }}>
-        <p>&copy;Stack 2023. All Rights Reserved.</p>
+        <p style={{ fontSize: "12px" }}>&copy;Stack 2023. All Rights Reserved.</p>
       </div>
     </footer>
   );

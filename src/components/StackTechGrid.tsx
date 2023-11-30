@@ -7,7 +7,7 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
       <div className="card-container">
         <div className="card">
           <div className="container">
-            <h2 className="subheading" style={{ opacity: "0.6", fontWeight: "500" }}>
+            <h2 className="subheading" style={{ opacity: "0.6", fontSize: "16px" }}>
               <img
                 src="/imgs/icons/code.svg"
                 alt="language"
@@ -46,7 +46,7 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
 
           {stackDetails.databases_used !== null && (
             <div className="container">
-              <h2 className="subheading" style={{ opacity: "0.6", marginTop: "40px", fontWeight: "500" }}>
+              <h2 className="subheading" style={{ opacity: "0.6", marginTop: "40px", fontSize: "16px" }}>
                 <img
                   src="/imgs/icons/database-fill.svg"
                   alt="database"
@@ -90,7 +90,7 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
 
           {stackDetails.apis_used !== null && (
             <div className="container">
-              <h2 className="subheading" style={{ opacity: "0.6", marginTop: "40px", fontWeight: "500" }}>
+              <h2 className="subheading" style={{ opacity: "0.6", marginTop: "40px", fontSize: "16px" }}>
                 <img
                   src="/imgs/icons/api.svg"
                   alt="api"
@@ -132,7 +132,7 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
 
           {stackDetails.frameworks_used !== null && (
             <div className="container">
-              <h2 className="subheading" style={{ opacity: "0.6", marginTop: "40px", fontWeight: "500" }}>
+              <h2 className="subheading" style={{ opacity: "0.6", marginTop: "40px", fontSize: "16px" }}>
                 <img
                   src="/imgs/icons/framework.svg"
                   alt="api"
@@ -176,13 +176,14 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
 
           {stackDetails.clouds_used !== null && (
             <div className="container">
-              <h2 className="subheading" style={{ opacity: "0.6", marginTop: "40px", fontWeight: "500" }}>                <img
-                src="/imgs/icons/cloud-fill.svg"
-                alt="cloud"
-                width={20}
-                height={14}
-                style={{ display: "inline" }}
-              />CLOUDS
+              <h2 className="subheading" style={{ opacity: "0.6", marginTop: "40px", fontSize: "16px" }}>
+                <img
+                  src="/imgs/icons/cloud-fill.svg"
+                  alt="cloud"
+                  width={20}
+                  height={14}
+                  style={{ display: "inline" }}
+                />CLOUDS
               </h2>
               <hr />
               <div className="grid-container">
