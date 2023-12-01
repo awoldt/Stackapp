@@ -9,6 +9,8 @@ import { TechOffered } from "./techOffered";
 import { s3Client } from "./services/aws";
 import { HeadObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
 import { Stack } from "./models/stacks";
+import { notFound, redirect } from "next/navigation";
+import { cache } from "react";
 
 export interface RepoSelectList {
   name: string;
@@ -509,6 +511,11 @@ export function SortTechOfferedArray(query: TechList[], allStacks: Stack[]) {
   for (let i = 0; i < techTypes.length; i++) {
     for (let j = 0; j < query.length; j++) {
       if (query[j]._id === techTypes[i]) {
+        for (let k = 0; k < query[j].tech.length; k++) {
+          // turn _id for each tech document into native string so next js doesnt bitch
+          query[j].tech[k]._id = String(query[j].tech[k]._id);
+        }
+
         sortedTechList.push(query[j]);
 
         break;
@@ -610,3 +617,91 @@ export function SortTechOfferedArray(query: TechList[], allStacks: Stack[]) {
 
   return sortedTechList;
 }
+
+// SOME CACHE FUNCTIONS BELOW
+// need to cache this becuase nextjs new metadata functionality is fucking retarded
+// this will prevent calling data twice inside generagemetadata function and page component
+
+export const GetStackpageData = cache(async (stackID: string) => {
+  try {
+    // make sure stack id is valid
+    if (!ObjectId.isValid(stackID)) {
+      notFound();
+    }
+
+    // check to see if stack exists
+    const stackDetails = await stacksCollection.findOne({
+      _id: new ObjectId(stackID),
+    });
+    if (stackDetails === null) {
+      notFound();
+    }
+
+    // get user who created stack details
+    let creatorDetails = await accountsCollection.findOne({
+      _id: new ObjectId(stackDetails.aid),
+    });
+
+    // if stack has github repo id associated with it, get commit logs
+    let commitLogs: null | "error" | RepoCommitLogs[] | "too_many_requests" =
+      null;
+
+    if (creatorDetails !== null) {
+      if (
+        stackDetails.github_repo_id !== null &&
+        creatorDetails.github_access_token !== null
+      ) {
+        commitLogs = await GetRepoCommitLogs(
+          stackDetails.github_repo_id,
+          creatorDetails.github_access_token
+        );
+      }
+    }
+
+    // [stackData, commitlogData]
+    return {
+      stackData: stackDetails,
+      commitLogsData: commitLogs,
+      creatorData: creatorDetails,
+    };
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
+});
+
+export const GetPublicProfilepageData = cache(
+  async (username: string, accountCookie: RequestCookie | undefined) => {
+    try {
+      // see if username exists
+      const profile = await accountsCollection.findOne({
+        username_lowercase: username.toLowerCase(),
+      });
+
+      if (profile === null) {
+        notFound();
+      }
+
+      if (accountCookie !== undefined) {
+        // if profile is currently signed in user, redirect
+        if (String(accountCookie.value) === String(profile?._id)) {
+          redirect("/profile");
+        }
+      }
+
+      // get users stacks
+      const userStacks = await stacksCollection
+        .find({ aid: String(profile?._id) })
+        .sort({ created_on: -1 })
+        .toArray();
+
+      return {
+        profileData: profile,
+        stackData: userStacks,
+      };
+    } catch (err) {
+      console.log(err);
+      return null;
+    }
+  }
+);

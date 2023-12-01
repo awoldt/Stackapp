@@ -3,8 +3,6 @@ import {
   GenerateEditStackTechCheckboxs,
   GetGitHubRepoSelectData,
   IsValidAccountCookie,
-  RepoSelectList,
-  UserSelectedTech,
 } from "@/functions";
 import { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
@@ -14,12 +12,9 @@ import { ObjectId } from "mongodb";
 import EditStackForm from "../../../../components/forms/EditStack";
 
 export const metadata: Metadata = {
-  title: "Edit Stack | Stack",
+  title: "Edit Stack",
   description:
     "Edit your stack by selecting the programming language you used to make your app. You can select others features such as Databases, APIs, Frameworks, and more.",
-  alternates: {
-    canonical: "https://stackapp.xyz/signup",
-  },
   robots: { index: false, follow: false },
 };
 

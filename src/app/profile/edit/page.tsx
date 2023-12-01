@@ -8,12 +8,7 @@ import EditProfileForm from "../../../components/forms/EditProfile";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Edit Profile | Stack",
-  description: " ",
-
-  alternates: {
-    canonical: " ",
-  },
+  title: "Edit Profile",
   robots: { index: false, follow: false },
 };
 

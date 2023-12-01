@@ -43,8 +43,8 @@ export default async function Home() {
                 fontSize: 24,
               }}
             >
-              Stack&trade; is a platform designed to help developers and
-              designers showcase their tech stacks.
+              Stack is a platform designed to help developers showcase
+              their tech stacks.
             </h2>
 
             <div className="btn-container">
@@ -85,7 +85,7 @@ export default async function Home() {
             <p
               style={{ textAlign: "center", opacity: ".65", fontSize: "14px" }}
             >
-              Stack&trade; is built using state-of-the-art tools while adhering
+              Stack is built using state-of-the-art tools while adhering
               to the highest security standards. GitHub compatibility ensures
               seamless integration and collaboration for developers across the
               platform.

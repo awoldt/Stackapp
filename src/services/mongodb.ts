@@ -1,8 +1,9 @@
 import { UserProfile } from "@/models/profile";
 import { Stack } from "@/models/stacks";
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 
 export interface Tech {
+  _id: string;
   type: "language" | "database" | "api" | "cloud" | "framework";
   description: string;
   name: string;

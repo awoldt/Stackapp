@@ -3,14 +3,22 @@
 import { TechList } from "@/functions";
 import { useState } from "react";
 
+const possibleTechTypes = ["language", "database", "api", "cloud", "framework"];
+
 export default function TechList({
   sortedTechList,
+  defaultSection,
 }: {
   sortedTechList: TechList[];
+  defaultSection: string | undefined;
 }) {
-  const [section, setSection] = useState<
-    "language" | "database" | "api" | "cloud" | "framework"
-  >("language");
+  const [section, setSection] = useState<string>(
+    defaultSection === undefined
+      ? "language"
+      : !possibleTechTypes.includes(defaultSection)
+      ? "language"
+      : defaultSection
+  );
 
   return (
     <>
@@ -23,7 +31,7 @@ export default function TechList({
             justifyContent: "center",
             marginTop: "10px",
             marginBottom: "20px",
-            paddingBottom: "0px"
+            paddingBottom: "0px",
           }}
         >
           <span
@@ -31,7 +39,7 @@ export default function TechList({
             style={{
               marginLeft: ".2rem",
               marginRight: ".2rem",
-              marginBottom: ".4rem"
+              marginBottom: ".4rem",
             }}
             onClick={() => {
               if (section !== "language") {
@@ -54,7 +62,7 @@ export default function TechList({
             style={{
               marginLeft: ".2rem",
               marginRight: ".2rem",
-              marginBottom: ".4rem"
+              marginBottom: ".4rem",
             }}
             onClick={() => {
               if (section !== "database") {
@@ -77,7 +85,7 @@ export default function TechList({
             style={{
               marginLeft: ".2rem",
               marginRight: ".2rem",
-              marginBottom: ".4rem"
+              marginBottom: ".4rem",
             }}
             onClick={() => {
               if (section !== "api") {
@@ -100,7 +108,7 @@ export default function TechList({
             style={{
               marginLeft: ".2rem",
               marginRight: ".2rem",
-              marginBottom: ".4rem"
+              marginBottom: ".4rem",
             }}
             onClick={() => {
               if (section !== "framework") {
@@ -123,7 +131,7 @@ export default function TechList({
             style={{
               marginLeft: ".2rem",
               marginRight: ".2rem",
-              marginBottom: ".4rem"
+              marginBottom: ".4rem",
             }}
             onClick={() => {
               if (section !== "cloud") {
@@ -145,9 +153,9 @@ export default function TechList({
 
       <div className="card-container">
         <div className="card-blank">
-          {sortedTechList.map((x) => {
+          {sortedTechList.map((x, index) => {
             return (
-              <>
+              <div key={index}>
                 {/* LANGUAGES */}
                 {x._id === "language" && (
                   <>
@@ -159,6 +167,7 @@ export default function TechList({
                               key={index}
                               className="card"
                               style={{ width: "100%", marginBottom: "1rem" }}
+                              id={x.name}
                             >
                               <div
                                 style={{
@@ -823,7 +832,7 @@ export default function TechList({
                     )}
                   </>
                 )}
-              </>
+              </div>
             );
           })}
         </div>

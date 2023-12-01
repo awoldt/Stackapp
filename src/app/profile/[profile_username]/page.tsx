@@ -2,68 +2,59 @@
 import { accountsCollection, stacksCollection } from "@/services/mongodb";
 import { notFound, redirect } from "next/navigation";
 import { Metadata } from "next";
-import { IsValidAccountCookie } from "@/functions";
+import { GetPublicProfilepageData, IsValidAccountCookie } from "@/functions";
 import { cookies } from "next/headers";
 
-export const dynamic = "force-dynamic";
+export async function generateMetadata({ params }: any): Promise<Metadata> {
+  const username = params.profile_username;
+  const cookieStore = cookies();
 
-export const metadata: Metadata = {
-  title: "Create a Stack",
-  description:
-    "Create you first stack by choosing the programming language you used to make the app. Then you can select others features such as databases, apis, frameworks, and more.",
-  alternates: {
-    canonical: "https://stackapp.xyz/create",
-  },
-  openGraph: {
-    type: "website",
-    url: "https://stackapp.xyz/create",
-    title: "Create a Tech Stack Visualization",
-    description:
-      "Showcase how you built your app and the technology that went into building it",
-    siteName: "Stack",
-    images: [
-      {
-        url: "https://stackapp.xyz/imgs/splash/image.png",
-      },
-    ],
-  },
-};
+  const pageData = await GetPublicProfilepageData(
+    username,
+    cookieStore.get("a_id")
+  );
+
+  return {
+    title: `${pageData?.profileData.username} Profile`,
+    description: `View all the stacks that ${pageData?.profileData.username} has made`,
+    alternates: {
+      canonical: `https://stackapp.xyz/profile/${String(
+        pageData?.profileData.username
+      )}`,
+    },
+    openGraph: {
+      type: "website",
+      url: `https://stackapp.xyz/profile/${String(
+        pageData?.profileData.username
+      )}`,
+      title: `${pageData?.profileData.username} Profile`,
+      description: `View all the stacks that ${pageData?.profileData.username} has made`,
+      siteName: "Stack",
+      images: [
+        {
+          url: `${pageData?.profileData.profile_pic_filename}`,
+        },
+      ],
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+  };
+}
 
 export default async function ProfilePage({ params }: { params: any }) {
   const username = params.profile_username;
   const cookieStore = cookies();
 
-  // see if username exists
-  const profile = await accountsCollection.findOne({
-    username_lowercase: username.toLowerCase(),
-  });
+  const pageData = await GetPublicProfilepageData(
+    username,
+    cookieStore.get("a_id")
+  );
 
-  // if profile is currently signed in user, redirect
-  const account = await IsValidAccountCookie(cookieStore.get("a_id"));
-  if (account !== false && String(account._id) === String(profile?._id)) {
-    redirect("/profile");
+  if (pageData === null) {
+    return notFound();
   }
-
-  // get users stacks
-  const userStacks = await stacksCollection
-    .find({ aid: String(profile?._id) })
-    .sort({ created_on: -1 })
-    .toArray();
-
-  if (profile === null) {
-    notFound();
-  }
-
-  metadata.title = `@${profile.username} Profile | Stack`;
-  metadata.alternates!.canonical = `https://stackapp.xyz/profile/${profile.username}`;
-  metadata.openGraph!.title = `@${profile.username} Profile | Stack`;
-  metadata.openGraph!.url = `https://stackapp.xyz/profile/${profile.username}`;
-  metadata.openGraph!.siteName = `Stack`;
-
-  const i: {
-    url: string;
-  }[] = [{ url: `${profile.profile_pic_filename}` }];
-  metadata.openGraph!.images = i;
 
   return (
     <>
@@ -75,35 +66,36 @@ export default async function ProfilePage({ params }: { params: any }) {
           >
             <div className="profile-header">
               <div className="header">
-                {profile.profile_pic === null && (
+                {pageData.profileData.profile_pic === null && (
                   <img
                     src="/imgs/icons/noprofile.png"
                     className="profile-img"
                     alt="default profile pic"
                   />
                 )}
-                {profile.profile_pic_filename !== null && (
+                {pageData.profileData.profile_pic_filename !== null && (
                   <img
-                    src={profile.profile_pic_filename}
+                    src={pageData.profileData.profile_pic_filename}
                     className="profile-img"
-                    alt={profile.username + " profile pic"}
+                    alt={pageData.profileData.username + " profile pic"}
                   />
                 )}
 
                 <h1>
-                  {profile.first_name} {profile.last_name}
+                  {pageData.profileData.first_name}{" "}
+                  {pageData.profileData.last_name}
                 </h1>
 
                 <span style={{ marginBottom: "20px" }}>
-                  @{profile.username}
+                  @{pageData.profileData.username}
                 </span>
 
-                {profile.bio !== null && (
+                {pageData.profileData.bio !== null && (
                   <p style={{ marginTop: "20px", marginBottom: "20px" }}>
-                    {profile.bio}
+                    {pageData.profileData.bio}
                   </p>
                 )}
-                {profile.bio === null && (
+                {pageData.profileData.bio === null && (
                   <p style={{ marginTop: "20px", marginBottom: "20px" }}>
                     This user has not yet set up their bio.
                   </p>
@@ -118,7 +110,7 @@ export default async function ProfilePage({ params }: { params: any }) {
           <section>
             {/* <h5 style={{ opacity: "0.4" }}>STACKS</h5>
             <hr /> */}
-            {userStacks.map((x: any, index) => {
+            {pageData.stackData.map((x: any, index) => {
               return (
                 <div key={index}>
                   <a href={`/stack/${String(x._id)}`}>

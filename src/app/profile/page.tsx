@@ -8,7 +8,7 @@ import { stacksCollection } from "@/services/mongodb";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: null,
+  title: "Profile",
   robots: {
     index: false,
     follow: false,

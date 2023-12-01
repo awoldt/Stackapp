@@ -10,6 +10,8 @@ import { cookies } from "next/headers";
 import { Stack } from "@/models/stacks";
 import TechstackList from "../../components/TechList";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "The Technology Powering Your Stacks",
   description:
@@ -32,7 +34,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function Page() {
+export default async function Page({ searchParams }: any) {
+  const techTypeQuery = searchParams.type;
   const allStacks = (await stacksCollection.find({}).toArray()) as Stack[];
 
   const query = (await techCollection
@@ -66,7 +69,10 @@ export default async function Page() {
         </div>
       </div>
 
-      <TechstackList sortedTechList={sortedTechList} />
+      <TechstackList
+        sortedTechList={sortedTechList}
+        defaultSection={techTypeQuery}
+      />
     </>
   );
 }
