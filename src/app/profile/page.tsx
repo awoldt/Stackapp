@@ -5,6 +5,8 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { stacksCollection } from "@/services/mongodb";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: null,
   robots: {
@@ -129,8 +131,8 @@ export default async function Page() {
                     <hr /> */}
                     {userStacks.map((x: any, index) => {
                       return (
-                        <>
-                          <div key={index}>
+                        <div key={index}>
+                          <div>
                             <a href={`/stack/${String(x._id)}`}>
                               <div className="profile-stack-container">
                                 <div className="card-thumbnail">
@@ -150,7 +152,7 @@ export default async function Page() {
                                     style={{
                                       fontSize: "12px",
                                       fontWeight: "800",
-                                      opacity: "0.4"
+                                      opacity: "0.4",
                                     }}
                                   >
                                     Stacked {x.created_on.toDateString()}
@@ -197,7 +199,7 @@ export default async function Page() {
                               </div>
                             </a>
                           </div>
-                        </>
+                        </div>
                       );
                     })}
                   </>

@@ -12,18 +12,21 @@ export default function Tech() {
           height={14}
           style={{ display: "inline" }}
         />
-        <p className="subheading" style={{ display: "inline", marginTop: "10px" }}>
+        <p
+          className="subheading"
+          style={{ display: "inline", marginTop: "10px" }}
+        >
           Select all Languages used in your tech stack.
         </p>
-        {TechOffered.languages.map((x) => {
+        {TechOffered.languages.map((x, index) => {
           return (
-            <>
+            <div key={index}>
               <label>
                 <input type="checkbox" name="languages_used" value={x} />
                 <span className="checkmark"></span>
                 {x}
               </label>
-            </>
+            </div>
           );
         })}
       </div>
@@ -39,15 +42,15 @@ export default function Tech() {
         <p className="subheading" style={{ display: "inline" }}>
           Select all Databases used in your tech stack.
         </p>
-        {TechOffered.databases!.map((x) => {
+        {TechOffered.databases!.map((x, index) => {
           return (
-            <>
+            <div key={index}>
               <label>
                 <input type="checkbox" name="databases_used" value={x} />
                 <span className="checkmark"></span>
                 {x}
               </label>
-            </>
+            </div>
           );
         })}
       </div>
@@ -63,15 +66,15 @@ export default function Tech() {
         <p className="subheading" style={{ display: "inline" }}>
           Select all APIs used in your tech stack.
         </p>
-        {TechOffered.apis!.map((x) => {
+        {TechOffered.apis!.map((x, index) => {
           return (
-            <>
+            <div key={index}>
               <label>
                 <input type="checkbox" name="apis_used" value={x} />
                 <span className="checkmark"></span>
                 {x}
               </label>
-            </>
+            </div>
           );
         })}
       </div>
@@ -87,15 +90,15 @@ export default function Tech() {
         <p className="subheading" style={{ display: "inline" }}>
           Select all Frameworks used in your tech stack.
         </p>
-        {TechOffered.frameworks!.map((x) => {
+        {TechOffered.frameworks!.map((x, index) => {
           return (
-            <>
+            <div key={index}>
               <label>
                 <input type="checkbox" name="frameworks_used" value={x} />
                 <span className="checkmark"></span>
                 {x}
               </label>
-            </>
+            </div>
           );
         })}
       </div>
@@ -111,15 +114,15 @@ export default function Tech() {
         <p className="subheading" style={{ display: "inline" }}>
           Select all Cloud Deployment Services used in your tech stack.
         </p>
-        {TechOffered.clouds!.map((x) => {
+        {TechOffered.clouds!.map((x, index) => {
           return (
-            <>
+            <div key={index}>
               <label>
                 <input type="checkbox" name="clouds_used" value={x} />
                 <span className="checkmark"></span>
                 {x}
               </label>
-            </>
+            </div>
           );
         })}
       </div>

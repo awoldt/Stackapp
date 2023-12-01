@@ -10,24 +10,39 @@ export interface Tech {
   numOfOccurences?: number;
 }
 
-export const unverifiedAccountsColleciton = new MongoClient(
-  process.env.MONGODB_KEY!
-)
-  .db(process.env.DB!)
-  .collection<UserProfile>("unverified-accounts");
+const MONGOCLIENT = new MongoClient(process.env.MONGODB_KEY!);
 
-export const accountsCollection = new MongoClient(process.env.MONGODB_KEY!)
-  .db(process.env.DB!)
-  .collection<UserProfile>("accounts");
+let isConnected = false;
 
-export const stacksCollection = new MongoClient(process.env.MONGODB_KEY!)
-  .db(process.env.DB!)
-  .collection<Stack>("stacks");
+const ConnectDB = async () => {
+  try {
+    if (!isConnected) {
+      await MONGOCLIENT.connect();
+      isConnected = true;
+      console.log("\nSUCCESSFULLY CONNECTED TO MONGODB!\n");
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
 
-export const signInLinksCollection = new MongoClient(process.env.MONGODB_KEY!)
-  .db(process.env.DB!)
-  .collection<{ aid: string; expires: number }>("signin-links");
+ConnectDB();
 
-export const techCollection = new MongoClient(process.env.MONGODB_KEY!)
-  .db("stackapp-PROD")
-  .collection<Tech>("tech-offered");
+export const unverifiedAccountsColleciton = MONGOCLIENT.db(
+  process.env.DB!
+).collection<UserProfile>("unverified-accounts");
+
+export const accountsCollection = MONGOCLIENT.db(
+  process.env.DB!
+).collection<UserProfile>("accounts");
+
+export const stacksCollection = MONGOCLIENT.db(
+  process.env.DB!
+).collection<Stack>("stacks");
+
+export const signInLinksCollection = MONGOCLIENT.db(
+  process.env.DB!
+).collection<{ aid: string; expires: number }>("signin-links");
+
+export const techCollection =
+  MONGOCLIENT.db("stackapp-PROD").collection<Tech>("tech-offered");

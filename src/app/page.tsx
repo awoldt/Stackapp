@@ -35,7 +35,14 @@ export default async function Home() {
             <h1 className="splash" id="splash">
               Visualize your Tech Stacks with Impact
             </h1>
-            <h2 style={{ textAlign: "center", marginTop: "2rem", fontWeight: 400, fontSize: 24 }}>
+            <h2
+              style={{
+                textAlign: "center",
+                marginTop: "2rem",
+                fontWeight: 400,
+                fontSize: 24,
+              }}
+            >
               Stack&trade; is a platform designed to help developers and
               designers showcase their tech stacks.
             </h2>
@@ -50,7 +57,10 @@ export default async function Home() {
               </a>
             </div>
 
-            <p className="subheading" style={{ textAlign: "center", marginBottom: "14rem" }}>
+            <p
+              className="subheading"
+              style={{ textAlign: "center", marginBottom: "14rem" }}
+            >
               Scroll to view Stack&apos;s features.
             </p>
 
@@ -238,7 +248,8 @@ export default async function Home() {
                   <p
                     className="subheading"
                     style={{
-                      opacity: "0.6", fontSize: "16px"
+                      opacity: "0.6",
+                      fontSize: "16px",
                     }}
                   >
                     <img
@@ -285,7 +296,8 @@ export default async function Home() {
                     className="subheading"
                     style={{
                       opacity: "0.6",
-                      marginTop: "40px", fontSize: "16px"
+                      marginTop: "40px",
+                      fontSize: "16px",
                     }}
                   >
                     <img
@@ -320,7 +332,8 @@ export default async function Home() {
                     className="subheading"
                     style={{
                       opacity: "0.6",
-                      marginTop: "40px", fontSize: "16px"
+                      marginTop: "40px",
+                      fontSize: "16px",
                     }}
                   >
                     <img
@@ -335,7 +348,7 @@ export default async function Home() {
                   <hr />
                   <div className="grid-container">
                     <div className="grid-item">
-                      <img src="imgs/tech/Postgres.svg" alt="api-logo" />
+                      <img src="imgs/tech/Notion.svg" alt="notion-logo" />
                       <p
                         style={{
                           textAlign: "center",
@@ -343,7 +356,7 @@ export default async function Home() {
                           fontWeight: "800",
                         }}
                       >
-                        Postgres
+                        Notion
                       </p>
                     </div>
                   </div>
@@ -352,7 +365,8 @@ export default async function Home() {
                     className="subheading"
                     style={{
                       opacity: "0.6",
-                      marginTop: "40px", fontSize: "16px"
+                      marginTop: "40px",
+                      fontSize: "16px",
                     }}
                   >
                     <img
@@ -384,7 +398,8 @@ export default async function Home() {
                     className="subheading"
                     style={{
                       opacity: "0.6",
-                      marginTop: "40px", fontSize: "16px"
+                      marginTop: "40px",
+                      fontSize: "16px",
                     }}
                   >
                     <img

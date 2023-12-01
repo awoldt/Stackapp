@@ -35,6 +35,7 @@ export const metadata: Metadata = {
     follow: true,
   },
 };
+
 export default async function Page({ params }: { params: any }) {
   const cookieStore = cookies();
 
@@ -71,8 +72,6 @@ export default async function Page({ params }: { params: any }) {
       );
     }
   }
-
-  const account = await IsValidAccountCookie(cookieStore.get("a_id"));
 
   const isUsersStack =
     cookieStore.get("a_id") === undefined

@@ -5,6 +5,8 @@ import { Metadata } from "next";
 import { IsValidAccountCookie } from "@/functions";
 import { cookies } from "next/headers";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Create a Stack",
   description:

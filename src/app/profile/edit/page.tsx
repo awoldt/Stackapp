@@ -5,6 +5,8 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import EditProfileForm from "../../../components/forms/EditProfile";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Edit Profile | Stack",
   description: " ",
@@ -12,6 +14,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: " ",
   },
+  robots: { index: false, follow: false },
 };
 
 export default async function Page() {
@@ -40,7 +43,9 @@ export default async function Page() {
                 <img src="/imgs/icons/profile2.svg" />
                 &nbsp;Edit Profile
               </h1>
-              <p className="subheading">Update your settings to best describe you.</p>
+              <p className="subheading">
+                Update your settings to best describe you.
+              </p>
             </div>
           </div>
 
