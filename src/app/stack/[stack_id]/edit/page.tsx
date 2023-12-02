@@ -72,14 +72,14 @@ export default async function Edit({ params }: { params: any }) {
           <h1
             style={{
               display: "flex",
-              justifyContent: "center",
               alignItems: "center",
               marginBottom: "0",
               marginTop: "0",
             }}
           >
-            <img src="/imgs/icons/edit2.svg" />
-            &nbsp;Edit Stack
+            {/* <img src="/imgs/icons/edit2.svg" />
+            &nbsp; */}
+            Edit Stack
           </h1>
           <p className="subheading">
             Edit your Stack to best showcase your application.

@@ -16,143 +16,134 @@ export default function TechList({
     defaultSection === undefined
       ? "language"
       : !possibleTechTypes.includes(defaultSection)
-      ? "language"
-      : defaultSection
+        ? "language"
+        : defaultSection
   );
 
   return (
     <>
       <div className="card-container">
-        <div
-          className="card-blank"
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            marginTop: "10px",
-            marginBottom: "20px",
-            paddingBottom: "0px",
-          }}
-        >
-          <span
-            className={section === "language" ? "btn-selected" : "btn"}
-            style={{
-              marginLeft: ".2rem",
-              marginRight: ".2rem",
-              marginBottom: ".4rem",
-            }}
-            onClick={() => {
-              if (section !== "language") {
-                setSection("language");
-              }
-            }}
-          >
-            {/* <img
+        <div className="card-empty-wide" style={{ marginTop: "0rem" }}>
+          <div style={{ display: "flex", justifyContent: "left", flexWrap: "wrap" }}>
+            <span
+              className={section === "language" ? "btn-selected" : "btn"}
+              style={{
+                marginLeft: ".2rem",
+                marginRight: ".2rem",
+                marginBottom: ".4rem",
+              }}
+              onClick={() => {
+                if (section !== "language") {
+                  setSection("language");
+                }
+              }}
+            >
+              {/* <img
               className="svg-white"
               src="/imgs/icons/code.svg"
               alt="language"
               width={20}
               height={14}
             /> */}
-            Languages
-          </span>
+              Languages
+            </span>
 
-          <span
-            className={section === "database" ? "btn-selected" : "btn"}
-            style={{
-              marginLeft: ".2rem",
-              marginRight: ".2rem",
-              marginBottom: ".4rem",
-            }}
-            onClick={() => {
-              if (section !== "database") {
-                setSection("database");
-              }
-            }}
-          >
-            {/* <img
+            <span
+              className={section === "database" ? "btn-selected" : "btn"}
+              style={{
+                marginLeft: ".2rem",
+                marginRight: ".2rem",
+                marginBottom: ".4rem",
+              }}
+              onClick={() => {
+                if (section !== "database") {
+                  setSection("database");
+                }
+              }}
+            >
+              {/* <img
               className="svg-white"
               src="/imgs/icons/database-fill.svg"
               alt="database"
               width={20}
               height={14}
             /> */}
-            Databases
-          </span>
+              Databases
+            </span>
 
-          <span
-            className={section === "api" ? "btn-selected" : "btn"}
-            style={{
-              marginLeft: ".2rem",
-              marginRight: ".2rem",
-              marginBottom: ".4rem",
-            }}
-            onClick={() => {
-              if (section !== "api") {
-                setSection("api");
-              }
-            }}
-          >
-            {/* <img
+            <span
+              className={section === "api" ? "btn-selected" : "btn"}
+              style={{
+                marginLeft: ".2rem",
+                marginRight: ".2rem",
+                marginBottom: ".4rem",
+              }}
+              onClick={() => {
+                if (section !== "api") {
+                  setSection("api");
+                }
+              }}
+            >
+              {/* <img
               className="svg-white"
               src="/imgs/icons/api.svg"
               alt="api"
               width={20}
               height={14}
             /> */}
-            APIs
-          </span>
+              APIs
+            </span>
 
-          <span
-            className={section === "framework" ? "btn-selected" : "btn"}
-            style={{
-              marginLeft: ".2rem",
-              marginRight: ".2rem",
-              marginBottom: ".4rem",
-            }}
-            onClick={() => {
-              if (section !== "framework") {
-                setSection("framework");
-              }
-            }}
-          >
-            {/* <img
+            <span
+              className={section === "framework" ? "btn-selected" : "btn"}
+              style={{
+                marginLeft: ".2rem",
+                marginRight: ".2rem",
+                marginBottom: ".4rem",
+              }}
+              onClick={() => {
+                if (section !== "framework") {
+                  setSection("framework");
+                }
+              }}
+            >
+              {/* <img
               className="svg-white"
               src="/imgs/icons/framework.svg"
               alt="api"
               width={20}
               height={14}
             /> */}
-            Frameworks
-          </span>
+              Frameworks
+            </span>
 
-          <span
-            className={section === "cloud" ? "btn-selected" : "btn"}
-            style={{
-              marginLeft: ".2rem",
-              marginRight: ".2rem",
-              marginBottom: ".4rem",
-            }}
-            onClick={() => {
-              if (section !== "cloud") {
-                setSection("cloud");
-              }
-            }}
-          >
-            {/* <img
+            <span
+              className={section === "cloud" ? "btn-selected" : "btn"}
+              style={{
+                marginLeft: ".2rem",
+                marginRight: ".2rem",
+                marginBottom: ".4rem",
+              }}
+              onClick={() => {
+                if (section !== "cloud") {
+                  setSection("cloud");
+                }
+              }}
+            >
+              {/* <img
               className="svg-white"
               src="/imgs/icons/cloud-fill.svg"
               alt="cloud"
               width={20}
               height={14}
             /> */}
-            Clouds
-          </span>
+              Clouds
+            </span>
+          </div>
         </div>
       </div>
-
       <div className="card-container">
-        <div className="card-blank">
+        <div className="card">
           {sortedTechList.map((x, index) => {
             return (
               <div key={index}>
@@ -166,7 +157,7 @@ export default function TechList({
                             <div
                               key={index}
                               className="card"
-                              style={{ width: "100%", marginBottom: "1rem" }}
+                              style={{ width: "100%", marginBottom: "1rem", background: "none", boxShadow: "none" }}
                               id={x.name}
                             >
                               <div
@@ -302,7 +293,7 @@ export default function TechList({
                             <div
                               key={index}
                               className="card"
-                              style={{ width: "100%", marginBottom: "1rem" }}
+                              style={{ width: "100%", marginBottom: "1rem", background: "none", boxShadow: "none" }}
                             >
                               <div
                                 style={{
@@ -437,7 +428,7 @@ export default function TechList({
                             <div
                               key={index}
                               className="card"
-                              style={{ width: "100%", marginBottom: "1rem" }}
+                              style={{ width: "100%", marginBottom: "1rem", background: "none", boxShadow: "none" }}
                             >
                               <div
                                 style={{
@@ -572,7 +563,7 @@ export default function TechList({
                             <div
                               key={index}
                               className="card"
-                              style={{ width: "100%", marginBottom: "1rem" }}
+                              style={{ width: "100%", marginBottom: "1rem", background: "none", boxShadow: "none" }}
                             >
                               <div
                                 style={{
@@ -707,7 +698,7 @@ export default function TechList({
                             <div
                               key={index}
                               className="card"
-                              style={{ width: "100%", marginBottom: "1rem" }}
+                              style={{ width: "100%", marginBottom: "1rem", background: "none", boxShadow: "none" }}
                             >
                               <div
                                 style={{

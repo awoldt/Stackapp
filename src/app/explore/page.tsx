@@ -71,14 +71,14 @@ export default async function Page() {
           <h1
             style={{
               display: "flex",
-              justifyContent: "center",
               alignItems: "center",
               marginBottom: "0",
               marginTop: "0",
             }}
           >
-            <img src="/imgs/icons/explore.svg" />
-            &nbsp;Explore Stacks
+            {/* <img src="/imgs/icons/explore.svg" />
+            &nbsp; */}
+            Explore Stacks
           </h1>
           <p className="subheading">
             Explore recently created Stacks from other Stack members.
@@ -87,7 +87,7 @@ export default async function Page() {
       </div>
 
       <div className="card-container" id="yourStacks">
-        <div className="card-blank">
+        <div className="card">
           {featuredStacks.map((x: ExploreStackDiv, index) => {
             return (
               <div key={index}>

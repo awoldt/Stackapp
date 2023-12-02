@@ -33,13 +33,12 @@ export default async function Home() {
         <div className="card-container" id="landing">
           <div className="card-empty-splash">
             <h1 className="splash" id="splash">
-              Visualize your Tech Stacks with Impact
+              Visualize Tech Stacks with Impact.
             </h1>
             <h2
               style={{
-                textAlign: "center",
-                marginTop: "2rem",
-                fontWeight: 400,
+                marginTop: ".8rem",
+                fontWeight: 500,
                 fontSize: 24,
               }}
             >
@@ -47,7 +46,14 @@ export default async function Home() {
               their tech stacks.
             </h2>
 
-            <div className="btn-container">
+            <div className="btn-container" style={{ justifyContent: "left", marginBottom: "18rem" }}>
+              <a
+                href="/signup"
+                className="btn-landing"
+                style={{ textAlign: "center" }}
+              >
+                Start Stacking
+              </a>
               <a
                 href="/tech"
                 className="btn-landing"
@@ -57,18 +63,7 @@ export default async function Home() {
               </a>
             </div>
 
-            <p
-              className="subheading"
-              style={{ textAlign: "center", marginBottom: "14rem" }}
-            >
-              Scroll to view Stack&apos;s features.
-            </p>
-
-            <div className="btn-container" style={{ marginBottom: "2rem" }}>
-              <span>
-                <i className="fa-brands fa-github fa-2xl"></i> GitHub
-                Integration
-              </span>
+            <div className="btn-container">
               <span>
                 <i className="fa-brands fa-square-js fa-2xl"></i> Built with
                 Next.js
@@ -76,30 +71,25 @@ export default async function Home() {
               <span>
                 <i className="fa-solid fa-server fa-2xl"></i> Stored on MongoDB
               </span>
+              <span>
+                <i className="fa-brands fa-github fa-2xl"></i> GitHub
+                Integration
+              </span>
               <span style={{ marginBottom: "0rem" }}>
                 <i className="fa-solid fa-shield fa-2xl"></i> Modern Security
                 Standards
               </span>
             </div>
 
-            <p
-              style={{ textAlign: "center", opacity: ".65", fontSize: "14px" }}
-            >
-              Stack is built using state-of-the-art tools while adhering
-              to the highest security standards. GitHub compatibility ensures
-              seamless integration and collaboration for developers across the
-              platform.
-            </p>
-
             <div
               className="home-container"
-              style={{ marginTop: "8rem", marginBottom: "4rem" }}
+              style={{ marginTop: "8rem", alignItems: "center" }}
             >
               <div className="card">
-                <h2 style={{ marginBottom: "20px" }}>
-                  The Future of Tech Stack Presentation
+                <h2>
+                  The Future of Tech Stack Presentation.
                 </h2>
-
+                <br />
                 <p>
                   Step into a new era of showcasing the intricate web of
                   technologies that drive modern applications. Stack is your
@@ -113,12 +103,24 @@ export default async function Home() {
                   tech stack&apos;s essence to the world.
                 </p>
               </div>
+              <div className="splash-image" style={{ background: "none", boxShadow: "none" }}>
+                <img src="/imgs/splash/gear.svg" style={{ width: "100%", objectFit: "contain" }} />
+              </div>
+            </div>
 
+
+            <div
+              className="home-container"
+              style={{ marginTop: "2rem", alignItems: "center" }}
+            >
+              <div className="splash-image" style={{ background: "none", boxShadow: "none" }}>
+                <img src="/imgs/splash/computer.svg" style={{ width: "100%", objectFit: "contain" }} />
+              </div>
               <div className="card">
-                <h2 style={{ marginBottom: "20px" }}>
-                  Unleash the Power Behind your Apps
+                <h2>
+                  Unleash the Power Behind your Apps.
                 </h2>
-
+                <br />
                 <p>
                   Dive into the heart of your application&apos;s inner workings
                   and witness the magic that powers it. Our platform is your key
@@ -132,12 +134,17 @@ export default async function Home() {
                   with Stack.
                 </p>
               </div>
+            </div>
+            <div
+              className="home-container"
+              style={{ marginTop: "2rem", alignItems: "center" }}
+            >
 
               <div className="card">
-                <h2 style={{ marginBottom: "20px" }}>
-                  Your Custom Tech Stack Showcase
+                <h2>
+                  Your Custom Tech Stack Showcase.
                 </h2>
-
+                <br />
                 <p>
                   Stack provides the ideal platform to present your tech stack
                   with style and finesse. It&apos;s your opportunity to tell the
@@ -151,487 +158,30 @@ export default async function Home() {
                   technology shine!
                 </p>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="card-container" style={{ marginTop: "0rem" }}>
-          <div
-            className="card-empty"
-            style={{ width: "100%", marginTop: "0rem", textAlign: "left" }}
-          >
-            <h2 style={{ textAlign: "center" }}>
-              Showcase your Applications through Elegant Stacks
-            </h2>
-            <div className="header-container" style={{ paddingTop: "0rem" }}>
-              <div
-                className="title-container-header"
-                style={{ marginTop: "2rem" }}
-              >
-                <div className="title-header">
-                  <div className="header">
-                    <img
-                      src="imgs/splash/logo.png"
-                      className="profile-img"
-                      alt="stack-img"
-                    />
-                    <p>
-                      <b>Code Tracker</b>
-                    </p>
-
-                    <a style={{ padding: "10px", paddingLeft: "0" }}>
-                      www.codetracker.com
-                    </a>
-
-                    <div
-                      className="profile-container"
-                      style={{ marginTop: "10px;" }}
-                    >
-                      <img
-                        src="imgs/splash/profile.PNG"
-                        className="user-profile-img"
-                        alt="user-profile-img"
-                      />
-                      <p>
-                        <b>Test Developer</b>
-                        <br />
-                        @testdev
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div
-                  className="card-container"
-                  style={{ paddingBottom: "0px" }}
-                >
-                  <div className="thumbnail">
-                    <img src="imgs/splash/image.png" alt="stack-thumbnail" />
-                  </div>
-                </div>
+              <div className="splash-image" style={{ background: "none", boxShadow: "none" }}>
+                <img src="/imgs/splash/phone.svg" style={{ width: "100%", objectFit: "contain" }} />
               </div>
             </div>
 
-            <h2 style={{ textAlign: "center", margin: "40px 0px 20px 0px" }}>
-              Describe the Details of your Applications
-            </h2>
-
-            <div className="card-container">
-              <div className="card">
-                {/* <p style={{ opacity: "0.4" }}>DESCRIPTION</p>
-                <hr /> */}
+            <div className="home-container" style={{ marginTop: "2rem", alignItems: "center" }}>
+              <div className="card" style={{ height: "fitContent", textAlign: "left", width: "100%" }}>
+                <h2>
+                  Explore Community Stacks.
+                </h2>
                 <p>
-                  Introducing CodeTracker, a powerful application designed to
-                  streamline your development workflow and effortlessly track
-                  the essential details of your GitHub commits and projects.
-                  With CodeTracker, you can effortlessly organize and store
-                  information about APIs, frameworks, and coding languages used
-                  in each individual project, ensuring easy access to crucial
-                  project details whenever you need them. CodeTracker empowers
-                  developers to maintain a comprehensive record of their coding
-                  endeavors, fostering better project management, collaboration,
-                  and knowledge sharing. With its intuitive interface, robust
-                  features, and powerful integrations, CodeTracker is the
-                  must-have companion for any developer looking to stay
-                  organized and efficient in their coding journey.
+                  Start exploring stacks from other members of the community to gain a comprehensive
+                  understanding of the diverse and dynamic nature of Stack and its myriad possibilities in the realm of
+                  software development.
                 </p>
-              </div>
-            </div>
-
-            <h2 style={{ textAlign: "center", margin: "40px 0px 20px 0px" }}>
-              Visualize the Technologies your Tech Stacks are Built Upon
-            </h2>
-
-            <div className="card-container">
-              <div className="card">
-                <div className="container">
-                  <p
-                    className="subheading"
-                    style={{
-                      opacity: "0.6",
-                      fontSize: "16px",
-                    }}
-                  >
-                    <img
-                      src="/imgs/icons/code.svg"
-                      alt="language"
-                      width={20}
-                      height={14}
-                      style={{ display: "inline" }}
-                    />
-                    LANGUAGES
-                  </p>
-                  <hr />
-                  <div className="grid-container">
-                    <div className="grid-item">
-                      <img
-                        src="imgs/splash/stackicons/logo-javascript.svg"
-                        alt="language-logo"
-                      />
-                      <p
-                        style={{
-                          textAlign: "center",
-                          fontSize: "12px",
-                          fontWeight: "800",
-                        }}
-                      >
-                        JavaScript
-                      </p>
-                    </div>
-                    <div className="grid-item">
-                      <img src="imgs/tech/Python.svg" alt="language-logo" />
-                      <p
-                        style={{
-                          textAlign: "center",
-                          fontSize: "12px",
-                          fontWeight: "800",
-                        }}
-                      >
-                        Python
-                      </p>
-                    </div>
-                  </div>
-
-                  <p
-                    className="subheading"
-                    style={{
-                      opacity: "0.6",
-                      marginTop: "40px",
-                      fontSize: "16px",
-                    }}
-                  >
-                    <img
-                      src="/imgs/icons/database-fill.svg"
-                      alt="database"
-                      width={20}
-                      height={14}
-                      style={{ display: "inline" }}
-                    />
-                    DATABASES
-                  </p>
-                  <hr />
-                  <div className="grid-container">
-                    <div className="grid-item">
-                      <img
-                        src="imgs/splash/stackicons/mongodb.svg"
-                        alt="database-logo"
-                      />
-                      <p
-                        style={{
-                          textAlign: "center",
-                          fontSize: "12px",
-                          fontWeight: "800",
-                        }}
-                      >
-                        MongoDB
-                      </p>
-                    </div>
-                  </div>
-
-                  <p
-                    className="subheading"
-                    style={{
-                      opacity: "0.6",
-                      marginTop: "40px",
-                      fontSize: "16px",
-                    }}
-                  >
-                    <img
-                      src="/imgs/icons/api.svg"
-                      alt="api"
-                      width={20}
-                      height={14}
-                      style={{ display: "inline" }}
-                    />
-                    APIs
-                  </p>
-                  <hr />
-                  <div className="grid-container">
-                    <div className="grid-item">
-                      <img src="imgs/tech/Notion.svg" alt="notion-logo" />
-                      <p
-                        style={{
-                          textAlign: "center",
-                          fontSize: "12px",
-                          fontWeight: "800",
-                        }}
-                      >
-                        Notion
-                      </p>
-                    </div>
-                  </div>
-
-                  <p
-                    className="subheading"
-                    style={{
-                      opacity: "0.6",
-                      marginTop: "40px",
-                      fontSize: "16px",
-                    }}
-                  >
-                    <img
-                      src="/imgs/icons/framework.svg"
-                      alt="api"
-                      width={20}
-                      height={14}
-                      style={{ display: "inline" }}
-                    />
-                    FRAMEWORKS
-                  </p>
-                  <hr />
-                  <div className="grid-container">
-                    <div className="grid-item">
-                      <img src="imgs/tech/Nextjs.svg" alt="language-logo" />
-                      <p
-                        style={{
-                          textAlign: "center",
-                          fontSize: "12px",
-                          fontWeight: "800",
-                        }}
-                      >
-                        Nextjs
-                      </p>
-                    </div>
-                  </div>
-
-                  <p
-                    className="subheading"
-                    style={{
-                      opacity: "0.6",
-                      marginTop: "40px",
-                      fontSize: "16px",
-                    }}
-                  >
-                    <img
-                      src="/imgs/icons/cloud-fill.svg"
-                      alt="cloud"
-                      width={20}
-                      height={14}
-                      style={{ display: "inline" }}
-                    />
-                    CLOUDS
-                  </p>
-                  <hr />
-                  <div className="grid-container">
-                    <div className="grid-item">
-                      <img
-                        src="imgs/splash/stackicons/aws.png"
-                        alt="cloud-logo"
-                      />
-                      <p
-                        style={{
-                          textAlign: "center",
-                          fontSize: "12px",
-                          fontWeight: "800",
-                        }}
-                      >
-                        AWS
-                      </p>
-                    </div>
-
-                    <div className="grid-item">
-                      <img
-                        src="imgs/tech/Google Cloud Platform.svg"
-                        alt="cloud-logo"
-                      />
-                      <p
-                        style={{
-                          textAlign: "center",
-                          fontSize: "12px",
-                          fontWeight: "800",
-                        }}
-                      >
-                        Google Cloud
-                      </p>
-                    </div>
-                  </div>
+                <div className="btn-container" style={{ marginTop: "1rem", marginBottom: "0rem" }}>
+                  <button className="btn-landing">Explore Stacks</button>
                 </div>
               </div>
             </div>
 
-            <h2 style={{ textAlign: "center", margin: "40px 0px 20px 0px" }}>
-              Connect to GitHub to Display your Repo&apos;s Latest Commits
-            </h2>
-
-            <div className="card-container">
-              <div className="card">
-                <hr />
-                <hr />
-
-                <div className="github-container">
-                  <div
-                    style={{
-                      display: "flex",
-                      width: "50%",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <p>
-                      <b>stable</b>
-                    </p>
-                    <p
-                      style={{
-                        fontSize: "12px",
-                        fontWeight: "800",
-                        opacity: "0.4",
-                      }}
-                    >
-                      Pushed [Month] [Day], [Year]
-                    </p>
-                  </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      width: "50%",
-                      justifyContent: "right",
-                    }}
-                  >
-                    <button className="btn">
-                      <i className="fa-brands fa-github fa-xl"></i> Commit
-                    </button>
-                  </div>
-                </div>
-
-                <div className="github-container">
-                  <div
-                    style={{
-                      display: "flex",
-                      width: "50%",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <p>
-                      <b>stable</b>
-                    </p>
-                    <p
-                      style={{
-                        fontSize: "12px",
-                        fontWeight: "800",
-                        opacity: "0.4",
-                      }}
-                    >
-                      Pushed [Month] [Day], [Year]
-                    </p>
-                  </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      width: "50%",
-                      justifyContent: "right",
-                    }}
-                  >
-                    <button className="btn">
-                      <i className="fa-brands fa-github fa-xl"></i> Commit
-                    </button>
-                  </div>
-                </div>
-
-                <div className="github-container">
-                  <div
-                    style={{
-                      display: "flex",
-                      width: "50%",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <p>
-                      <b>stable</b>
-                    </p>
-                    <p
-                      style={{
-                        fontSize: "12px",
-                        fontWeight: "800",
-                        opacity: "0.4",
-                      }}
-                    >
-                      Pushed [Month] [Day], [Year]
-                    </p>
-                  </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      width: "50%",
-                      justifyContent: "right",
-                    }}
-                  >
-                    <button className="btn">
-                      <i className="fa-brands fa-github fa-xl"></i> Commit
-                    </button>
-                  </div>
-                </div>
-
-                <div className="github-container">
-                  <div
-                    style={{
-                      display: "flex",
-                      width: "50%",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <p>
-                      <b>stable</b>
-                    </p>
-                    <p
-                      style={{
-                        fontSize: "12px",
-                        fontWeight: "800",
-                        opacity: "0.4",
-                      }}
-                    >
-                      Pushed [Month] [Day], [Year]
-                    </p>
-                  </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      width: "50%",
-                      justifyContent: "right",
-                    }}
-                  >
-                    <button className="btn">
-                      <i className="fa-brands fa-github fa-xl"></i> Commit
-                    </button>
-                  </div>
-                </div>
-
-                <div className="github-container">
-                  <div
-                    style={{
-                      display: "flex",
-                      width: "50%",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <p>
-                      <b>stable</b>
-                    </p>
-                    <p
-                      style={{
-                        fontSize: "12px",
-                        fontWeight: "800",
-                        opacity: "0.4",
-                      }}
-                    >
-                      Pushed [Month] [Day], [Year]
-                    </p>
-                  </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      width: "50%",
-                      justifyContent: "right",
-                    }}
-                  >
-                    <button className="btn">
-                      <i className="fa-brands fa-github fa-xl"></i> Commit
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
-    </main>
+    </main >
   );
 }

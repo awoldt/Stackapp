@@ -79,14 +79,14 @@ export default async function Page() {
             <h1
               style={{
                 display: "flex",
-                justifyContent: "center",
                 alignItems: "center",
                 marginBottom: "0",
                 marginTop: "0",
               }}
             >
-              <img src="/imgs/icons/create2.svg" />
-              &nbsp;Create Stack
+              {/* <img src="/imgs/icons/create2.svg" />
+              &nbsp; */}
+              Create Stack
             </h1>
             <p className="subheading">Create custom Stacks that showcase your applications.</p>
           </div>

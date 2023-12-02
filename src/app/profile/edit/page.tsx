@@ -29,14 +29,14 @@ export default async function Page() {
               <h1
                 style={{
                   display: "flex",
-                  justifyContent: "center",
                   alignItems: "center",
                   marginBottom: "0",
                   marginTop: "0",
                 }}
               >
-                <img src="/imgs/icons/profile2.svg" />
-                &nbsp;Edit Profile
+                {/* <img src="/imgs/icons/profile2.svg" />
+                &nbsp; */}
+                Edit Profile
               </h1>
               <p className="subheading">
                 Update your settings to best describe you.

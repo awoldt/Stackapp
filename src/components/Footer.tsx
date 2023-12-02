@@ -4,6 +4,7 @@ export default function Footer() {
     paddingRight: "1rem",
     cursor: "pointer",
     fontSize: "14px",
+    fontWeight: 500,
     opacity: 1,
   };
 
@@ -27,7 +28,7 @@ export default function Footer() {
       </div>
       <hr />
       <div className="footer-container" style={{ marginBottom: "2rem" }}>
-        <p style={{ fontSize: "12px" }}>&copy;Stack 2023. All Rights Reserved.</p>
+        <p>&copy;Stack 2023. All Rights Reserved.</p>
       </div>
     </footer>
   );
