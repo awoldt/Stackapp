@@ -14,33 +14,41 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
     cookieStore.get("a_id")
   );
 
-  return {
-    title: `${pageData?.profileData.username} Profile`,
-    description: `View all the stacks that ${pageData?.profileData.username} has made`,
-    alternates: {
-      canonical: `https://stackapp.xyz/profile/${String(
-        pageData?.profileData.username
-      )}`,
-    },
-    openGraph: {
-      type: "website",
-      url: `https://stackapp.xyz/profile/${String(
-        pageData?.profileData.username
-      )}`,
+  if (pageData === "same_as_signedin_user") {
+    redirect("/profile");
+  }
+
+  if (pageData !== null) {
+    return {
       title: `${pageData?.profileData.username} Profile`,
       description: `View all the stacks that ${pageData?.profileData.username} has made`,
-      siteName: "Stack",
-      images: [
-        {
-          url: `${pageData?.profileData.profile_pic_filename}`,
-        },
-      ],
-    },
-    robots: {
-      index: true,
-      follow: true,
-    },
-  };
+      alternates: {
+        canonical: `https://stackapp.xyz/profile/${String(
+          pageData?.profileData.username
+        )}`,
+      },
+      openGraph: {
+        type: "website",
+        url: `https://stackapp.xyz/profile/${String(
+          pageData?.profileData.username
+        )}`,
+        title: `${pageData?.profileData.username} Profile`,
+        description: `View all the stacks that ${pageData?.profileData.username} has made`,
+        siteName: "Stack",
+        images: [
+          {
+            url: `${pageData?.profileData.profile_pic_filename}`,
+          },
+        ],
+      },
+      robots: {
+        index: true,
+        follow: true,
+      },
+    };
+  } else {
+    return {};
+  }
 }
 
 export default async function ProfilePage({ params }: { params: any }) {
@@ -51,6 +59,10 @@ export default async function ProfilePage({ params }: { params: any }) {
     username,
     cookieStore.get("a_id")
   );
+
+  if (pageData === "same_as_signedin_user") {
+    redirect("/profile");
+  }
 
   if (pageData === null) {
     return notFound();

@@ -679,13 +679,13 @@ export const GetPublicProfilepageData = cache(
       });
 
       if (profile === null) {
-        notFound();
+        return null;
       }
 
       if (accountCookie !== undefined) {
         // if profile is currently signed in user, redirect
         if (String(accountCookie.value) === String(profile?._id)) {
-          redirect("/profile");
+          return "same_as_signedin_user";
         }
       }
 

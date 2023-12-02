@@ -161,10 +161,19 @@ export default function Form({ user }: { user: UserProfile }) {
               cursor: "pointer",
               fontFamily: "inter",
             }}
-            onClick={() => {
-              document.cookie =
-                "a_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-              window.location.assign("/");
+            onClick={async () => {
+              try {
+                const req = await fetch("/api/signout", {
+                  method: "POST",
+                });
+                if (req.ok) {
+                  window.location.assign("/");
+                } else {
+                  alert("Error while sigining out");
+                }
+              } catch (err) {
+                alert("Error while sigining out");
+              }
             }}
           >
             Sign Out
