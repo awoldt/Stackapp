@@ -16,15 +16,21 @@ export default function TechList({
     defaultSection === undefined
       ? "language"
       : !possibleTechTypes.includes(defaultSection)
-        ? "language"
-        : defaultSection
+      ? "language"
+      : defaultSection
   );
 
   return (
     <>
       <div className="card-container">
         <div className="card-empty-wide" style={{ marginTop: "0rem" }}>
-          <div style={{ display: "flex", justifyContent: "left", flexWrap: "wrap" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "left",
+              flexWrap: "wrap",
+            }}
+          >
             <span
               className={section === "language" ? "btn-selected" : "btn"}
               style={{
@@ -117,10 +123,13 @@ export default function TechList({
                   <>
                     {section === "language" && (
                       <>
-                        <p className="subtitle" style={{ opacity: "0.6", textAlign: "center" }}>
+                        <p
+                          className="subtitle"
+                          style={{ opacity: "0.6", textAlign: "center" }}
+                        >
                           LANGUAGES
                         </p>
-                        {x.tech.map((x, index) => {
+                        {x.tech.map((x, index2) => {
                           return (
                             <a
                               className="nav-element"
@@ -132,8 +141,8 @@ export default function TechList({
                                 fontWeight: "600",
                                 maxWidth: "fit-content",
                               }}
+                              key={index2}
                             >
-
                               <div className="hover-container">
                                 <div className="left-top"></div>
                                 <div className="left-bottom"></div>
@@ -152,13 +161,22 @@ export default function TechList({
                                       alignItems: "center",
                                     }}
                                   >
+                                    <img
+                                      src={`/imgs/tech/${x.name}.svg`}
+                                      width={100}
+                                      alt={`${x.name} logo`}
+                                      style={{ borderRadius: "20px" }}
+                                    />
 
-                                    <img src={`/imgs/tech/${x.name}.svg`} width={100} alt={`${x.name} logo`} style={{ borderRadius: "20px" }} />
-
-                                    <div className="stack-description" style={{ margin: "0", marginLeft: "1rem", textAlign: "left" }}>
-                                      <h2>
-                                        {x.name}
-                                      </h2>
+                                    <div
+                                      className="stack-description"
+                                      style={{
+                                        margin: "0",
+                                        marginLeft: "1rem",
+                                        textAlign: "left",
+                                      }}
+                                    >
+                                      <h2>{x.name}</h2>
                                       {x.numOfOccurences! > 0 && (
                                         <p style={{ color: "#2667ff" }}>
                                           {x.numOfOccurences === 1 && (
@@ -166,8 +184,8 @@ export default function TechList({
                                           )}
                                           {x.numOfOccurences! > 1 && (
                                             <>
-                                              Used in over{" "}
-                                              {x.numOfOccurences} Stacks!
+                                              Used in over {x.numOfOccurences}{" "}
+                                              Stacks!
                                             </>
                                           )}
                                         </p>
@@ -185,10 +203,10 @@ export default function TechList({
                     )}
                     {section !== "language" && (
                       <>
-                        {x.tech.map((x, index) => {
+                        {x.tech.map((x, index2) => {
                           return (
                             <div
-                              key={index}
+                              key={index2}
                               className="card"
                               style={{ display: "none" }}
                             >
@@ -255,12 +273,16 @@ export default function TechList({
                   <>
                     {section === "database" && (
                       <>
-                        <p className="subtitle" style={{ opacity: "0.6", textAlign: "center" }}>
+                        <p
+                          className="subtitle"
+                          style={{ opacity: "0.6", textAlign: "center" }}
+                        >
                           DATABASES
                         </p>
-                        {x.tech.map((x, index) => {
+                        {x.tech.map((x, index2) => {
                           return (
                             <a
+                              key={index2}
                               className="nav-element"
                               href={x.site}
                               target="_blank"
@@ -271,7 +293,6 @@ export default function TechList({
                                 maxWidth: "fit-content",
                               }}
                             >
-
                               <div className="hover-container">
                                 <div className="left-top"></div>
                                 <div className="left-bottom"></div>
@@ -290,13 +311,22 @@ export default function TechList({
                                       alignItems: "center",
                                     }}
                                   >
+                                    <img
+                                      src={`/imgs/tech/${x.name}.svg`}
+                                      width={100}
+                                      alt={`${x.name} logo`}
+                                      style={{ borderRadius: "20px" }}
+                                    />
 
-                                    <img src={`/imgs/tech/${x.name}.svg`} width={100} alt={`${x.name} logo`} style={{ borderRadius: "20px" }} />
-
-                                    <div className="stack-description" style={{ margin: "0", marginLeft: "1rem", textAlign: "left" }}>
-                                      <h2>
-                                        {x.name}
-                                      </h2>
+                                    <div
+                                      className="stack-description"
+                                      style={{
+                                        margin: "0",
+                                        marginLeft: "1rem",
+                                        textAlign: "left",
+                                      }}
+                                    >
+                                      <h2>{x.name}</h2>
                                       {x.numOfOccurences! > 0 && (
                                         <p style={{ color: "#2667ff" }}>
                                           {x.numOfOccurences === 1 && (
@@ -304,8 +334,8 @@ export default function TechList({
                                           )}
                                           {x.numOfOccurences! > 1 && (
                                             <>
-                                              Used in over{" "}
-                                              {x.numOfOccurences} Stacks!
+                                              Used in over {x.numOfOccurences}{" "}
+                                              Stacks!
                                             </>
                                           )}
                                         </p>
@@ -323,10 +353,10 @@ export default function TechList({
                     )}
                     {section !== "database" && (
                       <>
-                        {x.tech.map((x, index) => {
+                        {x.tech.map((x, index2) => {
                           return (
                             <div
-                              key={index}
+                              key={index2}
                               className="card"
                               style={{ display: "none" }}
                             >
@@ -393,12 +423,16 @@ export default function TechList({
                   <>
                     {section === "api" && (
                       <>
-                        <p className="subtitle" style={{ opacity: "0.6", textAlign: "center" }}>
+                        <p
+                          className="subtitle"
+                          style={{ opacity: "0.6", textAlign: "center" }}
+                        >
                           APIs
                         </p>
-                        {x.tech.map((x, index) => {
+                        {x.tech.map((x, index2) => {
                           return (
                             <a
+                              key={index2}
                               className="nav-element"
                               href={x.site}
                               target="_blank"
@@ -409,7 +443,6 @@ export default function TechList({
                                 maxWidth: "fit-content",
                               }}
                             >
-
                               <div className="hover-container">
                                 <div className="left-top"></div>
                                 <div className="left-bottom"></div>
@@ -428,13 +461,22 @@ export default function TechList({
                                       alignItems: "center",
                                     }}
                                   >
+                                    <img
+                                      src={`/imgs/tech/${x.name}.svg`}
+                                      width={100}
+                                      alt={`${x.name} logo`}
+                                      style={{ borderRadius: "20px" }}
+                                    />
 
-                                    <img src={`/imgs/tech/${x.name}.svg`} width={100} alt={`${x.name} logo`} style={{ borderRadius: "20px" }} />
-
-                                    <div className="stack-description" style={{ margin: "0", marginLeft: "1rem", textAlign: "left" }}>
-                                      <h2>
-                                        {x.name}
-                                      </h2>
+                                    <div
+                                      className="stack-description"
+                                      style={{
+                                        margin: "0",
+                                        marginLeft: "1rem",
+                                        textAlign: "left",
+                                      }}
+                                    >
+                                      <h2>{x.name}</h2>
                                       {x.numOfOccurences! > 0 && (
                                         <p style={{ color: "#2667ff" }}>
                                           {x.numOfOccurences === 1 && (
@@ -442,8 +484,8 @@ export default function TechList({
                                           )}
                                           {x.numOfOccurences! > 1 && (
                                             <>
-                                              Used in over{" "}
-                                              {x.numOfOccurences} Stacks!
+                                              Used in over {x.numOfOccurences}{" "}
+                                              Stacks!
                                             </>
                                           )}
                                         </p>
@@ -461,10 +503,10 @@ export default function TechList({
                     )}
                     {section !== "api" && (
                       <>
-                        {x.tech.map((x, index) => {
+                        {x.tech.map((x, index2) => {
                           return (
                             <div
-                              key={index}
+                              key={index2}
                               className="card"
                               style={{ display: "none" }}
                             >
@@ -531,12 +573,16 @@ export default function TechList({
                   <>
                     {section === "framework" && (
                       <>
-                        <p className="subtitle" style={{ opacity: "0.6", textAlign: "center" }}>
+                        <p
+                          className="subtitle"
+                          style={{ opacity: "0.6", textAlign: "center" }}
+                        >
                           FRAMEWORKS
                         </p>
-                        {x.tech.map((x, index) => {
+                        {x.tech.map((x, index2) => {
                           return (
                             <a
+                              key={index2}
                               className="nav-element"
                               href={x.site}
                               target="_blank"
@@ -547,7 +593,6 @@ export default function TechList({
                                 maxWidth: "fit-content",
                               }}
                             >
-
                               <div className="hover-container">
                                 <div className="left-top"></div>
                                 <div className="left-bottom"></div>
@@ -566,13 +611,22 @@ export default function TechList({
                                       alignItems: "center",
                                     }}
                                   >
+                                    <img
+                                      src={`/imgs/tech/${x.name}.svg`}
+                                      width={100}
+                                      alt={`${x.name} logo`}
+                                      style={{ borderRadius: "20px" }}
+                                    />
 
-                                    <img src={`/imgs/tech/${x.name}.svg`} width={100} alt={`${x.name} logo`} style={{ borderRadius: "20px" }} />
-
-                                    <div className="stack-description" style={{ margin: "0", marginLeft: "1rem", textAlign: "left" }}>
-                                      <h2>
-                                        {x.name}
-                                      </h2>
+                                    <div
+                                      className="stack-description"
+                                      style={{
+                                        margin: "0",
+                                        marginLeft: "1rem",
+                                        textAlign: "left",
+                                      }}
+                                    >
+                                      <h2>{x.name}</h2>
                                       {x.numOfOccurences! > 0 && (
                                         <p style={{ color: "#2667ff" }}>
                                           {x.numOfOccurences === 1 && (
@@ -580,8 +634,8 @@ export default function TechList({
                                           )}
                                           {x.numOfOccurences! > 1 && (
                                             <>
-                                              Used in over{" "}
-                                              {x.numOfOccurences} Stacks!
+                                              Used in over {x.numOfOccurences}{" "}
+                                              Stacks!
                                             </>
                                           )}
                                         </p>
@@ -599,10 +653,10 @@ export default function TechList({
                     )}
                     {section !== "framework" && (
                       <>
-                        {x.tech.map((x, index) => {
+                        {x.tech.map((x, index2) => {
                           return (
                             <div
-                              key={index}
+                              key={index2}
                               className="card"
                               style={{ display: "none" }}
                             >
@@ -669,12 +723,16 @@ export default function TechList({
                   <>
                     {section === "cloud" && (
                       <>
-                        <p className="subtitle" style={{ opacity: "0.6", textAlign: "center" }}>
+                        <p
+                          className="subtitle"
+                          style={{ opacity: "0.6", textAlign: "center" }}
+                        >
                           CLOUD SERVICES
                         </p>
-                        {x.tech.map((x, index) => {
+                        {x.tech.map((x, index2) => {
                           return (
                             <a
+                              key={index2}
                               className="nav-element"
                               href={x.site}
                               target="_blank"
@@ -685,7 +743,6 @@ export default function TechList({
                                 maxWidth: "fit-content",
                               }}
                             >
-
                               <div className="hover-container">
                                 <div className="left-top"></div>
                                 <div className="left-bottom"></div>
@@ -704,13 +761,22 @@ export default function TechList({
                                       alignItems: "center",
                                     }}
                                   >
+                                    <img
+                                      src={`/imgs/tech/${x.name}.svg`}
+                                      width={100}
+                                      alt={`${x.name} logo`}
+                                      style={{ borderRadius: "20px" }}
+                                    />
 
-                                    <img src={`/imgs/tech/${x.name}.svg`} width={100} alt={`${x.name} logo`} style={{ borderRadius: "20px" }} />
-
-                                    <div className="stack-description" style={{ margin: "0", marginLeft: "1rem", textAlign: "left" }}>
-                                      <h2>
-                                        {x.name}
-                                      </h2>
+                                    <div
+                                      className="stack-description"
+                                      style={{
+                                        margin: "0",
+                                        marginLeft: "1rem",
+                                        textAlign: "left",
+                                      }}
+                                    >
+                                      <h2>{x.name}</h2>
                                       {x.numOfOccurences! > 0 && (
                                         <p style={{ color: "#2667ff" }}>
                                           {x.numOfOccurences === 1 && (
@@ -718,8 +784,8 @@ export default function TechList({
                                           )}
                                           {x.numOfOccurences! > 1 && (
                                             <>
-                                              Used in over{" "}
-                                              {x.numOfOccurences} Stacks!
+                                              Used in over {x.numOfOccurences}{" "}
+                                              Stacks!
                                             </>
                                           )}
                                         </p>
@@ -737,10 +803,10 @@ export default function TechList({
                     )}
                     {section !== "cloud" && (
                       <>
-                        {x.tech.map((x, index) => {
+                        {x.tech.map((x, index2) => {
                           return (
                             <div
-                              key={index}
+                              key={index2}
                               className="card"
                               style={{ display: "none" }}
                             >

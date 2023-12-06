@@ -1,8 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { Metadata } from "next";
-import { IsValidAccountCookie } from "@/functions";
-import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
   title: "A Platform for Modern Tech Stack Visualization | Stack",
@@ -42,11 +40,14 @@ export default async function Home() {
                 fontSize: 24,
               }}
             >
-              Stack is a platform designed to help developers showcase
-              their tech stacks.
+              Stack is a platform designed to help developers showcase their
+              tech stacks.
             </h2>
 
-            <div className="btn-container" style={{ justifyContent: "left", marginBottom: "18rem" }}>
+            <div
+              className="btn-container"
+              style={{ justifyContent: "left", marginBottom: "18rem" }}
+            >
               <a
                 href="/signup"
                 className="btn-landing"
@@ -86,9 +87,7 @@ export default async function Home() {
               style={{ marginTop: "8rem", alignItems: "center" }}
             >
               <div className="card">
-                <h2>
-                  The Future of Tech Stack Presentation.
-                </h2>
+                <h2>The Future of Tech Stack Presentation.</h2>
                 <br />
                 <p>
                   Step into a new era of showcasing the intricate web of
@@ -103,23 +102,32 @@ export default async function Home() {
                   tech stack&apos;s essence to the world.
                 </p>
               </div>
-              <div className="splash-image" style={{ background: "none", boxShadow: "none" }}>
-                <img src="/imgs/splash/gear.svg" style={{ width: "100%", objectFit: "contain" }} />
+              <div
+                className="splash-image"
+                style={{ background: "none", boxShadow: "none" }}
+              >
+                <img
+                  src="/imgs/splash/gear.svg"
+                  style={{ width: "100%", objectFit: "contain" }}
+                />
               </div>
             </div>
-
 
             <div
               className="home-container"
               style={{ marginTop: "2rem", alignItems: "center" }}
             >
-              <div className="splash-image" style={{ background: "none", boxShadow: "none" }}>
-                <img src="/imgs/splash/computer.svg" style={{ width: "100%", objectFit: "contain" }} />
+              <div
+                className="splash-image"
+                style={{ background: "none", boxShadow: "none" }}
+              >
+                <img
+                  src="/imgs/splash/computer.svg"
+                  style={{ width: "100%", objectFit: "contain" }}
+                />
               </div>
               <div className="card">
-                <h2>
-                  Unleash the Power Behind your Apps.
-                </h2>
+                <h2>Unleash the Power Behind your Apps.</h2>
                 <br />
                 <p>
                   Dive into the heart of your application&apos;s inner workings
@@ -139,11 +147,8 @@ export default async function Home() {
               className="home-container"
               style={{ marginTop: "2rem", alignItems: "center" }}
             >
-
               <div className="card">
-                <h2>
-                  Your Custom Tech Stack Showcase.
-                </h2>
+                <h2>Your Custom Tech Stack Showcase.</h2>
                 <br />
                 <p>
                   Stack provides the ideal platform to present your tech stack
@@ -158,24 +163,42 @@ export default async function Home() {
                   technology shine!
                 </p>
               </div>
-              <div className="splash-image" style={{ background: "none", boxShadow: "none" }}>
-                <img src="/imgs/splash/phone.svg" style={{ width: "100%", objectFit: "contain" }} />
+              <div
+                className="splash-image"
+                style={{ background: "none", boxShadow: "none" }}
+              >
+                <img
+                  src="/imgs/splash/phone.svg"
+                  style={{ width: "100%", objectFit: "contain" }}
+                />
               </div>
             </div>
 
-            <div className="home-container" style={{ marginTop: "2rem", alignItems: "center" }}>
-              <div className="card" style={{ height: "fitContent", textAlign: "left", width: "100%" }}>
-                <h2>
-                  Explore Community Stacks.
-                </h2>
+            <div
+              className="home-container"
+              style={{ marginTop: "2rem", alignItems: "center" }}
+            >
+              <div
+                className="card"
+                style={{
+                  height: "fitContent",
+                  textAlign: "left",
+                  width: "100%",
+                }}
+              >
+                <h2>Explore Community Stacks.</h2>
                 <p>
-                  Start exploring stacks from other members of the community to gain a comprehensive
-                  understanding of the diverse and dynamic nature of Stack and its myriad possibilities in the realm of
+                  Start exploring stacks from other members of the community to
+                  gain a comprehensive understanding of the diverse and dynamic
+                  nature of Stack and its myriad possibilities in the realm of
                   software development.
                 </p>
-                <div className="btn-container" style={{ marginTop: "1rem", marginBottom: "0rem" }}>
+                <div
+                  className="btn-container"
+                  style={{ marginTop: "1rem", marginBottom: "0rem" }}
+                >
                   <a
-                    href="/tech"
+                    href="/explore"
                     className="btn-landing"
                     style={{ textAlign: "center" }}
                   >
@@ -184,10 +207,9 @@ export default async function Home() {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </section>
-    </main >
+    </main>
   );
 }
