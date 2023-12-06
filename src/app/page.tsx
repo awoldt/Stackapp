@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     siteName: "Stack",
     images: [
       {
-        url: "https://stackapp.xyz/imgs/splash/image.png",
+        url: "https://stackapp.xyz/imgs/splash/screenshot.png",
       },
     ],
   },
