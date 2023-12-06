@@ -174,7 +174,13 @@ export default async function Home() {
                   software development.
                 </p>
                 <div className="btn-container" style={{ marginTop: "1rem", marginBottom: "0rem" }}>
-                  <button className="btn-landing">Explore Stacks</button>
+                  <a
+                    href="/tech"
+                    className="btn-landing"
+                    style={{ textAlign: "center" }}
+                  >
+                    Explore Stacks
+                  </a>
                 </div>
               </div>
             </div>

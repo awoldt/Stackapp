@@ -4,22 +4,12 @@ import { Stack } from "@/models/stacks";
 export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
   return (
     <section>
-      <div className="card-container">
+      <div className="card-container" id="mobile">
         <div className="card">
           <div className="container">
-            <h2
-              className="subheading"
-              style={{ opacity: "0.6", fontSize: "16px" }}
-            >
-              <img
-                src="/imgs/icons/code.svg"
-                alt="language"
-                width={20}
-                height={14}
-                style={{ display: "inline" }}
-              />
+            <p className="subtitle" style={{ opacity: "0.6", textAlign: "center" }}>
               LANGUAGES
-            </h2>
+            </p>
             <hr />
             <div className="grid-container">
               <div className="grid-container">
@@ -33,7 +23,7 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
                             style={{
                               textAlign: "center",
                               fontSize: "12px",
-                              fontWeight: "800",
+                              fontWeight: "600",
                             }}
                           >
                             {x}
@@ -49,19 +39,9 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
 
           {stackDetails.databases_used !== null && (
             <div className="container">
-              <h2
-                className="subheading"
-                style={{ opacity: "0.6", marginTop: "40px", fontSize: "16px" }}
-              >
-                <img
-                  src="/imgs/icons/database-fill.svg"
-                  alt="database"
-                  width={20}
-                  height={14}
-                  style={{ display: "inline" }}
-                />
+              <p className="subtitle" style={{ marginTop: "1rem", opacity: "0.6", textAlign: "center" }}>
                 DATABASES
-              </h2>
+              </p>
               <hr />
               <div className="grid-container">
                 <div className="grid-container">
@@ -79,7 +59,7 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
                                 style={{
                                   textAlign: "center",
                                   fontSize: "12px",
-                                  fontWeight: "800",
+                                  fontWeight: "600",
                                 }}
                               >
                                 {x}
@@ -97,19 +77,9 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
 
           {stackDetails.apis_used !== null && (
             <div className="container">
-              <h2
-                className="subheading"
-                style={{ opacity: "0.6", marginTop: "40px", fontSize: "16px" }}
-              >
-                <img
-                  src="/imgs/icons/api.svg"
-                  alt="api"
-                  width={20}
-                  height={14}
-                  style={{ display: "inline" }}
-                />
+              <p className="subtitle" style={{ marginTop: "1rem", opacity: "0.6", textAlign: "center" }}>
                 APIs
-              </h2>
+              </p>
               <hr />
               <div className="grid-container">
                 <div className="grid-container">
@@ -123,7 +93,7 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
                               style={{
                                 textAlign: "center",
                                 fontSize: "12px",
-                                fontWeight: "800",
+                                fontWeight: "600",
                               }}
                             >
                               {x}
@@ -140,19 +110,9 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
 
           {stackDetails.frameworks_used !== null && (
             <div className="container">
-              <h2
-                className="subheading"
-                style={{ opacity: "0.6", marginTop: "40px", fontSize: "16px" }}
-              >
-                <img
-                  src="/imgs/icons/framework.svg"
-                  alt="api"
-                  width={20}
-                  height={14}
-                  style={{ display: "inline" }}
-                />
+              <p className="subtitle" style={{ marginTop: "1rem", opacity: "0.6", textAlign: "center" }}>
                 FRAMEWORKS
-              </h2>
+              </p>
               <hr />
               <div className="grid-container">
                 <div className="grid-container">
@@ -170,7 +130,7 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
                                 style={{
                                   textAlign: "center",
                                   fontSize: "12px",
-                                  fontWeight: "800",
+                                  fontWeight: "600",
                                 }}
                               >
                                 {x}
@@ -188,19 +148,9 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
 
           {stackDetails.clouds_used !== null && (
             <div className="container">
-              <h2
-                className="subheading"
-                style={{ opacity: "0.6", marginTop: "40px", fontSize: "16px" }}
-              >
-                <img
-                  src="/imgs/icons/cloud-fill.svg"
-                  alt="cloud"
-                  width={20}
-                  height={14}
-                  style={{ display: "inline" }}
-                />
+              <p className="subtitle" style={{ marginTop: "1rem", opacity: "0.6", textAlign: "center" }}>
                 CLOUDS
-              </h2>
+              </p>
               <hr />
               <div className="grid-container">
                 <div className="grid-container">
@@ -214,7 +164,7 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
                               style={{
                                 textAlign: "center",
                                 fontSize: "12px",
-                                fontWeight: "800",
+                                fontWeight: "600",
                               }}
                             >
                               {x}
@@ -230,6 +180,182 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
           )}
         </div>
       </div>
-    </section>
+
+      <div className="card-container" id="desktop">
+        <div className="card" style={{ display: "flex", flexDirection: "column" }}>
+          <div className="grid-container">
+            <div className="grid-item" style={{ width: "20%", height: "fit-content", marginBottom: "0" }}>
+              <p className="subtitle" style={{ opacity: "0.6", textAlign: "center" }}>
+                LANGUAGES
+              </p>
+              <hr />
+            </div>
+
+            <div className="grid-item" style={{ width: "20%", height: "fit-content", marginBottom: "0" }}>
+              <p className="subtitle" style={{ opacity: "0.6", textAlign: "center" }}>
+                DATABASES
+              </p>
+              <hr />
+            </div>
+
+            <div className="grid-item" style={{ width: "20%", height: "fit-content", marginBottom: "0" }}>
+              <p className="subtitle" style={{ opacity: "0.6", textAlign: "center" }}>
+                APIs
+              </p>
+              <hr />
+            </div>
+
+            <div className="grid-item" style={{ width: "20%", height: "fit-content", marginBottom: "0" }}>
+              <p className="subtitle" style={{ opacity: "0.6", textAlign: "center" }}>
+                FRAMEWORKS
+              </p>
+              <hr />
+            </div>
+
+            <div className="grid-item" style={{ width: "20%", height: "fit-content", marginBottom: "0" }}>
+              <p className="subtitle" style={{ opacity: "0.6", textAlign: "center" }}>
+                CLOUD SERVICES
+              </p>
+              <hr />
+            </div>
+          </div>
+
+          <div style={{ display: "flex", width: "100%" }}>
+            <div className="grid-container" style={{ display: "flex", gap: "0", padding: "0", maxWidth: "20%" }}>
+              {stackDetails.languages_used.map((x: string, index: number) => {
+                return (
+                  <a key={index} href={`/tech?type=language`}>
+                    <div className="grid-item">
+                      <img src={`/imgs/tech/${x}.svg`} alt={`${x} logo`} />
+                      <span>
+                        <p
+                          style={{
+                            textAlign: "center",
+                            fontSize: "12px",
+                            fontWeight: "600",
+                          }}
+                        >
+                          {x}
+                        </p>
+                      </span>
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
+
+            {stackDetails.databases_used !== null && (
+              <div className="grid-container" style={{ display: "flex", gap: "0", padding: "0", maxWidth: "20%" }}>
+                {stackDetails.databases_used.map(
+                  (x: string, index: number) => {
+                    return (
+                      <a href={`/tech?type=database`} key={index}>
+                        <div className="grid-item">
+                          <img
+                            src={`/imgs/tech/${x}.svg`}
+                            alt={`${x} logo`}
+                          />
+                          <span>
+                            <p
+                              style={{
+                                textAlign: "center",
+                                fontSize: "12px",
+                                fontWeight: "600",
+                              }}
+                            >
+                              {x}
+                            </p>
+                          </span>
+                        </div>
+                      </a>
+                    );
+                  }
+                )}
+              </div>
+            )}
+
+            {stackDetails.apis_used !== null && (
+              <div className="grid-container" style={{ display: "flex", gap: "0", padding: "0", maxWidth: "20%" }}>
+                {stackDetails.apis_used.map((x: string, index: number) => {
+                  return (
+                    <a href={`/tech?type=api`} key={index}>
+                      <div className="grid-item">
+                        <img src={`/imgs/tech/${x}.svg`} alt={`${x} logo`} />
+                        <span>
+                          <p
+                            style={{
+                              textAlign: "center",
+                              fontSize: "12px",
+                              fontWeight: "600",
+                            }}
+                          >
+                            {x}
+                          </p>
+                        </span>
+                      </div>
+                    </a>
+                  );
+                })}
+              </div>
+            )}
+
+            {stackDetails.frameworks_used !== null && (
+              <div className="grid-container" style={{ display: "flex", gap: "0", padding: "0", maxWidth: "20%" }}>
+                {stackDetails.frameworks_used.map(
+                  (x: string, index: number) => {
+                    return (
+                      <a href={`/tech?type=framework`} key={index}>
+                        <div className="grid-item">
+                          <img
+                            src={`/imgs/tech/${x}.svg`}
+                            alt={`${x} logo`}
+                          />
+                          <span>
+                            <p
+                              style={{
+                                textAlign: "center",
+                                fontSize: "12px",
+                                fontWeight: "600",
+                              }}
+                            >
+                              {x}
+                            </p>
+                          </span>
+                        </div>
+                      </a>
+                    );
+                  }
+                )}
+              </div>
+            )}
+
+            {stackDetails.clouds_used !== null && (
+              <div className="grid-container" style={{ display: "flex", gap: "0", padding: "0", maxWidth: "20%" }}>
+                {stackDetails.clouds_used.map((x: string, index: number) => {
+                  return (
+                    <a href={`/tech?type=cloud`} key={index}>
+                      <div className="grid-item">
+                        <img src={`/imgs/tech/${x}.svg`} alt={`${x} logo`} />
+                        <span>
+                          <p
+                            style={{
+                              textAlign: "center",
+                              fontSize: "12px",
+                              fontWeight: "600",
+                            }}
+                          >
+                            {x}
+                          </p>
+                        </span>
+                      </div>
+                    </a>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </section >
   );
 }

@@ -81,7 +81,7 @@ export default async function Page() {
             Explore Stacks
           </h1>
           <p className="subheading">
-            Explore recently created Stacks from other Stack members.
+            Explore recently created Stacks from other members of the community.
           </p>
         </div>
       </div>
@@ -92,91 +92,99 @@ export default async function Page() {
             return (
               <div key={index}>
                 <a href={`/stack/${STACKIDS[index]}`}>
-                  <div className="profile-stack-container">
-                    <div className="card-thumbnail">
-                      <img src={x.stackInfo.thumbnail_url} />
-                    </div>
 
-                    <img
-                      src={x.stackInfo.icon_url}
-                      className="explore-stack-img"
-                      alt="stack-img"
-                    />
-
-                    <div className="stack-description">
-                      <h2>{x.stackInfo.name}</h2>
-
-                      <p
-                        style={{
-                          fontSize: "12px",
-                          fontWeight: "800",
-                          opacity: "0.4",
-                        }}
-                      >
-                        Created on {x.stackInfo.created_on.toDateString()}
-                      </p>
-
-                      <p>
-                        {x.stackInfo.description.length > 100
-                          ? x.stackInfo.description.slice(0, 100) + "..."
-                          : x.stackInfo.description}
-                      </p>
-                      <div className="profile-explore-container">
-                        <img
-                          src={
-                            x.userInfo?.profile_pic_filename !== null
-                              ? x.userInfo?.profile_pic_filename!
-                              : "/imgs/icons/noprofile.png"
-                          }
-                          className="user-profile-img"
-                          alt="user-profile-img"
-                          style={{ cursor: "pointer" }}
-                        />
-                        <p style={{ cursor: "pointer" }}>
-                          <b>
-                            {x.userInfo!.first_name} {x.userInfo!.last_name}
-                          </b>
-                          <br />@{x.userInfo?.username}
-                        </p>
+                  <div className="hover-container">
+                    <div className="left-top"></div>
+                    <div className="left-bottom"></div>
+                    <div className="right-top"></div>
+                    <div className="right-bottom"></div>
+                    <div className="profile-stack-container">
+                      <div className="card-thumbnail">
+                        <img src={x.stackInfo.thumbnail_url} />
                       </div>
-                    </div>
-                    <div className="explore-stack-icons-container">
+
                       <img
-                        src={`/imgs/tech/${x.stackInfo.languages_used[0]}.svg`}
-                        className="explore-stack-icons"
-                        alt="language-logo"
+                        src={x.stackInfo.icon_url}
+                        className="explore-stack-img"
+                        alt="stack-img"
                       />
-                      {x.stackInfo.databases_used !== null && (
-                        <img
-                          src={`/imgs/tech/${x.stackInfo.databases_used[0]}.svg`}
-                          className="explore-stack-icons"
-                          alt="database-logo"
-                        />
-                      )}
 
-                      {x.stackInfo.clouds_used !== null && (
-                        <img
-                          src={`/imgs/tech/${x.stackInfo.clouds_used[0]}.svg`}
-                          className="explore-stack-icons"
-                          alt="cloud-logo"
-                        />
-                      )}
+                      <div className="stack-description">
+                        <h2 style={{ lineHeight: "1.2" }}>{x.stackInfo.name}</h2>
 
-                      {x.stackInfo.apis_used !== null && (
-                        <img
-                          src={`/imgs/tech/${x.stackInfo.apis_used[0]}.svg`}
-                          className="explore-stack-icons"
-                          alt="api-logo"
-                        />
-                      )}
+                        <p
+                          style={{
+                            fontSize: "14px",
+                            fontWeight: "600",
+                            opacity: "0.4"
+                          }}
+                        >
+                          {x.stackInfo.created_on.toDateString()}
+                        </p>
 
-                      {x.stackInfo.frameworks_used !== null && (
+                        <p style={{ lineHeight: "2.4" }}>
+                          {x.stackInfo.description.length > 100
+                            ? x.stackInfo.description.slice(0, 100) + "..."
+                            : x.stackInfo.description}
+                        </p>
+
+                        <div className="profile-explore-container">
+                          <img
+                            src={
+                              x.userInfo?.profile_pic_filename !== null
+                                ? x.userInfo?.profile_pic_filename!
+                                : "/imgs/icons/noprofile.png"
+                            }
+                            className="user-profile-img"
+                            alt="user-profile-img"
+                            style={{ cursor: "pointer" }}
+                          />
+                          <p style={{ cursor: "pointer" }}>
+                            <b>
+                              {x.userInfo!.first_name} {x.userInfo!.last_name}
+                            </b>
+                            <br />@{x.userInfo?.username}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="explore-stack-icons-container">
                         <img
-                          src={`/imgs/tech/${x.stackInfo.frameworks_used[0]}.svg`}
+                          src={`/imgs/tech/${x.stackInfo.languages_used[0]}.svg`}
                           className="explore-stack-icons"
-                          alt="framework-logo"
+                          alt="language-logo"
                         />
-                      )}
+                        {x.stackInfo.databases_used !== null && (
+                          <img
+                            src={`/imgs/tech/${x.stackInfo.databases_used[0]}.svg`}
+                            className="explore-stack-icons"
+                            alt="database-logo"
+                          />
+                        )}
+
+                        {x.stackInfo.clouds_used !== null && (
+                          <img
+                            src={`/imgs/tech/${x.stackInfo.clouds_used[0]}.svg`}
+                            className="explore-stack-icons"
+                            alt="cloud-logo"
+                          />
+                        )}
+
+                        {x.stackInfo.apis_used !== null && (
+                          <img
+                            src={`/imgs/tech/${x.stackInfo.apis_used[0]}.svg`}
+                            className="explore-stack-icons"
+                            alt="api-logo"
+                          />
+                        )}
+
+                        {x.stackInfo.frameworks_used !== null && (
+                          <img
+                            src={`/imgs/tech/${x.stackInfo.frameworks_used[0]}.svg`}
+                            className="explore-stack-icons"
+                            alt="framework-logo"
+                          />
+                        )}
+                      </div>
                     </div>
                   </div>
                 </a>

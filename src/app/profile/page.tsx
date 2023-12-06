@@ -134,6 +134,11 @@ export default async function Page() {
                         <div key={index}>
                           <div>
                             <a href={`/stack/${String(x._id)}`}>
+                            <div className="hover-container">
+                    <div className="left-top"></div>
+                    <div className="left-bottom"></div>
+                    <div className="right-top"></div>
+                    <div className="right-bottom"></div>
                               <div className="profile-stack-container">
                                 <div className="card-thumbnail">
                                   <img src={x.thumbnail_url} />
@@ -150,12 +155,12 @@ export default async function Page() {
 
                                   <p
                                     style={{
-                                      fontSize: "12px",
-                                      fontWeight: "800",
-                                      opacity: "0.4",
+                                      fontSize: "14px",
+                                      fontWeight: "600",
+                                      opacity: "0.4"
                                     }}
                                   >
-                                    Stacked {x.created_on.toDateString()}
+                                    {x.created_on.toDateString()}
                                   </p>
                                 </div>
                                 <div className="explore-stack-icons-container">
@@ -196,6 +201,7 @@ export default async function Page() {
                                     />
                                   )}
                                 </div>
+                              </div>
                               </div>
                             </a>
                           </div>

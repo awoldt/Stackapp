@@ -12,7 +12,6 @@ export default function Nav({ isSignedIn }: { isSignedIn: boolean }) {
             </li>
             <li>
             <a href="/explore" className="nav-element" style={{ display: "flex", alignItems: "center", marginBottom: "0", marginTop: "0"}}>
-                {/* <img src="/imgs/icons/globe.svg" />&nbsp; */}
                 Explore
               </a>
             </li>
@@ -21,13 +20,11 @@ export default function Nav({ isSignedIn }: { isSignedIn: boolean }) {
               <>
                 <li>
                   <a href="/create" className="nav-element" style={{ display: "flex", alignItems: "center", marginBottom: "0", marginTop: "0"}}>
-                  {/* <img src="/imgs/icons/create.svg" />&nbsp; */}
                   Create
                   </a>
                 </li>
                 <li>
                   <a href="/profile" className="nav-element" style={{ display: "flex", alignItems: "center", marginBottom: "0", marginTop: "0"}}>
-                  {/* <img src="/imgs/icons/profile.svg" />&nbsp; */}
                   Profile
                   </a>
                 </li>
@@ -45,7 +42,6 @@ export default function Nav({ isSignedIn }: { isSignedIn: boolean }) {
               </li>
               <li>
                 <a href="/signin" className="nav-element" style={{ display: "flex", alignItems: "center", marginBottom: "0", marginTop: "0"}}>
-                  {/* <img src="/imgs/icons/signup.svg" />&nbsp; */}
                   Login
                 </a>
               </li>

@@ -38,13 +38,6 @@ export default function TechList({
                 }
               }}
             >
-              {/* <img
-              className="svg-white"
-              src="/imgs/icons/code.svg"
-              alt="language"
-              width={20}
-              height={14}
-            /> */}
               Languages
             </span>
 
@@ -61,13 +54,6 @@ export default function TechList({
                 }
               }}
             >
-              {/* <img
-              className="svg-white"
-              src="/imgs/icons/database-fill.svg"
-              alt="database"
-              width={20}
-              height={14}
-            /> */}
               Databases
             </span>
 
@@ -84,13 +70,6 @@ export default function TechList({
                 }
               }}
             >
-              {/* <img
-              className="svg-white"
-              src="/imgs/icons/api.svg"
-              alt="api"
-              width={20}
-              height={14}
-            /> */}
               APIs
             </span>
 
@@ -107,13 +86,6 @@ export default function TechList({
                 }
               }}
             >
-              {/* <img
-              className="svg-white"
-              src="/imgs/icons/framework.svg"
-              alt="api"
-              width={20}
-              height={14}
-            /> */}
               Frameworks
             </span>
 
@@ -130,13 +102,6 @@ export default function TechList({
                 }
               }}
             >
-              {/* <img
-              className="svg-white"
-              src="/imgs/icons/cloud-fill.svg"
-              alt="cloud"
-              width={20}
-              height={14}
-            /> */}
               Clouds
             </span>
           </div>
@@ -152,66 +117,68 @@ export default function TechList({
                   <>
                     {section === "language" && (
                       <>
+                        <p className="subtitle" style={{ opacity: "0.6", textAlign: "center" }}>
+                          LANGUAGES
+                        </p>
                         {x.tech.map((x, index) => {
                           return (
-                            <div
-                              key={index}
-                              className="card"
-                              style={{ width: "100%", marginBottom: "1rem", background: "none", boxShadow: "none" }}
-                              id={x.name}
+                            <a
+                              className="nav-element"
+                              href={x.site}
+                              target="_blank"
+                              style={{
+                                display: "block",
+                                marginTop: "20px",
+                                fontWeight: "600",
+                                maxWidth: "fit-content",
+                              }}
                             >
-                              <div
-                                style={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                }}
-                              >
-                                <img
-                                  src={`/imgs/tech/${x.name}.svg`}
-                                  width={60}
-                                  alt={`${x.name} logo`}
-                                  style={{ borderRadius: "4px" }}
-                                />
+
+                              <div className="hover-container">
+                                <div className="left-top"></div>
+                                <div className="left-bottom"></div>
+                                <div className="right-top"></div>
+                                <div className="right-bottom"></div>
                                 <div
-                                  style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                  }}
+                                  key={index}
+                                  className="profile-stack-container"
+                                  style={{ flexDirection: "column" }}
+                                  id={x.name}
                                 >
-                                  <h3>
-                                    &nbsp;<b>{x.name}</b>&nbsp;
-                                  </h3>
-                                  {x.numOfOccurences! > 0 && (
-                                    <span style={{ color: "#2667ff" }}>
-                                      {x.numOfOccurences === 1 && (
-                                        <>&nbsp;&nbsp;Used in 1 Stack!</>
+                                  <div
+                                    style={{
+                                      width: "100%",
+                                      display: "flex",
+                                      alignItems: "center",
+                                    }}
+                                  >
+
+                                    <img src={`/imgs/tech/${x.name}.svg`} width={100} alt={`${x.name} logo`} style={{ borderRadius: "20px" }} />
+
+                                    <div className="stack-description" style={{ margin: "0", marginLeft: "1rem", textAlign: "left" }}>
+                                      <h2>
+                                        {x.name}
+                                      </h2>
+                                      {x.numOfOccurences! > 0 && (
+                                        <p style={{ color: "#2667ff" }}>
+                                          {x.numOfOccurences === 1 && (
+                                            <>Used in 1 Stack!</>
+                                          )}
+                                          {x.numOfOccurences! > 1 && (
+                                            <>
+                                              Used in over{" "}
+                                              {x.numOfOccurences} Stacks!
+                                            </>
+                                          )}
+                                        </p>
                                       )}
-                                      {x.numOfOccurences! > 1 && (
-                                        <>
-                                          &nbsp;&nbsp;Used in over{" "}
-                                          {x.numOfOccurences} Stacks!
-                                        </>
-                                      )}
-                                    </span>
-                                  )}
+                                    </div>
+                                  </div>
+                                  <hr />
+                                  <p>{x.description}</p>
                                 </div>
                               </div>
-                              <hr />
-                              <p>{x.description}</p>
-                              <a
-                                className="nav-element"
-                                href={x.site}
-                                target="_blank"
-                                style={{
-                                  display: "block",
-                                  marginTop: "20px",
-                                  fontWeight: "600",
-                                  maxWidth: "fit-content",
-                                }}
-                              >
-                                Learn More...
-                              </a>
-                            </div>
+                            </a>
                           );
                         })}
                       </>
@@ -288,65 +255,68 @@ export default function TechList({
                   <>
                     {section === "database" && (
                       <>
+                        <p className="subtitle" style={{ opacity: "0.6", textAlign: "center" }}>
+                          DATABASES
+                        </p>
                         {x.tech.map((x, index) => {
                           return (
-                            <div
-                              key={index}
-                              className="card"
-                              style={{ width: "100%", marginBottom: "1rem", background: "none", boxShadow: "none" }}
+                            <a
+                              className="nav-element"
+                              href={x.site}
+                              target="_blank"
+                              style={{
+                                display: "block",
+                                marginTop: "20px",
+                                fontWeight: "600",
+                                maxWidth: "fit-content",
+                              }}
                             >
-                              <div
-                                style={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                }}
-                              >
-                                <img
-                                  src={`/imgs/tech/${x.name}.svg`}
-                                  width={60}
-                                  alt={`${x.name} logo`}
-                                  style={{ borderRadius: "4px" }}
-                                />
+
+                              <div className="hover-container">
+                                <div className="left-top"></div>
+                                <div className="left-bottom"></div>
+                                <div className="right-top"></div>
+                                <div className="right-bottom"></div>
                                 <div
-                                  style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                  }}
+                                  key={index}
+                                  className="profile-stack-container"
+                                  style={{ flexDirection: "column" }}
+                                  id={x.name}
                                 >
-                                  <h3>
-                                    &nbsp;<b>{x.name}</b>&nbsp;
-                                  </h3>
-                                  {x.numOfOccurences! > 0 && (
-                                    <span style={{ color: "#2667ff" }}>
-                                      {x.numOfOccurences === 1 && (
-                                        <>&nbsp;&nbsp;Used in 1 Stack!</>
+                                  <div
+                                    style={{
+                                      width: "100%",
+                                      display: "flex",
+                                      alignItems: "center",
+                                    }}
+                                  >
+
+                                    <img src={`/imgs/tech/${x.name}.svg`} width={100} alt={`${x.name} logo`} style={{ borderRadius: "20px" }} />
+
+                                    <div className="stack-description" style={{ margin: "0", marginLeft: "1rem", textAlign: "left" }}>
+                                      <h2>
+                                        {x.name}
+                                      </h2>
+                                      {x.numOfOccurences! > 0 && (
+                                        <p style={{ color: "#2667ff" }}>
+                                          {x.numOfOccurences === 1 && (
+                                            <>Used in 1 Stack!</>
+                                          )}
+                                          {x.numOfOccurences! > 1 && (
+                                            <>
+                                              Used in over{" "}
+                                              {x.numOfOccurences} Stacks!
+                                            </>
+                                          )}
+                                        </p>
                                       )}
-                                      {x.numOfOccurences! > 1 && (
-                                        <>
-                                          &nbsp;&nbsp;Used in over{" "}
-                                          {x.numOfOccurences} Stacks!
-                                        </>
-                                      )}
-                                    </span>
-                                  )}
+                                    </div>
+                                  </div>
+                                  <hr />
+                                  <p>{x.description}</p>
                                 </div>
                               </div>
-                              <hr />
-                              <p>{x.description}</p>
-                              <a
-                                className="nav-element"
-                                href={x.site}
-                                target="_blank"
-                                style={{
-                                  display: "block",
-                                  marginTop: "20px",
-                                  fontWeight: "600",
-                                  maxWidth: "fit-content",
-                                }}
-                              >
-                                Learn More...
-                              </a>
-                            </div>
+                            </a>
                           );
                         })}
                       </>
@@ -423,65 +393,68 @@ export default function TechList({
                   <>
                     {section === "api" && (
                       <>
+                        <p className="subtitle" style={{ opacity: "0.6", textAlign: "center" }}>
+                          APIs
+                        </p>
                         {x.tech.map((x, index) => {
                           return (
-                            <div
-                              key={index}
-                              className="card"
-                              style={{ width: "100%", marginBottom: "1rem", background: "none", boxShadow: "none" }}
+                            <a
+                              className="nav-element"
+                              href={x.site}
+                              target="_blank"
+                              style={{
+                                display: "block",
+                                marginTop: "20px",
+                                fontWeight: "600",
+                                maxWidth: "fit-content",
+                              }}
                             >
-                              <div
-                                style={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                }}
-                              >
-                                <img
-                                  src={`/imgs/tech/${x.name}.svg`}
-                                  width={60}
-                                  alt={`${x.name} logo`}
-                                  style={{ borderRadius: "4px" }}
-                                />
+
+                              <div className="hover-container">
+                                <div className="left-top"></div>
+                                <div className="left-bottom"></div>
+                                <div className="right-top"></div>
+                                <div className="right-bottom"></div>
                                 <div
-                                  style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                  }}
+                                  key={index}
+                                  className="profile-stack-container"
+                                  style={{ flexDirection: "column" }}
+                                  id={x.name}
                                 >
-                                  <h3>
-                                    &nbsp;<b>{x.name} API</b>&nbsp;
-                                  </h3>
-                                  {x.numOfOccurences! > 0 && (
-                                    <span style={{ color: "#2667ff" }}>
-                                      {x.numOfOccurences === 1 && (
-                                        <>&nbsp;&nbsp;Used in 1 Stack!</>
+                                  <div
+                                    style={{
+                                      width: "100%",
+                                      display: "flex",
+                                      alignItems: "center",
+                                    }}
+                                  >
+
+                                    <img src={`/imgs/tech/${x.name}.svg`} width={100} alt={`${x.name} logo`} style={{ borderRadius: "20px" }} />
+
+                                    <div className="stack-description" style={{ margin: "0", marginLeft: "1rem", textAlign: "left" }}>
+                                      <h2>
+                                        {x.name}
+                                      </h2>
+                                      {x.numOfOccurences! > 0 && (
+                                        <p style={{ color: "#2667ff" }}>
+                                          {x.numOfOccurences === 1 && (
+                                            <>Used in 1 Stack!</>
+                                          )}
+                                          {x.numOfOccurences! > 1 && (
+                                            <>
+                                              Used in over{" "}
+                                              {x.numOfOccurences} Stacks!
+                                            </>
+                                          )}
+                                        </p>
                                       )}
-                                      {x.numOfOccurences! > 1 && (
-                                        <>
-                                          &nbsp;&nbsp;Used in over{" "}
-                                          {x.numOfOccurences} Stacks!
-                                        </>
-                                      )}
-                                    </span>
-                                  )}
+                                    </div>
+                                  </div>
+                                  <hr />
+                                  <p>{x.description}</p>
                                 </div>
                               </div>
-                              <hr />
-                              <p>{x.description}</p>
-                              <a
-                                className="nav-element"
-                                href={x.site}
-                                target="_blank"
-                                style={{
-                                  display: "block",
-                                  marginTop: "20px",
-                                  fontWeight: "600",
-                                  maxWidth: "fit-content",
-                                }}
-                              >
-                                Learn More...
-                              </a>
-                            </div>
+                            </a>
                           );
                         })}
                       </>
@@ -558,65 +531,68 @@ export default function TechList({
                   <>
                     {section === "framework" && (
                       <>
+                        <p className="subtitle" style={{ opacity: "0.6", textAlign: "center" }}>
+                          FRAMEWORKS
+                        </p>
                         {x.tech.map((x, index) => {
                           return (
-                            <div
-                              key={index}
-                              className="card"
-                              style={{ width: "100%", marginBottom: "1rem", background: "none", boxShadow: "none" }}
+                            <a
+                              className="nav-element"
+                              href={x.site}
+                              target="_blank"
+                              style={{
+                                display: "block",
+                                marginTop: "20px",
+                                fontWeight: "600",
+                                maxWidth: "fit-content",
+                              }}
                             >
-                              <div
-                                style={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                }}
-                              >
-                                <img
-                                  src={`/imgs/tech/${x.name}.svg`}
-                                  width={60}
-                                  alt={`${x.name} logo`}
-                                  style={{ borderRadius: "4px" }}
-                                />
+
+                              <div className="hover-container">
+                                <div className="left-top"></div>
+                                <div className="left-bottom"></div>
+                                <div className="right-top"></div>
+                                <div className="right-bottom"></div>
                                 <div
-                                  style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                  }}
+                                  key={index}
+                                  className="profile-stack-container"
+                                  style={{ flexDirection: "column" }}
+                                  id={x.name}
                                 >
-                                  <h3>
-                                    &nbsp;<b>{x.name}</b>&nbsp;
-                                  </h3>
-                                  {x.numOfOccurences! > 0 && (
-                                    <span style={{ color: "#2667ff" }}>
-                                      {x.numOfOccurences === 1 && (
-                                        <>&nbsp;&nbsp;Used in 1 Stack!</>
+                                  <div
+                                    style={{
+                                      width: "100%",
+                                      display: "flex",
+                                      alignItems: "center",
+                                    }}
+                                  >
+
+                                    <img src={`/imgs/tech/${x.name}.svg`} width={100} alt={`${x.name} logo`} style={{ borderRadius: "20px" }} />
+
+                                    <div className="stack-description" style={{ margin: "0", marginLeft: "1rem", textAlign: "left" }}>
+                                      <h2>
+                                        {x.name}
+                                      </h2>
+                                      {x.numOfOccurences! > 0 && (
+                                        <p style={{ color: "#2667ff" }}>
+                                          {x.numOfOccurences === 1 && (
+                                            <>Used in 1 Stack!</>
+                                          )}
+                                          {x.numOfOccurences! > 1 && (
+                                            <>
+                                              Used in over{" "}
+                                              {x.numOfOccurences} Stacks!
+                                            </>
+                                          )}
+                                        </p>
                                       )}
-                                      {x.numOfOccurences! > 1 && (
-                                        <>
-                                          &nbsp;&nbsp;Used in over{" "}
-                                          {x.numOfOccurences} Stacks!
-                                        </>
-                                      )}
-                                    </span>
-                                  )}
+                                    </div>
+                                  </div>
+                                  <hr />
+                                  <p>{x.description}</p>
                                 </div>
                               </div>
-                              <hr />
-                              <p>{x.description}</p>
-                              <a
-                                className="nav-element"
-                                href={x.site}
-                                target="_blank"
-                                style={{
-                                  display: "block",
-                                  marginTop: "20px",
-                                  fontWeight: "600",
-                                  maxWidth: "fit-content",
-                                }}
-                              >
-                                Learn More...
-                              </a>
-                            </div>
+                            </a>
                           );
                         })}
                       </>
@@ -693,65 +669,68 @@ export default function TechList({
                   <>
                     {section === "cloud" && (
                       <>
+                        <p className="subtitle" style={{ opacity: "0.6", textAlign: "center" }}>
+                          CLOUD SERVICES
+                        </p>
                         {x.tech.map((x, index) => {
                           return (
-                            <div
-                              key={index}
-                              className="card"
-                              style={{ width: "100%", marginBottom: "1rem", background: "none", boxShadow: "none" }}
+                            <a
+                              className="nav-element"
+                              href={x.site}
+                              target="_blank"
+                              style={{
+                                display: "block",
+                                marginTop: "20px",
+                                fontWeight: "600",
+                                maxWidth: "fit-content",
+                              }}
                             >
-                              <div
-                                style={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                }}
-                              >
-                                <img
-                                  src={`/imgs/tech/${x.name}.svg`}
-                                  width={60}
-                                  alt={`${x.name} logo`}
-                                  style={{ borderRadius: "4px" }}
-                                />
+
+                              <div className="hover-container">
+                                <div className="left-top"></div>
+                                <div className="left-bottom"></div>
+                                <div className="right-top"></div>
+                                <div className="right-bottom"></div>
                                 <div
-                                  style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                  }}
+                                  key={index}
+                                  className="profile-stack-container"
+                                  style={{ flexDirection: "column" }}
+                                  id={x.name}
                                 >
-                                  <h3>
-                                    &nbsp;<b>{x.name}</b>&nbsp;
-                                  </h3>
-                                  {x.numOfOccurences! > 0 && (
-                                    <span style={{ color: "#2667ff" }}>
-                                      {x.numOfOccurences === 1 && (
-                                        <>&nbsp;&nbsp;Used in 1 Stack!</>
+                                  <div
+                                    style={{
+                                      width: "100%",
+                                      display: "flex",
+                                      alignItems: "center",
+                                    }}
+                                  >
+
+                                    <img src={`/imgs/tech/${x.name}.svg`} width={100} alt={`${x.name} logo`} style={{ borderRadius: "20px" }} />
+
+                                    <div className="stack-description" style={{ margin: "0", marginLeft: "1rem", textAlign: "left" }}>
+                                      <h2>
+                                        {x.name}
+                                      </h2>
+                                      {x.numOfOccurences! > 0 && (
+                                        <p style={{ color: "#2667ff" }}>
+                                          {x.numOfOccurences === 1 && (
+                                            <>Used in 1 Stack!</>
+                                          )}
+                                          {x.numOfOccurences! > 1 && (
+                                            <>
+                                              Used in over{" "}
+                                              {x.numOfOccurences} Stacks!
+                                            </>
+                                          )}
+                                        </p>
                                       )}
-                                      {x.numOfOccurences! > 1 && (
-                                        <>
-                                          &nbsp;&nbsp;Used in over{" "}
-                                          {x.numOfOccurences} Stacks!
-                                        </>
-                                      )}
-                                    </span>
-                                  )}
+                                    </div>
+                                  </div>
+                                  <hr />
+                                  <p>{x.description}</p>
                                 </div>
                               </div>
-                              <hr />
-                              <p>{x.description}</p>
-                              <a
-                                className="nav-element"
-                                href={x.site}
-                                target="_blank"
-                                style={{
-                                  display: "block",
-                                  marginTop: "20px",
-                                  fontWeight: "600",
-                                  maxWidth: "fit-content",
-                                }}
-                              >
-                                Learn More...
-                              </a>
-                            </div>
+                            </a>
                           );
                         })}
                       </>

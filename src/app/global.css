@@ -14,16 +14,17 @@
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-size: cover;
+        background-position: center;
         margin-bottom: 4rem;
     }
 
-    @media (max-width: 800px) {
+    /* @media (max-width: 800px) {
 
         html,
         body {
             background: none;
         }
-    }
+    } */
 
     ::-webkit-scrollbar {
         display: none;
@@ -46,7 +47,7 @@
     h2 {
         color: #2a2b2a;
         font-family: 'Inter', sans-serif;
-        font-size: 32px;
+        font-size: 28px;
         font-weight: 800;
         line-height: 1.4;
     }
@@ -85,7 +86,8 @@
         }
     }
 
-    h5 {
+    h5,
+    .subheading {
         color: #2a2b2a;
         font-family: 'Inter', sans-serif;
         font-size: 18px;
@@ -94,7 +96,9 @@
     }
 
     @media (max-width: 800px) {
-        h5 {
+
+        h5,
+        .subheading {
             font-size: 14px;
         }
     }
@@ -175,7 +179,7 @@
             padding: 0rem;
         }
 
-        .nav-element {
+        nav .nav-element {
             margin: auto;
         }
 
@@ -377,11 +381,8 @@
     }
 
     .grid-container {
-        /* padding: 20px;
-        padding-top: 0px; */
         display: flex;
         flex-wrap: wrap;
-        /* gap: 2rem; */
         width: 100%;
         justify-content: center;
         align-items: center;
@@ -392,6 +393,7 @@
         border-radius: 20px;
         width: 100px;
         height: 100px;
+        margin-bottom: 2rem;
     }
 
     #mobile {
@@ -817,7 +819,7 @@
         object-fit: cover;
         position: absolute;
         left: 1.4rem;
-        top: 1.2rem;
+        top: 1.6rem;
         z-index: 2;
         background: white;
         box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.025);
@@ -840,6 +842,13 @@
         }
     }
 
+    @media (max-width: 800px) {
+        .explore-stack-img {
+            left: 0.6rem;
+            top: 0.6rem;
+        }
+    }
+
     .explore-stack-icons {
         width: 50px;
         height: 50px;
@@ -848,6 +857,8 @@
         padding: 4px;
         overflow: hidden;
         object-fit: contain;
+        margin-left: .2rem;
+        margin-right: .2rem;
     }
 
     @media (max-width: 399px) {
@@ -989,10 +1000,6 @@
         border: 1px solid transparent;
         color: white;
         border-radius: 100px;
-        /* padding: 10px;
-        padding-left: 26px;
-        padding-right: 26px;
-        font-size: 16px; */
         padding: 8px;
         padding-left: 22px;
         padding-right: 22px;
@@ -1016,11 +1023,12 @@
     }
 
     .btn-landing {
-        padding: 16px;
-        width: 25%;
-        max-width: 80%;
         font-size: 28px;
+        padding: 14px;
+        padding-left: 40px;
+        padding-right: 40px;
         margin: .5rem;
+        min-width: 25%;
     }
 
     .btn-delete {
@@ -1038,7 +1046,32 @@
 
         .btn-confirm,
         .btn-landing {
-            width: 100%;
+            width: 40%;
+            min-width: none;
+        }
+    }
+
+    @media (max-width: 850px) {
+
+        .btn-confirm,
+        .btn-landing {
+            width: 60%;
+        }
+    }
+
+    @media (max-width: 550px) {
+
+        .btn-confirm,
+        .btn-landing {
+            width: 85%;
+        }
+
+        .btn-landing {
+            font-size: 24px;
+        }
+
+        .btn-confirm {
+            font-size: 18px;
         }
     }
 
@@ -1130,7 +1163,7 @@
         position: absolute;
         display: flex;
         justify-content: center;
-        bottom: -8rem;
+        bottom: -12rem;
         width: 100%;
         flex-direction: column;
     }
@@ -1146,9 +1179,9 @@
         justify-content: center;
     }
 
-    @media (max-width: 800px) {
+    @media (max-width: 400px) {
         footer {
-            bottom: -12rem;
+            bottom: -16rem;
         }
 
         .footer-container {
@@ -1167,7 +1200,7 @@
 
     .label {
         position: absolute;
-        top: .7rem;
+        top: .8rem;
         left: .2rem;
         pointer-events: none;
         max-width: fit-content;
@@ -1180,7 +1213,7 @@
     }
 
     .input:is(:focus, :valid)~label {
-        transform: translateY(-105%) translateX(0%) scale(.9);
+        transform: translateY(-110%) translateX(0%) scale(.9);
         background: white;
         border-radius: 4px;
         padding-left: .2rem;
