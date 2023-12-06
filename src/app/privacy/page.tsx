@@ -22,9 +22,9 @@ export default function Page() {
 
       <div className="card-container">
         <div className="card">
-          <h2>
+          <h3>
             Information Collected
-          </h2>
+          </h3>
           <p>
             When you create an account on our website, we collect certain information to enhance your user experience and provide you with our services. The information we collect includes:
             <br />
@@ -33,13 +33,13 @@ export default function Page() {
             <br />
             <b>Username:</b> Your chosen username helps identify you on our platform and facilitates your interactions with other users.
             <br />
-            <b>First Name and Last Name:</b> We gather your first and last names to personalize your experience and, if applicable, to address you in a more personalized manner.
+            <b>First Name / Last Name:</b> We gather your first and last names to personalize your experience and, if applicable, to address you in a more personalized manner.
           </p>
           <hr />
           <hr />
-          <h2>
+          <h3>
             Use Of Information
-          </h2>
+          </h3>
           <p>
             The information collected during the account creation process is utilized for the following purposes:
             <br />
@@ -52,9 +52,9 @@ export default function Page() {
           </p>
           <hr />
           <hr />
-          <h2>
+          <h3>
             Cookies
-          </h2>
+          </h3>
           <p>
             We want to be transparent about our use of cookies.
             Unlike some websites, we do not use cookies to track your browsing behavior on our site.
@@ -62,9 +62,9 @@ export default function Page() {
           </p>
           <hr />
           <hr />
-          <h2>
+          <h3>
             Future Updates
-          </h2>
+          </h3>
           <p>
             We reserve the right to update and modify this Privacy Policy to reflect changes in our practices, legal requirements, or to better serve your needs.
             Any modifications will be effective immediately upon their posting on our website.
@@ -74,7 +74,7 @@ export default function Page() {
           </p>
           <hr />
           <hr />
-          <p style={{ textAlign: "center", fontSize: "14px" }}>Last Updated: 11/28/2023</p>
+          <p style={{ textAlign: "center", fontSize: "14px" }}><b>Last Updated: 1/1/2024</b></p>
         </div>
       </div>
     </>

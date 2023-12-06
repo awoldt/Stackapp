@@ -120,79 +120,90 @@ export default async function ProfilePage({ params }: { params: any }) {
       <div className="card-container" id="yourStacks">
         <div className="card" style={{ textAlign: "left" }}>
           <section>
-            {/* <h5 style={{ opacity: "0.4" }}>STACKS</h5>
-            <hr /> */}
+            <p
+              className="subtitle"
+              style={{ opacity: "0.6", textAlign: "center" }}
+            >
+              STACKS
+            </p>
+            <hr />
             {pageData.stackData.map((x: any, index) => {
               return (
                 <div key={index}>
                   <a href={`/stack/${String(x._id)}`}>
-                    <div className="profile-stack-container">
-                      <div className="card-thumbnail">
-                        <img src={x.thumbnail_url} />
-                      </div>
+                    <div className="hover-container">
+                      <div className="left-top"></div>
+                      <div className="left-bottom"></div>
+                      <div className="right-top"></div>
+                      <div className="right-bottom"></div>
+                      <div className="profile-stack-container">
+                        <div className="card-thumbnail">
+                          <img src={x.thumbnail_url} />
+                        </div>
 
-                      <img
-                        src={x.icon_url}
-                        className="explore-stack-img"
-                        alt="stack-img"
-                      />
+                        <img
+                          src={x.icon_url}
+                          className="explore-stack-img"
+                          alt="stack-img"
+                        />
 
-                      <div className="stack-description">
-                        <h2>{x.name}</h2>
+                        <div className="stack-description">
+                          <h2>{x.name}</h2>
 
-                        <p
-                          style={{
-                            fontSize: "14px",
-                            fontWeight: "600",
-                            opacity: "0.4"
-                          }}
-                        >
-                          {x.created_on.toDateString()}
-                        </p>
+                          <p
+                            style={{
+                              fontSize: "14px",
+                              fontWeight: "600",
+                              opacity: "0.4"
+                            }}
+                          >
+                            {x.created_on.toDateString()}
+                          </p>
 
-                        <p style={{ marginTop: "10px" }}>
+                          {/* <p style={{ marginTop: "10px" }}>
                           {x.description.length > 100
                             ? x.description.slice(0, 100) + "..."
                             : x.description}
-                        </p>
-                      </div>
-                      <div className="explore-stack-icons-container">
-                        <img
-                          src={`/imgs/tech/${x.languages_used[0]}.svg`}
-                          className="explore-stack-icons"
-                          alt="language-logo"
-                        />
-                        {x.databases_used !== null && (
+                        </p> */}
+                        </div>
+                        <div className="explore-stack-icons-container">
                           <img
-                            src={`/imgs/tech/${x.databases_used[0]}.svg`}
+                            src={`/imgs/tech/${x.languages_used[0]}.svg`}
                             className="explore-stack-icons"
-                            alt="database-logo"
+                            alt="language-logo"
                           />
-                        )}
+                          {x.databases_used !== null && (
+                            <img
+                              src={`/imgs/tech/${x.databases_used[0]}.svg`}
+                              className="explore-stack-icons"
+                              alt="database-logo"
+                            />
+                          )}
 
-                        {x.clouds_used !== null && (
-                          <img
-                            src={`/imgs/tech/${x.clouds_used[0]}.svg`}
-                            className="explore-stack-icons"
-                            alt="cloud-logo"
-                          />
-                        )}
+                          {x.clouds_used !== null && (
+                            <img
+                              src={`/imgs/tech/${x.clouds_used[0]}.svg`}
+                              className="explore-stack-icons"
+                              alt="cloud-logo"
+                            />
+                          )}
 
-                        {x.apis_used !== null && (
-                          <img
-                            src={`/imgs/tech/${x.apis_used[0]}.svg`}
-                            className="explore-stack-icons"
-                            alt="api-logo"
-                          />
-                        )}
+                          {x.apis_used !== null && (
+                            <img
+                              src={`/imgs/tech/${x.apis_used[0]}.svg`}
+                              className="explore-stack-icons"
+                              alt="api-logo"
+                            />
+                          )}
 
-                        {x.frameworks_used !== null && (
-                          <img
-                            src={`/imgs/tech/${x.frameworks_used[0]}.svg`}
-                            className="explore-stack-icons"
-                            alt="framework-logo"
-                          />
-                        )}
+                          {x.frameworks_used !== null && (
+                            <img
+                              src={`/imgs/tech/${x.frameworks_used[0]}.svg`}
+                              className="explore-stack-icons"
+                              alt="framework-logo"
+                            />
+                          )}
+                        </div>
                       </div>
                     </div>
                   </a>

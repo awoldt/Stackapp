@@ -21,9 +21,17 @@ export default function CommitLogs({
                     <div className="github-container">
                       <div style={{ display: "flex", width: "50%", flexDirection: "column" }}>
                         <p>
-                          <b>{x.message}</b>
+                          <b>
+                            {x.message.length > 40
+                            ? x.message.slice(0, 40) + "..."
+                            : x.message}
+                            </b>
                         </p>
-                        <p style={{ fontSize: "12px", fontWeight: "800", opacity: "0.4" }}>
+                        <p style={{
+                          fontSize: "14px",
+                          fontWeight: "600",
+                          opacity: "0.4"
+                        }}>
                           Pushed {x.date_commited}
                         </p>
                       </div>

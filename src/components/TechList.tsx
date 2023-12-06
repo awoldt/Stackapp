@@ -16,8 +16,8 @@ export default function TechList({
     defaultSection === undefined
       ? "language"
       : !possibleTechTypes.includes(defaultSection)
-      ? "language"
-      : defaultSection
+        ? "language"
+        : defaultSection
   );
 
   return (
@@ -129,15 +129,14 @@ export default function TechList({
                         >
                           LANGUAGES
                         </p>
+                        <hr />
                         {x.tech.map((x, index2) => {
                           return (
                             <a
-                              className="nav-element"
                               href={x.site}
                               target="_blank"
                               style={{
                                 display: "block",
-                                marginTop: "20px",
                                 fontWeight: "600",
                                 maxWidth: "fit-content",
                               }}
@@ -249,12 +248,10 @@ export default function TechList({
                               <hr />
                               <p>{x.description}</p>
                               <a
-                                className="nav-element"
                                 href={x.site}
                                 target="_blank"
                                 style={{
                                   display: "block",
-                                  marginTop: "20px",
                                   fontWeight: "600",
                                   maxWidth: "fit-content",
                                 }}
@@ -279,16 +276,15 @@ export default function TechList({
                         >
                           DATABASES
                         </p>
+                        <hr />
                         {x.tech.map((x, index2) => {
                           return (
                             <a
                               key={index2}
-                              className="nav-element"
                               href={x.site}
                               target="_blank"
                               style={{
                                 display: "block",
-                                marginTop: "20px",
                                 fontWeight: "600",
                                 maxWidth: "fit-content",
                               }}
@@ -399,12 +395,10 @@ export default function TechList({
                               <hr />
                               <p>{x.description}</p>
                               <a
-                                className="nav-element"
                                 href={x.site}
                                 target="_blank"
                                 style={{
                                   display: "block",
-                                  marginTop: "20px",
                                   fontWeight: "600",
                                   maxWidth: "fit-content",
                                 }}
@@ -429,16 +423,15 @@ export default function TechList({
                         >
                           APIs
                         </p>
+                        <hr />
                         {x.tech.map((x, index2) => {
                           return (
                             <a
                               key={index2}
-                              className="nav-element"
                               href={x.site}
                               target="_blank"
                               style={{
                                 display: "block",
-                                marginTop: "20px",
                                 fontWeight: "600",
                                 maxWidth: "fit-content",
                               }}
@@ -549,12 +542,10 @@ export default function TechList({
                               <hr />
                               <p>{x.description}</p>
                               <a
-                                className="nav-element"
                                 href={x.site}
                                 target="_blank"
                                 style={{
                                   display: "block",
-                                  marginTop: "20px",
                                   fontWeight: "600",
                                   maxWidth: "fit-content",
                                 }}
@@ -579,16 +570,15 @@ export default function TechList({
                         >
                           FRAMEWORKS
                         </p>
+                        <hr />
                         {x.tech.map((x, index2) => {
                           return (
                             <a
                               key={index2}
-                              className="nav-element"
                               href={x.site}
                               target="_blank"
                               style={{
                                 display: "block",
-                                marginTop: "20px",
                                 fontWeight: "600",
                                 maxWidth: "fit-content",
                               }}
@@ -699,12 +689,10 @@ export default function TechList({
                               <hr />
                               <p>{x.description}</p>
                               <a
-                                className="nav-element"
                                 href={x.site}
                                 target="_blank"
                                 style={{
                                   display: "block",
-                                  marginTop: "20px",
                                   fontWeight: "600",
                                   maxWidth: "fit-content",
                                 }}
@@ -729,16 +717,15 @@ export default function TechList({
                         >
                           CLOUD SERVICES
                         </p>
+                        <hr />
                         {x.tech.map((x, index2) => {
                           return (
                             <a
                               key={index2}
-                              className="nav-element"
                               href={x.site}
                               target="_blank"
                               style={{
                                 display: "block",
-                                marginTop: "20px",
                                 fontWeight: "600",
                                 maxWidth: "fit-content",
                               }}
@@ -849,12 +836,10 @@ export default function TechList({
                               <hr />
                               <p>{x.description}</p>
                               <a
-                                className="nav-element"
                                 href={x.site}
                                 target="_blank"
                                 style={{
                                   display: "block",
-                                  marginTop: "20px",
                                   fontWeight: "600",
                                   maxWidth: "fit-content",
                                 }}

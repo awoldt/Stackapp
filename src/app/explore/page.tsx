@@ -110,7 +110,7 @@ export default async function Page() {
                       />
 
                       <div className="stack-description">
-                        <h2 style={{ lineHeight: "1.2" }}>{x.stackInfo.name}</h2>
+                        <h2 style={{ lineHeight: "1.4" }}>{x.stackInfo.name}</h2>
 
                         <p
                           style={{
@@ -122,11 +122,11 @@ export default async function Page() {
                           {x.stackInfo.created_on.toDateString()}
                         </p>
 
-                        <p style={{ lineHeight: "2.4" }}>
-                          {x.stackInfo.description.length > 100
-                            ? x.stackInfo.description.slice(0, 100) + "..."
+                        {/* <p style={{ lineHeight: "2.4" }}>
+                          {x.stackInfo.description.length > 60
+                            ? x.stackInfo.description.slice(0, 60) + "..."
                             : x.stackInfo.description}
-                        </p>
+                        </p> */}
 
                         <div className="profile-explore-container">
                           <img
