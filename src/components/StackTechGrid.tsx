@@ -233,81 +233,73 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
               <hr />
             </div>
 
-            {stackDetails.databases_used !== null && (
-              <div
-                className="grid-item"
-                style={{
-                  width: "20%",
-                  height: "fit-content",
-                  marginBottom: "0",
-                }}
+            <div
+              className="grid-item"
+              style={{
+                width: "20%",
+                height: "fit-content",
+                marginBottom: "0",
+              }}
+            >
+              <p
+                className="subtitle"
+                style={{ opacity: "0.6", textAlign: "center" }}
               >
-                <p
-                  className="subtitle"
-                  style={{ opacity: "0.6", textAlign: "center" }}
-                >
-                  DATABASES
-                </p>
-                <hr />
-              </div>
-            )}
+                DATABASES
+              </p>
+              <hr />
+            </div>
 
-            {stackDetails.apis_used !== null && (
-              <div
-                className="grid-item"
-                style={{
-                  width: "20%",
-                  height: "fit-content",
-                  marginBottom: "0",
-                }}
+            <div
+              className="grid-item"
+              style={{
+                width: "20%",
+                height: "fit-content",
+                marginBottom: "0",
+              }}
+            >
+              <p
+                className="subtitle"
+                style={{ opacity: "0.6", textAlign: "center" }}
               >
-                <p
-                  className="subtitle"
-                  style={{ opacity: "0.6", textAlign: "center" }}
-                >
-                  APIs
-                </p>
-                <hr />
-              </div>
-            )}
+                APIs
+              </p>
+              <hr />
+            </div>
 
-            {stackDetails.frameworks_used !== null && (
-              <div
-                className="grid-item"
-                style={{
-                  width: "20%",
-                  height: "fit-content",
-                  marginBottom: "0",
-                }}
+            <div
+              className="grid-item"
+              style={{
+                width: "20%",
+                height: "fit-content",
+                marginBottom: "0",
+              }}
+            >
+              <p
+                className="subtitle"
+                style={{ opacity: "0.6", textAlign: "center" }}
               >
-                <p
-                  className="subtitle"
-                  style={{ opacity: "0.6", textAlign: "center" }}
-                >
-                  FRAMEWORKS
-                </p>
-                <hr />
-              </div>
-            )}
+                FRAMEWORKS
+              </p>
+              <hr />
+            </div>
 
-            {stackDetails.clouds_used !== null && (
-              <div
-                className="grid-item"
-                style={{
-                  width: "20%",
-                  height: "fit-content",
-                  marginBottom: "0",
-                }}
+            <div
+              className="grid-item"
+              style={{
+                width: "20%",
+                height: "fit-content",
+                marginBottom: "0",
+              }}
+            >
+              <p
+                className="subtitle"
+                style={{ opacity: "0.6", textAlign: "center" }}
               >
-                <p
-                  className="subtitle"
-                  style={{ opacity: "0.6", textAlign: "center" }}
-                >
-                  CLOUD SERVICES
-                </p>
-                <hr />
-              </div>
-            )}
+                CLOUD SERVICES
+              </p>
+              <hr />
+            </div>
           </div>
 
           <div style={{ display: "flex", width: "100%" }}>
@@ -374,6 +366,19 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
                 })}
               </div>
             )}
+            {stackDetails.databases_used === null && (
+              <div
+                className="grid-container"
+                style={{
+                  display: "flex",
+                  gap: "0",
+                  padding: "0",
+                  maxWidth: "20%",
+                }}
+              >
+                <></>
+              </div>
+            )}
 
             {stackDetails.apis_used !== null && (
               <div
@@ -405,6 +410,19 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
                     </a>
                   );
                 })}
+              </div>
+            )}
+            {stackDetails.apis_used === null && (
+              <div
+                className="grid-container"
+                style={{
+                  display: "flex",
+                  gap: "0",
+                  padding: "0",
+                  maxWidth: "20%",
+                }}
+              >
+                <></>
               </div>
             )}
 
@@ -442,6 +460,19 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
                 )}
               </div>
             )}
+            {stackDetails.frameworks_used === null && (
+              <div
+                className="grid-container"
+                style={{
+                  display: "flex",
+                  gap: "0",
+                  padding: "0",
+                  maxWidth: "20%",
+                }}
+              >
+                <></>
+              </div>
+            )}
 
             {stackDetails.clouds_used !== null && (
               <div
@@ -473,6 +504,19 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
                     </a>
                   );
                 })}
+              </div>
+            )}
+            {stackDetails.clouds_used === null && (
+              <div
+                className="grid-container"
+                style={{
+                  display: "flex",
+                  gap: "0",
+                  padding: "0",
+                  maxWidth: "20%",
+                }}
+              >
+                <></>
               </div>
             )}
           </div>
