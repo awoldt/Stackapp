@@ -376,7 +376,9 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
                   maxWidth: "20%",
                 }}
               >
-                <></>
+                <p style={{ textAlign: "center", color: "#b5b5b5" }}>
+                  There are no databases used in this tech stack
+                </p>
               </div>
             )}
 
@@ -422,7 +424,9 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
                   maxWidth: "20%",
                 }}
               >
-                <></>
+                <p style={{ textAlign: "center", color: "#b5b5b5" }}>
+                  There are no APIs used in this tech stack
+                </p>
               </div>
             )}
 
@@ -470,7 +474,9 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
                   maxWidth: "20%",
                 }}
               >
-                <></>
+                <p style={{ textAlign: "center", color: "#b5b5b5" }}>
+                  There are no frameworks used in this tech stack
+                </p>
               </div>
             )}
 
@@ -516,7 +522,9 @@ export default function TechGrid({ stackDetails }: { stackDetails: Stack }) {
                   maxWidth: "20%",
                 }}
               >
-                <></>
+                <p style={{ textAlign: "center", color: "#b5b5b5" }}>
+                  There are no cloud services used in this tech stack
+                </p>
               </div>
             )}
           </div>
