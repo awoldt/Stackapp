@@ -130,8 +130,6 @@ export async function action({ request }: ActionFunctionArgs) {
         );
       }
 
-      console.log("\nSUCCESSFULLY CREATED NEW STACK!");
-
       return json({
         status: 200,
         message: "Stack successfully created!",

@@ -38,7 +38,6 @@ export default function StackHeader(props: PropData) {
   const [showSettings, setShowSettings] = useState<boolean>(false);
   const toggleShowSettings = () => {
     setShowSettings(!showSettings);
-    console.log("test");
   };
   const showSettingsStyles: React.CSSProperties = {
     display: showSettings ? "block" : "none",

@@ -33,7 +33,6 @@ interface LoaderData {
 
 export default function Home() {
   const loaderData = useLoaderData<LoaderData>();
-  console.log(loaderData);
 
   return (
     <>

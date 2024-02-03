@@ -636,8 +636,6 @@ export async function CreateStack(
     const clouds: string[] = [];
 
     for (const [key, value] of body.entries()) {
-      console.log(`${key}: ${value}`);
-
       switch (key) {
         case "thumbnail_1":
           // eslint-disable-next-line no-case-declarations
@@ -813,8 +811,6 @@ export async function UploadImage(img: Blob | null) {
         break;
       }
     }
-
-    console.log("files random name will be " + randomFileName);
 
     // write file to tmp folder
     await fs.writeFile(
@@ -1178,8 +1174,6 @@ export async function EditStack(body: FormData, stackId: string) {
     const clouds: string[] = [];
 
     for (const [key, value] of body.entries()) {
-      console.log(`${key}: ${value}`);
-
       switch (key) {
         case "thumbnail_1":
           // eslint-disable-next-line no-case-declarations

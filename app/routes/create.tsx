@@ -35,7 +35,6 @@ export function links() {
 
 export default function CreateForm() {
   const loaderData = useLoaderData<LoaderData>();
-  console.log(loaderData);
 
   const githubClientId = useLoaderData<string>();
 

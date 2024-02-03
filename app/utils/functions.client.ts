@@ -89,8 +89,6 @@ export async function CreateStackFormSubmit(
         });
         const res = await req.json();
 
-        console.log(res);
-
         if (res.status === 200) {
           document.location.assign(`/stack/${stackId}`);
         } else {

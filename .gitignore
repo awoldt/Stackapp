@@ -3,6 +3,7 @@
 .env
 .cache
 tmp
+/public/build
 
 # dependencies
 /node_modules

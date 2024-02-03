@@ -1,9 +1,6 @@
 import { getSession } from "~/utils/sessions";
 import exploreCss from "../styles/explore.css";
-import {
-  GetExplorePageStacks,
-  IsSignedIn,
-} from "~/utils/functions.server";
+import { GetExplorePageStacks, IsSignedIn } from "~/utils/functions.server";
 import { LoaderFunctionArgs, MetaFunction, json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import Nav from "~/components/Nav";
@@ -29,8 +26,6 @@ interface LoaderData {
 
 export default function Explore() {
   const loaderData = useLoaderData<LoaderData>();
-
-  console.log(loaderData);
 
   return (
     <>
