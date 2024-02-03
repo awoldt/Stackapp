@@ -75,8 +75,7 @@ async function RefreshStackData(
   repoName: string,
   githubAccessToken: string,
   githubUsername: string,
-  stackId: string,
-  repoId: number
+  stackId: string
 ) {
   /* 
     Refreshes the stack data's github specific data once 30 mins has passed
@@ -84,7 +83,7 @@ async function RefreshStackData(
 
   try {
     const repoRequest = await fetch(
-      `https://api.github.com/repositories/${repoId.toString()}`,
+      `https://api.github.com/repos/${githubUsername}/${repoName}`,
       {
         headers: {
           Accept: "application/vnd.github+json",
@@ -93,13 +92,13 @@ async function RefreshStackData(
         },
       }
     );
+
     if (!repoRequest.ok) {
       console.log("\nerror while fething repo data to update from github api");
       return null;
     }
 
     // get the data
-
     const repoResponse = await repoRequest.json();
 
     const v = RefreshStackModel.safeParse({
@@ -175,8 +174,7 @@ export async function GetStackData(
         stack.repo_name,
         stack.github_access_token,
         githubUserRequest.username,
-        stackID,
-        stack.github_repo_id
+        stackID
       );
       if (r === null) {
         console.log("\ncould not refresh stack data");
