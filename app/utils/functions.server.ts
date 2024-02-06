@@ -25,8 +25,8 @@ import {
 const s3Client = new S3Client({
   region: "us-east-1",
   credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY!,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
+    accessKeyId: process.env.AMAZON_ACCESS_KEY!,
+    secretAccessKey: process.env.AMAZON_SECRET_ACCESS_KEY!,
   },
 });
 const s3Bucket = "491292639630-us-east-1-stackapp";
