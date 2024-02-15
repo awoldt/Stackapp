@@ -27,6 +27,7 @@ interface LoaderData {
     frameworks: string[];
     clouds: string[];
   } | null;
+  githubClientId?: string;
 }
 
 export function links() {
@@ -36,7 +37,7 @@ export function links() {
 export default function CreateForm() {
   const loaderData = useLoaderData<LoaderData>();
 
-  const githubClientId = useLoaderData<string>();
+  console.log(loaderData);
 
   const DISABLEDFORM = loaderData.isSignedIn ? false : true;
 
@@ -88,7 +89,7 @@ export default function CreateForm() {
                 </p>
 
                 <a
-                  href={`https://github.com/login/oauth/authorize?client_id=${githubClientId}`}
+                  href={`https://github.com/login/oauth/authorize?client_id=${loaderData.githubClientId}`}
                   style={{
                     border: "1px solid #171d1c40",
                     marginTop: "1rem",
@@ -635,12 +636,15 @@ export async function loader({ request }: LoaderFunctionArgs) {
   const session = await getSession(request.headers.get("Cookie"));
   const account = await IsSignedIn(session.get("a_id"));
 
+  const GITHUBCLIENTID = process.env.GITHUB_CLIENT_ID;
+
   let returnData: LoaderData;
 
   // user must be signed in to create stack
   if (account === null) {
     returnData = {
       isSignedIn: false,
+      githubClientId: GITHUBCLIENTID,
     };
     return json(returnData);
   }
