@@ -37,8 +37,6 @@ export function links() {
 export default function CreateForm() {
   const loaderData = useLoaderData<LoaderData>();
 
-  console.log(loaderData);
-
   const DISABLEDFORM = loaderData.isSignedIn ? false : true;
 
   const [techSelected, setTechSelected] = useState<StackFormRequest>({
